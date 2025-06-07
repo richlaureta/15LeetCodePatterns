@@ -14,6 +14,8 @@ using namespace std;
 
 double findMaxAverage(vector<int> &nums, int k)
 {
+    //Problem #643 Maximum Average Subarray I
+    
     double total = 0;
     size_t leftIndex = 0;
     double maxSum = 0;

@@ -2,6 +2,7 @@ from typing import List
 import sys
 
 def findMaxAverage(nums: List[int], k: int) -> float:
+    #Problem #643
     leftMostIndex = 0
     rightMostIndex = k
     total = 0

@@ -19,11 +19,8 @@ class NumArray:
         else:
             return (self.prefixSumArray[right] - self.prefixSumArray[left - 1])
 
-# class ContiguousArray:
-#     def findMaxLength(self, nums: List[int]) -> int:
-
 def main():
-    nums: List[int] = [-2,0,3,-5,2,-1]#[0,1,1,1,1,1,0,0,0,1,0,1,1,1,1,0,0,0,0,0]
+    nums: List[int] = [-2,0,3,-5,2,-1]
 
     prefixSum(nums)
     
