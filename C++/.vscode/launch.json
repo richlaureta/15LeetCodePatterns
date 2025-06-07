@@ -1,0 +1,25 @@
+{
+  "configurations": [
+    {
+      "name": "(lldb) Attach",
+      "type": "cppdbg",
+      "request": "attach",
+      "program": "/Users/richboi/Desktop/15 LeetCode Patterns/C++/Anagram",
+      "MIMode": "lldb"
+    },
+    {
+      "name": "C/C++: clang++ build and debug active file",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "/Users/richboi/Desktop/15 LeetCode Patterns/C++/Anagram",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${fileDirname}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "lldb",
+      "preLaunchTask": "C/C++: clang++ build active file"
+    }
+  ],
+  "version": "2.0.0"
+}
