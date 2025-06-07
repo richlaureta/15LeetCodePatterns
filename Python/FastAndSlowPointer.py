@@ -61,11 +61,12 @@ class LinkedList:
 
         while True:
             if currentNode.nextNode is None:
-                # print(f'The node at the end of the linked list is at address {hex(id(currentNode))} with a value of {currentNode.value}.')
                 return currentNode
             currentNode = currentNode.nextNode
 
 def hasCycle(head: linkedListNode) -> bool:
+    #Problem #141 Linked List Cycle
+    
     if head is None:
         return False
     

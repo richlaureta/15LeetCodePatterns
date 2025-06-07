@@ -6,7 +6,7 @@ def prefixSum(numbers: List[int]):
             numbers[i] += numbers[i - 1]
 
 class NumArray:
-    
+    #Problem #303 Range Sum Query - Immutable
     def __init__(self, nums: List[int]):
         for i in range(1, len(nums)):
             nums[i] += nums[i - 1]
