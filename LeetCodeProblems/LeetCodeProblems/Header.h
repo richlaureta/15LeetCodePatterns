@@ -41,3 +41,5 @@ public:
 bool hasCycle(ListNode *head);
 
 ListNode* reverseList(ListNode* head);
+
+std::vector<int> nextGreaterElement(std::vector<int> &nums1, std::vector<int> &nums2);

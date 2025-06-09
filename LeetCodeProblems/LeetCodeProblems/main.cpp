@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -65,6 +66,13 @@ int main(int argc, const char * argv[]) {
         std::cout << currentNode->val << std::endl;
         currentNode = currentNode->next;
     }
+    
+    //Problem #496 Next Greater Element I
+    
+    vector<int> nums1 = {4, 1, 2};
+    vector<int> nums2 = {1, 3, 4, 2};
+    
+    nextGreaterElement(nums1, nums2);
     
     return EXIT_SUCCESS;
 }
