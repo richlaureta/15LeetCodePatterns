@@ -87,6 +87,8 @@ def hasCycle(head: linkedListNode) -> bool:
             return True
 
 def reverseList(head: Optional[linkedListNode]) -> Optional [linkedListNode]:
+    if head is None:
+        return head
     
     currentNode = head
     previousNode = head
@@ -100,16 +102,8 @@ def reverseList(head: Optional[linkedListNode]) -> Optional [linkedListNode]:
         currentNode.nextNode = previousNode
         previousNode = currentNode
 
-    while(currentNode != None):
-        print(currentNode.value)
-        currentNode = currentNode.nextNode
-        
     return currentNode
-
-
-
-
-        
+       
 def main():
     #Problem #141 Linked List Cycle
 
