@@ -45,7 +45,6 @@ int main(int argc, const char * argv[]) {
     linkedList0.insertNode(&node1);
     linkedList0.insertNode(&node2);
     linkedList0.insertNode(&node3);
-//    linkedList0.insertNode(&node1);
     
     if(hasCycle(&node0) == 1)
     {
@@ -56,7 +55,16 @@ int main(int argc, const char * argv[]) {
         std::cout << "The linked list is not a cycle." << std::endl;
     }
     
-//    linkedList0.printLinkedList();
+    //Problem #206 Reverse Linked List
+    
+    reverseList(&node0);
+    ListNode* currentNode = &node0;
+    
+    while(currentNode->next != nullptr)
+    {
+        std::cout << currentNode->val << std::endl;
+        currentNode = currentNode->next;
+    }
     
     return EXIT_SUCCESS;
 }
