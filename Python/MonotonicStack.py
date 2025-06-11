@@ -2,7 +2,6 @@ import sys
 
 def nextGreaterElement(nums1: list[int], nums2: list[int]) -> list[int]:
     decrementIndex = len(nums2) - 1
-    # array = [-1] * len(nums2)
     stack = []
     dictList = {}
     arrayQuery =[]
@@ -12,7 +11,6 @@ def nextGreaterElement(nums1: list[int], nums2: list[int]) -> list[int]:
             stack.pop()
 
         if stack and i < stack[-1]:
-            # array[decrementIndex] = stack[-1]
             dictList[i] = stack[-1]
         else:
             dictList[i] = -1

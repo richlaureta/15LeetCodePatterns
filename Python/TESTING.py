@@ -1,3 +1,4 @@
-stack = [4]
+heap = [1, 2, 3]
 
-print(stack[-1])
+if heap[3]:
+    print("This is NONE")
