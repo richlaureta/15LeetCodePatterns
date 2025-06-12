@@ -13,6 +13,8 @@
 #include <string>
 #include <vector>
 
+using namespace std;
+
 bool isAnagram(std::string s, std::string t);
 
 double findMaxAverage(std::vector<int> &nums, int k);
@@ -40,6 +42,22 @@ public:
 
 bool hasCycle(ListNode *head);
 
+void removeCycle(ListNode *head);
+
 ListNode* reverseList(ListNode* head);
 
 std::vector<int> nextGreaterElement(std::vector<int> &nums1, std::vector<int> &nums2);
+
+class MaxHeap
+{
+private:
+    vector<int> Heap;
+    
+public:
+    int parent(int index);
+    int leftChildIndex(int index);
+    int rightChildIndex(int index);
+    void insert(int value);
+    void swap(int *index1, int *index2);
+    void printHeap();
+};

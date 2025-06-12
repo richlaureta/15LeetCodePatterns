@@ -1,4 +1,13 @@
-heap = [1, 2, 3]
+class Node:
+    def __init__(self, value):
+        self.value = value
+        self.next = None
 
-if heap[3]:
-    print("This is NONE")
+node1 = Node(10)
+node2 = Node(20)
+node_addresses1 = {}
+
+# Dictionary to store memory addresses of nodes
+node_addresses = {node1: hex(id(node1)), node2: hex(id(node2))}
+node_addresses1[node1] = 1
+print(node_addresses1)

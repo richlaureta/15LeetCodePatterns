@@ -70,21 +70,34 @@ def hasCycle(head: linkedListNode) -> bool:
     if head is None:
         return False
     
-    slowPointer = head
-    fastPointer = head
-    
-    while True:        
-        if slowPointer.nextNode is None:
-            return False
-            
-        slowPointer = slowPointer.nextNode
-        
-        if fastPointer is None or fastPointer.nextNode is None or fastPointer.nextNode.nextNode is None:
-            return False
-        fastPointer = fastPointer.nextNode.nextNode
+    pointer = head
+    mySet = set()
 
-        if slowPointer == fastPointer:
-            return True
+    while pointer != None:
+       if(str(hex(id(pointer)))) in mySet:
+           return True
+       mySet.add(str(hex(id(pointer))))
+       
+       pointer = pointer.nextNode
+
+    return False
+    # slowPointer = head
+    # fastPointer = head
+    
+    # while True:        
+    #     if slowPointer.nextNode is None:
+    #         return False
+            
+    #     slowPointer = slowPointer.nextNode
+        
+    #     if fastPointer is None or fastPointer.nextNode is None or fastPointer.nextNode.nextNode is None:
+    #         return False
+    #     fastPointer = fastPointer.nextNode.nextNode
+
+    #     if slowPointer == fastPointer:
+    #         breakCycle = input("The linked list has a cycle, do you want to break it? Enter y for yes, Enter n for no.").lower
+
+    #         return True
         
 def main():
     node0 = linkedListNode("3")

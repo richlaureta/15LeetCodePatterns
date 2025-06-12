@@ -41,21 +41,46 @@ class MaxHeap:
         return poppedValue
     
     def sinkDown(self, index):
-        pass
+        maxNumberIndex = index
+
+        while True:
+            leftIndex = self.leftChild(index)
+            rightIndex = self.rightChild(index)
+
+            if (leftIndex < len(self.heap)) and self.heap[leftIndex] > self.heap[maxNumberIndex]:
+                maxNumberIndex = leftIndex
+            
+            if (rightIndex < len(self.heap)) and (self.heap[rightIndex] > self.heap[maxNumberIndex]):
+                maxNumberIndex = rightIndex
+
+            if maxNumberIndex != index:
+                self.swap(maxNumberIndex, index)
+                index = maxNumberIndex
+            else:
+                return
+
 def main():
     addingToHeap = MaxHeap()
 
-    addingToHeap.insert(80)
+    addingToHeap.insert(95)
     addingToHeap.insert(75)
-    addingToHeap.insert(65)
+    addingToHeap.insert(80)
     addingToHeap.insert(55)
-    addingToHeap.insert(50)
     addingToHeap.insert(60)
+    addingToHeap.insert(50)
+    addingToHeap.insert(65)
+
     print(addingToHeap.heap)
 
     addingToHeap.remove()
 
     print(addingToHeap.heap)
+
+    addingToHeap.remove()
+
+    print(addingToHeap.heap)
+
+
 
 if __name__ == "__main__":
     sys.exit(main())
