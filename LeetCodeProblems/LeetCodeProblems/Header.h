@@ -58,6 +58,7 @@ public:
     int leftChildIndex(int index);
     int rightChildIndex(int index);
     void insert(int value);
+    int remove();
     void swap(int *index1, int *index2);
     void printHeap();
 };

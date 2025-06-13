@@ -53,6 +53,12 @@ void MaxHeap:: insert(int value)
     }
 }
 
+int MaxHeap::remove()
+{
+    
+    return 0;
+}
+
 void MaxHeap::swap(int *index1, int *index2)
 {
     int temp = *index1;
