@@ -90,12 +90,23 @@ int main(int argc, const char * argv[]) {
     //Accessing Heaps
     MaxHeap myMaxHeap;
     
-    myMaxHeap.insert(99);
-    myMaxHeap.insert(72);
-    myMaxHeap.insert(61);
-    myMaxHeap.insert(58);
     myMaxHeap.insert(100);
-    myMaxHeap.insert(77);
+    myMaxHeap.insert(75);
+    myMaxHeap.insert(80);
+    myMaxHeap.insert(55);
+    myMaxHeap.insert(50);
+    myMaxHeap.insert(60);
+    
+    myMaxHeap.printHeap();
+//    
+//    myMaxHeap.insert(100);
+//    myMaxHeap.printHeap();
+//    
+//    myMaxHeap.insert(75);
+//    myMaxHeap.printHeap();
+//    
+    myMaxHeap.remove();
+    
     myMaxHeap.printHeap();
     
     return EXIT_SUCCESS;

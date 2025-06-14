@@ -60,5 +60,7 @@ public:
     void insert(int value);
     int remove();
     void swap(int *index1, int *index2);
+    void sinkDown(int index);
     void printHeap();
+    size_t getSize();
 };

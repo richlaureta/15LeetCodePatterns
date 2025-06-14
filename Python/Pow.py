@@ -1,5 +1,4 @@
 import sys
-from fractions import Fraction
 
 def myPow(x: float, n: int) -> float:
     #Problem #5 Pow(x, n)
