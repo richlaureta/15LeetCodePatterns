@@ -98,13 +98,7 @@ int main(int argc, const char * argv[]) {
     myMaxHeap.insert(60);
     
     myMaxHeap.printHeap();
-//    
-//    myMaxHeap.insert(100);
-//    myMaxHeap.printHeap();
-//    
-//    myMaxHeap.insert(75);
-//    myMaxHeap.printHeap();
-//    
+    
     myMaxHeap.remove();
     
     myMaxHeap.printHeap();

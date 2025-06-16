@@ -1,13 +1,14 @@
-class Node:
-    def __init__(self, value):
-        self.value = value
-        self.next = None
+import heapq
 
-node1 = Node(10)
-node2 = Node(20)
-node_addresses1 = {}
+data = [1, 5, 11, 9, 7, 2]
+array = []
+k = 3
 
-# Dictionary to store memory addresses of nodes
-node_addresses = {node1: hex(id(node1)), node2: hex(id(node2))}
-node_addresses1[node1] = 1
-print(node_addresses1)
+for i in range(0, k):
+    heapq.heappush(array, data[i])
+
+for i in range(k, len(data)):
+    print(data[i])
+    if data[i] > array[0]:
+        heapq.heappop(array)
+        heapq.heappush(array, data[i])

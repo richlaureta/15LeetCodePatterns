@@ -27,14 +27,6 @@ def main():
     nums1 = [4, 1, 2]
     nums2 = [1, 3, 4, 2]
 
-    # nums1 = [2, 4]
-    # nums2 = [1, 2, 3, 4]
-    
-    # nums1 = [1, 3, 5, 2, 4]
-    # nums2 = [6, 5, 4, 3, 2, 1, 7]
-
-    # nums2 = [2, 1, 2, 4, 3]
-
     print(nextGreaterElement(nums1, nums2))
 
 if __name__ == "__main__":

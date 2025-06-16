@@ -3,6 +3,7 @@ import sys
 def myPow(x: float, n: int) -> float:
     #Problem #5 Pow(x, n)
 
+    #Brute Force Solution ****
     # multiply: float = x
     # multiply1: float = float(1)
     # negativeMultiply: float = float(0)

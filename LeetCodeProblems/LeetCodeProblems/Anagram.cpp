@@ -26,10 +26,6 @@ bool isAnagram(string s, string t)
     for (int i = 0; i < s.length(); ++i)
     {
         occurencesS[s[i]] += 1;
-    }
-
-    for (int i = 0; i < t.length(); ++i)
-    {
         occurencesT[t[i]] += 1;
     }
 

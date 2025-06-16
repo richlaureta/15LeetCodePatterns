@@ -59,6 +59,7 @@ class MaxHeap:
             else:
                 return
 
+
 def main():
     addingToHeap = MaxHeap()
 
@@ -79,8 +80,6 @@ def main():
     addingToHeap.remove()
 
     print(addingToHeap.heap)
-
-
 
 if __name__ == "__main__":
     sys.exit(main())
