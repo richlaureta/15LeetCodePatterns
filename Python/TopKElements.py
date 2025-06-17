@@ -3,7 +3,7 @@ import heapq
 
 def findKthLargestElement(nums: list[int], k: int) -> int:
     #Problem #215 Kth Largest Element in an Array
-    
+
     array = []
 
     for i in range(0, k):
@@ -21,7 +21,6 @@ def main():
     k = 3
 
     print(findKthLargestElement(nums, k))
-
 
 if __name__ == "__main__":
     sys.exit(main())

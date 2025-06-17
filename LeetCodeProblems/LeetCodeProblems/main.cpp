@@ -88,20 +88,25 @@ int main(int argc, const char * argv[]) {
 //    nextGreaterElement(nums1, nums2);
     
     //Accessing Heaps
-    MaxHeap myMaxHeap;
+//    MaxHeap myMaxHeap;
+//    
+//    myMaxHeap.insert(100);
+//    myMaxHeap.insert(75);
+//    myMaxHeap.insert(80);
+//    myMaxHeap.insert(55);
+//    myMaxHeap.insert(50);
+//    myMaxHeap.insert(60);
+//    
+//    myMaxHeap.printHeap();
+//    
+//    myMaxHeap.remove();
+//    
+//    myMaxHeap.printHeap();
     
-    myMaxHeap.insert(100);
-    myMaxHeap.insert(75);
-    myMaxHeap.insert(80);
-    myMaxHeap.insert(55);
-    myMaxHeap.insert(50);
-    myMaxHeap.insert(60);
-    
-    myMaxHeap.printHeap();
-    
-    myMaxHeap.remove();
-    
-    myMaxHeap.printHeap();
+    //Find Kth Largest
+    vector<int> nums = {3,2,3,1,2,4,5,5,6};
+    int k = 4;
+    cout << findKthLargest(nums, k) << endl;
     
     return EXIT_SUCCESS;
 }

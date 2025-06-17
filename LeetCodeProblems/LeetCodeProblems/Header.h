@@ -64,3 +64,5 @@ public:
     void printHeap();
     size_t getSize();
 };
+
+int findKthLargest(vector<int> &nums, int k);
