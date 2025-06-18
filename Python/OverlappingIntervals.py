@@ -3,17 +3,15 @@ import sys
 def merge(intervals: list[list[int]]) -> list[list[int]]:
     intervals.sort(key = lambda time: time[0])
     merged = [intervals[0]]
-    index = 1
- 
-    while(index != len(intervals)):
+
+    for index in range(1, len(intervals)):
         if intervals[index][0] <= merged[len(merged) - 1][1] and intervals[index][1] > merged[len(merged) - 1][1]:
             merged[len(merged) - 1][1] = intervals[index][1]
+        elif intervals[index][0] > merged[len(merged) - 1][1]:
+            merged.append(intervals[index])
         elif intervals[index][0] <= merged[len(merged) - 1][1] and intervals[index][1] <= merged[len(merged) - 1][1]:
             index += 1
             continue
-        elif intervals[index][0] > merged[len(merged) - 1][1]:
-            merged.append(intervals[index])
-        index += 1
 
     return merged
 
