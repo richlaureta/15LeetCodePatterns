@@ -1,9 +1,6 @@
 import sys
 
 def merge(intervals: list[list[int]]) -> list[list[int]]:
-    if len(intervals) == 1 or len(intervals) == 0 :
-        return intervals
-    
     intervals.sort(key = lambda time: time[0])
     merged = [intervals[0]]
     index = 1
