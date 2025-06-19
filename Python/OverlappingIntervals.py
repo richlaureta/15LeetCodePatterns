@@ -9,9 +9,6 @@ def merge(intervals: list[list[int]]) -> list[list[int]]:
             merged[len(merged) - 1][1] = intervals[index][1]
         elif intervals[index][0] > merged[len(merged) - 1][1]:
             merged.append(intervals[index])
-        elif intervals[index][0] <= merged[len(merged) - 1][1] and intervals[index][1] <= merged[len(merged) - 1][1]:
-            index += 1
-            continue
 
     return merged
 
