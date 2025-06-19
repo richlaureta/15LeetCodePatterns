@@ -104,9 +104,25 @@ int main(int argc, const char * argv[]) {
 //    myMaxHeap.printHeap();
     
     //Find Kth Largest
-    vector<int> nums = {3,2,3,1,2,4,5,5,6};
-    int k = 4;
-    cout << findKthLargest(nums, k) << endl;
+//    vector<int> nums = {3,2,3,1,2,4,5,5,6};
+//    int k = 4;
+//    cout << findKthLargest(nums, k) << endl;
+    
+    
+    //Overlapping Intervals
+    vector<vector<int>> listsOfLists = {{1, 3}, {2, 6}, {15, 18}, {8, 10}};
+    
+//    vector<vector<int>> listsOfLists = {{1, 4}, {4, 5}};
+    vector<vector<int>> mergedLists = mergeIntervals(listsOfLists);
+    
+    for(size_t i = 0; i < mergedLists.size(); ++i)
+    {
+        for(size_t j = 0; j < mergedLists[i].size(); ++j)
+        {
+            cout << mergedLists[i][j] << " ";
+        }
+        cout << endl;
+    }
     
     return EXIT_SUCCESS;
 }
