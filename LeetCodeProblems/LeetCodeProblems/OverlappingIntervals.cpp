@@ -25,8 +25,6 @@ vector<vector<int>> mergeIntervals(vector<vector<int>> &intervals)
             merged[merged.size() - 1][1] = intervals[i][1];
         } else if (intervals[i][0] > merged[merged.size() - 1][1]) {
             merged.push_back(intervals[i]);
-        } else{
-            continue;
         }
     }
     
