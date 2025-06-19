@@ -1,6 +1,8 @@
 import sys
 
 def merge(intervals: list[list[int]]) -> list[list[int]]:
+    #Problem #56 Merge Intervals
+    
     intervals.sort(key = lambda time: time[0])
     merged = [intervals[0]]
 
