@@ -41,7 +41,6 @@ def levelOrder(root: TreeNode) -> list[list[int]]:
     ans = []
 
     while q:
-        count += 1
         level = []
         for i in range(len(q)):
             node = q.popleft()
