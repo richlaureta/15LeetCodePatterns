@@ -7,6 +7,8 @@
 
 #include "Header.h"
 #include <iostream>
+#include <vector>
+#include <queue>
 
 using namespace std;
 
@@ -47,4 +49,35 @@ void postOrder(TreeNode *node)
     postOrder(node->left);
     postOrder(node->right);
     cout << node->value << " ";
+}
+
+vector<vector<int>> levelOrder(TreeNode *node)
+{
+//Problem #102 Binary Tree Level Order Traversal
+    if(node == nullptr)
+    {
+        return {};
+    }
+    vector<vector<int>> myList;
+    queue<TreeNode*> myQueue;
+    
+    myQueue.push(node);
+    
+    while(!myQueue.empty())
+    {
+        vector<int> level;
+        size_t length = myQueue.size();
+        for(size_t i = 0; i < length; i++)
+        {
+            level.push_back(myQueue.front()->value);
+            TreeNode *nodeCopy = myQueue.front();
+            myQueue.pop();
+            
+            if(nodeCopy->left != nullptr) {myQueue.push(nodeCopy->left);}
+            if(nodeCopy->right != nullptr) {myQueue.push(nodeCopy->right);}
+        }
+        length = myQueue.size();
+        myList.push_back(level);
+    }
+    return myList;
 }

@@ -124,19 +124,37 @@ int main(int argc, const char * argv[]) {
 //        cout << endl;
 //    }
     
-    TreeNode* root = new TreeNode(3);
-    root->left = new TreeNode(1);
-    root->right = new TreeNode(5);
-    root->left->left = new TreeNode(0);
-    root->left->right = new TreeNode(2);
-    root->right->left = new TreeNode(4);
-    root->right->right = new TreeNode(6);
+    TreeNode root = TreeNode(3);
+    TreeNode node1 = TreeNode(1);
+    TreeNode node2 = TreeNode(5);
+    TreeNode node3 = TreeNode(0);
+    TreeNode node4 = TreeNode(2);
+    TreeNode node5 = TreeNode(4);
+    TreeNode node6 = TreeNode(6);
     
-    preOrder(root);
+    root.left = &node1;
+    root.right = &node2;
+    node1.left = &node3;
+    node1.right = &node4;
+    node2.left = &node5;
+    node2.right = &node6;
+    
+    preOrder(&root);
     cout << endl;
-    inOrder(root);
+    inOrder(&root);
     cout << endl;
-    postOrder(root);
+    postOrder(&root);
     cout << endl;
+    
+    vector<vector<int>> listoflist = levelOrder(&root);
+    for(int i = 0; i < listoflist.size(); i++)
+    {
+        for(int j = 0; j < listoflist[i].size(); j++)
+        {
+            cout << listoflist[i][j] << " ";
+        }
+        cout << endl;
+    }
+    
     return EXIT_SUCCESS;
 }

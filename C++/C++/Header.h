@@ -82,4 +82,4 @@ struct TreeNode
 void preOrder(TreeNode *node);
 void inOrder(TreeNode *node);
 void postOrder(TreeNode *node);
-void levelOrder(TreeNode *node);
+vector<vector<int>> levelOrder(TreeNode *node);
