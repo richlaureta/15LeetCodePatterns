@@ -53,7 +53,7 @@ def levelOrder(root: TreeNode) -> list[list[int]]:
 
 def main():
     # Create a sample binary tree
-    
+
     root = TreeNode(1)
     root.left = TreeNode(2)
     root.right = TreeNode(3)

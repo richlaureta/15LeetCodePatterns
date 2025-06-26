@@ -123,7 +123,8 @@ int main(int argc, const char * argv[]) {
 //        }
 //        cout << endl;
 //    }
-    
+
+    // Tree Traversal
     TreeNode root = TreeNode(3);
     TreeNode node1 = TreeNode(1);
     TreeNode node2 = TreeNode(5);
