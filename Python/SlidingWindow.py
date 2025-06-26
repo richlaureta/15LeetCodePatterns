@@ -39,18 +39,17 @@ def maxVowels(s: str, k: int) -> int:
     
     left = 0
     maxCount = count
-    aCount = count
 
     for i in range(k, len(s)):
         if s[left] in 'aeiou':
-            aCount -= 1
+            count -= 1
         if s[i] in 'aeiou':
-            aCount += 1
+            count += 1
         
         left += 1
 
-        if aCount > maxCount:
-            maxCount = aCount
+        if count > maxCount:
+            maxCount = count
         
         if maxCount == k: return k
     

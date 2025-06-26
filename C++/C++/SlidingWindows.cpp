@@ -44,12 +44,11 @@ double findMaxAverage(vector<int> &nums, int k)
 
 int maxVowels(string s, int k)
 {
-    string vowels = "aeiou";
     int count = 0;
     
     for(int i = 0; i < k; i++)
     {
-        if(vowels.find(s[i]) != std::string::npos)
+        if(s[i] == 'a' || s[i] == 'e' || s[i] == 'i' || s[i] == 'o' || s[i] == 'u')
         {
             count++;
         }
@@ -65,12 +64,12 @@ int maxVowels(string s, int k)
     
     for(int i = k; i < s.size(); i++)
     {
-        if(vowels.find(s[left]) != std::string::npos)
+        if(s[left] == 'a' || s[left] == 'e' || s[left] == 'i' || s[left] == 'o' || s[left] == 'u')
         {
             count--;
         }
         
-        if(vowels.find(s[i]) != std::string::npos)
+        if(s[i] == 'a' || s[i] == 'e' || s[i] == 'i' || s[i] == 'o' || s[i] == 'u')
         {
             count++;
         }
