@@ -9,6 +9,7 @@
 
 #include <iostream>
 #include <vector>
+#include <string>
 
 using namespace std;
 
@@ -39,4 +40,49 @@ double findMaxAverage(vector<int> &nums, int k)
     }
 
     return maxSum / k;
+}
+
+int maxVowels(string s, int k)
+{
+    string vowels = "aeiou";
+    int count = 0;
+    
+    for(int i = 0; i < k; i++)
+    {
+        if(vowels.find(s[i]) != std::string::npos)
+        {
+            count++;
+        }
+    }
+    
+    if(count == k)
+    {
+        return k;
+    }
+    
+    int left = 0;
+    int maxCount = count;
+    
+    for(int i = k; i < s.size(); i++)
+    {
+        if(vowels.find(s[left]) != std::string::npos)
+        {
+            count--;
+        }
+        
+        if(vowels.find(s[i]) != std::string::npos)
+        {
+            count++;
+        }
+        
+        if(count == k){return k;}
+        
+        left++;
+        if(count > maxCount)
+        {
+            maxCount = count;
+        }
+        
+    }
+    return maxCount;
 }

@@ -83,3 +83,5 @@ void preOrder(TreeNode *node);
 void inOrder(TreeNode *node);
 void postOrder(TreeNode *node);
 vector<vector<int>> levelOrder(TreeNode *node);
+
+int maxVowels(string s, int k);

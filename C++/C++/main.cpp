@@ -124,38 +124,44 @@ int main(int argc, const char * argv[]) {
 //        cout << endl;
 //    }
 
-    // Tree Traversal
-    TreeNode root = TreeNode(3);
-    TreeNode node1 = TreeNode(1);
-    TreeNode node2 = TreeNode(5);
-    TreeNode node3 = TreeNode(0);
-    TreeNode node4 = TreeNode(2);
-    TreeNode node5 = TreeNode(4);
-    TreeNode node6 = TreeNode(6);
+//    // Tree Traversal
+//    TreeNode root = TreeNode(3);
+//    TreeNode node1 = TreeNode(1);
+//    TreeNode node2 = TreeNode(5);
+//    TreeNode node3 = TreeNode(0);
+//    TreeNode node4 = TreeNode(2);
+//    TreeNode node5 = TreeNode(4);
+//    TreeNode node6 = TreeNode(6);
+//    
+//    root.left = &node1;
+//    root.right = &node2;
+//    node1.left = &node3;
+//    node1.right = &node4;
+//    node2.left = &node5;
+//    node2.right = &node6;
+//    
+//    preOrder(&root);
+//    cout << endl;
+//    inOrder(&root);
+//    cout << endl;
+//    postOrder(&root);
+//    cout << endl;
+//    
+//    vector<vector<int>> listoflist = levelOrder(&root);
+//    for(int i = 0; i < listoflist.size(); i++)
+//    {
+//        for(int j = 0; j < listoflist[i].size(); j++)
+//        {
+//            cout << listoflist[i][j] << " ";
+//        }
+//        cout << endl;
+//    }
     
-    root.left = &node1;
-    root.right = &node2;
-    node1.left = &node3;
-    node1.right = &node4;
-    node2.left = &node5;
-    node2.right = &node6;
+    //#Problem #1456. Maximum Number of Vowels in a Substring of Given Length
     
-    preOrder(&root);
-    cout << endl;
-    inOrder(&root);
-    cout << endl;
-    postOrder(&root);
-    cout << endl;
-    
-    vector<vector<int>> listoflist = levelOrder(&root);
-    for(int i = 0; i < listoflist.size(); i++)
-    {
-        for(int j = 0; j < listoflist[i].size(); j++)
-        {
-            cout << listoflist[i][j] << " ";
-        }
-        cout << endl;
-    }
+    string s = "leetcode";
+    int k = 2;
+    cout << maxVowels(s, k) << endl;
     
     return EXIT_SUCCESS;
 }
