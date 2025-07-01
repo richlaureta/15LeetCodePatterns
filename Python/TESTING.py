@@ -1,14 +1,18 @@
-import heapq
+rows = 8
+cols = 8
 
-data = [1, 5, 11, 9, 7, 2]
-array = []
-k = 3
+n = 8
+A = [[0, 1], [1, 2], [0, 3], [3, 4], [3, 6], [3, 7], [4, 2], [4, 5], [5, 2]]
 
-for i in range(0, k):
-    heapq.heappush(array, data[i])
+matrix = []
 
-for i in range(k, len(data)):
-    print(data[i])
-    if data[i] > array[0]:
-        heapq.heappop(array)
-        heapq.heappush(array, data[i])
+for i in range(rows):
+    matrix.append([])
+    for j in range(cols):
+        matrix[i].append(0)
+
+for i in A:
+    matrix[i[0]][i[1]] = 1
+
+for i in matrix:
+    print(i)
