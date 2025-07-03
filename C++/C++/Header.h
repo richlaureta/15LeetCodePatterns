@@ -12,6 +12,7 @@
 #endif /* Header_h */
 #include <string>
 #include <vector>
+#include <unordered_map>
 
 using namespace std;
 
@@ -85,3 +86,6 @@ void postOrder(TreeNode *node);
 vector<vector<int>> levelOrder(TreeNode *node);
 
 int maxVowels(string s, int k);
+
+unordered_map<int, vector<int>> edgeListToMap(vector<vector<int>> edgeList);
+void depthFirstSearchList(vector<vector<int>> lists, int rootSource);
