@@ -167,20 +167,6 @@ int main(int argc, const char * argv[]) {
     
     vector<vector<int>> A = {{0, 1}, {1, 2}, {0, 3}, {3, 4}, {3, 6}, {3, 7}, {4, 2}, {4, 5}, {5, 2}};
     
-//    unordered_map<int, vector<int>> myMap = edgeListToMap(A);
-    
-//    for(const auto& pair : myMap)
-//    {
-//        cout << "Key: " << pair.first << " ";
-//        
-//        for(int i = 0; i < myMap[pair.first].size(); i++)
-//        {
-//            cout << "Value: " << myMap[pair.first][i] << " ";
-//        }
-//        
-//        cout << endl;
-//    }
-    
     depthFirstSearchList(A, 0);
     
     return EXIT_SUCCESS;
