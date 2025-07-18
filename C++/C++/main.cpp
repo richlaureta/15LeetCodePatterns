@@ -7,8 +7,6 @@
 #include "Header.h"
 
 #include <iostream>
-#include <string>
-#include <vector>
 
 using namespace std;
 
@@ -165,9 +163,15 @@ int main(int argc, const char * argv[]) {
     
     //Depth First Search Comprehension
     
-    vector<vector<int>> A = {{0, 1}, {1, 2}, {0, 3}, {3, 4}, {3, 6}, {3, 7}, {4, 2}, {4, 5}, {5, 2}};
+//    vector<vector<int>> A = {{0, 1}, {1, 2}, {0, 3}, {3, 4}, {3, 6}, {3, 7}, {4, 2}, {4, 5}, {5, 2}};
+//    
+//    depthFirstSearchList(A, 0);
     
-    depthFirstSearchList(A, 0);
+    vector<vector<int>> times = {{2,1,1}, {2,3,1}, {3,4,1}};
+    int n = 4;
+    int k = 2;
+    
+    cout << networkDelayTime(times, n, k) << endl;
     
     return EXIT_SUCCESS;
 }
