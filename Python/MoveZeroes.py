@@ -1,6 +1,8 @@
 def moveZeroes(nums: list[int]) -> None:
     #Problem # 283
     
+    #Intuitive Solution
+
     # newArray = [0] * len(nums)
     # lengthDecrement = len(nums)
     # newArrayIndex = 0
@@ -10,18 +12,15 @@ def moveZeroes(nums: list[int]) -> None:
     #         newArrayIndex += 1
     #     else:
     #         lengthDecrement -= 1
-    
-    # for i in range(0, len(newArray)):
-    #     nums[i] = newArray[i]
 
     # nums = newArray
+
+    #Solution for not making a copy in my own code.
+
     countPreviousZeroes = 0
 
     for i in range(0, len(nums)):
         if nums[i] == 0:
-            if ((i + countPreviousZeroes) == (len(nums))) or  (i + countPreviousZeroes) > len(nums):
-                    continue
-        
             countPreviousZeroes += 1
         else:
             if countPreviousZeroes == 0:
