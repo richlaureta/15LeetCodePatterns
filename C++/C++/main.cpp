@@ -167,11 +167,23 @@ int main(int argc, const char * argv[]) {
 //    
 //    depthFirstSearchList(A, 0);
     
-    vector<vector<int>> times = {{2,1,1}, {2,3,1}, {3,4,1}};
-    int n = 4;
-    int k = 2;
+//    vector<vector<int>> times = {{2,1,1}, {2,3,1}, {3,4,1}};
+//    int n = 4;
+//    int k = 2;
+//    
+//    cout << networkDelayTime(times, n, k) << endl;
     
-    cout << networkDelayTime(times, n, k) << endl;
+    //Problem #1 Two Sum
+    
+    vector<int> nums = {2, 7, 11, 15};
+    int target = 9;
+    vector<int> solution = twoSum(nums, target);
+    
+    for(int i = 0; i < solution.size(); i++)
+    {
+        cout << solution[i] << " ";
+    }
+    cout << endl;
     
     return EXIT_SUCCESS;
 }

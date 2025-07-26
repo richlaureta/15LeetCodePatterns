@@ -93,7 +93,7 @@ def numIslands(grid: list[list[str]]) -> int:
                     myQueue.append(down)
                 
                 if up not in visited:
-                    visited.add(up)
+                    visited.add(down)
                 if  right not in visited:
                     visited.add(right)
                 if down not in visited:

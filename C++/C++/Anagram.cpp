@@ -11,8 +11,6 @@
 #include <algorithm>
 #include <unordered_map>
 
-using namespace std;
-
 bool isAnagram(string s, string t)
 {
     if (s.length() != t.length())

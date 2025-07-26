@@ -91,3 +91,5 @@ unordered_map<int, vector<int>> edgeListToMap(vector<vector<int>> edgeList);
 void depthFirstSearchList(vector<vector<int>> lists, int rootSource);
 
 int networkDelayTime(vector<vector<int>> &times, int n, int k);
+
+vector<int> twoSum(vector<int>& nums, int target);
