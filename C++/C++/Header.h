@@ -13,6 +13,7 @@
 #include <string>
 #include <vector>
 #include <unordered_map>
+#include <iostream>
 
 using namespace std;
 
@@ -93,3 +94,5 @@ void depthFirstSearchList(vector<vector<int>> lists, int rootSource);
 int networkDelayTime(vector<vector<int>> &times, int n, int k);
 
 vector<int> twoSum(vector<int>& nums, int target);
+
+vector<int> twoSum2(vector<int>& nums, int target);

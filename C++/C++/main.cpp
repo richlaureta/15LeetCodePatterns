@@ -175,13 +175,26 @@ int main(int argc, const char * argv[]) {
     
     //Problem #1 Two Sum
     
-    vector<int> nums = {2, 7, 11, 15};
-    int target = 9;
-    vector<int> solution = twoSum(nums, target);
+//    vector<int> nums = {2, 7, 11, 15};
+//    int target = 9;
+//    vector<int> solution = twoSum(nums, target);
+//    
+//    for(int i = 0; i < solution.size(); i++)
+//    {
+//        cout << solution[i] << " ";
+//    }
+//    cout << endl;
+//
     
-    for(int i = 0; i < solution.size(); i++)
+    //Problem #167 Two Sum II - Input Array is Sorted
+    vector<int> numbers = {2, 7, 11, 15};
+    int target = 9;
+    
+    vector<int> answerthis = twoSum2(numbers, target);
+    
+    for(size_t i = 0; i < answerthis.size(); ++i)
     {
-        cout << solution[i] << " ";
+        cout << answerthis[i] << " ";
     }
     cout << endl;
     
