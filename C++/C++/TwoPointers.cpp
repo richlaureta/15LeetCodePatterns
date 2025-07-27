@@ -26,7 +26,7 @@ vector<int> twoSum2(vector<int>& nums, int target)
         }
         else
         {
-            return {startIndex + 1, endIndex + 1};
+            return {++startIndex, ++endIndex};
         }
     }
     
