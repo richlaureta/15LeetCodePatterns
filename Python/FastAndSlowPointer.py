@@ -1,7 +1,7 @@
 from typing import Optional
 from time import sleep
 import sys
-
+import random
 class linkedListNode:
     def __init__(self, value, nextNode = None):
         self.value = value
@@ -98,26 +98,58 @@ def hasCycle(head: linkedListNode) -> bool:
     #         breakCycle = input("The linked list has a cycle, do you want to break it? Enter y for yes, Enter n for no.").lower
 
     #         return True
+def findDuplicate(nums: list[int]) -> int:
+    fastPointer = 1
+    slowPointer = 1
+
+    while True:
+        if nums[slowPointer] == nums[fastPointer] and slowPointer != fastPointer:
+            print("Cycle Detected!")
+            print(slowPointer)
+            print(fastPointer)
+            break
+
+        if slowPointer == len(nums) - 1:
+            slowPointer = 0
+        else:
+            slowPointer += 1
+
+        if fastPointer == len(nums) - 1:
+            fastPointer = 1
+        elif fastPointer == len(nums) - 2:
+            fastPointer = 0
+        else:
+            fastPointer += 2
+    
+    # slowPointer = nums[0]
+    # while slowPointer != fastPointer:
+    #     slowPointer = nums[slowPointer]
+    #     fastPointer = nums[fastPointer]
         
+    # return fastPointer
+
 def main():
-    node0 = linkedListNode("3")
-    node1 = linkedListNode("2")
-    node2 = linkedListNode("0")
-    node3 = linkedListNode("-4")
+    # node0 = linkedListNode("3")
+    # node1 = linkedListNode("2")
+    # node2 = linkedListNode("0")
+    # node3 = linkedListNode("-4")
 
-    ll = LinkedList(node0)
+    # ll = LinkedList(node0)
 
-    ll.insertNode(node1)
+    # ll.insertNode(node1)
 
-    nodeC = ll.getEndNode()
+    # nodeC = ll.getEndNode()
 
-    ll.insertNode(node2)
+    # ll.insertNode(node2)
 
-    ll.insertNode(node3)
+    # ll.insertNode(node3)
 
-    ll.insertNode(nodeC)
+    # ll.insertNode(nodeC)
 
-    print(hasCycle(node0))
+    # print(hasCycle(node0))
+
+    nums = [3, 1, 3, 4, 2]
+    print(findDuplicate(nums))
 
 if __name__ == "__main__":
     sys.exit(main())
