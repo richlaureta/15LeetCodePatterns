@@ -187,16 +187,29 @@ int main(int argc, const char * argv[]) {
 //
     
     //Problem #167 Two Sum II - Input Array is Sorted
-    vector<int> numbers = {2, 7, 11, 15};
-    int target = 9;
+//    vector<int> numbers = {2, 7, 11, 15};
+//    int target = 9;
+//    
+//    vector<int> answerthis = twoSum2(numbers, target);
+//    
+//    for(size_t i = 0; i < answerthis.size(); ++i)
+//    {
+//        cout << answerthis[i] << " ";
+//    }
+//    cout << endl;
+//
+    //Problem #347 Top K Frequent Elements
     
-    vector<int> answerthis = twoSum2(numbers, target);
+    vector<int> nums =  {-1, -1};
+    int k = 1;
     
-    for(size_t i = 0; i < answerthis.size(); ++i)
+    vector<int> topKFrequentElements = topKFrequent(nums, k);
+    
+    for(int i = 0; i < topKFrequentElements.size(); i++)
     {
-        cout << answerthis[i] << " ";
+        cout << topKFrequentElements[i] << endl;
     }
-    cout << endl;
-    
     return EXIT_SUCCESS;
+    
+    
 }
