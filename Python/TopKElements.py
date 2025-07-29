@@ -18,6 +18,8 @@ def findKthLargestElement(nums: list[int], k: int) -> int:
 
 def topKFrequent(nums: list[int], k: int) -> list[int]:
     #Problem #347 Top K Frequent Elements
+
+    #My Intuitive Solution
     # myDictionary = {}
     # myHeap = []
 
@@ -38,32 +40,34 @@ def topKFrequent(nums: list[int], k: int) -> list[int]:
     
     # return topKArray
 
+    #Optimized Solution
+
     frequencyArray = [0] * (len(nums) + 1)
     myDictionary = Counter(nums)
 
-    for j in myDictionary:
-        if frequencyArray[myDictionary[j]] == 0:
-            frequencyArray[myDictionary[j]] = [j]
+    for key in myDictionary:
+        if frequencyArray[myDictionary[key]] == 0:
+            frequencyArray[myDictionary[key]] = [key]
         else:
-            frequencyArray[myDictionary[j]].append(j)
+            frequencyArray[myDictionary[key]].append(key)
    
     topKArray = []
 
-    for l in reversed(frequencyArray):
+    for indexItem in reversed(frequencyArray):
         if k == 0:
             break
 
-        if l == 0:
+        if indexItem == 0:
             continue
-        elif l != 0 and len(l) > 1:
-            for m in l:
+        elif indexItem != 0 and len(indexItem) > 1:
+            for item in indexItem:
                 if k == 0:
                     break
 
-                topKArray.append(m)
+                topKArray.append(item)
                 k -= 1
         else:
-            topKArray.append(l[0])
+            topKArray.append(indexItem[0])
             k -= 1
     
     return topKArray
