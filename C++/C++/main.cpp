@@ -6,10 +6,6 @@
 //
 #include "Header.h"
 
-#include <iostream>
-
-using namespace std;
-
 int main(int argc, const char * argv[]) {
     //    //Anagram Problem
     //    string s = "anagram";
@@ -200,15 +196,45 @@ int main(int argc, const char * argv[]) {
 //
     //Problem #347 Top K Frequent Elements
     
-    vector<int> nums =  {-1, -1};
-    int k = 1;
+//    vector<int> nums =  {-1, -1};
+//    int k = 1;
+//    
+//    vector<int> topKFrequentElements = topKFrequent(nums, k);
+//    
+//    for(int i = 0; i < topKFrequentElements.size(); i++)
+//    {
+//        cout << topKFrequentElements[i] << endl;
+//    }
     
-    vector<int> topKFrequentElements = topKFrequent(nums, k);
+    //Problem #200 Number of Islands
+//    vector<vector<char>> grid = {
+//        {'1','1','1','1','0'},
+//        {'1','1','0','1','0'},
+//        {'1','1','0','0','0'},
+//        {'0','0','0','0','0'}
+//    };
     
-    for(int i = 0; i < topKFrequentElements.size(); i++)
-    {
-        cout << topKFrequentElements[i] << endl;
-    }
+    vector<vector<char>> grid = {
+        {'1','1','0','0','0'},
+        {'1','1','0','0','0'},
+        {'0','0','1','0','0'},
+        {'0','0','0','1','1'}
+    };
+    
+    cout << numIslands(grid) << endl;
+
+    
+    //TESTING
+//    set<vector<int>> mySet = {{1, 2}, {3,    4}};
+//    
+//    if(mySet.find({3,  4, 0}) != mySet.end())
+//    {
+//        cout << "The coordinate is in the set." << endl;
+//    }
+//    else
+//    {
+//        cout << "The coordinate is not in the set." << endl;
+//    }
     return EXIT_SUCCESS;
     
     

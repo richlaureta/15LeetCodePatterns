@@ -10,10 +10,13 @@
 
 
 #endif /* Header_h */
+
 #include <string>
 #include <vector>
 #include <unordered_map>
 #include <iostream>
+#include <set>
+#include <queue> 
 
 using namespace std;
 
@@ -97,3 +100,5 @@ vector<int> twoSum(vector<int>& nums, int target);
 
 vector<int> twoSum2(vector<int>& nums, int target);
 vector<int> topKFrequent(vector<int>& nums, int k);
+int numIslands(vector<vector<char>>& grid);
+void breadthFirstSearch(int rowNumber, int columnNumber);

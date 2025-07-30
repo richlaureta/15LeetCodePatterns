@@ -10,6 +10,27 @@ def numIslands(grid: list[list[str]]) -> int:
     visited = set() #Marking visited squares
     islandCount = 0 #Counting the islands meaning separate "1"'s 
 
+    def breadthFirstSearch(rowNumber: int, columnNumber: int):
+        myQueue = collections.deque()
+        
+        visited.add((rowNumber, columnNumber))
+        myQueue.append((rowNumber, columnNumber))
+
+        while myQueue:
+            rowNumber, columnNumber = myQueue.popleft()
+            directions = [[rowNumber - 1, columnNumber], [rowNumber, columnNumber + 1], [rowNumber + 1, columnNumber], [rowNumber, columnNumber - 1]]
+
+            for rowNumber, columnNumber in directions:
+                if (rowNumber in range(rows) and columnNumber in range(columns) and grid[rowNumber][columnNumber] == "1" and (rowNumber, columnNumber) not in visited):
+                    myQueue.append((rowNumber, columnNumber))
+                    visited.add((rowNumber, columnNumber))
+    for row in range(rows):
+        for square in range(columns):
+            if grid[row][square] == "1" and (row, square) not in visited:
+                breadthFirstSearch(row, square)
+                islandCount += 1
+
+    return islandCount
     #My intuitive solution for this problem
     # if rows == 1:
     #     if grid[0][len(grid[0]) - 1] == "1":
@@ -26,29 +47,6 @@ def numIslands(grid: list[list[str]]) -> int:
     #         if grid[i][0] == "1" and grid[i + 1][0] == "0":
     #             islandCount += 1
     #     return islandCount
-
-    def breadthFirstSearch(rowNumber: int, columnNumber: int):
-        myQueue = collections.deque()
-        
-        visited.add((rowNumber, columnNumber))
-        myQueue.append((rowNumber, columnNumber))
-
-        while myQueue:
-            rowNumber, columnNumber = myQueue.popleft()
-    
-            # up = [rowNumber - 1, columnNumber]
-            # right = [rowNumber, columnNumber + 1]
-            # down = [rowNumber + 1, columnNumber]
-            # left = [rowNumber, columnNumber - 1]
-            
-            directions = [[rowNumber - 1, columnNumber], [rowNumber, columnNumber + 1], [rowNumber + 1, columnNumber], [rowNumber, columnNumber - 1]]
-
-            for rowNumber, columnNumber in directions:
-                if (rowNumber in range(rows) and columnNumber in range(columns) and grid[rowNumber][columnNumber] == "1" and (rowNumber, columnNumber) not in visited):
-                    myQueue.append((rowNumber, columnNumber))
-                    visited.add((rowNumber, columnNumber))
-            
-            #My intuitive solution for this problem
             # if up[0] < 0 and left[1] < 0:
             #     if grid[right[0]][right[1]] == "1" and right not in visited:
             #         myQueue.append(right) 
@@ -170,17 +168,6 @@ def numIslands(grid: list[list[str]]) -> int:
             #         visited.add(down)
             #     if left not in visited:
             #         visited.add(left)
-             
-    for row in range(rows):
-        for square in range(columns):
-            if grid[row][square] == "1" and (row, square) not in visited:
-                breadthFirstSearch(row, square)
-                islandCount += 1
-            # else:
-            #     if (row, square) not in visited:
-            #         visited.add((row, square))
-
-    return islandCount
 
 if __name__ == "__main__":
     grid = [
