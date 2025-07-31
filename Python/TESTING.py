@@ -1,8 +1,8 @@
-import collections
-array = collections.deque()
+character = '*'
 
-array = [1]
+starSize: int = int(input("How many level of star(s) do you want to see? "))
+increment = 1
 
-array.append(2)
-
-print(array)
+for i in range(0, starSize):
+    print(character * increment)
+    increment += 1

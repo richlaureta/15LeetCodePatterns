@@ -101,4 +101,4 @@ vector<int> twoSum(vector<int>& nums, int target);
 vector<int> twoSum2(vector<int>& nums, int target);
 vector<int> topKFrequent(vector<int>& nums, int k);
 int numIslands(vector<vector<char>>& grid);
-void breadthFirstSearch(int rowNumber, int columnNumber);
+int numIslandsEfficient(vector<vector<char>>& grid);
