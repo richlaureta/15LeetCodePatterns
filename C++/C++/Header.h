@@ -103,3 +103,4 @@ vector<int> topKFrequent(vector<int>& nums, int k);
 int numIslands(vector<vector<char>>& grid);
 int numIslandsEfficient(vector<vector<char>>& grid);
 vector<vector<int>> subsets(vector<int> &nums);
+vector<vector<int>> subsetsEfficient(vector<int> &nums);
