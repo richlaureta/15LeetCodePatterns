@@ -214,15 +214,27 @@ int main(int argc, const char * argv[]) {
 //        {'0','0','0','0','0'}
 //    };
     
-    vector<vector<char>> grid = {
-        {'1','1','0','0','0'},
-        {'1','1','0','0','0'},
-        {'0','0','1','0','0'},
-        {'0','0','0','1','1'}
-    };
+//    vector<vector<char>> grid = {
+//        {'1','1','0','0','0'},
+//        {'1','1','0','0','0'},
+//        {'0','0','1','0','0'},
+//        {'0','0','0','1','1'}
+//    };
+//    
+//    cout << numIslands(grid) << endl;
     
-    cout << numIslands(grid) << endl;
-
+    // Problem #78 Subsets
+    vector<int> nums = {1, 2, 3};
+    
+    vector<vector<int>> powerSet = subsets(nums);
+    
+    for(const auto& iterator: powerSet){
+        for(int i = 0; i < iterator.size(); i++)
+        {
+            cout << iterator[i] << " ";
+        }
+        cout << ", " << endl;
+    }
     
     //TESTING
 //    set<vector<int>> mySet = {{1, 2}, {3,    4}};
