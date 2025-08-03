@@ -224,18 +224,26 @@ int main(int argc, const char * argv[]) {
 //    cout << numIslands(grid) << endl;
     
     // Problem #78 Subsets
-    vector<int> nums = {1, 2, 3};
+//    vector<int> nums = {1, 2, 3};
+//    
+//    vector<vector<int>> powerSet = subsets(nums);
+//    
+//    for(const auto& iterator: powerSet){
+//        for(int i = 0; i < iterator.size(); i++)
+//        {
+//            cout << iterator[i] << " ";
+//        }
+//        cout << ", " << endl;
+//    }
     
-    vector<vector<int>> powerSet = subsets(nums);
+    //Problem #151 Reverse Words in a String
+    string s = "  hello world  ";
     
-    for(const auto& iterator: powerSet){
-        for(int i = 0; i < iterator.size(); i++)
-        {
-            cout << iterator[i] << " ";
-        }
-        cout << ", " << endl;
-    }
+    string answer = reverseWords(s);
+    cout << answer << endl;
     
+    cout << s.size() << endl;
+    cout << answer.size() << endl;
     //TESTING
 //    set<vector<int>> mySet = {{1, 2}, {3,    4}};
 //    
