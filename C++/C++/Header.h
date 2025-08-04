@@ -106,3 +106,4 @@ int numIslandsEfficient(vector<vector<char>>& grid);
 vector<vector<int>> subsets(vector<int> &nums);
 vector<vector<int>> subsetsEfficient(vector<int> &nums);
 string reverseWords(string s);
+int fib(int n);

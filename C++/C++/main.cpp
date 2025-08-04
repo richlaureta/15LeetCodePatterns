@@ -237,13 +237,16 @@ int main(int argc, const char * argv[]) {
 //    }
     
     //Problem #151 Reverse Words in a String
-    string s = "  hello world  ";
+//    string s = "  hello world  ";
+//    
+//    string answer = reverseWords(s);
+//    cout << answer << endl;
+//    
+//    cout << s.size() << endl;
+//    cout << answer.size() << endl;
     
-    string answer = reverseWords(s);
-    cout << answer << endl;
+    //Problem #509 Fibonacci Number
     
-    cout << s.size() << endl;
-    cout << answer.size() << endl;
     //TESTING
 //    set<vector<int>> mySet = {{1, 2}, {3,    4}};
 //    
