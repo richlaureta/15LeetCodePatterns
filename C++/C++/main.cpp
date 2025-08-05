@@ -246,6 +246,7 @@ int main(int argc, const char * argv[]) {
 //    cout << answer.size() << endl;
     
     //Problem #509 Fibonacci Number
+    cout << fib(3) << endl;
     
     //TESTING
 //    set<vector<int>> mySet = {{1, 2}, {3,    4}};
