@@ -52,9 +52,7 @@ def fib(n: int) -> int:
     for i in range(2, len(array)):
         array[i] = array[i-2] + array[i-1]
 
-    
     return array[n]
-
 
 if __name__ == "__main__":
     print(fib(8))

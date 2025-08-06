@@ -246,7 +246,11 @@ int main(int argc, const char * argv[]) {
 //    cout << answer.size() << endl;
     
     //Problem #509 Fibonacci Number
-    cout << fib(3) << endl;
+//    cout << fib(3) << endl;
+    
+    //Problem #525 Contiguous Array
+    vector<int> nums = {1, 1, 1, 0, 0};
+    cout << findMaxLength(nums) << endl;
     
     //TESTING
 //    set<vector<int>> mySet = {{1, 2}, {3,    4}};

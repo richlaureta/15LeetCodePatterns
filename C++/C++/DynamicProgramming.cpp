@@ -12,9 +12,9 @@ int fib(int n)
     //Problem #509 Fibonacci Number
     
     //My intuitive solution
-    if (n == 1) return 1;
+    if (n == 0) return 0;
     
-    if (n == 2) return 1;
+    if (n == 1) return 1;
     
     int sum = 0;
     int firstNumber = 0;
