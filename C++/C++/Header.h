@@ -109,3 +109,4 @@ vector<vector<int>> subsetsEfficient(vector<int> &nums);
 string reverseWords(string s);
 int fib(int n);
 int findMaxLength(vector<int> &nums);
+int subArraySum(vector<int> &nums, int k);

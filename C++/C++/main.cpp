@@ -249,9 +249,14 @@ int main(int argc, const char * argv[]) {
 //    cout << fib(3) << endl;
     
     //Problem #525 Contiguous Array
-    vector<int> nums = {1, 1, 1, 0, 0};
-    cout << findMaxLength(nums) << endl;
+//    vector<int> nums = {1, 1, 1, 0, 0};
+//    cout << findMaxLength(nums) << endl;
+//
+    //Problem #560 Subarray Sum Equals K
+    vector<int> nums = {1, 1, 1};
+    int k = 2;
     
+    cout << subArraySum(nums, k) << endl;
     //TESTING
 //    set<vector<int>> mySet = {{1, 2}, {3,    4}};
 //    

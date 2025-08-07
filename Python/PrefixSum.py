@@ -33,6 +33,7 @@ def prefixSum(numbers: List[int]):
 
 class NumArray:
     #Problem #303 Range Sum Query - Immutable
+
     def __init__(self, nums: List[int]):
         for i in range(1, len(nums)):
             nums[i] += nums[i - 1]
@@ -45,6 +46,23 @@ class NumArray:
         else:
             return (self.prefixSumArray[right] - self.prefixSumArray[left - 1])
 
+def subArraySum(nums: list[int], k: int) ->int:
+    #Problem #560 Subarray Sum Equals K
+    
+    #Solution Concept by Youtube Channel NeetCodeIO
+    result = 0
+    currentSum = 0
+    prefixSums = {0 : 1}
+
+    for number in nums:
+        currentSum += number
+        difference = currentSum - k
+
+        result += prefixSums.get(difference, 0)
+        prefixSums[currentSum] = 1 + prefixSums.get(currentSum, 0)
+
+    return result
+
 def main():
     # nums: List[int] = [-2,0,3,-5,2,-1]
 
@@ -52,11 +70,14 @@ def main():
     
     # print(nums)
 
-    nums = [1, 1, 1, 0, 0]
+    # nums = [1, 1, 1, 0, 0]
 
-    print(findMaxLength(nums))
+    # print(findMaxLength(nums))
 
+    nums = [0, 1, 0, 1, 0, 1]
+    k = 2
 
+    print(subArraySum(nums, k))
 
 if __name__ == "__main__":
     sys.exit(main())
