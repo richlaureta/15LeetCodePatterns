@@ -253,10 +253,24 @@ int main(int argc, const char * argv[]) {
 //    cout << findMaxLength(nums) << endl;
 //
     //Problem #560 Subarray Sum Equals K
-    vector<int> nums = {1, 1, 1};
-    int k = 2;
+//    vector<int> nums = {1, 1, 1};
+//    int k = 2;
+//    
+//    cout << subArraySum(nums, k) << endl;
     
-    cout << subArraySum(nums, k) << endl;
+    //Problem #15 3Sum
+    vector<int> nums = {-2, 0, 1, 1, 2};
+    vector<vector<int>> result = threeSum(nums);
+    
+    for(int i = 0; i < result.size(); i++)
+    {
+        for(int j = 0; j < result[i].size(); j++)
+        {
+            cout << result[i][j] << " ";
+        }
+        cout << endl;
+    }
+    cout << endl;
     //TESTING
 //    set<vector<int>> mySet = {{1, 2}, {3,    4}};
 //    
