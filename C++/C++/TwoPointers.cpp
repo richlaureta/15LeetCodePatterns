@@ -69,17 +69,14 @@ vector<vector<int>> threeSum(vector<int> &nums)
                 
                 leftIndex++;
                 rightIndex--;
-                if(nums[i] + nums[leftIndex] + nums[rightIndex]  == 0)
-                {
-                    answer.push_back({nums[i], nums[leftIndex], nums[rightIndex]});
-                }
-                while((leftIndex < rightIndex) and (nums[leftIndex] == nums[leftIndex + 1]))
+
+                while((leftIndex < rightIndex) and (nums[leftIndex] == nums[leftIndex - 1]))
                 {
                     leftIndex++;
                 }
                 
                 
-                while((leftIndex < rightIndex) and (nums[rightIndex] == nums[rightIndex - 1]))
+                while((leftIndex < rightIndex) and (nums[rightIndex] == nums[rightIndex + 1]))
                 {
                     rightIndex--;
 
