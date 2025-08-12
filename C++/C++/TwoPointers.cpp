@@ -89,3 +89,51 @@ vector<vector<int>> threeSum(vector<int> &nums)
     
     return answer;
 }
+
+int maxArea(vector<int> &height)
+{
+    //Problem #11 Container With The Most Water
+    
+    int maxArea = 0;
+    int leftIndex = 0;
+    int rightIndex = (int)(height.size() - 1);
+    int minimum = 0;
+    
+    while(leftIndex < rightIndex)
+    {
+        if(height[leftIndex] < height[rightIndex])
+        {
+            minimum = height[leftIndex];
+        }
+        else if (height[leftIndex] > height[rightIndex])
+        {
+            minimum = height[rightIndex];
+        }
+        else
+        {
+            minimum = height[rightIndex];
+        }
+        
+        int square = minimum * (rightIndex - leftIndex);
+        
+        if(square > maxArea)
+        {
+            maxArea = square;
+        }
+        
+        if(height[leftIndex] > height[rightIndex])
+        {
+            rightIndex--;
+        }
+        else if (height[leftIndex] < height[rightIndex])
+        {
+            leftIndex++;
+        }
+        else
+        {
+            leftIndex++;
+        }
+    }
+    
+    return maxArea;
+}

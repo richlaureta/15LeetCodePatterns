@@ -111,3 +111,4 @@ int fib(int n);
 int findMaxLength(vector<int> &nums);
 int subArraySum(vector<int> &nums, int k);
 vector<vector<int>> threeSum(vector<int> &nums);
+int maxArea(vector<int> &height);

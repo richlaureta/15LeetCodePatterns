@@ -259,18 +259,23 @@ int main(int argc, const char * argv[]) {
 //    cout << subArraySum(nums, k) << endl;
     
     //Problem #15 3Sum
-    vector<int> nums = {-2, 0, 1, 1, 2};
-    vector<vector<int>> result = threeSum(nums);
+//    vector<int> nums = {-2, 0, 1, 1, 2};
+//    vector<vector<int>> result = threeSum(nums);
+//    
+//    for(int i = 0; i < result.size(); i++)
+//    {
+//        for(int j = 0; j < result[i].size(); j++)
+//        {
+//            cout << result[i][j] << " ";
+//        }
+//        cout << endl;
+//    }
+//    cout << endl;
     
-    for(int i = 0; i < result.size(); i++)
-    {
-        for(int j = 0; j < result[i].size(); j++)
-        {
-            cout << result[i][j] << " ";
-        }
-        cout << endl;
-    }
-    cout << endl;
+    //Problem #11 Container With The Most Water
+    vector<int> height = {1, 2, 1};
+    
+    cout << maxArea(height) << endl;
     //TESTING
 //    set<vector<int>> mySet = {{1, 2}, {3,    4}};
 //    

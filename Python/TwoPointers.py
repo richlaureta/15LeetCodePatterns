@@ -1,6 +1,5 @@
 def threeSum(nums: list[int]) -> list[list[int]]:
     nums.sort()
-    print(nums)
     answer = []
     leftIndex = 0
     rightIndex = 0
@@ -46,12 +45,40 @@ def twoSum2(numbers: list[int], target: int) -> list[int]:
         else: 
             startIndex += 1
 
+def maxArea(height: list[int]) -> int:
+    #Problem #11 Container with the Most Water
+    
+    maxWaterSquare = 0
+    leftIndex = 0
+    rightIndex = len(height) - 1
+
+    while leftIndex < rightIndex:
+        minimum = min(height[leftIndex], height[rightIndex])
+        square = minimum * (rightIndex - leftIndex)
+
+        if square > maxWaterSquare:
+            maxWaterSquare = square
+        
+        if height[leftIndex] > height[rightIndex]:
+            rightIndex -= 1
+        elif height[leftIndex] < height[rightIndex]:
+            leftIndex += 1
+        else:
+            leftIndex += 1
+    
+    return maxWaterSquare
+            
+        
 if __name__ == "__main__":
     # numbers = [2, 7, 11, 15]
     # target = 9
 
     # print(twoSum2(numbers, target))
 
-    nums = [-1, 0, 1, 2, -1, -1, -4]
+    # nums = [-1, 0, 1, 2, -1, -1, -4]
 
-    print(threeSum(nums))
+    # print(threeSum(nums))
+
+    height = [1, 8, 6, 2, 5, 4, 8, 3, 7]
+
+    print(maxArea(height))
