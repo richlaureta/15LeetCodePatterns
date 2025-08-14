@@ -87,3 +87,36 @@ int maxVowels(string s, int k)
     }
     return maxCount;
 }
+
+int lengthOfLongestSubstring(string s)
+{
+    //Problem #3 Longest Substring Without Repeating Character
+    
+    unordered_map<int, int> myMap;
+    int count = 0;
+    int maxCount = 0;
+    int pointer = 0;
+    
+    while(pointer != s.size())
+    {
+        if(myMap.count(s[pointer]) == 0)
+        {
+            myMap[s[pointer]] = pointer;
+            count++;
+            if(count > maxCount)
+            {
+                maxCount = count;
+            }
+        }
+        else
+        {
+            count = 0;
+            pointer = myMap[s[pointer]];
+            myMap.clear();
+        }
+        
+        pointer++;
+    }
+    
+    return maxCount;
+}

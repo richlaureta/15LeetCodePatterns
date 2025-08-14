@@ -273,9 +273,14 @@ int main(int argc, const char * argv[]) {
 //    cout << endl;
     
     //Problem #11 Container With The Most Water
-    vector<int> height = {1, 2, 1};
+//    vector<int> height = {1, 8, 6, 2, 5, 4, 8, 3, 7};
+//    
+//    cout << maxArea(height) << endl;
     
-    cout << maxArea(height) << endl;
+    // Problem #3 Longest Substring Without Repeating Characters
+    string s = "abcabcbb";
+    cout << lengthOfLongestSubstring(s) << endl;
+    
     //TESTING
 //    set<vector<int>> mySet = {{1, 2}, {3,    4}};
 //    

@@ -94,10 +94,10 @@ int maxArea(vector<int> &height)
 {
     //Problem #11 Container With The Most Water
     
-    int maxArea = 0;
-    int leftIndex = 0;
-    int rightIndex = (int)(height.size() - 1);
-    int minimum = 0;
+    size_t maxArea = 0;
+    size_t leftIndex = 0;
+    size_t rightIndex = (int)(height.size() - 1);
+    size_t minimum = 0;
     
     while(leftIndex < rightIndex)
     {
@@ -114,7 +114,7 @@ int maxArea(vector<int> &height)
             minimum = height[rightIndex];
         }
         
-        int square = minimum * (rightIndex - leftIndex);
+        size_t square = minimum * (rightIndex - leftIndex);
         
         if(square > maxArea)
         {
@@ -135,5 +135,5 @@ int maxArea(vector<int> &height)
         }
     }
     
-    return maxArea;
+    return (int)maxArea;
 }

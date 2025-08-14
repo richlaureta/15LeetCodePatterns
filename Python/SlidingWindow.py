@@ -78,16 +78,27 @@ def findMaxAverage(nums: List[int], k: int) -> float:
 
     return float(maxValue/k)
 
+def lengthOfLongestSubstring(s: str) -> int:
+    maxCount = 0
+    count = 0
+    memorySet = {}
+    pointer = 0
+                                                   
+    while pointer != len(s):
+        if s[pointer] not in memorySet:
+            memorySet[s[pointer]] = pointer
+            count += 1
+            if count > maxCount:
+                maxCount = count
+        else:
+            count = 0
+            pointer = memorySet[s[pointer]]
+            memorySet = {}
+        
+        pointer += 1
 
-def main():
-    # nums = [1,12,-5, -6, 50, 3]
-    
-    # print(findMaxAverage(nums, 4))
-
-    s = "zpuerktejfp"
-    k = 3
-
-    print(maxVowels(s, k))
+    return maxCount
 
 if __name__ == "__main__":
-    sys.exit(main())
+    s = "bbbbb"
+    print(lengthOfLongestSubstring(s))

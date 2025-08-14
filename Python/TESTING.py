@@ -1,2 +1,9 @@
-for i in range(9):
-    print(i)
+mySet = set()
+
+mySet.add(1)
+
+print(mySet)
+
+mySet = set()
+
+print(mySet)
