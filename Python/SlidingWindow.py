@@ -79,26 +79,79 @@ def findMaxAverage(nums: List[int], k: int) -> float:
     return float(maxValue/k)
 
 def lengthOfLongestSubstring(s: str) -> int:
+    #Problem #3 Longest Substring Without Repeating
+
     maxCount = 0
     count = 0
-    memorySet = {}
+    memoryMap = {}
     pointer = 0
                                                    
     while pointer != len(s):
-        if s[pointer] not in memorySet:
-            memorySet[s[pointer]] = pointer
+        if s[pointer] not in memoryMap:
+            memoryMap[s[pointer]] = pointer
             count += 1
             if count > maxCount:
                 maxCount = count
         else:
             count = 0
-            pointer = memorySet[s[pointer]]
-            memorySet = {}
+            pointer = memoryMap[s[pointer]]
+            memoryMap = {}
         
         pointer += 1
 
     return maxCount
 
+def minWindow(s: str, t: str) -> str:
+    #Problem #76 Minimum Window Substring
+
+    if t == "":
+        return ""
+    
+    tDictionary = {}
+    haveDicionary = {}
+    minimumLength = float("infinity")
+    arrayRange = []
+    leftPointer = 0
+    have = 0
+    need = len(t)
+
+    for i in t:
+        if i not in tDictionary:
+            tDictionary[i] = 1
+        else:
+            tDictionary[i] += 1
+      
+    
+    for rightPointer in range(len(s)):
+        if s[rightPointer] not in haveDicionary:
+            haveDicionary[s[rightPointer]] = 1
+        else:
+            haveDicionary[s[rightPointer]] += 1
+            
+
+        if s[rightPointer] in tDictionary and haveDicionary[s[rightPointer]] == tDictionary[s[rightPointer]]:
+            have += 1
+        
+        while have == need:
+            if (rightPointer - leftPointer + 1) < minimumLength:
+                arrayRange = [leftPointer, rightPointer]
+                minimumLength = (rightPointer - leftPointer) + 1
+
+            haveDicionary[s[leftPointer]] -= 1
+            if s[leftPointer] in tDictionary and haveDicionary[s[leftPointer]] < tDictionary[s[leftPointer]]:
+                have -= 1
+            leftPointer += 1
+
+    if minimumLength == float("infinity"):
+        return ""
+    else:
+        answer = ""
+        for i in range(leftPointer - 1, rightPointer + 1):
+            answer += s[i]
+        return answer    
+
 if __name__ == "__main__":
-    s = "bbbbb"
-    print(lengthOfLongestSubstring(s))
+    s = "a"
+    t = "aa"
+    
+    print(minWindow(s, t))
