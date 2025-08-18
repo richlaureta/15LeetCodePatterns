@@ -120,3 +120,67 @@ int lengthOfLongestSubstring(string s)
     
     return maxCount;
 }
+
+string minWindow(string s, string t)
+{
+    //Problem #76. Minimum Window Substring
+    
+    if((t == "") or (t.size() > s.size()))
+    {
+        return "";
+    }
+    
+    unordered_map<char, int> tMap;
+    unordered_map<char, int> haveMap;
+    int have = 0;
+    vector<int> rangeOfString;
+    int minimumLength = 100001;
+    int leftPointer = 0;
+    
+    for(int i = 0; i < t.size(); i++)
+    {
+        tMap[t[i]]++;
+    }
+    
+    int need = (int) tMap.size();
+    
+    for(int rightPointer = 0; rightPointer < s.size(); rightPointer++)
+    {
+        haveMap[s[rightPointer]]++;
+        
+        if((tMap.count(s[rightPointer]) > 0) and haveMap[s[rightPointer]] == tMap[s[rightPointer]])
+        {
+            have++;
+        }
+        
+        while(need == have)
+        {
+            if(((rightPointer - leftPointer) + 1) < minimumLength)
+            {
+                minimumLength = (rightPointer - leftPointer) + 1;
+                rangeOfString = {leftPointer, rightPointer};
+            }
+            
+            haveMap[s[leftPointer]]--;
+            
+            if((tMap.count(s[leftPointer]) > 0) and haveMap[s[leftPointer]] < tMap[s[leftPointer]])
+            {
+                have--;
+            }
+            
+            leftPointer++;
+        }
+    }
+    
+    if(minimumLength != 100001)
+    {
+        string answer;
+        for(int i = rangeOfString[0]; i < rangeOfString[1] + 1; i++)
+        {
+            answer += s[i];
+        }
+        return answer;
+    }
+    
+    return "";
+}

@@ -141,14 +141,15 @@ def minWindow(s: str, t: str) -> str:
                 have -= 1
             leftPointer += 1
 
-    if minimumLength == float("infinity"):
-        return ""
+    if minimumLength != float("infinity"):
+        answer = ""
+        for i in range(rangeOfWindow[0], rangeOfWindow[1] + 1):
+            answer += s[i]
     
-    answer = ""
-    for i in range(rangeOfWindow[0], rangeOfWindow[1] + 1):
-        answer += s[i]
+        return answer
     
-    return answer
+    return ""
+
 if __name__ == "__main__":
     s = "a"
     t = "b"

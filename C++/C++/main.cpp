@@ -278,9 +278,14 @@ int main(int argc, const char * argv[]) {
 //    cout << maxArea(height) << endl;
     
     // Problem #3 Longest Substring Without Repeating Characters
-    string s = "abcabcbb";
-    cout << lengthOfLongestSubstring(s) << endl;
+//    string s = "abcabcbb";
+//    cout << lengthOfLongestSubstring(s) << endl;
+//
+    // Problem #76 Minimum Window Substring
+    string s = "a";
+    string t = "aa";
     
+    cout << minWindow(s, t) << endl;
     //TESTING
 //    set<vector<int>> mySet = {{1, 2}, {3,    4}};
 //    
