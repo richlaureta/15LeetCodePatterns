@@ -102,49 +102,55 @@ def lengthOfLongestSubstring(s: str) -> int:
     return maxCount
 
 def minWindow(s: str, t: str) -> str:
-    #Problem #76 Minimum Window Substring AI GENERATED SOLUTION GOOGLE CLI GEMINI
+    #Problem #76 Minimum Window Substring
 
     if t == "" or len(t) > len(s):
         return ""
     
+    leftPointer = 0
     tDictionary = {}
-    for char in t:
-        tDictionary[char] = 1 + tDictionary.get(char, 0)
-
-    window = {}
-    res = [-1, -1]
-    resLen = float("infinity")
-    
-    l = 0
+    haveDictionary = {}
     have = 0
-    need = len(tDictionary)
-      
-    for r in range(len(s)):
-        c = s[r]
-        window[c] = 1 + window.get(c, 0)
+    minimumLength = float("infinity")
+    rangeOfWindow = []
 
-        if c in tDictionary and window[c] == tDictionary[c]:
+    for i in t:
+        if i not in tDictionary:
+            tDictionary[i] = 1
+        else:
+            tDictionary[i] += 1
+    
+    need = len(tDictionary)
+
+    for rightPointer in range(len(s)):
+        if s[rightPointer] not in haveDictionary:
+            haveDictionary[s[rightPointer]] = 1
+        else:
+            haveDictionary[s[rightPointer]] += 1
+        
+        if s[rightPointer] in tDictionary and haveDictionary[s[rightPointer]] == tDictionary[s[rightPointer]]:
             have += 1
         
         while have == need:
-            # update our result
-            if (r - l + 1) < resLen:
-                res = [l, r]
-                resLen = (r - l + 1)
-
-            # pop from the left of our window
-            left_char = s[l]
-            window[left_char] -= 1
-            if left_char in tDictionary and window[left_char] < tDictionary[left_char]:
+            if (rightPointer - leftPointer) + 1 < minimumLength:
+                minimumLength = (rightPointer - leftPointer) + 1
+                rangeOfWindow = [leftPointer, rightPointer]
+            
+            haveDictionary[s[leftPointer]] -= 1
+            if s[leftPointer] in tDictionary and haveDictionary[s[leftPointer]] < tDictionary[s[leftPointer]]:
                 have -= 1
-            l += 1
+            leftPointer += 1
 
-    l, r = res
+    if minimumLength == float("infinity"):
+        return ""
     
-    return s[l:r+1] if resLen != float("infinity") else ""    
-
+    answer = ""
+    for i in range(rangeOfWindow[0], rangeOfWindow[1] + 1):
+        answer += s[i]
+    
+    return answer
 if __name__ == "__main__":
     s = "a"
-    t = "aa"
+    t = "b"
     
     print(minWindow(s, t))
