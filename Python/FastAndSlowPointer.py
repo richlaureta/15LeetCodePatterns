@@ -108,24 +108,26 @@ def findDuplicate(nums: list[int]) -> int:
 def isHappy(n: int) -> bool:
     #Problem #202 Happy Number
 
-    digits = [int(d) for d in str(n)]
+    modulos = n
     sum = 0
     seen = set()
-    
-    while True: 
-        for number in digits:
-            sum += number * number
-        
-        digits = [int(d) for d in str(sum)]
-        print(sum)
-        if sum == 1:
-            return True
-        if sum in seen:
-            return False
-        seen.add(sum)
-        
+
+    while sum != 1:
         sum = 0
+        while n > 0:
+            modulos = n % 10
+            n = n // 10
+
+            sum += modulos * modulos
+
+        n = sum
+        if n in seen:
+            return False
+            
+        seen.add(n)
+    
+    return True
 
 if __name__ == "__main__":
-    n = 2
+    n = 19
     print(isHappy(n))

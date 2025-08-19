@@ -106,23 +106,29 @@ void removeCycle(ListNode* head){
 
 bool isHappy(int n)
 {
+    //Problem #202 Happy Number
+    
     set<int> seen;
     int sum = 0;
-    string digits = to_string(n);
+    int modulus = n;
     
-    while(true)
+    while(sum != 1)
     {
-        for(int i = 0; i < digits.size(); i++)
+        sum = 0;
+        while(n > 0)
         {
-            sum += (digits[i] - '0')  * (digits[i] - '0');
+            modulus = n % 10;
+            n = n / 10;
+            
+            sum += modulus * modulus;
         }
-        
-        if(sum == 1) return true;
-        if(seen.count(sum) > 0) return false;
-        
-        seen.insert(sum);
-        
-        digits = to_string(sum);
-        sum  = 0;
+        n = sum;
+        if(seen.count(n) > 0)
+        {
+            return false;
+        }
+        seen.insert(n);
     }
+    
+    return true;
 }

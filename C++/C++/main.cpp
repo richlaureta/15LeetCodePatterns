@@ -288,9 +288,12 @@ int main(int argc, const char * argv[]) {
 //    cout << minWindow(s, t) << endl;
     
     //Problem #202 Happy Number
-    int n = 2;
+    int n = 19;
     
     cout << isHappy(n) << endl;
+    
+    //Problem #287 Find The Duplicate Number
+    
     //TESTING
 //    set<vector<int>> mySet = {{1, 2}, {3,    4}};
 //    
