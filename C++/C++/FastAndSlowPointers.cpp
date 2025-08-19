@@ -132,3 +132,30 @@ bool isHappy(int n)
     
     return true;
 }
+
+int findDuplicate(vector<int> &nums)
+{
+    //Problem #287 Find the Duplicate Number
+    
+    int slowPointer = nums[0];
+    int fastPointer = nums[0];
+    
+    while(true)
+    {
+        slowPointer = nums[slowPointer];
+        fastPointer = nums[nums[fastPointer]];
+        
+        if (slowPointer == fastPointer) break;
+    }
+    
+    int pointer1 = nums[0];
+    int pointer2 = fastPointer;
+    
+    while(pointer1 != pointer2)
+    {
+        pointer1 = nums[pointer1];
+        pointer2 = nums[pointer2];
+    }
+    
+    return pointer2;
+}

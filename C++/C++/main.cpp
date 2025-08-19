@@ -160,13 +160,13 @@ int main(int argc, const char * argv[]) {
     //Depth First Search Comprehension
     
 //    vector<vector<int>> A = {{0, 1}, {1, 2}, {0, 3}, {3, 4}, {3, 6}, {3, 7}, {4, 2}, {4, 5}, {5, 2}};
-//    
+//
 //    depthFirstSearchList(A, 0);
     
 //    vector<vector<int>> times = {{2,1,1}, {2,3,1}, {3,4,1}};
 //    int n = 4;
 //    int k = 2;
-//    
+//
 //    cout << networkDelayTime(times, n, k) << endl;
     
     //Problem #1 Two Sum
@@ -174,7 +174,7 @@ int main(int argc, const char * argv[]) {
 //    vector<int> nums = {2, 7, 11, 15};
 //    int target = 9;
 //    vector<int> solution = twoSum(nums, target);
-//    
+//
 //    for(int i = 0; i < solution.size(); i++)
 //    {
 //        cout << solution[i] << " ";
@@ -185,9 +185,9 @@ int main(int argc, const char * argv[]) {
     //Problem #167 Two Sum II - Input Array is Sorted
 //    vector<int> numbers = {2, 7, 11, 15};
 //    int target = 9;
-//    
+//
 //    vector<int> answerthis = twoSum2(numbers, target);
-//    
+//
 //    for(size_t i = 0; i < answerthis.size(); ++i)
 //    {
 //        cout << answerthis[i] << " ";
@@ -198,9 +198,9 @@ int main(int argc, const char * argv[]) {
     
 //    vector<int> nums =  {-1, -1};
 //    int k = 1;
-//    
+//
 //    vector<int> topKFrequentElements = topKFrequent(nums, k);
-//    
+//
 //    for(int i = 0; i < topKFrequentElements.size(); i++)
 //    {
 //        cout << topKFrequentElements[i] << endl;
@@ -220,14 +220,14 @@ int main(int argc, const char * argv[]) {
 //        {'0','0','1','0','0'},
 //        {'0','0','0','1','1'}
 //    };
-//    
+//
 //    cout << numIslands(grid) << endl;
     
     // Problem #78 Subsets
 //    vector<int> nums = {1, 2, 3};
-//    
+//
 //    vector<vector<int>> powerSet = subsets(nums);
-//    
+//
 //    for(const auto& iterator: powerSet){
 //        for(int i = 0; i < iterator.size(); i++)
 //        {
@@ -238,10 +238,10 @@ int main(int argc, const char * argv[]) {
     
     //Problem #151 Reverse Words in a String
 //    string s = "  hello world  ";
-//    
+//
 //    string answer = reverseWords(s);
 //    cout << answer << endl;
-//    
+//
 //    cout << s.size() << endl;
 //    cout << answer.size() << endl;
     
@@ -255,13 +255,13 @@ int main(int argc, const char * argv[]) {
     //Problem #560 Subarray Sum Equals K
 //    vector<int> nums = {1, 1, 1};
 //    int k = 2;
-//    
+//
 //    cout << subArraySum(nums, k) << endl;
     
     //Problem #15 3Sum
 //    vector<int> nums = {-2, 0, 1, 1, 2};
 //    vector<vector<int>> result = threeSum(nums);
-//    
+//
 //    for(int i = 0; i < result.size(); i++)
 //    {
 //        for(int j = 0; j < result[i].size(); j++)
@@ -274,7 +274,7 @@ int main(int argc, const char * argv[]) {
     
     //Problem #11 Container With The Most Water
 //    vector<int> height = {1, 8, 6, 2, 5, 4, 8, 3, 7};
-//    
+//
 //    cout << maxArea(height) << endl;
     
     // Problem #3 Longest Substring Without Repeating Characters
@@ -284,16 +284,18 @@ int main(int argc, const char * argv[]) {
     // Problem #76 Minimum Window Substring
 //    string s = "a";
 //    string t = "aa";
-//    
+//
 //    cout << minWindow(s, t) << endl;
     
     //Problem #202 Happy Number
-    int n = 19;
-    
-    cout << isHappy(n) << endl;
+//    int n = 19;
+//    
+//    cout << isHappy(n) << endl;
     
     //Problem #287 Find The Duplicate Number
+    vector<int> nums = {1, 3, 4, 2, 2};
     
+    cout << findDuplicate(nums) << endl;
     //TESTING
 //    set<vector<int>> mySet = {{1, 2}, {3,    4}};
 //    
