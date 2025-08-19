@@ -114,3 +114,4 @@ vector<vector<int>> threeSum(vector<int> &nums);
 int maxArea(vector<int> &height);
 int lengthOfLongestSubstring(string s);
 string minWindow(string s, string t);
+bool isHappy(int n);

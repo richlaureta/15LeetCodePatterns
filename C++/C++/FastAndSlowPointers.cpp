@@ -103,3 +103,26 @@ void removeCycle(ListNode* head){
         counter = 1;
     }
 }
+
+bool isHappy(int n)
+{
+    set<int> seen;
+    int sum = 0;
+    string digits = to_string(n);
+    
+    while(true)
+    {
+        for(int i = 0; i < digits.size(); i++)
+        {
+            sum += (digits[i] - '0')  * (digits[i] - '0');
+        }
+        
+        if(sum == 1) return true;
+        if(seen.count(sum) > 0) return false;
+        
+        seen.insert(sum);
+        
+        digits = to_string(sum);
+        sum  = 0;
+    }
+}

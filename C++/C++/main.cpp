@@ -282,10 +282,15 @@ int main(int argc, const char * argv[]) {
 //    cout << lengthOfLongestSubstring(s) << endl;
 //
     // Problem #76 Minimum Window Substring
-    string s = "a";
-    string t = "aa";
+//    string s = "a";
+//    string t = "aa";
+//    
+//    cout << minWindow(s, t) << endl;
     
-    cout << minWindow(s, t) << endl;
+    //Problem #202 Happy Number
+    int n = 2;
+    
+    cout << isHappy(n) << endl;
     //TESTING
 //    set<vector<int>> mySet = {{1, 2}, {3,    4}};
 //    
