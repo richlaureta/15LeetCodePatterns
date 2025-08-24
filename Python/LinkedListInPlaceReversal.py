@@ -3,16 +3,16 @@ import sys
 
 
 class linkedListNode:
-    def __init__(self, value = 0, nextNode = None):
-        self.value = value
-        self.nextNode = nextNode
+    def __init__(self, val = 0, next = None):
+        self.val = val
+        self.next = next
 
 class LinkedList:
     def __init__(self, head = None):
         self.head = head
     
-    def insertValue(self, value):
-        node = linkedListNode(value)
+    def insertval(self, val):
+        node = linkedListNode(val)
 
         if self.head is None:
             self.head = node
@@ -21,11 +21,11 @@ class LinkedList:
         currentNode = self.head
 
         while True:
-            if currentNode.nextNode is None:
-                currentNode.nextNode = node
+            if currentNode.next is None:
+                currentNode.next = node
                 break
             
-            currentNode = currentNode.nextNode
+            currentNode = currentNode.next
     
     def insertNode(self, node: linkedListNode):
         if self.head is None:
@@ -35,10 +35,10 @@ class LinkedList:
         currentNode = self.head
 
         while True:
-            if currentNode.nextNode is None:
-                currentNode.nextNode = node
+            if currentNode.next is None:
+                currentNode.next = node
                 return
-            currentNode = currentNode.nextNode
+            currentNode = currentNode.next
     
     def printLinkedList(self):
         if self.head is None:
@@ -48,21 +48,21 @@ class LinkedList:
         currentNode = self.head
 
         while True:
-            print(f'{currentNode.value} -> ', end="")
+            print(f'{currentNode.val} -> ', end="")
             
-            if currentNode.nextNode is None:
+            if currentNode.next is None:
                 print('None')
                 return
             
-            currentNode = currentNode.nextNode
+            currentNode = currentNode.next
     
     def getEndNode(self) -> linkedListNode:
         currentNode = self.head
 
         while True:
-            if currentNode.nextNode is None:
+            if currentNode.next is None:
                 return currentNode
-            currentNode = currentNode.nextNode
+            currentNode = currentNode.next
 
 def hasCycle(head: linkedListNode) -> bool:
     #Problem #141 Linked List Cycle
@@ -74,14 +74,14 @@ def hasCycle(head: linkedListNode) -> bool:
     fastPointer = head
     
     while True:        
-        if slowPointer.nextNode is None:
+        if slowPointer.next is None:
             return False
             
-        slowPointer = slowPointer.nextNode
+        slowPointer = slowPointer.next
         
-        if fastPointer is None or fastPointer.nextNode is None or fastPointer.nextNode.nextNode is None:
+        if fastPointer is None or fastPointer.next is None or fastPointer.next.next is None:
             return False
-        fastPointer = fastPointer.nextNode.nextNode
+        fastPointer = fastPointer.next.next
 
         if slowPointer == fastPointer:
             return True
@@ -92,42 +92,85 @@ def reverseList(head: Optional[linkedListNode]) -> Optional [linkedListNode]:
     
     currentNode = head
     previousNode = head
-    nextNode = head.nextNode
+    next = head.next
     
-    currentNode.nextNode = None
+    currentNode.next = None
 
-    while(nextNode != None):
-        currentNode = nextNode
-        nextNode = nextNode.nextNode        
-        currentNode.nextNode = previousNode
+    while(next != None):
+        currentNode = next
+        next = next.next        
+        currentNode.next = previousNode
         previousNode = currentNode
 
     return currentNode
-       
-def main():
-    #Problem #141 Linked List Cycle
 
-    node0 = linkedListNode("3")
-    node1 = linkedListNode("2")
-    node2 = linkedListNode("0")
-    node3 = linkedListNode("-4")
+def reverseBetween(head: Optional[linkedListNode], left: int, right: int) -> Optional[linkedListNode]:
+    #Problem #92 Revere Linked List II
 
-    ll = LinkedList(node0)
+    rememberLeftNode = None
+    rememberReversedLeftNode = None
+    currentNode = head
+    leftIndex = 1
+    
+    while currentNode != None:
+        if leftIndex + 1 == left:
+            rememberLeftNode = currentNode
+            rememberReversedLeftNode = currentNode.next
+        
+        if leftIndex == left:
+            previousNode = None
+            nextHere = currentNode.next
 
-    ll.insertNode(node1)
+            while leftIndex != right:
+                currentNode.next = previousNode
+                previousNode = currentNode
+                currentNode = nextHere
+                nextHere = nextHere.next
+                leftIndex += 1
+            
+            currentNode.next = previousNode
 
-    nodeC = ll.getEndNode()
+            if rememberLeftNode == None:
+                head.next = nextHere
+                head = currentNode
+            else:
+                rememberLeftNode.next = currentNode
 
-    ll.insertNode(node2)
+            if rememberReversedLeftNode != None:
+                rememberReversedLeftNode.next = nextHere
 
-    ll.insertNode(node3)
-
-    # ll.insertNode(nodeC)
-
-    print(hasCycle(node0))
-
-    #Problem #206 Reverse Linked List
-    reverseList(node0)
+            return head
+        
+        currentNode = currentNode.next
+        leftIndex += 1
 
 if __name__ == "__main__":
-    sys.exit(main())
+    
+    head = linkedListNode(5)
+    # node2 = linkedListNode(5)
+    # node3 = linkedListNode(6)
+    # node4 = linkedListNode(9)
+    # node5 = linkedListNode(10)
+    # node6 = linkedListNode(11)
+    # node7 = linkedListNode(13)
+    # node8 = linkedListNode(14)
+    # node9 = linkedListNode(15)
+
+    # head.next = node2
+    # node2.next = node3
+    # node3.next = node4
+    # node4.next = node5
+    # node5.next = node6
+    # node6.next = node7
+    # node7.next = node8
+    # node8.next = node9
+
+    editedLinkedList = reverseBetween(head, 1, 1)
+
+    traverse = editedLinkedList
+
+    if traverse == None:
+        print(None)
+    while traverse != None:
+        print(traverse.val)
+        traverse = traverse.next
