@@ -105,7 +105,7 @@ def reverseList(head: Optional[linkedListNode]) -> Optional [linkedListNode]:
     return currentNode
 
 def reverseBetween(head: Optional[linkedListNode], left: int, right: int) -> Optional[linkedListNode]:
-    #Problem #92 Revere Linked List II
+    #Problem #92 Reverse Linked List II
 
     rememberLeftNode = None
     rememberReversedLeftNode = None
@@ -147,25 +147,25 @@ def reverseBetween(head: Optional[linkedListNode], left: int, right: int) -> Opt
 if __name__ == "__main__":
     
     head = linkedListNode(5)
-    # node2 = linkedListNode(5)
-    # node3 = linkedListNode(6)
-    # node4 = linkedListNode(9)
-    # node5 = linkedListNode(10)
-    # node6 = linkedListNode(11)
-    # node7 = linkedListNode(13)
-    # node8 = linkedListNode(14)
-    # node9 = linkedListNode(15)
+    node2 = linkedListNode(5)
+    node3 = linkedListNode(6)
+    node4 = linkedListNode(9)
+    node5 = linkedListNode(10)
+    node6 = linkedListNode(11)
+    node7 = linkedListNode(13)
+    node8 = linkedListNode(14)
+    node9 = linkedListNode(15)
 
-    # head.next = node2
-    # node2.next = node3
-    # node3.next = node4
-    # node4.next = node5
-    # node5.next = node6
-    # node6.next = node7
-    # node7.next = node8
-    # node8.next = node9
+    head.next = node2
+    node2.next = node3
+    node3.next = node4
+    node4.next = node5
+    node5.next = node6
+    node6.next = node7
+    node7.next = node8
+    node8.next = node9
 
-    editedLinkedList = reverseBetween(head, 1, 1)
+    editedLinkedList = reverseBetween(head, 1, 5)
 
     traverse = editedLinkedList
 
