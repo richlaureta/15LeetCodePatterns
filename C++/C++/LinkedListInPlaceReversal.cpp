@@ -6,7 +6,6 @@
 //
 
 #include "Header.h"
-#include <iostream>
 
 ListNode* reverseList(ListNode *head)
 {

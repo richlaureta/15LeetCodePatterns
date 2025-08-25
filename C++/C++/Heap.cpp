@@ -6,12 +6,6 @@
 //
 
 #include "Header.h"
-#include <optional>
-#include <iostream>
-#include <vector>
-
-using namespace std;
-
 
 int MaxHeap::parent(int index)
 {

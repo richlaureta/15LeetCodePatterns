@@ -6,7 +6,6 @@
 //
 
 #include "Header.h"
-#include <iostream>
 
 unordered_map<int, vector<int>> edgeListToMap(vector<vector<int>> edgeList)
 {

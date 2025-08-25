@@ -6,11 +6,6 @@
 //
 
 #include "Header.h"
-#include <iostream>
-#include <vector>
-#include <queue>
-
-using namespace std;
 
 int findKthLargest(vector<int> &nums, int k)
 {

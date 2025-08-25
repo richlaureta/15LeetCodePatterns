@@ -6,10 +6,6 @@
 //
 
 #include "Header.h"
-#include <iostream>
-#include <string>
-#include <algorithm>
-#include <unordered_map>
 
 bool isAnagram(string s, string t)
 {

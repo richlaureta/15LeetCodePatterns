@@ -6,10 +6,6 @@
 //
 
 #include "Header.h"
-#include <iostream>
-#include <unordered_map>
-
-using namespace std;
 
 void LinkedList::insertNode(ListNode *node)
 {

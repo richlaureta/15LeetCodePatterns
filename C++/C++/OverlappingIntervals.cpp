@@ -7,11 +7,6 @@
 
 #include "Header.h"
 
-#include <iostream>
-#include <algorithm>
-
-using namespace std;
-
 vector<vector<int>> mergeIntervals(vector<vector<int>> &intervals)
 {
     //Problem #56 Merge Intervals

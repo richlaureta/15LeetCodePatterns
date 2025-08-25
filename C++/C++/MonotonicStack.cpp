@@ -6,12 +6,6 @@
 //
 
 #include "Header.h"
-#include <iostream>
-#include <vector>
-#include <stack>
-#include <unordered_map>
-
-using namespace std;
 
 std::vector<int> nextGreaterElement(std::vector<int> &nums1, std::vector<int> &nums2)
 {

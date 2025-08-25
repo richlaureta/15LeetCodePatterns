@@ -7,12 +7,6 @@
 
 #include "Header.h"
 
-#include <iostream>
-#include <vector>
-#include <string>
-
-using namespace std;
-
 double findMaxAverage(vector<int> &nums, int k)
 {
     //Problem #643 Maximum Average Subarray I
