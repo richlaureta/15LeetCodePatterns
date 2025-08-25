@@ -117,3 +117,5 @@ int lengthOfLongestSubstring(string s);
 string minWindow(string s, string t);
 bool isHappy(int n);
 int findDuplicate(vector<int> &nums);
+ListNode* reverseBetween(ListNode* head, int left, int right);
+

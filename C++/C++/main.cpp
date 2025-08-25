@@ -293,9 +293,33 @@ int main(int argc, const char * argv[]) {
 //    cout << isHappy(n) << endl;
     
     //Problem #287 Find The Duplicate Number
-    vector<int> nums = {1, 3, 4, 2, 2};
+//    vector<int> nums = {1, 3, 4, 2, 2};
+//    
+//    cout << findDuplicate(nums) << endl;
     
-    cout << findDuplicate(nums) << endl;
+    //Problem #92 Reverse Linked List II
+    ListNode* head = new ListNode(1);
+    ListNode* node2 = new ListNode(2);
+    ListNode* node3 = new ListNode(3);
+    ListNode* node4 = new ListNode(4);
+    ListNode* node5 = new ListNode(5);
+   
+    int leftIndex = 2;
+    int rightIndex = 4;
+    
+    head->next = node2;
+    node2->next = node3;
+    node3->next = node4;
+    node4->next = node5;
+    
+    ListNode* editedLinkedList = reverseBetween(head, leftIndex, rightIndex);
+    
+    while(editedLinkedList != nullptr)
+    {
+        cout << editedLinkedList->val << endl;
+        editedLinkedList = editedLinkedList->next;
+    }
+    
     //TESTING
 //    set<vector<int>> mySet = {{1, 2}, {3,    4}};
 //    
