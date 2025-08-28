@@ -2,7 +2,7 @@ from typing import Optional
 import sys
 
 
-class linkedListNode:
+class ListNode:
     def __init__(self, val = 0, next = None):
         self.val = val
         self.next = next
@@ -12,7 +12,7 @@ class LinkedList:
         self.head = head
     
     def insertval(self, val):
-        node = linkedListNode(val)
+        node = ListNode(val)
 
         if self.head is None:
             self.head = node
@@ -27,7 +27,7 @@ class LinkedList:
             
             currentNode = currentNode.next
     
-    def insertNode(self, node: linkedListNode):
+    def insertNode(self, node: ListNode):
         if self.head is None:
             self.head = node
             return
@@ -56,7 +56,7 @@ class LinkedList:
             
             currentNode = currentNode.next
     
-    def getEndNode(self) -> linkedListNode:
+    def getEndNode(self) -> ListNode:
         currentNode = self.head
 
         while True:
@@ -64,7 +64,7 @@ class LinkedList:
                 return currentNode
             currentNode = currentNode.next
 
-def hasCycle(head: linkedListNode) -> bool:
+def hasCycle(head: ListNode) -> bool:
     #Problem #141 Linked List Cycle
     
     if head is None:
@@ -86,7 +86,7 @@ def hasCycle(head: linkedListNode) -> bool:
         if slowPointer == fastPointer:
             return True
 
-def reverseList(head: Optional[linkedListNode]) -> Optional [linkedListNode]:
+def reverseList(head: Optional[ListNode]) -> Optional [ListNode]:
     if head is None:
         return head
     
@@ -104,7 +104,7 @@ def reverseList(head: Optional[linkedListNode]) -> Optional [linkedListNode]:
 
     return currentNode
 
-def reverseBetween(head: Optional[linkedListNode], left: int, right: int) -> Optional[linkedListNode]:
+def reverseBetween(head: Optional[ListNode], left: int, right: int) -> Optional[ListNode]:
     #Problem #92 Reverse Linked List II
 
     rememberLeftNode = None
@@ -144,17 +144,70 @@ def reverseBetween(head: Optional[linkedListNode], left: int, right: int) -> Opt
         currentNode = currentNode.next
         leftIndex += 1
 
+def swapPairs(head: Optional[ListNode]) -> Optional[ListNode]:
+    #Problem #24 Swap Nodes in Pairs
+
+    if (head == None) or (head.next == None):
+        return head
+    
+    currentNode = head
+    nextNode = currentNode.next
+    nextNextNode = None
+
+    if currentNode.next != None:
+        nextNextNode = currentNode.next.next
+    
+    flag = False
+
+    while nextNextNode != None:
+        temporaryNode = currentNode
+        temporary2Node = nextNode
+        temporary3Node = nextNextNode
+
+        temporary2Node.next = temporaryNode
+
+        if flag == False:
+            flag = True
+            head = temporary2Node
+
+        temporaryNode4 = temporary3Node.next
+
+        currentNode = temporary3Node
+        nextNode = temporaryNode4
+
+        if temporaryNode4 == None:
+            temporaryNode.next = temporary3Node
+            nextNextNode = None
+        else: 
+            nextNextNode = temporaryNode4.next
+
+            temporaryNode4.next = currentNode
+            temporaryNode.next = temporaryNode4
+            currentNode.next = None
+    
+    
+    if flag == False:
+        temporaryNode = currentNode
+        temporary2Node = currentNode.next
+
+        temporary2Node.next = currentNode
+        currentNode.next = None
+        head = temporary2Node
+
+    return head
+
+
 if __name__ == "__main__":
     
-    head = linkedListNode(5)
-    node2 = linkedListNode(5)
-    node3 = linkedListNode(6)
-    node4 = linkedListNode(9)
-    node5 = linkedListNode(10)
-    node6 = linkedListNode(11)
-    node7 = linkedListNode(13)
-    node8 = linkedListNode(14)
-    node9 = linkedListNode(15)
+    head = ListNode(1)
+    node2 = ListNode(2)
+    node3 = ListNode(3)
+    node4 = ListNode(4)
+    node5 = ListNode(5)
+    node6 = ListNode(6)
+    node7 = ListNode(13)
+    node8 = ListNode(14)
+    node9 = ListNode(15)
 
     head.next = node2
     node2.next = node3
@@ -165,11 +218,11 @@ if __name__ == "__main__":
     node7.next = node8
     node8.next = node9
 
-    editedLinkedList = reverseBetween(head, 1, 5)
+    editedLinkedList = swapPairs(head)
 
     traverse = editedLinkedList
 
-    if traverse == None:
+    if (traverse == None) or (traverse == []):
         print(None)
     while traverse != None:
         print(traverse.val)

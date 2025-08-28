@@ -304,8 +304,8 @@ int main(int argc, const char * argv[]) {
     ListNode* node4 = new ListNode(4);
     ListNode* node5 = new ListNode(5);
    
-    int leftIndex = 2;
-    int rightIndex = 4;
+    int leftIndex = 1;
+    int rightIndex = 3;
     
     head->next = node2;
     node2->next = node3;
