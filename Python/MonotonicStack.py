@@ -1,4 +1,5 @@
 import sys
+from collections import deque
 
 def nextGreaterElement(nums1: list[int], nums2: list[int]) -> list[int]:
     decrementIndex = len(nums2) - 1
@@ -23,11 +24,73 @@ def nextGreaterElement(nums1: list[int], nums2: list[int]) -> list[int]:
         
     return arrayQuery
 
-def main():
-    nums1 = [4, 1, 2]
-    nums2 = [1, 3, 4, 2]
+def dailyTemperatures(temperatures: list[int]) -> list[int]:
+    #Problem #739 Daily Temperatures
+     
+    listToReturn = deque()
+    myStack = []
+    decrementingIndex = len(temperatures) - 1
+    myDictionary = {}
+    
+    for i in reversed(temperatures):
+        if len(myStack) == 0:
+            listToReturn.appendleft(0)
+            myStack.append(i)
+            myDictionary[i] = decrementingIndex
+        else:
+            flag = False
+            if i > myStack[-1]:
+                while i >= myStack[-1] and flag == False:
+                    myStack.pop()
+                    if len(myStack) == 0:
+                        listToReturn.appendleft(0)
+                        myStack.append(i)
+                        myDictionary[i] = decrementingIndex
+                        flag = True
 
-    print(nextGreaterElement(nums1, nums2))
+                if flag == True:
+                    decrementingIndex -= 1
+                    continue
+                else:
+                    listToReturn.appendleft(myDictionary[myStack[-1]] - decrementingIndex)
+                    myStack.append(i)
+                    myDictionary[i] = decrementingIndex
+
+            elif i == myStack[-1]:
+                flag = False
+
+                while i == myStack[-1] and flag == False:
+                    myStack.pop()
+                    if len(myStack) == 0:
+                        listToReturn.appendleft(0)
+                        myStack.append(i)
+                        myDictionary[i] = decrementingIndex
+                        flag = True
+                if flag == True:
+                    decrementingIndex -= 1
+                    continue
+                else:
+                    listToReturn.appendleft(myDictionary[myStack[-1]] - decrementingIndex)
+                    myStack.append(i)
+                    myDictionary[i] = decrementingIndex
+
+            else:
+                listToReturn.appendleft(myDictionary[myStack[-1]] - decrementingIndex)
+                myStack.append(i)
+                myDictionary[i] = decrementingIndex
+                
+        decrementingIndex -= 1
+
+    return list(listToReturn)
 
 if __name__ == "__main__":
-    sys.exit(main())
+    temperatures = [73, 74, 75, 71, 69, 72, 76, 73]
+    # temperatures = [30, 40, 50, 60]
+    # temperatures = [30, 60, 90]
+    # temperatures = [49, 70, 47, 47, 46, 70]
+
+    # temperatures = [89,62,70,58,47,47,46,76,100,70]
+
+    # temperatures = [34,80,80,34,34,80,80,80,80,34]
+    
+    print(dailyTemperatures(temperatures))
