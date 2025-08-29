@@ -82,3 +82,68 @@ ListNode* reverseBetween(ListNode* head, int left, int right)
     }
     return head;
 }
+
+ListNode* swapPairs(ListNode* head)
+{
+    if((head == nullptr) or head->next == nullptr)
+    {
+        return head;
+    }
+    
+    ListNode* currentNode = head;
+    ListNode* nextNode = currentNode->next;
+    ListNode* nextNextNode = nullptr;
+    
+    if (currentNode->next != nullptr)
+    {
+        nextNextNode = currentNode->next->next;
+    }
+    
+    bool flag = false;
+    
+    while(nextNextNode != nullptr)
+    {
+        ListNode* temporaryNode = currentNode;
+        ListNode* temporary2Node = nextNode;
+        ListNode* temporary3Node = nextNextNode;
+        
+        temporary2Node->next = temporaryNode;
+        
+        if(flag == false)
+        {
+            flag = true;
+            head = temporary2Node;
+        }
+        
+        ListNode* temporary4Node = temporary3Node->next;
+        
+        currentNode = temporary3Node;
+        nextNode = temporary4Node;
+        
+        if(temporary4Node == nullptr)
+        {
+            temporaryNode->next = temporary3Node;
+            nextNextNode = nullptr;
+        }
+        else
+        {
+            nextNextNode = temporary4Node->next;
+            
+            temporary4Node->next = currentNode;
+            temporaryNode->next = temporary4Node;
+            currentNode->next = nullptr;
+        }
+    }
+    
+    if(flag == false)
+    {
+        ListNode* temporaryNode = currentNode;
+        ListNode* temporary2Node = currentNode->next;
+        
+        temporary2Node->next = currentNode;
+        currentNode->next = nullptr;
+        head = temporary2Node;
+    }
+    
+    return head;
+}

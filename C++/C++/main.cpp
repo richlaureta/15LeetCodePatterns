@@ -298,28 +298,47 @@ int main(int argc, const char * argv[]) {
 //    cout << findDuplicate(nums) << endl;
     
     //Problem #92 Reverse Linked List II
+//    ListNode* head = new ListNode(1);
+//    ListNode* node2 = new ListNode(2);
+//    ListNode* node3 = new ListNode(3);
+//    ListNode* node4 = new ListNode(4);
+//    ListNode* node5 = new ListNode(5);
+//   
+//    int leftIndex = 1;
+//    int rightIndex = 3;
+//    
+//    head->next = node2;
+//    node2->next = node3;
+//    node3->next = node4;
+//    node4->next = node5;
+//    
+//    ListNode* editedLinkedList = reverseBetween(head, leftIndex, rightIndex);
+//    
+//    while(editedLinkedList != nullptr)
+//    {
+//        cout << editedLinkedList->val << endl;
+//        editedLinkedList = editedLinkedList->next;
+//    }
+    
+    //Problem # 24 Swap Nodes in Pairs
     ListNode* head = new ListNode(1);
     ListNode* node2 = new ListNode(2);
     ListNode* node3 = new ListNode(3);
     ListNode* node4 = new ListNode(4);
     ListNode* node5 = new ListNode(5);
-   
-    int leftIndex = 1;
-    int rightIndex = 3;
     
     head->next = node2;
     node2->next = node3;
     node3->next = node4;
     node4->next = node5;
     
-    ListNode* editedLinkedList = reverseBetween(head, leftIndex, rightIndex);
+    ListNode* swappedPairs = swapPairs(head);
     
-    while(editedLinkedList != nullptr)
+    while(swappedPairs != nullptr)
     {
-        cout << editedLinkedList->val << endl;
-        editedLinkedList = editedLinkedList->next;
+        cout << swappedPairs->val << endl;
+        swappedPairs = swappedPairs->next;
     }
-    
     //TESTING
 //    set<vector<int>> mySet = {{1, 2}, {3,    4}};
 //    
