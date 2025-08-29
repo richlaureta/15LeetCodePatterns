@@ -39,7 +39,7 @@ def dailyTemperatures(temperatures: list[int]) -> list[int]:
             myDictionary[i] = decrementingIndex
         else:
             flag = False
-            if i > myStack[-1]:
+            if i >= myStack[-1]:
                 while i >= myStack[-1] and flag == False:
                     myStack.pop()
                     if len(myStack) == 0:
@@ -55,25 +55,6 @@ def dailyTemperatures(temperatures: list[int]) -> list[int]:
                     listToReturn.appendleft(myDictionary[myStack[-1]] - decrementingIndex)
                     myStack.append(i)
                     myDictionary[i] = decrementingIndex
-
-            elif i == myStack[-1]:
-                flag = False
-
-                while i == myStack[-1] and flag == False:
-                    myStack.pop()
-                    if len(myStack) == 0:
-                        listToReturn.appendleft(0)
-                        myStack.append(i)
-                        myDictionary[i] = decrementingIndex
-                        flag = True
-                if flag == True:
-                    decrementingIndex -= 1
-                    continue
-                else:
-                    listToReturn.appendleft(myDictionary[myStack[-1]] - decrementingIndex)
-                    myStack.append(i)
-                    myDictionary[i] = decrementingIndex
-
             else:
                 listToReturn.appendleft(myDictionary[myStack[-1]] - decrementingIndex)
                 myStack.append(i)
