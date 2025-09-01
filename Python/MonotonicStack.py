@@ -68,6 +68,7 @@ def dailyTemperatures(temperatures: list[int]) -> list[int]:
     #More Optimized Solution
     returnList = [0] * len(temperatures)
     decreasingStack = []
+
     for index, temperature in enumerate(temperatures):
         if len(decreasingStack) == 0:
             decreasingStack.append(index)

@@ -321,23 +321,33 @@ int main(int argc, const char * argv[]) {
 //    }
     
     //Problem # 24 Swap Nodes in Pairs
-    ListNode* head = new ListNode(1);
-    ListNode* node2 = new ListNode(2);
-    ListNode* node3 = new ListNode(3);
-    ListNode* node4 = new ListNode(4);
-    ListNode* node5 = new ListNode(5);
+//    ListNode* head = new ListNode(1);
+//    ListNode* node2 = new ListNode(2);
+//    ListNode* node3 = new ListNode(3);
+//    ListNode* node4 = new ListNode(4);
+//    ListNode* node5 = new ListNode(5);
+//    
+//    head->next = node2;
+//    node2->next = node3;
+//    node3->next = node4;
+//    node4->next = node5;
+//    
+//    ListNode* swappedPairs = swapPairs(head);
+//    
+//    while(swappedPairs != nullptr)
+//    {
+//        cout << swappedPairs->val << endl;
+//        swappedPairs = swappedPairs->next;
+//    }
     
-    head->next = node2;
-    node2->next = node3;
-    node3->next = node4;
-    node4->next = node5;
+    //Problem #739 Daily Temperatures
+    vector<int> temperatures = {73, 74, 75, 71, 69, 72, 76, 73};
     
-    ListNode* swappedPairs = swapPairs(head);
+    vector<int> daysToWaitForIncrease = dailyTemperatures(temperatures);
     
-    while(swappedPairs != nullptr)
+    for(int i = 0; i < daysToWaitForIncrease.size(); i++)
     {
-        cout << swappedPairs->val << endl;
-        swappedPairs = swappedPairs->next;
+        cout << daysToWaitForIncrease[i] << endl;
     }
     //TESTING
 //    set<vector<int>> mySet = {{1, 2}, {3,    4}};

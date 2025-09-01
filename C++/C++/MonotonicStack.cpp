@@ -7,11 +7,11 @@
 
 #include "Header.h"
 
-std::vector<int> nextGreaterElement(std::vector<int> &nums1, std::vector<int> &nums2)
+vector<int> nextGreaterElement(vector<int> &nums1, vector<int> &nums2)
 {
     
-    std::stack<int> decreasingStack;
-    std::vector<int> array;
+    stack<int> decreasingStack;
+    vector<int> array;
     unordered_map<int, int> queryMap;
     
     int size = (int)nums2.size();
@@ -42,4 +42,40 @@ std::vector<int> nextGreaterElement(std::vector<int> &nums1, std::vector<int> &n
     }
     
     return array;
+}
+
+vector<int> dailyTemperatures(vector<int> &temperatures)
+{
+    //Problem #739 Daily Temperatures
+    
+    vector<int> returnList(temperatures.size(), 0);
+    stack<int> decreasingStack;
+    
+    for(int i = 0; i < temperatures.size(); ++i)
+    {
+        if(decreasingStack.size() == 0)
+        {
+            decreasingStack.push(i);
+            continue;
+        }
+        
+        while(temperatures[i] > temperatures[decreasingStack.top()])
+        {
+            int poppedIndex = decreasingStack.top();
+            decreasingStack.pop();
+            returnList[poppedIndex] = i - poppedIndex;
+            
+            if(decreasingStack.size() == 0)
+            {
+                decreasingStack.push(i);
+                break;
+            }
+        }
+        
+        if (temperatures[i] <= temperatures[decreasingStack.top()])
+        {
+            decreasingStack.push(i);
+        }
+    }
+    return returnList;
 }
