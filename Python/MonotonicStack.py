@@ -27,45 +27,6 @@ def nextGreaterElement(nums1: list[int], nums2: list[int]) -> list[int]:
 def dailyTemperatures(temperatures: list[int]) -> list[int]:
     #Problem #739 Daily Temperatures
     
-    #My Initial Solution
-    # listToReturn = deque()
-    # myStack = []
-    # decrementingIndex = len(temperatures) - 1
-    # myDictionary = {}
-    
-    # for i in reversed(temperatures):
-    #     if len(myStack) == 0:
-    #         listToReturn.appendleft(0)
-    #         myStack.append(i)
-    #         myDictionary[i] = decrementingIndex
-    #     else:
-    #         flag = False
-    #         if i >= myStack[-1]:
-    #             while i >= myStack[-1] and flag == False:
-    #                 myStack.pop()
-    #                 if len(myStack) == 0:
-    #                     listToReturn.appendleft(0)
-    #                     myStack.append(i)
-    #                     myDictionary[i] = decrementingIndex
-    #                     flag = True
-
-    #             if flag == True:
-    #                 decrementingIndex -= 1
-    #                 continue
-    #             else:
-    #                 listToReturn.appendleft(myDictionary[myStack[-1]] - decrementingIndex)
-    #                 myStack.append(i)
-    #                 myDictionary[i] = decrementingIndex
-    #         else:
-    #             listToReturn.appendleft(myDictionary[myStack[-1]] - decrementingIndex)
-    #             myStack.append(i)
-    #             myDictionary[i] = decrementingIndex
-                
-    #     decrementingIndex -= 1
-
-    # return list(listToReturn)
-
-    #More Optimized Solution
     returnList = [0] * len(temperatures)
     decreasingStack = []
 
@@ -86,16 +47,40 @@ def dailyTemperatures(temperatures: list[int]) -> list[int]:
             decreasingStack.append(index)
 
     return returnList
+
+def largestRectangleArea(heights: list[int]) -> int:
+    #Problem #84 Largest Rectangle in Histogram - Concept Solution by YouTuber Greg Hogg
     
+    maxArea = heights[0]
+    increasingStack = [(heights[0], 0)]
+    
+    for index in range(1, len(heights)):
+        appendFlag = False
+
+        while increasingStack and (heights[index] < increasingStack[-1][0]):
+            heightAndIndex = increasingStack.pop()
+            area = heightAndIndex[0] * (index - heightAndIndex[1])
+
+            if area > maxArea:
+                maxArea = area
+
+            if (len(increasingStack) == 0) or (heights[index] > increasingStack[-1][0]):
+                increasingStack.append((heights[index], heightAndIndex[1]))
+                appendFlag = True
+        
+        if appendFlag == False:
+            increasingStack.append((heights[index], index))
+    
+    while increasingStack:
+        poppedValue = increasingStack.pop()
+        area = (poppedValue[0]) * (len(heights) - poppedValue[1])
+        if area > maxArea:
+            maxArea = area
+
+    return maxArea
 
 if __name__ == "__main__":
-    temperatures = [73, 74, 75, 71, 69, 72, 76, 73]
-    # temperatures = [30, 40, 50, 60]
-    # temperatures = [30, 60, 90]
-    # temperatures = [49, 70, 47, 47, 46, 70]
+    # heights = [2, 1, 5, 6, 2, 3]
+    heights = [2]
 
-    # temperatures = [89,62,70,58,47,47,46,76,100,70]
-
-    # temperatures = [34,80,80,34,34,80,80,80,80,34]
-    
-    print(dailyTemperatures(temperatures))
+    print(largestRectangleArea(heights))

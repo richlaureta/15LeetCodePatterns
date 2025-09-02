@@ -51,14 +51,13 @@ vector<int> dailyTemperatures(vector<int> &temperatures)
     vector<int> returnList(temperatures.size(), 0);
     stack<int> decreasingStack;
     
-    for(int i = 0; i < temperatures.size(); ++i)
+    if(temperatures.size() != 0)
     {
-        if(decreasingStack.size() == 0)
-        {
-            decreasingStack.push(i);
-            continue;
-        }
-        
+        decreasingStack.push(0);
+    }
+    
+    for(int i = 1; i < temperatures.size(); ++i)
+    {
         while(temperatures[i] > temperatures[decreasingStack.top()])
         {
             int poppedIndex = decreasingStack.top();
@@ -72,7 +71,7 @@ vector<int> dailyTemperatures(vector<int> &temperatures)
             }
         }
         
-        if (temperatures[i] <= temperatures[decreasingStack.top()])
+        if ((decreasingStack.size() != 0) and (temperatures[i] <= temperatures[decreasingStack.top()]))
         {
             decreasingStack.push(i);
         }
