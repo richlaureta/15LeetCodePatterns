@@ -341,14 +341,21 @@ int main(int argc, const char * argv[]) {
 //    }
     
     //Problem #739 Daily Temperatures
-    vector<int> temperatures = {73, 74, 75, 71, 69, 72, 76, 73};
+//    vector<int> temperatures = {73, 74, 75, 71, 69, 72, 76, 73};
+//    
+//    vector<int> daysToWaitForIncrease = dailyTemperatures(temperatures);
+//    
+//    for(int i = 0; i < daysToWaitForIncrease.size(); i++)
+//    {
+//        cout << daysToWaitForIncrease[i] << endl;
+//    }
     
-    vector<int> daysToWaitForIncrease = dailyTemperatures(temperatures);
+    //Problem #84 Largest Rectangle in Histogram
+//    vector<int> heights = {2, 1, 5, 6, 2, 3};
+    vector<int> heights = {22};
+
     
-    for(int i = 0; i < daysToWaitForIncrease.size(); i++)
-    {
-        cout << daysToWaitForIncrease[i] << endl;
-    }
+    cout << largestRectangleArea(heights) << endl;
     //TESTING
 //    set<vector<int>> mySet = {{1, 2}, {3,    4}};
 //    

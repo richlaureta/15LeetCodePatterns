@@ -78,3 +78,58 @@ vector<int> dailyTemperatures(vector<int> &temperatures)
     }
     return returnList;
 }
+
+int largestRectangleArea(vector<int> &heights)
+{
+    //Problem #84 Largest Rectangle in Histogram - Concept Solution by YouTuber Greg Hogg
+    
+    int maxArea = heights[0];
+    vector<vector<int>> increasingStack = {{heights[0], 0}};
+
+    for(int i = 1; i < heights.size(); ++i)
+    {
+        bool appendFlag = false;
+        while ((increasingStack.size() != 0) and (heights[i] < increasingStack[increasingStack.size() - 1][0]))
+        {
+            int height = increasingStack[increasingStack.size() - 1][0];
+            int index = increasingStack[increasingStack.size() - 1][1];
+            
+            increasingStack.pop_back();
+            
+            int area = height * (i - index);
+            
+            if(area > maxArea)
+            {
+                maxArea = area;
+            }
+            
+            if((increasingStack.size() == 0) or (heights[i]) > increasingStack[increasingStack.size() - 1][0])
+            {
+                increasingStack.push_back({heights[i], index});
+                appendFlag = true;
+            }
+        }
+        
+        if(appendFlag == false)
+        {
+            increasingStack.push_back({heights[i], i});
+        }
+    }
+    
+    while(increasingStack.size() != 0)
+    {
+        int height = increasingStack[increasingStack.size() - 1][0];
+        int index = increasingStack[increasingStack.size() - 1][1];
+        
+        increasingStack.pop_back();
+        
+        int area = (int)(height * (heights.size() - index));
+        
+        if(area > maxArea)
+        {
+            maxArea = area;
+        }
+    }
+    
+    return maxArea;
+}

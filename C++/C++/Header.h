@@ -20,6 +20,7 @@
 #include <stack>
 #include <algorithm>
 #include <optional>
+#include <tuple>
 
 using namespace std;
 
@@ -120,3 +121,4 @@ int findDuplicate(vector<int> &nums);
 ListNode* reverseBetween(ListNode* head, int left, int right);
 ListNode* swapPairs(ListNode* head);
 vector<int> dailyTemperatures(vector<int>& temperatures);
+int largestRectangleArea(vector<int> &heights);
