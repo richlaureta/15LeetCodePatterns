@@ -1,25 +1,9 @@
-import sys
+import heapq
 
-numbers = 19
-modulos = numbers
-sum = 0
+min_heap = []
 
-seen = set()
+heapq.heappush(min_heap, 1)
+heapq.heappush(min_heap, 7)
+heapq.heappush(min_heap, 11)
 
-while sum != 1:
-    sum = 0
-    while numbers > 0:
-        modulos = numbers % 10
-        numbers = numbers // 10
-
-        sum += modulos * modulos
-
-    numbers = sum
-    if numbers in seen:
-        print("False")
-        sys.exit()
-        
-    seen.add(numbers)
-print("True")
-
-print(digits)
+print(min_heap)
