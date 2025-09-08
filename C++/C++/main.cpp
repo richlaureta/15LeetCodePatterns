@@ -360,18 +360,41 @@ int main(int argc, const char * argv[]) {
     int k = 3;
     
     vector<vector<int>> smallestPairs = kSmallestPairs(nums1, nums2, k);
+    cout << "[";
+    for(int i = 0; i < smallestPairs.size(); i++)
+    {
+        cout << "[";
+        for(int j = 0; j < smallestPairs[i].size(); j++)
+        {   if (j == 0)
+            {
+                cout << smallestPairs[i][j] << ", ";
+            }
+            else
+            {
+                cout << smallestPairs[i][j] << "]";
+            }
+        }
+        if (i != smallestPairs.size() - 1)
+        {
+            cout << ", ";
+        }
+    }
+    
+    cout << "]" << endl;
     
     //TESTING
-//    set<vector<int>> mySet = {{1, 2}, {3,    4}};
+//    priority_queue<tuple<int, int, int>, vector<tuple<int, int, int>>, greater<tuple<int, int, int>>> minHeap;
+//    tuple<int, int, int> threeNumberTuple = make_tuple(3, 0, 0);
 //    
-//    if(mySet.find({3,  4, 0}) != mySet.end())
-//    {
-//        cout << "The coordinate is in the set." << endl;
-//    }
-//    else
-//    {
-//        cout << "The coordinate is not in the set." << endl;
-//    }
+//    minHeap.emplace(threeNumberTuple);
+//    
+//    tuple<int, int, int> display = minHeap.top();
+//    
+//    cout << get<0>(display) << endl;
+//    cout << get<1>(display) << endl;
+//    cout << get<2>(display) << endl;
+//    
+    
     return EXIT_SUCCESS;
     
     
