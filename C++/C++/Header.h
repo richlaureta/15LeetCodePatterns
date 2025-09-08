@@ -20,7 +20,7 @@
 #include <stack>
 #include <algorithm>
 #include <optional>
-#include <tuple>
+#include <functional>
 
 using namespace std;
 
@@ -122,3 +122,4 @@ ListNode* reverseBetween(ListNode* head, int left, int right);
 ListNode* swapPairs(ListNode* head);
 vector<int> dailyTemperatures(vector<int>& temperatures);
 int largestRectangleArea(vector<int> &heights);
+vector<vector<int>> kSmallestPairs(vector<int> &nums1, vector<int> &nums2, int k);

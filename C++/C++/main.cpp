@@ -352,10 +352,15 @@ int main(int argc, const char * argv[]) {
     
     //Problem #84 Largest Rectangle in Histogram
 //    vector<int> heights = {2, 1, 5, 6, 2, 3};
-    vector<int> heights = {22};
 
     
-    cout << largestRectangleArea(heights) << endl;
+    //Problem #373 Find K Pairs with Smallest Sums
+    vector<int> nums1 = {1, 7, 11};
+    vector<int> nums2 = {2, 4, 6};
+    int k = 3;
+    
+    vector<vector<int>> smallestPairs = kSmallestPairs(nums1, nums2, k);
+    
     //TESTING
 //    set<vector<int>> mySet = {{1, 2}, {3,    4}};
 //    

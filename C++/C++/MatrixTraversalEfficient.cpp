@@ -13,8 +13,8 @@ void breadthFirstSearchEfficient(int rowNumber, int columnNumber, std::vector<st
     q.push({rowNumber, columnNumber});
     grid[rowNumber][columnNumber] = '0'; // Mark as visited
 
-    int rows = grid.size();
-    int cols = grid[0].size();
+    int rows = (int) grid.size();
+    int cols = (int) grid[0].size();
 
     std::vector<std::pair<int, int>> directions = {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
 
@@ -46,8 +46,8 @@ int numIslandsEfficient(std::vector<std::vector<char>>& grid)
     }
 
     int islandCount = 0;
-    int rows = grid.size();
-    int cols = grid[0].size();
+    int rows = (int) grid.size();
+    int cols = (int) grid[0].size();
 
     for (int i = 0; i < rows; ++i)
     {

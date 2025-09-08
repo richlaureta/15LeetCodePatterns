@@ -137,7 +137,6 @@ ListNode* swapPairs(ListNode* head)
     
     if(flag == false)
     {
-        ListNode* temporaryNode = currentNode;
         ListNode* temporary2Node = currentNode->next;
         
         temporary2Node->next = currentNode;
