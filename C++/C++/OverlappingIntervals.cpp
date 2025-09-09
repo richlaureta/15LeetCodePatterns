@@ -10,6 +10,7 @@
 vector<vector<int>> mergeIntervals(vector<vector<int>> &intervals)
 {
     //Problem #56 Merge Intervals
+    
     sort(intervals.begin(), intervals.end());
 
     vector<vector<int>> merged = {{intervals[0]}};
@@ -24,4 +25,14 @@ vector<vector<int>> mergeIntervals(vector<vector<int>> &intervals)
     }
     
     return merged;
+}
+
+vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInterval) {
+    //Problem #57 Insert Interval
+    
+    intervals.push_back(newInterval);
+    
+    vector<vector<int>> insertedInterval = mergeIntervals(intervals);
+    
+    return insertedInterval;
 }

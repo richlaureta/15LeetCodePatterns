@@ -355,32 +355,47 @@ int main(int argc, const char * argv[]) {
 
     
     //Problem #373 Find K Pairs with Smallest Sums
-    vector<int> nums1 = {1, 7, 11};
-    vector<int> nums2 = {2, 4, 6};
-    int k = 3;
+//    vector<int> nums1 = {1, 7, 11};
+//    vector<int> nums2 = {2, 4, 6};
+//    int k = 3;
+//    
+//    vector<vector<int>> smallestPairs = kSmallestPairs(nums1, nums2, k);
+//    cout << "[";
+//    for(int i = 0; i < smallestPairs.size(); i++)
+//    {
+//        cout << "[";
+//        for(int j = 0; j < smallestPairs[i].size(); j++)
+//        {   if (j == 0)
+//            {
+//                cout << smallestPairs[i][j] << ", ";
+//            }
+//            else
+//            {
+//                cout << smallestPairs[i][j] << "]";
+//            }
+//        }
+//        if (i != smallestPairs.size() - 1)
+//        {
+//            cout << ", ";
+//        }
+//    }
+//    
+//    cout << "]" << endl;
     
-    vector<vector<int>> smallestPairs = kSmallestPairs(nums1, nums2, k);
-    cout << "[";
-    for(int i = 0; i < smallestPairs.size(); i++)
+    //Problem #57 Insert Interval
+    vector<vector<int>> intervals = {{1, 3}, {6, 9}};
+    vector<int> newInterval = {2, 5};
+    
+    vector<vector<int>> inserted = insert(intervals, newInterval);
+    
+    for(int i = 0; i < inserted.size(); i++)
     {
-        cout << "[";
-        for(int j = 0; j < smallestPairs[i].size(); j++)
-        {   if (j == 0)
-            {
-                cout << smallestPairs[i][j] << ", ";
-            }
-            else
-            {
-                cout << smallestPairs[i][j] << "]";
-            }
-        }
-        if (i != smallestPairs.size() - 1)
+        for(int j = 0; j < inserted[i].size(); j++)
         {
-            cout << ", ";
+            cout << inserted[i][j] << " ";
         }
+        cout << endl;
     }
-    
-    cout << "]" << endl;
     
     //TESTING
 //    priority_queue<tuple<int, int, int>, vector<tuple<int, int, int>>, greater<tuple<int, int, int>>> minHeap;

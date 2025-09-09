@@ -124,3 +124,4 @@ ListNode* swapPairs(ListNode* head);
 vector<int> dailyTemperatures(vector<int>& temperatures);
 int largestRectangleArea(vector<int> &heights);
 vector<vector<int>> kSmallestPairs(vector<int> &nums1, vector<int> &nums2, int k);
+vector<vector<int>> insert(vector<vector<int>> &intervals, vector<int> &newInterval);
