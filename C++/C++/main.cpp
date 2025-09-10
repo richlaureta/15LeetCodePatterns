@@ -383,19 +383,24 @@ int main(int argc, const char * argv[]) {
 //    cout << "]" << endl;
     
     //Problem #57 Insert Interval
-    vector<vector<int>> intervals = {{1, 3}, {6, 9}};
-    vector<int> newInterval = {2, 5};
+//    vector<vector<int>> intervals = {{1, 3}, {6, 9}};
+//    vector<int> newInterval = {2, 5};
+//    
+//    vector<vector<int>> inserted = insert(intervals, newInterval);
+//    
+//    for(int i = 0; i < inserted.size(); i++)
+//    {
+//        for(int j = 0; j < inserted[i].size(); j++)
+//        {
+//            cout << inserted[i][j] << " ";
+//        }
+//        cout << endl;
+//    }
+//
+    //Problem #435 Non-overlapping Intervals
+    vector<vector<int>> intervals = {{1, 2}, {2, 3}, {3, 4}, {1, 3}};
     
-    vector<vector<int>> inserted = insert(intervals, newInterval);
-    
-    for(int i = 0; i < inserted.size(); i++)
-    {
-        for(int j = 0; j < inserted[i].size(); j++)
-        {
-            cout << inserted[i][j] << " ";
-        }
-        cout << endl;
-    }
+    cout << eraseOverlapIntervals(intervals) << endl;
     
     //TESTING
 //    priority_queue<tuple<int, int, int>, vector<tuple<int, int, int>>, greater<tuple<int, int, int>>> minHeap;
