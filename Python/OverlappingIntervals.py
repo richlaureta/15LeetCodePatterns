@@ -24,15 +24,13 @@ def insert(intervals: list[list[int]], newInterval: list[int]) -> list[list[int]
 
 def eraseOverlapIntervals(intervals: list[list[int]]) -> int:
     #Problem #435 Non-Overlapping Intervals
-
+    
+    if len(intervals) == 1:
+        return 0
+    
     intervals.sort(key = lambda time: time[1])
     
-    keepCount = 0
-
-    if len(intervals) == 1:
-        keepCount = 0
-    else:
-        keepCount = 1
+    keepCount = 1
 
     previousEndTime = intervals[0][1]
 
