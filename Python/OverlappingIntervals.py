@@ -27,14 +27,23 @@ def eraseOverlapIntervals(intervals: list[list[int]]) -> int:
 
     intervals.sort(key = lambda time: time[1])
     
-    removalCount = 0
-    previousEndTime = 0
+    keepCount = 0
 
-    
+    if len(intervals) == 1:
+        keepCount = 0
+    else:
+        keepCount = 1
 
-    return removalCount
+    previousEndTime = intervals[0][1]
+
+    for index in range(1, len(intervals)):
+        if intervals[index][0] >= previousEndTime:
+            keepCount += 1
+            previousEndTime = intervals[index][1]
+
+    return len(intervals) - keepCount
 
 if __name__ == "__main__":
-    intervals = [[1, 2], [2, 3], [3, 4], [1, 3]]
+    intervals = [[1, 2], [2, 3]]
 
-    eraseOverlapIntervals(intervals)
+    print(eraseOverlapIntervals(intervals))
