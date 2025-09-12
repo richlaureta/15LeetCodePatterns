@@ -1,30 +1,26 @@
-import sys
-
 def search(nums: list[int], target: int) -> int:
     #Problem #33 Search in Rotated Sorted Array
+    
+    leftIndex = 0
+    rightIndex = len(nums) - 1
 
-    if len(nums) < 9:
-        for i in range(0, len(nums)):
-            if nums[i] == target:
-                return i
-        return -1
+    while leftIndex <= rightIndex:
+        middleIndex = (leftIndex + rightIndex) // 2
 
-    midIndexL = len(nums) // 2
-    midIndexR = len(nums) // 2
-    evenOrOdd = 0
-    if len(nums) % 2 != 0:
-        evenOrOdd = 1
+        if nums[middleIndex] == target:
+            return middleIndex
 
-    for i in range(0, midIndexL + evenOrOdd):
-        if nums[midIndexL] == target:
-            return midIndexL
+        if nums[leftIndex] <= nums[middleIndex]:
+            if target > nums[middleIndex] or target < nums[leftIndex]:
+                leftIndex = middleIndex + 1
+            else:
+                rightIndex = middleIndex - 1
         else:
-            midIndexL -= 1
-
-        if nums[midIndexR] == target:
-            return midIndexR
-        else:
-            midIndexR += 1
+            if target < nums[middleIndex] or target > nums[rightIndex]:
+                rightIndex = middleIndex - 1
+            else:
+                leftIndex = middleIndex + 1
+    
     return -1
 
 def findMin(nums: list[int]) -> int:
@@ -42,16 +38,9 @@ def findMin(nums: list[int]) -> int:
             if(nums[i] < minimum):
                 minimum = nums[i]
     return minimum
-def main():
-    # nums = [4, 5, 6, 7, 8, 9, 10, 11, 1, 2, 3]
-    nums = [4, 5, 6, 7, 0, 1, 2]
-    # nums = [1, 2, 3, -1, 0]
-    # nums = [7,8,1,2,3,4,5,6]
-    # nums = [1, 2, 3, 4, 5, 6]
-    # nums = [11, 13, 15, 17]
-
-    # nums = [3, 4, 5, 1, 2]
-    print(findMin(nums))
 
 if __name__ == "__main__":
-    sys.exit(main())
+   nums = [4, 5, 6, 7, 0, 1, 2]
+   target = 0
+
+   print(search(nums, target))

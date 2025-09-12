@@ -126,3 +126,4 @@ int largestRectangleArea(vector<int> &heights);
 vector<vector<int>> kSmallestPairs(vector<int> &nums1, vector<int> &nums2, int k);
 vector<vector<int>> insert(vector<vector<int>> &intervals, vector<int> &newInterval);
 int eraseOverlapIntervals(vector<vector<int>> &intervals);
+int modifiedBinarySearch(vector<int> &nums, int target);

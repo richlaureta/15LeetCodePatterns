@@ -397,10 +397,17 @@ int main(int argc, const char * argv[]) {
 //        cout << endl;
 //    }
 //
-    //Problem #435 Non-overlapping Intervals
-    vector<vector<int>> intervals = {{1, 2}, {2, 3}, {3, 4}, {1, 3}};
+//    //Problem #435 Non-overlapping Intervals
+//    vector<vector<int>> intervals = {{1, 2}, {2, 3}, {3, 4}, {1, 3}};
+//    
+//    cout << eraseOverlapIntervals(intervals) << endl;
     
-    cout << eraseOverlapIntervals(intervals) << endl;
+    //Problem #33 Search in Rotated Sorted Array
+    
+    vector<int> nums = {4, 5, 6, 7, 0, 1, 2};
+    int target = 0;
+    
+    cout << modifiedBinarySearch(nums, target);
     
     //TESTING
 //    priority_queue<tuple<int, int, int>, vector<tuple<int, int, int>>, greater<tuple<int, int, int>>> minHeap;
