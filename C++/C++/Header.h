@@ -128,3 +128,4 @@ vector<vector<int>> insert(vector<vector<int>> &intervals, vector<int> &newInter
 int eraseOverlapIntervals(vector<vector<int>> &intervals);
 int modifiedBinarySearch(vector<int> &nums, int target);
 int findMin(vector<int> &nums);
+bool searchMatrix(vector<vector<int>> &matrix, int target);

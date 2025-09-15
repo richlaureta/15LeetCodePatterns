@@ -410,9 +410,16 @@ int main(int argc, const char * argv[]) {
 //    cout << modifiedBinarySearch(nums, target) << endl;
     
     //Problem #153 Find Minimum in Rotated Sorted Array
-    vector<int> nums = {3, 4, 5, 1, 2};
+//    vector<int> nums = {3, 4, 5, 1, 2};
+//    
+//    cout << findMin(nums) << endl;
     
-    cout << findMin(nums) << endl;
+    //Problem #240 Search a 2D Matrix II
+    vector<vector<int>> matrix =
+    {
+        {1, 4, 7, 11, 15},
+    };
+    //
     //TESTING
 //    priority_queue<tuple<int, int, int>, vector<tuple<int, int, int>>, greater<tuple<int, int, int>>> minHeap;
 //    tuple<int, int, int> threeNumberTuple = make_tuple(3, 0, 0);
