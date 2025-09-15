@@ -34,3 +34,28 @@ int modifiedBinarySearch(vector<int> &nums, int target)
     
     return -1;
 }
+
+int findMin(vector<int> &nums)
+{
+    //Problem #153 Find Minimum in Rotated Sorted Array
+    
+    int leftIndex = 0;
+    int rightIndex = (int) nums.size() - 1;
+    
+    while(leftIndex < rightIndex)
+    {
+        int midIndex = (int)((leftIndex + rightIndex) / 2);
+        
+        if (nums[midIndex] > nums[rightIndex])
+        {
+            leftIndex = midIndex + 1;
+        }
+        
+        if(nums[midIndex] < nums[rightIndex])
+        {
+            rightIndex = midIndex;
+        }
+    }
+    
+    return nums[rightIndex];
+}

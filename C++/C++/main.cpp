@@ -403,12 +403,16 @@ int main(int argc, const char * argv[]) {
 //    cout << eraseOverlapIntervals(intervals) << endl;
     
     //Problem #33 Search in Rotated Sorted Array
+//    
+//    vector<int> nums = {7, 1, 2, 3, 4, 5, 6};
+//    int target = 5;
+//    
+//    cout << modifiedBinarySearch(nums, target) << endl;
     
-    vector<int> nums = {4, 5, 6, 7, 0, 1, 2};
-    int target = 0;
+    //Problem #153 Find Minimum in Rotated Sorted Array
+    vector<int> nums = {3, 4, 5, 1, 2};
     
-    cout << modifiedBinarySearch(nums, target);
-    
+    cout << findMin(nums) << endl;
     //TESTING
 //    priority_queue<tuple<int, int, int>, vector<tuple<int, int, int>>, greater<tuple<int, int, int>>> minHeap;
 //    tuple<int, int, int> threeNumberTuple = make_tuple(3, 0, 0);
@@ -421,8 +425,5 @@ int main(int argc, const char * argv[]) {
 //    cout << get<1>(display) << endl;
 //    cout << get<2>(display) << endl;
 //    
-    
     return EXIT_SUCCESS;
-    
-    
 }
