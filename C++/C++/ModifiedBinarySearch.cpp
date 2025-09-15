@@ -59,3 +59,18 @@ int findMin(vector<int> &nums)
     
     return nums[rightIndex];
 }
+
+bool searchMatrix(vector<vector<int>> &matrix, int target)
+{
+    int row = (int)matrix.size() - 1;
+    int column = 0;
+    
+    while(row > -1 and column < matrix[0].size())
+    {
+        if(matrix[row][column] == target) return true;
+        
+        if(matrix[row][column] > target) row--;
+        else column++;
+    }
+    return false;
+}
