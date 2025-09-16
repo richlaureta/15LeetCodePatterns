@@ -77,3 +77,47 @@ vector<vector<int>> levelOrder(TreeNode *node)
     }
     return myList;
 }
+
+void depthFirstSearch(TreeNode *node, vector<string> &currentPath, vector<string> &listResult)
+{
+    if(node == nullptr)
+    {
+        return;
+    }
+    
+    currentPath.push_back(to_string(node->value));
+    
+    if ((node->left == nullptr) and (node->right == nullptr))
+    {
+        string concatenatedString = "";
+        for(int i = 0; i < currentPath.size(); i++)
+        {
+            if(i < currentPath.size() - 1)
+            {
+                concatenatedString += currentPath[i] + "->";
+            }
+            else concatenatedString += currentPath[i];
+        }
+        
+        listResult.push_back(concatenatedString);
+    }
+    else
+    {
+        depthFirstSearch(node->left, currentPath, listResult);
+        depthFirstSearch(node->right, currentPath, listResult);
+    }
+    
+    currentPath.pop_back();
+}
+
+vector<string> binaryTreePaths(TreeNode *root)
+{
+    //Problem #257 Binary Tree Paths
+    
+    vector<string> listResult;
+    vector<string> currentPath;
+    
+    depthFirstSearch(root, currentPath, listResult);
+    
+    return listResult;
+}

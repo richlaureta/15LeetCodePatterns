@@ -415,19 +415,32 @@ int main(int argc, const char * argv[]) {
 //    cout << findMin(nums) << endl;
     
     //Problem #240 Search a 2D Matrix II
-    vector<vector<int>> matrix =
-    {
-        {1, 4, 7, 11, 15},
-        {2, 5, 8, 12, 19},
-        {3, 6, 9, 16, 22},
-        {10, 13, 14, 17, 24},
-        {18, 21, 23, 26, 30}
-    };
+//    vector<vector<int>> matrix =
+//    {
+//        {1, 4, 7, 11, 15},
+//        {2, 5, 8, 12, 19},
+//        {3, 6, 9, 16, 22},
+//        {10, 13, 14, 17, 24},
+//        {18, 21, 23, 26, 30}
+//    };
+//    
+//    int target = 5;
+//    
+//    cout << searchMatrix(matrix, target) << endl;
     
-    int target = 5;
+    //Problem #257 Binary Tree Paths
+    TreeNode node1 = TreeNode(1);
+    TreeNode node2 = TreeNode(2);
+    TreeNode node3 = TreeNode(3);
+    TreeNode node5 = TreeNode(5);
     
-    cout << searchMatrix(matrix, target) << endl;
+    node1.left = &node2;
+    node1.right = &node3;
+    node2.right = &node5;
     
+    TreeNode root = node1;
+    
+    binaryTreePaths(&root);
     //
     //TESTING
 //    priority_queue<tuple<int, int, int>, vector<tuple<int, int, int>>, greater<tuple<int, int, int>>> minHeap;

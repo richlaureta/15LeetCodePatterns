@@ -1,4 +1,3 @@
-import sys
 from collections import deque
 
 class TreeNode:
@@ -51,24 +50,43 @@ def levelOrder(root: TreeNode) -> list[list[int]]:
         
     return ans
 
-def main():
-    # Create a sample binary tree
+def binaryTreePaths(root: TreeNode) -> list[str]:
+    #Problem #257 Binary Tree Paths 
 
-    root = TreeNode(1)
-    root.left = TreeNode(2)
-    root.right = TreeNode(3)
-    root.left.left = TreeNode(4)
-    root.left.right = TreeNode(5)
-    root.right.left = TreeNode(6)
-    root.right.right = TreeNode(7)
+    resultList = []
+    currentPath = []
 
-    preOrder(root)
-    print()
-    inOrder(root)
-    print()
-    postOrder(root)
-    print()
-    print(levelOrder(root))
-    
+    def depthFirstSearch(node: TreeNode):
+        if node is None:
+            return
+        
+        currentPath.append(str(node.value))
+
+        if node.left == None and node.right == None:
+            resultList.append("->".join(currentPath))
+        else:
+             depthFirstSearch(node.left)
+             depthFirstSearch(node.right)
+        
+        currentPath.pop()
+
+    depthFirstSearch(root)
+
+    return resultList
+         
+
 if __name__ == "__main__":
-    sys.exit(main())
+    node1 = TreeNode(1)
+    node2 = TreeNode(2)
+    node3 = TreeNode(3)
+    node4 = TreeNode(4)
+    node5 = TreeNode(5)
+
+    node1.left = node2
+    node1.right = node3
+    node2.right = node5
+    
+    root = node1
+
+    print(binaryTreePaths(root))
+    
