@@ -429,18 +429,41 @@ int main(int argc, const char * argv[]) {
 //    cout << searchMatrix(matrix, target) << endl;
     
     //Problem #257 Binary Tree Paths
+//    TreeNode node1 = TreeNode(1);
+//    TreeNode node2 = TreeNode(2);
+//    TreeNode node3 = TreeNode(3);
+//    TreeNode node5 = TreeNode(5);
+//    
+//    node1.left = &node2;
+//    node1.right = &node3;
+//    node2.right = &node5;
+//    
+//    TreeNode root = node1;
+//    
+//    binaryTreePaths(&root);
     TreeNode node1 = TreeNode(1);
     TreeNode node2 = TreeNode(2);
     TreeNode node3 = TreeNode(3);
+    TreeNode node4 = TreeNode(4);
     TreeNode node5 = TreeNode(5);
+    TreeNode node6 = TreeNode(6);
     
-    node1.left = &node2;
-    node1.right = &node3;
-    node2.right = &node5;
+    node5.left = &node3;
+    node5.right = &node6;
     
-    TreeNode root = node1;
+    node3.left = &node2;
+    node3.right = &node4;
     
-    binaryTreePaths(&root);
+    node2.left = &node1;
+    
+    TreeNode *root = &node5;
+    int k = 3;
+    
+    cout << kthSmallest(root, k) << endl;
+    
+    //Problem #230 Kth Smallest Element in a BST
+    
+    
     //
     //TESTING
 //    priority_queue<tuple<int, int, int>, vector<tuple<int, int, int>>, greater<tuple<int, int, int>>> minHeap;

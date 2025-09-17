@@ -80,6 +80,8 @@ vector<vector<int>> levelOrder(TreeNode *node)
 
 void depthFirstSearch(TreeNode *node, vector<string> &currentPath, vector<string> &listResult)
 {
+    //Problem #257 Binary Tree Paths - Algo.monster Concept Solution
+    
     if(node == nullptr)
     {
         return;
@@ -120,4 +122,24 @@ vector<string> binaryTreePaths(TreeNode *root)
     depthFirstSearch(root, currentPath, listResult);
     
     return listResult;
+}
+
+void inOrderTraversal(TreeNode *node, vector<int> &ascendingArray)
+{
+    //Problem #230 Kth Smallest Element in BST
+    
+    if(node == nullptr) return;
+    
+    inOrderTraversal(node->left, ascendingArray);
+    ascendingArray.push_back(node->value);
+    inOrderTraversal(node->right, ascendingArray);
+}
+
+int kthSmallest(TreeNode *root, int k)
+{
+    //Problem #230 Kth Smallest Element in BST
+    
+    vector<int> ascendingArray;
+    inOrderTraversal(root, ascendingArray);
+    return ascendingArray[k - 1];
 }

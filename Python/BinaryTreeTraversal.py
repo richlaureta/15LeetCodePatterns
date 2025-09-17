@@ -78,25 +78,18 @@ def binaryTreePaths(root: TreeNode) -> list[str]:
 def kthSmallest(root: TreeNode, k: int) -> int:
     #Problem #230 Kth Smallest Element in BST
 
-    minHeap = []
-
-    def depthFirstSearchHere(node: TreeNode):
+    ascendingArray = []
+    
+    def inOrderTraversalHere(node: TreeNode):
         if node == None:
             return
-        
-        heapq.heappush(minHeap, node.value)
-        
-        depthFirstSearchHere(node.left)
-        depthFirstSearchHere(node.right)
-    
-    depthFirstSearchHere(root)
+        inOrderTraversalHere(node.left)
+        ascendingArray.append(node.val)
+        inOrderTraversalHere(node.right)
 
-    numberToReturn = 0
-
-    for i in range(0, k):
-        numberToReturn = heapq.heappop(minHeap)
-    
-    return numberToReturn
+    inOrderTraversalHere(root)
+        
+    return ascendingArray[k -1]
 
 if __name__ == "__main__":
     node1 = TreeNode(1)
