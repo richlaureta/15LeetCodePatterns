@@ -132,3 +132,4 @@ void depthFirstSearch(TreeNode *node, vector<string> &currentPath, vector<string
 vector<string> binaryTreePaths(TreeNode *root);
 int kthSmallest(TreeNode *root, int k);
 void inOrderTraversal(TreeNode *node);
+int maxDepth(TreeNode* root);

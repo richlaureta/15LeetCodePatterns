@@ -441,28 +441,51 @@ int main(int argc, const char * argv[]) {
 //    TreeNode root = node1;
 //    
 //    binaryTreePaths(&root);
+    
+    //Problem #230 Kth Smallest Element in a BST
+    
+//    TreeNode node1 = TreeNode(1);
+//    TreeNode node2 = TreeNode(2);
+//    TreeNode node3 = TreeNode(3);
+//    TreeNode node4 = TreeNode(4);
+//    TreeNode node5 = TreeNode(5);
+//    TreeNode node6 = TreeNode(6);
+//    
+//    node5.left = &node3;
+//    node5.right = &node6;
+//    
+//    node3.left = &node2;
+//    node3.right = &node4;
+//    
+//    node2.left = &node1;
+//    
+//    TreeNode *root = &node5;
+//    int k = 3;
+//    
+//    cout << kthSmallest(root, k) << endl;
+    //Problem 104 Maximum Depth of Binary Tree
+    
     TreeNode node1 = TreeNode(1);
     TreeNode node2 = TreeNode(2);
     TreeNode node3 = TreeNode(3);
     TreeNode node4 = TreeNode(4);
     TreeNode node5 = TreeNode(5);
     TreeNode node6 = TreeNode(6);
+    TreeNode node7 = TreeNode(7);
+    TreeNode node9 = TreeNode(9);
+    TreeNode node20 = TreeNode(20);
+    TreeNode node15 = TreeNode(15);
     
-    node5.left = &node3;
-    node5.right = &node6;
     
-    node3.left = &node2;
-    node3.right = &node4;
+    node3.left = &node9;
+    node3.right = &node20;
     
-    node2.left = &node1;
+    node20.left = &node15;
+    node20.right = &node7;
     
-    TreeNode *root = &node5;
-    int k = 3;
+    TreeNode *root = &node3;
     
-    cout << kthSmallest(root, k) << endl;
-    
-    //Problem #230 Kth Smallest Element in a BST
-    
+    cout << maxDepth(root) << endl;
     
     //
     //TESTING

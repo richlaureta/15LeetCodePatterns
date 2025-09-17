@@ -143,3 +143,15 @@ int kthSmallest(TreeNode *root, int k)
     inOrderTraversal(root, ascendingArray);
     return ascendingArray[k - 1];
 }
+
+int maxDepth(TreeNode* root)
+{
+    //Problem #104 Maximum Depth of Binary Tree - Solution concept by Greg Hogg
+    
+    if(root == nullptr) return 0;
+    
+    int leftDepthCount = maxDepth(root->left);
+    int rightDepthCount = maxDepth(root->right);
+    
+    return 1 + max(leftDepthCount, rightDepthCount);
+}
