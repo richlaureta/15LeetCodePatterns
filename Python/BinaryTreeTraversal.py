@@ -1,4 +1,5 @@
 from collections import deque
+import heapq
 
 class TreeNode:
     def __init__(self, value):
@@ -51,7 +52,7 @@ def levelOrder(root: TreeNode) -> list[list[int]]:
     return ans
 
 def binaryTreePaths(root: TreeNode) -> list[str]:
-    #Problem #257 Binary Tree Paths 
+    #Problem #257 Binary Tree Paths - Algo.monster Concept Solution
 
     resultList = []
     currentPath = []
@@ -74,6 +75,28 @@ def binaryTreePaths(root: TreeNode) -> list[str]:
 
     return resultList
          
+def kthSmallest(root: TreeNode, k: int) -> int:
+    #Problem #230 Kth Smallest Element in BST
+
+    minHeap = []
+
+    def depthFirstSearchHere(node: TreeNode):
+        if node == None:
+            return
+        
+        heapq.heappush(minHeap, node.value)
+        
+        depthFirstSearchHere(node.left)
+        depthFirstSearchHere(node.right)
+    
+    depthFirstSearchHere(root)
+
+    numberToReturn = 0
+
+    for i in range(0, k):
+        numberToReturn = heapq.heappop(minHeap)
+    
+    return numberToReturn
 
 if __name__ == "__main__":
     node1 = TreeNode(1)
@@ -81,12 +104,19 @@ if __name__ == "__main__":
     node3 = TreeNode(3)
     node4 = TreeNode(4)
     node5 = TreeNode(5)
+    node6 = TreeNode(6)
 
-    node1.left = node2
-    node1.right = node3
-    node2.right = node5
-    
-    root = node1
+    node5.left = node3
+    node5.right = node6
 
-    print(binaryTreePaths(root))
+    node3.left = node2
+    node3.right = node4
+
+    node2.left = node1
+
+    root = node5
+
+    k = 4
+
+    print(kthSmallest(root, k))
     
