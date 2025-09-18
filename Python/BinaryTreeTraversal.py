@@ -1,5 +1,4 @@
 from collections import deque
-import heapq
 
 class TreeNode:
     def __init__(self, value):
@@ -103,8 +102,30 @@ def maxDepth(root: TreeNode) -> int:
     return 1 + max(left, right)
 
 def widthOfBinaryTree(root: TreeNode) -> int:
-    pass
-
+    #Problem #662 Maximum Width of Binary Tree - Solution Concept by YouTuber NeetCodeIO - Understanding the Solution
+    
+    width = 0
+    
+    queue = deque([[root, 1, 0]])
+    previousLevel = 0
+    previousNumber = 1
+    
+    while queue:
+        node, number, level = queue.popleft()
+        
+        if level > previousLevel:
+            previousLevel = level
+            previousNumber = number
+        
+        width = max(width, number - previousNumber + 1)
+        
+        if node.left:
+            queue.append([node.left, 2 * number, level + 1])
+        if node.right:
+            queue.append([node.right, 2 * number + 1, level + 1])
+    
+    return width
+        
 if __name__ == "__main__":
    node1 = TreeNode(1)
    node2 = TreeNode(2)
