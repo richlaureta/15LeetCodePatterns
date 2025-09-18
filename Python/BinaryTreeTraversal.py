@@ -91,7 +91,7 @@ def kthSmallest(root: TreeNode, k: int) -> int:
     return ascendingArray[k -1]
 
 def maxDepth(root: TreeNode) -> int:
-    #Problem #104 Maximum Depth of Binary Tree - Concept Solution by YouTuber Greg Hogg
+    #Problem #104 Maximum Depth of Binary Tree - Concept Solution by YouTuber Greg Hogg - Understanding the Solution
     
     if root == None:
         return 0

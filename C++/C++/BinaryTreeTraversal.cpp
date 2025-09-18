@@ -155,3 +155,50 @@ int maxDepth(TreeNode* root)
     
     return 1 + max(leftDepthCount, rightDepthCount);
 }
+
+int widthOfBinaryTree(TreeNode *root)
+{
+    //Problem #662 Maximum Width of Binary Tree - Solution Concept by YouTuber NeetCodeIO - Understanding the Solution
+    
+    unsigned int width = 0;
+    unsigned int previousLevel = 0;
+    unsigned int previousNumber = 1;
+    
+    queue<TreeNode*> nodeQueues;
+    queue<vector<unsigned int>> numbersAndLevels;
+    
+    nodeQueues.push(root);
+    numbersAndLevels.push({1, 0});
+    
+    
+    while(nodeQueues.size() != 0)
+    {
+        TreeNode* node = nodeQueues.front();
+        nodeQueues.pop();
+        unsigned int number = numbersAndLevels.front()[0];
+        unsigned int level = numbersAndLevels.front()[1];
+        numbersAndLevels.pop();
+        
+        if (level > previousLevel)
+        {
+            previousLevel = level;
+            previousNumber = number;
+        }
+        
+        width = max(width, number - previousNumber + 1);
+        
+        if(node->left != nullptr)
+        {
+            nodeQueues.push(node->left);
+            numbersAndLevels.push({number * 2, level + 1});
+        }
+        
+        if(node->right != nullptr)
+        {
+            nodeQueues.push(node->right);
+            numbersAndLevels.push({(number * 2) + 1, level + 1});
+        }
+    }
+    
+    return (int) width;
+}

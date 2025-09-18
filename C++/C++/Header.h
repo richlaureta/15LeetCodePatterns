@@ -133,3 +133,4 @@ vector<string> binaryTreePaths(TreeNode *root);
 int kthSmallest(TreeNode *root, int k);
 void inOrderTraversal(TreeNode *node);
 int maxDepth(TreeNode* root);
+int widthOfBinaryTree(TreeNode* root);
