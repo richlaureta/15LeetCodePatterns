@@ -202,3 +202,32 @@ int widthOfBinaryTree(TreeNode *root)
     
     return (int) width;
 }
+
+int depthFirstSearchSum(TreeNode *node, int *maxSum)
+{
+    //Problem #124 Binary Tree Maximum Path Sum - Solution Concept by NeetCode - Understanding the Solution
+    
+    if(node == nullptr)
+    {
+        return 0;
+    }
+    
+    int leftSum = depthFirstSearchSum(node->left, maxSum);
+    int rightSum = depthFirstSearchSum(node->right, maxSum);
+    
+    leftSum = max(leftSum, 0);
+    rightSum = max(rightSum, 0);
+    
+    *maxSum = max(*maxSum, node->value + leftSum + rightSum);
+    
+    return node->value + max(leftSum, rightSum);
+}
+
+int maxPathSum(TreeNode *root)
+{
+    //Problem #124 Binary Tree Maximum Path Sum - Solution Concept by NeetCode - Understanding the Solution
+    
+    int maxSum = INT_MIN;
+    depthFirstSearchSum(root, &maxSum);
+    return maxSum;
+}

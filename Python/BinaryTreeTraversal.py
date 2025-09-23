@@ -125,7 +125,30 @@ def widthOfBinaryTree(root: TreeNode) -> int:
             queue.append([node.right, 2 * number + 1, level + 1])
     
     return width
-        
+
+def maxPathSum(root: TreeNode) -> int:
+    #Problem # 124 Binary Tree Maximum Path Sum - HARD - Concept Solution by YouTube Channel NeetCode - Understanding the Solution
+
+    sum = [root.value]
+
+    def depthFirstSearch(node):
+        if node == None:
+            return 0
+
+        leftMax = depthFirstSearch(node.left)
+        rightMax = depthFirstSearch(node.right)
+        leftMax = max(0, leftMax)
+        rightMax = max(0, rightMax)
+
+        sum[0] = max(sum[0], node.value + leftMax + rightMax)
+
+        return node.value + max(leftMax, rightMax)
+
+    depthFirstSearch(root)
+
+    return sum[0]
+    
+
 if __name__ == "__main__":
    node1 = TreeNode(1)
    node2 = TreeNode(2)
@@ -139,17 +162,16 @@ if __name__ == "__main__":
    node15 = TreeNode(15)
    node7 = TreeNode(7)
    node6 = TreeNode(6)
+   nodeNegative10 = TreeNode(-10)
    
-   node1.left = node3
-   node1.right = node2
+   nodeNegative10.left = node9
+   nodeNegative10.right = node20
    
-   node3.left = node5
-   node3.left = node3Duplicate
+   node20.left = node15
+   node20.right = node7
    
-   node2.right = node9
+   root = nodeNegative10
    
-   root = node1
-   
-   print(widthOfBinaryTree(root))
+   print(maxPathSum(root))
  
     

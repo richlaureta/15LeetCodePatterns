@@ -22,6 +22,7 @@
 #include <optional>
 #include <functional>
 #include <tuple>
+#include <climits>
 
 using namespace std;
 
@@ -133,4 +134,6 @@ vector<string> binaryTreePaths(TreeNode *root);
 int kthSmallest(TreeNode *root, int k);
 void inOrderTraversal(TreeNode *node);
 int maxDepth(TreeNode* root);
-int widthOfBinaryTree(TreeNode* root);
+int widthOfBinaryTree(TreeNode *root);
+int maxPathSum(TreeNode *root);
+int depthFirstSearchSum(TreeNode *node, int *maxSum);
