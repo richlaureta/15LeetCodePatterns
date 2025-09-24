@@ -231,3 +231,39 @@ int maxPathSum(TreeNode *root)
     depthFirstSearchSum(root, &maxSum);
     return maxSum;
 }
+
+vector<vector<int>> levelOrderBottom(TreeNode *root)
+{
+    //Problem #107 Binary Level Order Traversal - Concept Solution by YouTube Channel NeetCode
+    
+    vector<vector<int>> answer;
+    
+    deque<TreeNode*> myQ;
+    myQ.push_back(root);
+    
+    while(myQ.size() > 0)
+    {
+        int queueSize = (int) myQ.size();
+        vector<int> array;
+        
+        for(int i = 0; i < queueSize; i++)
+        {
+            TreeNode *node = myQ.front();
+            myQ.pop_front();
+            
+            if(node != nullptr)
+            {
+                array.push_back(node->value);
+                myQ.push_back(node->left);
+                myQ.push_back(node->right);
+            }
+        }
+        
+        if(array.size() > 0)
+        {
+            answer.insert(answer.begin(), array);
+        }
+    }
+    
+    return answer;
+}
