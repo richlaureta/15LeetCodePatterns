@@ -148,7 +148,30 @@ def maxPathSum(root: TreeNode) -> int:
 
     return sum[0]
     
-
+def levelOrderBottom(root: TreeNode) -> list[list[int]]:
+    #Problem #107 Binary Tree Level Order Traversal - Concept Solution by NeetCode
+    
+    answer = deque()
+    doubleEndedQueue = deque()
+    doubleEndedQueue.append(root)
+        
+    while doubleEndedQueue:
+        length = len(doubleEndedQueue)
+        array = []
+            
+        for i in range(length):
+            poppedNode = doubleEndedQueue.popleft()
+                
+            if poppedNode:
+                array.append(poppedNode.value)
+                doubleEndedQueue.append(poppedNode.left)
+                doubleEndedQueue.append(poppedNode.right)    
+            
+        if array:
+            answer.appendleft(array)
+            
+    return list(answer)
+    
 if __name__ == "__main__":
    node1 = TreeNode(1)
    node2 = TreeNode(2)
@@ -164,14 +187,16 @@ if __name__ == "__main__":
    node6 = TreeNode(6)
    nodeNegative10 = TreeNode(-10)
    
-   nodeNegative10.left = node9
-   nodeNegative10.right = node20
+   node3.left = node9
+   node3.right = node20
    
    node20.left = node15
    node20.right = node7
    
-   root = nodeNegative10
+   root = node3
+
+
    
-   print(maxPathSum(root))
+   print(levelOrderBottom(root))
  
     
