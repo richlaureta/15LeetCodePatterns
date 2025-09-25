@@ -58,3 +58,36 @@ void depthFirstSearchList(vector<vector<int>> lists, int rootSource)
     
     cout << endl;
 }
+
+unordered_map<Node*, Node*> originalAndCopy;
+
+Node* cloneGraph(Node* node)
+{
+    //Problem #133 Clone Graph - Solution Concept by YouTube Channel Sean Chuah - Understanding the Solution
+    
+    if(node == nullptr) return nullptr;
+    
+    Node* nodeCopy = new Node(node->val);
+    
+    if(node->neighbors.size() == 0) return nodeCopy;
+    
+    vector<Node*> neighborsHere;
+    
+    originalAndCopy[node] = nodeCopy;
+    
+    for(auto& point: node->neighbors)
+    {
+        if(originalAndCopy.find(point) != originalAndCopy.end())
+        {
+            neighborsHere.push_back(originalAndCopy[point]);
+        }
+        else
+        {
+            neighborsHere.push_back(cloneGraph(point));
+        }
+    }
+    
+    nodeCopy->neighbors = neighborsHere;
+    
+    return nodeCopy;
+}

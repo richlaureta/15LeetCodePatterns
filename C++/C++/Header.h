@@ -26,6 +26,27 @@
 
 using namespace std;
 
+
+class Node {
+public:
+    //LeetCode Definition of Node Problem #133 Clone Graph
+    
+    int val;
+    vector<Node*> neighbors;
+    Node() {
+        val = 0;
+        neighbors = vector<Node*>();
+    }
+    Node(int _val) {
+        val = _val;
+        neighbors = vector<Node*>();
+    }
+    Node(int _val, vector<Node*> _neighbors) {
+        val = _val;
+        neighbors = _neighbors;
+    }
+};
+
 bool isAnagram(std::string s, std::string t);
 
 double findMaxAverage(std::vector<int> &nums, int k);
@@ -138,3 +159,4 @@ int widthOfBinaryTree(TreeNode *root);
 int maxPathSum(TreeNode *root);
 int depthFirstSearchSum(TreeNode *node, int *maxSum);
 vector<vector<int>> levelOrderBottom(TreeNode *root);
+Node* cloneGraph(Node* node);

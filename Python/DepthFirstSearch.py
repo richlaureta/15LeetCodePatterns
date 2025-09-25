@@ -48,21 +48,38 @@ def arrayOfEdgesToAdjacencyMatrix(araryEdges: list[list], rows: int, columns: in
      return matrix
 
 class Node:
-     def __init__(self, val):
-          self.value = val
-          self.neigbors = []
+     def __init__(self, val = 0, neighbors = None):
+          self.val = val
+          self.neighbors = neighbors if neighbors is not None else []
 
 
-
-def main():
-    #Concept of Graphs and Depth First Search
-    
-    n = 8
-    A = [[0, 1], [1, 2], [0, 3], [3, 4], [3, 6], [3, 7], [4, 2], [4, 5], [5, 2]]
-
-#     for i in arrayOfEdgesToAdjacencyMatrix(A, n, n):
-#          print(i)
-    deptFirstSearchEdgeList(A, 0)
+def cloneGraph(node: Node) -> Node:
+     #Problem #133 Clone Graph - Solution Concept by YouTube Channel NeetCode - Understanding the Solution
+     
+     originalAndCopy = {}
+     
+     def depthFirstSearchClone(node: Node, originalAndCopy):
+          if node in originalAndCopy:
+               return originalAndCopy[node]
+          
+          nodeCopy = Node(node.val)
+          originalAndCopy[node] = nodeCopy
+          
+          for point in node.neighbors:
+               nodeCopy.neighbors.append(depthFirstSearchClone(point, originalAndCopy))
+          return nodeCopy
+     
+     return depthFirstSearchClone(node, originalAndCopy) if node is not None else None
 
 if __name__ == "__main__":
-    main()
+     node1 = Node(1)
+     node2 = Node(2)
+     node3 = Node(3)
+     node4 = Node(4)
+     
+     node1.neighbors = [node2, node4]
+     node2.neighbors = [node1, node3]
+     node3.neighbors = [node2, node4]
+     node4.neighbors = [node1, node3]
+     
+     cloneGraph(node1)
