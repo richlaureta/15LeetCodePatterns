@@ -1,5 +1,13 @@
 from collections import deque
 
+class TreeNode:
+    #Definition for a binary tree node. LeetCode Problem #113 Path Sum II
+    
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+        
 def edgeListToDict(edgeList: list[list] ) -> dict:
         dictMap = {}
 
@@ -71,15 +79,78 @@ def cloneGraph(node: Node) -> Node:
      
      return depthFirstSearchClone(node, originalAndCopy) if node is not None else None
 
+def pathSum(root: TreeNode, targetSum: int)-> list[list[int]]:
+     #Problem #113 Path Sum II - Solution Concept by YouTuber Deepti Talesra - Understanding the Solution
+     
+     if root is None:
+          return []
+     
+     sumPath = [targetSum]
+     pathList: list[int] = []
+     returnPathList: list[list[int]] = []
+     
+     def depthFirstSearchPathSumTarget(node: TreeNode):
+          if node.left is None and node.right is None:
+               
+               if sumPath[0] - node.val == 0:
+                    pathList.append(node.val)
+                    copyPathList = pathList.copy()
+                    returnPathList.append(copyPathList)
+                    pathList.pop()
+               
+               return
+     
+          pathList.append(node.val)
+          sumPath[0] -= node.val
+          
+          if node.left:
+               depthFirstSearchPathSumTarget(node.left)
+          
+          if node.right:
+               depthFirstSearchPathSumTarget(node.right)
+          
+          pathList.pop()
+          sumPath[0] += node.val
+          
+          return 
+
+     depthFirstSearchPathSumTarget(root)
+     
+     return returnPathList
+                              
 if __name__ == "__main__":
-     node1 = Node(1)
-     node2 = Node(2)
-     node3 = Node(3)
-     node4 = Node(4)
+     node1 = TreeNode(1)
+     node1Duplicate = TreeNode(1)
+     node2 = TreeNode(2)
+     node3 = TreeNode(3)
+     node4 = TreeNode(4)
+     node5 = TreeNode(5)
+     node6 = TreeNode(6)
+     node7 = TreeNode(7)
+     node8 = TreeNode(8)
+     node11 = TreeNode(11)
+     node13 = TreeNode(13)
+     node4Duplicate = TreeNode(4)
+     node5Duplicate = TreeNode(5)
      
-     node1.neighbors = [node2, node4]
-     node2.neighbors = [node1, node3]
-     node3.neighbors = [node2, node4]
-     node4.neighbors = [node1, node3]
+     # node5.left = node4
+     # node5.right = node8
      
-     cloneGraph(node1)
+     # node4.left = node11
+     
+     # node11.left = node7
+     # node11.right = node2
+     
+     # node8.left = node13
+     # node8.right = node4Duplicate
+     
+     # node4Duplicate.left = node5Duplicate
+     # node4Duplicate.right = node1
+     
+     node1.left = node1Duplicate
+     node1.right = node3
+     
+     root = node1
+     targetSum = 5
+     
+     print(pathSum(root, targetSum))
