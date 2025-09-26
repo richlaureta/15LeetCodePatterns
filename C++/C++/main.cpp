@@ -568,18 +568,60 @@ int main(int argc, const char * argv[]) {
 //        cout << endl;
 //    }
     //Problem #133 Clone Graph - Solution Concept by YouTube Channel Sean Chuah - Understanding the Solution
+//    
+//    Node node1 = Node(1);
+//    Node node2 = Node(2);
+//    Node node3 = Node(3);
+//    Node node4 = Node(4);
+//    
+//    node1.neighbors =  {&node2, &node4};
+//    node2.neighbors = {&node1, &node3};
+//    node3.neighbors = {&node2, &node4};
+//    node4.neighbors = {&node1, &node3};
+//    
+//    cloneGraph(&node1);
     
-    Node node1 = Node(1);
-    Node node2 = Node(2);
-    Node node3 = Node(3);
-    Node node4 = Node(4);
+    //Problem #113 Path Sum II
     
-    node1.neighbors =  {&node2, &node4};
-    node2.neighbors = {&node1, &node3};
-    node3.neighbors = {&node2, &node4};
-    node4.neighbors = {&node1, &node3};
+    TreeNode node5 = TreeNode(5);
+    TreeNode node4 = TreeNode(4);
+    TreeNode node11 = TreeNode(11);
+    TreeNode node7 = TreeNode(7);
+    TreeNode node2 = TreeNode(2);
+    TreeNode node8 = TreeNode(8);
+    TreeNode node13 = TreeNode(13);
+    TreeNode node4Duplicate = TreeNode(4);
+    TreeNode node5Duplicate = TreeNode(5);
+    TreeNode node1 = TreeNode(1);
     
-    cloneGraph(&node1);
+    node5.left = &node4;
+    node5.right = &node8;
+    
+    node4.left = &node11;
+    
+    node11.left = &node7;
+    node11.right = &node2;
+    
+    node8.left = &node13;
+    node8.right = &node4Duplicate;
+    
+    node4Duplicate.left = &node5Duplicate;
+    node4Duplicate.right = &node1;
+    
+    TreeNode *root = &node5;
+    
+    int targetSum = 22;
+    
+    vector<vector<int>> pathSumLists = pathSum(root,targetSum);
+    
+    for(int i = 0; i < pathSumLists.size(); i++)
+    {
+        for(int j = 0; j < pathSumLists[i].size(); j++)
+        {
+            cout << pathSumLists[i][j] << " ";
+        }
+        cout << endl;
+    }
     
     //TESTING
 //    priority_queue<tuple<int, int, int>, vector<tuple<int, int, int>>, greater<tuple<int, int, int>>> minHeap;

@@ -91,3 +91,47 @@ Node* cloneGraph(Node* node)
     
     return nodeCopy;
 }
+
+void depthFirstSearchPathSumTarget(TreeNode *node, vector<vector<int>> *returnPathLists, vector<int> *pathList, int *sumTarget)
+{
+    //Problem #113 Path Sum II - Solution Concept by YouTube Channel Deepti Talesra - Understanding the solution
+    
+    if((node->left == nullptr) and (node->right == nullptr))
+    {
+        if(*sumTarget - node->value == 0)
+        {
+            pathList->push_back(node->value);
+            vector<int> pathDeepCopy = *pathList;
+            returnPathLists->push_back(pathDeepCopy);
+            
+            pathList->pop_back();
+        }
+        return;
+    }
+    
+    *sumTarget -= node->value;
+    pathList->push_back(node->value);
+    
+    if(node->left) depthFirstSearchPathSumTarget(node->left, returnPathLists, pathList, sumTarget);
+    if(node->right) depthFirstSearchPathSumTarget(node->right, returnPathLists, pathList, sumTarget);
+    
+    *sumTarget += node->value;
+    pathList->pop_back();
+    
+    return;
+}
+
+vector<vector<int>> pathSum(TreeNode *root, int targetSum)
+{
+    //Problem #113 Path Sum II - Solution Concept by YouTube Channel Deepti Talesra - Understanding the solution
+    if(root == nullptr)
+    {
+        return {};
+    }
+    vector<vector<int>> returnPathLists;
+    vector<int> pathList;
+    
+    depthFirstSearchPathSumTarget(root, &returnPathLists, &pathList, &targetSum);
+    
+    return returnPathLists;
+}

@@ -160,3 +160,5 @@ int maxPathSum(TreeNode *root);
 int depthFirstSearchSum(TreeNode *node, int *maxSum);
 vector<vector<int>> levelOrderBottom(TreeNode *root);
 Node* cloneGraph(Node* node);
+vector<vector<int>> pathSum(TreeNode *root, int targetSum);
+void depthFirstSearchPathSumTarget(TreeNode *node, vector<vector<int>> *returnPathLists, vector<int> *pathList, int *sumTarget);
