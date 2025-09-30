@@ -1,4 +1,5 @@
 from collections import deque
+from collections import defaultdict
 
 class TreeNode:
     #Definition for a binary tree node. LeetCode Problem #113 Path Sum II
@@ -117,7 +118,42 @@ def pathSum(root: TreeNode, targetSum: int)-> list[list[int]]:
      depthFirstSearchPathSumTarget(root)
      
      return returnPathList
-                              
+
+def canFinish(numCourses: int, prerequisites: list[list[int]]) -> bool:
+     #Problem #207 Course Schedule - Solution Concept by YouTube Channel Deepti Talesra - Understanding the Solution
+     
+        mapList = defaultdict(list)
+        
+        for course, coursePrerequisite in prerequisites:
+            mapList[course].append(coursePrerequisite)
+
+        visited = set()
+        
+        def cycle(courseNumber: int):
+            if courseNumber in visited:
+                return True
+            
+            visited.add(courseNumber)
+            
+            for subjectNumber in mapList[courseNumber]:
+                if cycle(subjectNumber):
+                    return True
+            
+            mapList[courseNumber] = []
+            visited.remove(courseNumber)
+            
+            return False
+            
+        for courseNumber in range(numCourses):
+            if cycle(courseNumber):
+                return False
+        
+        return True
+            
+def findOrder(numCourses: int, prerequisites: list[list[int]]) -> list[int]:
+     #Problem # 210 Course Schedule II
+     
+     pass                      
 if __name__ == "__main__":
      node1 = TreeNode(1)
      node1Duplicate = TreeNode(1)
@@ -133,24 +169,7 @@ if __name__ == "__main__":
      node4Duplicate = TreeNode(4)
      node5Duplicate = TreeNode(5)
      
-     # node5.left = node4
-     # node5.right = node8
+     numCourses = 5
+     prerequisites = [[0, 1], [0, 2], [1, 3], [1, 4], [3, 4]]
      
-     # node4.left = node11
-     
-     # node11.left = node7
-     # node11.right = node2
-     
-     # node8.left = node13
-     # node8.right = node4Duplicate
-     
-     # node4Duplicate.left = node5Duplicate
-     # node4Duplicate.right = node1
-     
-     node1.left = node1Duplicate
-     node1.right = node3
-     
-     root = node1
-     targetSum = 5
-     
-     print(pathSum(root, targetSum))
+     print(canFinish(numCourses, prerequisites))
