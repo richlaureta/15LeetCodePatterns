@@ -136,3 +136,51 @@ vector<vector<int>> pathSum(TreeNode *root, int targetSum)
     
     return returnPathLists;
 }
+
+bool isThereCycle(int courseNumber, set<int> *visited, unordered_map<int, vector<int>> &courseMap)
+{
+    //Problem 207 Course Schedule - Solution Concept by YouTube Channel Deepti Talesra - Understanding the Solution
+    
+    if(visited->count(courseNumber) > 0)
+    {
+        return true;
+    }
+    
+    visited->insert(courseNumber);
+    
+    for(int i = 0; i < courseMap[courseNumber].size(); i++)
+    {
+        if(isThereCycle(courseMap[courseNumber][i], visited, courseMap))
+        {
+            return true;
+        }
+    }
+    
+    courseMap[courseNumber] = {};
+    visited->erase(courseNumber);
+    
+    return false;
+}
+
+bool canFinish(int numCourses, vector<vector<int>> prerequisites)
+{
+    //Problem 207 Course Schedule - Solution Concept by YouTube Channel Deepti Talesra - Understanding the Solution
+    unordered_map<int, vector<int>> courseMap;
+    
+    for(int i = 0; i < prerequisites.size(); i++)
+    {
+        courseMap[prerequisites[i][0]].push_back(prerequisites[i][1]);
+    }
+    
+    set<int> visited;
+    
+    for(int i = 0; i < numCourses; i++)
+    {
+        if(isThereCycle(i, &visited, courseMap))
+        {
+            return false;
+        }
+    }
+    
+    return true;
+}

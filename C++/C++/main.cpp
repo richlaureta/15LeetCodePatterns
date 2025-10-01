@@ -582,58 +582,60 @@ int main(int argc, const char * argv[]) {
 //    cloneGraph(&node1);
     
     //Problem #113 Path Sum II
+//    
+//    TreeNode node5 = TreeNode(5);
+//    TreeNode node4 = TreeNode(4);
+//    TreeNode node11 = TreeNode(11);
+//    TreeNode node7 = TreeNode(7);
+//    TreeNode node2 = TreeNode(2);
+//    TreeNode node8 = TreeNode(8);
+//    TreeNode node13 = TreeNode(13);
+//    TreeNode node4Duplicate = TreeNode(4);
+//    TreeNode node5Duplicate = TreeNode(5);
+//    TreeNode node1 = TreeNode(1);
+//    
+//    node5.left = &node4;
+//    node5.right = &node8;
+//    
+//    node4.left = &node11;
+//    
+//    node11.left = &node7;
+//    node11.right = &node2;
+//    
+//    node8.left = &node13;
+//    node8.right = &node4Duplicate;
+//    
+//    node4Duplicate.left = &node5Duplicate;
+//    node4Duplicate.right = &node1;
+//    
+//    TreeNode *root = &node5;
+//    
+//    int targetSum = 22;
+//    
+//    vector<vector<int>> pathSumLists = pathSum(root,targetSum);
+//    
+//    for(int i = 0; i < pathSumLists.size(); i++)
+//    {
+//        for(int j = 0; j < pathSumLists[i].size(); j++)
+//        {
+//            cout << pathSumLists[i][j] << " ";
+//        }
+//        cout << endl;
+//    }
+    //Problem # 207 Course Schedule - Concept Solution by Deepti Talesra - Understanding the Solution
     
-    TreeNode node5 = TreeNode(5);
-    TreeNode node4 = TreeNode(4);
-    TreeNode node11 = TreeNode(11);
-    TreeNode node7 = TreeNode(7);
-    TreeNode node2 = TreeNode(2);
-    TreeNode node8 = TreeNode(8);
-    TreeNode node13 = TreeNode(13);
-    TreeNode node4Duplicate = TreeNode(4);
-    TreeNode node5Duplicate = TreeNode(5);
-    TreeNode node1 = TreeNode(1);
+    int numCourses = 5;
+    vector<vector<int>> prerequisites = {{1, 0}, {0, 1}};
     
-    node5.left = &node4;
-    node5.right = &node8;
-    
-    node4.left = &node11;
-    
-    node11.left = &node7;
-    node11.right = &node2;
-    
-    node8.left = &node13;
-    node8.right = &node4Duplicate;
-    
-    node4Duplicate.left = &node5Duplicate;
-    node4Duplicate.right = &node1;
-    
-    TreeNode *root = &node5;
-    
-    int targetSum = 22;
-    
-    vector<vector<int>> pathSumLists = pathSum(root,targetSum);
-    
-    for(int i = 0; i < pathSumLists.size(); i++)
-    {
-        for(int j = 0; j < pathSumLists[i].size(); j++)
-        {
-            cout << pathSumLists[i][j] << " ";
-        }
-        cout << endl;
-    }
+    cout << canFinish(numCourses, prerequisites) << endl;
     
     //TESTING
-//    priority_queue<tuple<int, int, int>, vector<tuple<int, int, int>>, greater<tuple<int, int, int>>> minHeap;
-//    tuple<int, int, int> threeNumberTuple = make_tuple(3, 0, 0);
+
+//    unordered_map<int, vector<int>> myMap;
 //    
-//    minHeap.emplace(threeNumberTuple);
+//    myMap[1] = {1, 2, 3};
 //    
-//    tuple<int, int, int> display = minHeap.top();
-//    
-//    cout << get<0>(display) << endl;
-//    cout << get<1>(display) << endl;
-//    cout << get<2>(display) << endl;
-//    
+//    testingMap(&myMap);
+    
     return EXIT_SUCCESS;
 }
