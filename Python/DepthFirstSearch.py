@@ -123,7 +123,7 @@ def canFinish(numCourses: int, prerequisites: list[list[int]]) -> bool:
      #Problem #207 Course Schedule - Solution Concept by YouTube Channel Deepti Talesra - Understanding the Solution
      
         mapList = defaultdict(list)
-        
+              
         for course, coursePrerequisite in prerequisites:
             mapList[course].append(coursePrerequisite)
 
@@ -151,9 +151,44 @@ def canFinish(numCourses: int, prerequisites: list[list[int]]) -> bool:
         return True
             
 def findOrder(numCourses: int, prerequisites: list[list[int]]) -> list[int]:
-     #Problem # 210 Course Schedule II
+     #Problem # 210 Course Schedule II - Solution Concept by NeetCode - Understanding the Solution
      
-     pass                      
+     coursePrerequisiteDictionary = defaultdict(list)
+     topologyCourseList = []
+     visited = set()
+     cycle = set()
+     
+     for subjectNumber in range(numCourses):
+          coursePrerequisiteDictionary[subjectNumber] = []
+          
+     for courseA, courseB in prerequisites:
+          coursePrerequisiteDictionary[courseA].append(courseB)
+          
+     def depthFirstSearchCourse(courseNumber: int) -> bool:
+          if courseNumber in cycle:
+               return False
+          
+          if courseNumber in visited:
+               return True
+          
+          cycle.add(courseNumber)
+           
+          for coursePrerequisite in coursePrerequisiteDictionary[courseNumber]:
+               if depthFirstSearchCourse(coursePrerequisite) == False:
+                    return False
+
+          cycle.remove(courseNumber)
+          visited.add(courseNumber)
+          topologyCourseList.append(courseNumber)
+          
+          return True
+          
+     for courseNumber in range(numCourses):
+          if depthFirstSearchCourse(courseNumber) == False:
+               return []
+     
+     return topologyCourseList
+                           
 if __name__ == "__main__":
      node1 = TreeNode(1)
      node1Duplicate = TreeNode(1)
@@ -169,7 +204,7 @@ if __name__ == "__main__":
      node4Duplicate = TreeNode(4)
      node5Duplicate = TreeNode(5)
      
-     numCourses = 5
-     prerequisites = [[0, 1], [0, 2], [1, 3], [1, 4], [3, 4]]
+     numCourses = 4
+     prerequisites = [[1, 0], [2, 0], [3, 1], [3, 2]]
      
-     print(canFinish(numCourses, prerequisites))
+     print(findOrder(numCourses, prerequisites))
