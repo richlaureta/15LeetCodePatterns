@@ -164,3 +164,5 @@ vector<vector<int>> pathSum(TreeNode *root, int targetSum);
 void depthFirstSearchPathSumTarget(TreeNode *node, vector<vector<int>> *returnPathLists, vector<int> *pathList, int *sumTarget);
 bool canFinish(int numCourses, vector<vector<int>> prerequisites);
 bool isThereCycle(int courseNumber, set<int> *visited, unordered_map<int, vector<int>> &courseMap);
+vector<int> findOrder(int numCourse, vector<vector<int>> &prerequisites);
+bool depthFirstSearchCourseII(int courseNumber, vector<int> &topologyCourseList, set<int> &visited, set<int> &cycle, unordered_map<int, vector<int>> &coursePrerequisteMap);

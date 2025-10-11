@@ -622,12 +622,24 @@ int main(int argc, const char * argv[]) {
 //        }
 //        cout << endl;
 //    }
-    //Problem # 207 Course Schedule - Concept Solution by Deepti Talesra - Understanding the Solution
+//    //Problem # 207 Course Schedule - Concept Solution by Deepti Talesra - Understanding the Solution
+//    
+//    int numCourses = 5;
+//    vector<vector<int>> prerequisites = {{1, 0}, {0, 1}};
+//    
+//    cout << canFinish(numCourses, prerequisites) << endl;
     
-    int numCourses = 5;
-    vector<vector<int>> prerequisites = {{1, 0}, {0, 1}};
+    //Problem #210 Course Schedule II - Concept Solution by NeetCode - Understanding the Solution
     
-    cout << canFinish(numCourses, prerequisites) << endl;
+    int numCourses = 2;
+    vector<vector<int>> prerequisites = {{1, 0}};
+    
+    vector<int> path = findOrder(numCourses, prerequisites);
+    
+    for(int i = 0; i <((int) path.size()); i++)
+    {
+        cout << path[i] << endl;
+    }
     
     //TESTING
 

@@ -186,3 +186,66 @@ bool canFinish(int numCourses, vector<vector<int>> prerequisites)
     return true;
 }
 
+bool depthFirstSearchCourseII(int courseNumber, vector<int> &topologyCourseList, set<int> &visited, set<int> &cycle, unordered_map<int, vector<int>> &coursePrerequisteMap)
+{
+    //Problem 210 Course Schedule II - Solution Concept by YouTube Channel NeetCode - Understanding the Solution
+    
+    if(cycle.find(courseNumber) != cycle.end())
+    {
+        return false;
+    }
+    
+    if(visited.find(courseNumber) != visited.end())
+    {
+        return true;
+    }
+    
+    cycle.insert(courseNumber);
+    
+    for(int i = 0; i < coursePrerequisteMap[courseNumber].size(); i++)
+    {
+        if(depthFirstSearchCourseII(coursePrerequisteMap[courseNumber][i],topologyCourseList, visited, cycle, coursePrerequisteMap) == false)
+        {
+            return false;
+        }
+    }
+    
+    cycle.erase(courseNumber);
+    visited.insert(courseNumber);
+    topologyCourseList.push_back(courseNumber);
+    
+    return true;
+    
+}
+
+
+vector<int> findOrder(int numCourses, vector<vector<int>> &prerequisites)
+{
+    //Problem 210 Course Schedule II - Solution Concept by YouTube Channel NeetCode - Understanding the Solution
+    
+    unordered_map<int, vector<int>> coursePrerequisteMap;
+    vector<int> topologyCourseList;
+    set<int> visited;
+    set<int> cycle;
+    
+    for(int i = 0; i < numCourses; i++)
+    {
+        coursePrerequisteMap[i] = {};
+    }
+    
+    for(int i = 0; i < prerequisites.size(); i++)
+    {
+        coursePrerequisteMap[prerequisites[i][0]].push_back(prerequisites[i][1]);
+    }
+    
+    
+    for(int i = 0; i < numCourses; i++)
+    {
+        if(depthFirstSearchCourseII(i, topologyCourseList, visited, cycle, coursePrerequisteMap) == false)
+        {
+            return {};
+        }
+    }
+    
+    return topologyCourseList;
+}
