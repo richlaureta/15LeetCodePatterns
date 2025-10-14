@@ -24,9 +24,9 @@ def levelOrder(root: TreeNode) -> list[list[int]]:
             levelList.append(processNode.val)
             node = myQueue.popleft()
             
-            if node.left != None:
+            if node.left:
                 myQueue.append(node.left)
-            if node.right != None:
+            if node.right:
                 myQueue.append(node.right)
             
         levelOrderList.append(levelList)
