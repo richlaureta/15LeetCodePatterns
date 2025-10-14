@@ -631,14 +631,42 @@ int main(int argc, const char * argv[]) {
     
     //Problem #210 Course Schedule II - Concept Solution by NeetCode - Understanding the Solution
     
-    int numCourses = 2;
-    vector<vector<int>> prerequisites = {{1, 0}};
+//    int numCourses = 2;
+//    vector<vector<int>> prerequisites = {{1, 0}};
+//    
+//    vector<int> path = findOrder(numCourses, prerequisites);
+//    
+//    for(int i = 0; i <((int) path.size()); i++)
+//    {
+//        cout << path[i] << endl;
+//    }
     
-    vector<int> path = findOrder(numCourses, prerequisites);
+    //Problem #107 Binary Tree Level Order Traversal II
+    TreeNode node1 = TreeNode(1);
+    TreeNode node2 = TreeNode(2);
+    TreeNode node3 = TreeNode(3);
+    TreeNode node9 = TreeNode(9);
+    TreeNode node20 = TreeNode(20);
+    TreeNode node15 = TreeNode(15);
+    TreeNode node7 = TreeNode(7);
     
-    for(int i = 0; i <((int) path.size()); i++)
+    node3.left = &node9;
+    node3.right = &node20;
+    node20.left = &node15;
+    node20.right = &node7;
+    
+    TreeNode *root = nullptr;
+    
+    vector<vector<int>> levelTraversal = levelOrderI(root);
+    
+    for(int i = 0; i < levelTraversal.size(); i++)
     {
-        cout << path[i] << endl;
+        for(int j = 0; j < levelTraversal[i].size(); j++)
+        {
+            cout << levelTraversal[i][j] << " ";
+        }
+        
+        cout << endl;
     }
     
     //TESTING
