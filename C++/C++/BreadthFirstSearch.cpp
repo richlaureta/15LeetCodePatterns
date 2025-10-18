@@ -6,6 +6,7 @@
 //
 
 #include "Header.h"
+
 vector<vector<int>> levelOrderI(TreeNode* root)
 {
     //Problem #102 Binary Tree Level Traversal
@@ -46,4 +47,66 @@ vector<vector<int>> levelOrderI(TreeNode* root)
     }
     
     return listReturn;
+}
+
+int orangesRotting(vector<vector<int>> &grid)
+{
+    //Problem #994 Rotting Oranges - Solution Concept by YouTube Channel Deepti Talesra - Understanding the Solution
+    
+    int freshOrangesCount = 0;
+    int minuteCount = 0;
+    vector<vector<int>> rottenOrangesLocation = {};
+    
+    for(int i = 0; i < grid.size(); i++)
+    {
+        for(int j = 0; j < grid[i].size(); j++)
+        {
+            if(grid[i][j] == 1)
+            {
+                freshOrangesCount++;
+            }
+            else if(grid[i][j] == 2)
+            {
+                rottenOrangesLocation.push_back({i, j});
+            }
+        }
+    }
+    
+    while ((rottenOrangesLocation.size() != 0) and freshOrangesCount > 0)
+    {
+        minuteCount++;
+        
+        vector<vector<int>> currentList = {};
+        
+        for(int i = 0; i < rottenOrangesLocation.size(); i++)
+        {
+            vector<vector<int>> adjacent = {{rottenOrangesLocation[i][0] + 1, rottenOrangesLocation[i][1]}, {rottenOrangesLocation[i][0], rottenOrangesLocation[i][1] - 1}, {rottenOrangesLocation[i][0] - 1, rottenOrangesLocation[i][1]}, {rottenOrangesLocation[i][0], rottenOrangesLocation[i][1] + 1}}; //Down, Left, Up, Right
+            
+            for(int j = 0; j < adjacent.size(); j++)
+            {
+                if((adjacent[j][0] > -1) and (adjacent[j][0] < grid.size()) and (adjacent[j][1] > -1) and (adjacent[j][1] < grid[0].size()) and (grid[adjacent[j][0]][adjacent[j][1]] == 1))
+                {
+                    grid[adjacent[j][0]][adjacent[j][1]] = 2;
+                    freshOrangesCount--;
+                    currentList.push_back({adjacent[j][0], adjacent[j][1]});
+                    
+                    if(freshOrangesCount == 0)
+                    {
+                        return minuteCount;
+                    }
+                }
+            }
+        }
+        
+        rottenOrangesLocation = currentList;
+    }
+    
+    if(freshOrangesCount == 0)
+    {
+        return minuteCount;
+    }
+    else
+    {
+        return -1;
+    }
 }

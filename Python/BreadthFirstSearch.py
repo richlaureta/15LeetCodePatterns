@@ -32,25 +32,47 @@ def levelOrder(root: TreeNode) -> list[list[int]]:
         levelOrderList.append(levelList)
     
     return levelOrderList
-           
+
+def orangesRotting(grid: list[list[int]]) -> int:
+    #Problem #994 Rotting Oranges - Solution Concept by YouTube Channel - Deepti Talesra - Understanding the Solution
+    
+    minuteCount = 0
+    freshOrangesCount = 0
+    rottenOrangesLocation = []
+    
+    for row in range (0, len(grid)):
+        for index in range(0, len(grid[row])):
+            if grid[row][index] == 1:
+                freshOrangesCount += 1
+            elif grid[row][index] == 2:
+                rottenOrangesLocation.append((row, index))
+                
+    while rottenOrangesLocation and freshOrangesCount > 0:
+        minuteCount += 1
+        currentList = []
+        for rowNumber, columnNumber, in rottenOrangesLocation:
+            adjacent = [(rowNumber + 1, columnNumber), (rowNumber - 1, columnNumber), (rowNumber, columnNumber + 1), (rowNumber, columnNumber - 1)] #Down, Up, Right, Left
+            for rowIndex, columnIndex in adjacent:
+                if rowIndex > -1 and columnIndex > -1 and rowIndex < len(grid) and columnIndex < len(grid[0]) and grid[rowIndex][columnIndex] == 1:
+                    grid[rowIndex][columnIndex] = 2
+                    freshOrangesCount -= 1
+                    currentList.append((rowIndex, columnIndex))
+                    
+                    if freshOrangesCount == 0:
+                        return minuteCount
+        
+        rottenOrangesLocation = currentList
+    
+    if freshOrangesCount == 0:
+        return minuteCount
+    else:
+        return -1
+    
 if __name__ == "__main__":
-    node1 = TreeNode(1)
-    node2 = TreeNode(2)
-    node3 = TreeNode(3)
-    node9 = TreeNode(9)
-    node20 = TreeNode(20)
-    node15 = TreeNode(15)
-    node7 = TreeNode(7)
+    grid = [
+        [0, 2]
+    ]
     
-    node3.left = node9
-    node3.right = node20
-    node20.left = node15
-    node20.right = node7
-    # node9.left = node1
-    # node9.right = node2
+    print(orangesRotting(grid))
     
-    # root = node3
     
-    root = None
-    
-    print(levelOrder(root))
