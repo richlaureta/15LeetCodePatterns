@@ -67,12 +67,64 @@ def orangesRotting(grid: list[list[int]]) -> int:
         return minuteCount
     else:
         return -1
+
+def ladderLength(beginWord: str, endWord: str, wordList: list[str]) -> int:
+    #Problem #127 World Ladder: Hard - 
+    
+    if endWord not in wordList:
+        return 0
+    
+    if len(beginWord) == 1:
+        return 2
+    
+    comparisonWord = beginWord
+    transformationCount = 1
+    sequenceCount = 0
+    
+    for index0, word in enumerate(wordList):
+        off1Count = 0
+        if comparisonWord == word:
+            continue
+        for index1, character in enumerate(word):
+            if comparisonWord[index1] != character:
+                off1Count += 1
+                
+                if off1Count > 1:
+                    break
+        
+        if off1Count == 1 or off1Count == 0:
+            off1CountHere = 0
+            for index2, character in enumerate(word):
+                if endWord[index2] != character:
+                    off1CountHere += 1
+                
+                if off1CountHere > 1:
+                    break
+                
+            if off1CountHere == 1 or off1CountHere == 0:
+                if off1CountHere == 1:
+                    if index0 == len(wordList) - 1:
+                        return transformationCount + 2
+                    else:
+                        return transformationCount + 2
+                else:
+                    return transformationCount + 1
+            
+            if off1Count == 1:
+                sequenceCount += 1
+                transformationCount += 1
+                
+            comparisonWord = word
+
+    if sequenceCount == 0:
+        return 0
+    else:
+        return transformationCount
     
 if __name__ == "__main__":
-    grid = [
-        [0, 2]
-    ]
+    beginWord = "hot"
+    endWord = "dog"
     
-    print(orangesRotting(grid))
+    wordList = ["hot", "dog", "dot"]
     
-    
+    print(ladderLength(beginWord, endWord, wordList)) 
