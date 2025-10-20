@@ -9,6 +9,8 @@
 
 bool isAnagram(string s, string t)
 {
+    //Problem #242 Valid Anagram: Easy 
+    
     if(s.length() != t.length())
     {
         return false;
