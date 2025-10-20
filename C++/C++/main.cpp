@@ -680,21 +680,19 @@ int main(int argc, const char * argv[]) {
 //    cout << orangesRotting(grid) << endl;
     
     //Problem #127 Word Ladder: Hard - Solution Concept by YouTube Channel NeetCode - Understanding the Solution
-    
-    string beginWord = "hit";
-    string endWord = "cog";
-    
-    vector<string> wordList = {"hot", "dot", "dog", "lot", "log"};
-    
-    cout << ladderLength(beginWord, endWord, wordList) << endl;
+//    
+//    string beginWord = "hit";
+//    string endWord = "cog";
+//    
+//    vector<string> wordList = {"hot", "dot", "dog", "lot", "log"};
+//    
+//    cout << ladderLength(beginWord, endWord, wordList) << endl;
     
     //TESTING
+    string s = "gramana";
+    string t = "anagram";
     
-//    unordered_map<int, vector<int>> myMap;
-//    
-//    myMap[1] = {1, 2, 3};
-//    
-//    testingMap(&myMap);
+    cout << isAnagram(s, t) << endl;
     
     return EXIT_SUCCESS;
 }

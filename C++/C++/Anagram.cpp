@@ -9,11 +9,11 @@
 
 bool isAnagram(string s, string t)
 {
-    if (s.length() != t.length())
+    if(s.length() != t.length())
     {
         return false;
     }
-
+    
     unordered_map<char, int> occurencesS;
     unordered_map<char, int> occurencesT;
 
@@ -22,15 +22,12 @@ bool isAnagram(string s, string t)
         occurencesS[s[i]] += 1;
         occurencesT[t[i]] += 1;
     }
-
-    for (int i = 0; i < t.length(); ++i)
+    
+    if(occurencesS == occurencesT)
     {
-        if (occurencesS[s[i]] != occurencesT[s[i]])
-        {
-            return false;
-        }
+        return true;
     }
-
-    return true;
+    
+    return false;
 }
 
