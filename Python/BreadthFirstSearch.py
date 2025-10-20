@@ -1,4 +1,5 @@
 from collections import deque
+import collections
 
 class TreeNode:
     def __init__(self, val = 0, left = None, right = None):
@@ -69,62 +70,41 @@ def orangesRotting(grid: list[list[int]]) -> int:
         return -1
 
 def ladderLength(beginWord: str, endWord: str, wordList: list[str]) -> int:
-    #Problem #127 World Ladder: Hard - 
+    #Problem #127 Word Ladder: Hard - Solution Concept by YouTube channel: NeetCode - Understanding the Solution
     
     if endWord not in wordList:
         return 0
     
-    if len(beginWord) == 1:
-        return 2
+    nei = collections.defaultdict(list)
+    wordList.append(beginWord)
     
-    comparisonWord = beginWord
-    transformationCount = 1
-    sequenceCount = 0
-    
-    for index0, word in enumerate(wordList):
-        off1Count = 0
-        if comparisonWord == word:
-            continue
-        for index1, character in enumerate(word):
-            if comparisonWord[index1] != character:
-                off1Count += 1
-                
-                if off1Count > 1:
-                    break
-        
-        if off1Count == 1 or off1Count == 0:
-            off1CountHere = 0
-            for index2, character in enumerate(word):
-                if endWord[index2] != character:
-                    off1CountHere += 1
-                
-                if off1CountHere > 1:
-                    break
-                
-            if off1CountHere == 1 or off1CountHere == 0:
-                if off1CountHere == 1:
-                    if index0 == len(wordList) - 1:
-                        return transformationCount + 2
-                    else:
-                        return transformationCount + 2
-                else:
-                    return transformationCount + 1
+    for word in wordList:
+        for j in range(len(word)):
+            pattern = word[:j] + "*" + word[j + 1:]
+            nei[pattern].append(word)
             
-            if off1Count == 1:
-                sequenceCount += 1
-                transformationCount += 1
-                
-            comparisonWord = word
-
-    if sequenceCount == 0:
-        return 0
-    else:
-        return transformationCount
+    visit = set([beginWord])
+    q = deque([beginWord])
+    res = 1
     
+    while q:
+        for i in range(len(q)):
+            word = q.popleft()
+            if word == endWord:
+                return res
+            for j in range(len(word)):
+                pattern = word[:j] + "*" + word[j + 1:]
+                for neiWord in nei[pattern]:
+                    if neiWord not in visit:
+                        visit.add(neiWord)
+                        q.append(neiWord)
+        res += 1
+        
+    return 0
 if __name__ == "__main__":
-    beginWord = "hot"
-    endWord = "dog"
+    beginWord = "hit"
+    endWord = "cog"
     
-    wordList = ["hot", "dog", "dot"]
+    wordList = ["hot", "dot", "dog", "lot", "log", "cog"]
     
     print(ladderLength(beginWord, endWord, wordList)) 

@@ -110,3 +110,96 @@ int orangesRotting(vector<vector<int>> &grid)
         return -1;
     }
 }
+
+int ladderLength(string beginWord, string endWord, vector<string> &wordList)
+{
+    //Problem #127 Word Ladder: Hard - Solution Concept by YouTube Channel NeetCode - Understanding the Solution
+    
+    bool inThereFlag = false;
+    
+    for(int i = 0; i < wordList.size(); i++)
+    {
+        if(endWord == wordList[i])
+        {
+            inThereFlag = true;
+            break;
+        }
+    }
+    
+    if(inThereFlag == false)
+    {
+        return 0;
+    }
+    
+    unordered_map<string, vector<string>> wordMap;
+    wordList.push_back(beginWord);
+    
+    for(int i = 0; i < wordList.size(); i++)
+    {
+        int starIndexPlacement = 0;
+        for(int j = 0; j < wordList[i].size(); j++)
+        {
+            string newWord = "";
+            for(int k = 0; k < wordList[i].size(); k++)
+            {
+                if(k == starIndexPlacement)
+                {
+                    newWord += "*";
+                }
+                else
+                {
+                    newWord += wordList[i][k];
+                }
+            }
+            wordMap[newWord].push_back(wordList[i]);
+            starIndexPlacement++;
+        }
+    }
+    
+    set<string> visited = {beginWord};
+    deque<string> q = {beginWord};
+    int sequenceCount = 1;
+    
+    while(q.size() != 0)
+    {
+        int qSize = (int) q.size();
+        for(int i = 0; i < qSize; i++)
+        {
+            string connectingWord = q.front();
+            q.pop_front();
+            int starIndexPlacement1 = 0;
+            
+            if(connectingWord == endWord)
+            {
+                return sequenceCount;
+            }
+            
+            for(int j = 0; j < connectingWord.size(); j++)
+            {
+                string newWord1 = "";
+                for(int k = 0; k < connectingWord.size(); k++)
+                {
+                    if(k == starIndexPlacement1)
+                    {
+                        newWord1 += "*";
+                    }
+                    else
+                    {
+                        newWord1 += connectingWord[k];
+                    }
+                }
+                for(int l = 0; l < wordMap[newWord1].size(); l++)
+                {
+                    if(visited.find(wordMap[newWord1][l]) == visited.end())
+                    {
+                        visited.insert(wordMap[newWord1][l]);
+                        q.push_back(wordMap[newWord1][l]);
+                    }
+                }
+                starIndexPlacement1++;
+            }
+        }
+        sequenceCount++;
+    }
+    return 0;
+}

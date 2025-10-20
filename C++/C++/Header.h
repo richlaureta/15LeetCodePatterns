@@ -168,3 +168,4 @@ vector<int> findOrder(int numCourse, vector<vector<int>> &prerequisites);
 bool depthFirstSearchCourseII(int courseNumber, vector<int> &topologyCourseList, set<int> &visited, set<int> &cycle, unordered_map<int, vector<int>> &coursePrerequisteMap);
 vector<vector<int>> levelOrderI(TreeNode *root);
 int orangesRotting(vector<vector<int>> &grid);
+int ladderLength(string beginWord, string endWord, vector<string> &wordList);

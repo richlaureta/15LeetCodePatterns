@@ -670,17 +670,26 @@ int main(int argc, const char * argv[]) {
 //    }
 //
     
-    //Problem #994 Rotting Oranges - Solution Concept by Deepti Talesra - Understanding the Solution
-    vector<vector<int>> grid = {
-        {2, 1, 1},
-        {0, 1, 1},
-        {1, 0, 1}
-    };
+    //Problem #994 Rotting Oranges - Solution Concept by YouTube Channel Deepti Talesra - Understanding the Solution
+//    vector<vector<int>> grid = {
+//        {2, 1, 1},
+//        {0, 1, 1},
+//        {1, 0, 1}
+//    };
+//    
+//    cout << orangesRotting(grid) << endl;
     
-    cout << orangesRotting(grid) << endl;
+    //Problem #127 Word Ladder: Hard - Solution Concept by YouTube Channel NeetCode - Understanding the Solution
+    
+    string beginWord = "hit";
+    string endWord = "cog";
+    
+    vector<string> wordList = {"hot", "dot", "dog", "lot", "log"};
+    
+    cout << ladderLength(beginWord, endWord, wordList) << endl;
     
     //TESTING
-
+    
 //    unordered_map<int, vector<int>> myMap;
 //    
 //    myMap[1] = {1, 2, 3};
