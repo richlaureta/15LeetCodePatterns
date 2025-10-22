@@ -7,3 +7,5 @@ heapq.heappush(min_heap, 7)
 heapq.heappush(min_heap, 11)
 
 print(min_heap)
+
+print("TESTING")
