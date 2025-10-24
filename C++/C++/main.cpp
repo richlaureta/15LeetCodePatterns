@@ -688,7 +688,7 @@ int main(int argc, const char * argv[]) {
 //    
 //    cout << ladderLength(beginWord, endWord, wordList) << endl;
     
-    //TESTING1
+    //TESTING VsCode with C++ in WINDOWS
     string s = "gramana";
     string t = "anagram";
     
