@@ -3,3 +3,5 @@ LeetCodeProblems/LeetCodeProblems.xcodeproj/
 C++/C++.xcodeproj/project.xcworkspace/xcuserdata/richboi.xcuserdatad/UserInterfaceState.xcuserstate
 C++/C++.xcodeproj/
 main.exe
+.vscode
+main.dSYM
