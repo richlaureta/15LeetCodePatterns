@@ -1,4 +1,4 @@
-import collections
+from collections import deque 
 
 def numIslands(grid: list[list[str]]) -> int:
     #Problem #200 Number of Islands - The concept that I learned the solution from is YouTube Channel named NeetCode
@@ -31,160 +31,50 @@ def numIslands(grid: list[list[str]]) -> int:
                 islandCount += 1
 
     return islandCount
-    #My intuitive solution for this problem
-    # if rows == 1:
-    #     if grid[0][len(grid[0]) - 1] == "1":
-    #             islandCount += 1
-    #     for i in range (0, len(grid[0]) - 1):
-    #         if grid[0][i] == "1" and grid[0][i + 1] == "0":
-    #             islandCount += 1
-    #     return islandCount            
 
-    # if columns == 1:
-    #     if grid[len(grid) - 1][0] == "1":
-    #         islandCount += 1
-    #     for i in range(0, rows - 1):
-    #         if grid[i][0] == "1" and grid[i + 1][0] == "0":
-    #             islandCount += 1
-    #     return islandCount
-            # if up[0] < 0 and left[1] < 0:
-            #     if grid[right[0]][right[1]] == "1" and right not in visited:
-            #         myQueue.append(right) 
-            #     if grid[down[0]][down[1]] == "1" and down not in visited:
-            #         myQueue.append(down)
-                
-            #     if right not in visited:
-            #         visited.add(right)
-            #     if  down not in visited:
-            #         visited.add(down)
-
-            # elif up[0] < 0 and (right[1] > len(grid[0]) - 1):
-            #     if grid[down[0]][down[1]] == "1" and down not in visited:
-            #         myQueue.append(down)
-            #     if grid[left[0]][left[1]] == "1" and left not in visited:
-            #         myQueue.append(left)
-                
-            #     if down not in visited:
-            #         visited.add(down)
-            #     if  left not in visited:
-            #         visited.add(left)
-
-            # elif (down[0] > len(grid) - 1) and left[1] < 0:
-            #     if grid[up[0]][up[1]] == "1" and up not in visited:
-            #         myQueue.append(up)
-            #     if grid[right[0]][right[1]] == "1" and right not in visited:
-            #         myQueue.append(right)
-                                 
-            #     if up not in visited:
-            #         visited.add(up)
-            #     if  right not in visited:
-            #         visited.add(right)
-
-            # elif (down[0] > len(grid) - 1) and right[1] > (len(grid[0]) - 1):
-            #     if grid[up[0]][up[1]] == "1" and up not in visited:
-            #         myQueue.append(up)
-            #     if grid[left[0]][left[1]] == "1" and left not in visited:
-            #         myQueue.append(left)
-
-            #     if up not in visited:
-            #         visited.add(up)
-            #     if  left not in visited:
-            #         visited.add(left)
-
-            # elif left[1] < 0:               
-            #     if grid[up[0]][up[1]] == "1" and up not in visited:
-            #         myQueue.append(up)
-            #     if grid[right[0]][right[1]] == "1" and right not in visited:
-            #         myQueue.append(right)
-            #     if grid[down[0]][down[1]] == "1" and down not in visited:
-            #         myQueue.append(down)
-                
-            #     if up not in visited:
-            #         visited.add(down)
-            #     if  right not in visited:
-            #         visited.add(right)
-            #     if down not in visited:
-            #         visited.add(down)
-
-            # elif right[1] > (len(grid[0]) - 1):
-            #     if grid[up[0]][up[1]] == "1" and up not in visited:
-            #         myQueue.append((up))
-            #     if grid[down[0]][down[1]] == "1" and down not in visited:
-            #         myQueue.append((down))
-            #     if grid[left[0]][left[1]] == "1" and left not in visited:
-            #         myQueue.append((left))
-                
-            #     if up not in visited:
-            #         visited.add(up)
-            #     if  down not in visited:
-            #         visited.add(down)
-            #     if left not in visited:
-            #         visited.add(left)
-
-            # elif up[0] < 0:
-            #     if grid[right[0]][right[1]] == "1" and right not in visited:
-            #         myQueue.append((right))
-            #     if grid[down[0]][down[1]] == "1" and down not in visited:
-            #         myQueue.append((down))
-            #     if grid[left[0]][left[1]] == "1" and left not in visited:
-            #         myQueue.append((left))
-                
-            #     if right not in visited:
-            #         visited.add(right)
-            #     if  down not in visited:
-            #         visited.add(down)
-            #     if left not in visited:
-            #         visited.add(left)
-
-            # elif down[0] > (len(grid) - 1):
-            #     if grid[up[0]][up[1]] == "1" and up not in visited:
-            #         myQueue.append((up))
-            #     if grid[right[0]][right[1]] == "1" and right not in visited:
-            #         myQueue.append((right))
-            #     if grid[left[0]][left[1]] == "1" and left not in visited:
-            #         myQueue.append((left))
-                
-            #     if up not in visited:
-            #         visited.add(up)
-            #     if  right not in visited:
-            #         visited.add(right)
-            #     if left not in visited:
-            #         visited.add(left)
-            # else:
-            #     if grid[up[0]][up[1]] == "1" and up not in visited:
-            #         myQueue.append((up))
-            #     if grid[right[0]][right[1]] == "1" and right not in visited:
-            #         myQueue.append((right))
-            #     if grid[down[0]][down[1]] == "1" and down not in visited:
-            #         myQueue.append((down))
-            #     if grid[left[0]][left[1]] == "1" and left not in visited:
-            #         myQueue.append((left))
-
-            #     if up not in visited:
-            #         visited.add(up)
-            #     if right not in visited:
-            #         visited.add(right)
-            #     if  down not in visited:
-            #         visited.add(down)
-            #     if left not in visited:
-            #         visited.add(left)
-
+def floodFill(image: list[list[int]], sr: int, sc: int, color: int) -> list[list[int]]:
+    #Problem #733 Flood Fill - Easy 
+    
+    colorQueue = deque()
+    colorQueue.append((sr, sc))
+    visited = set()
+    visited.add((sr, sc))
+    
+    startingValue = image[sr][sc]
+    
+    image[sr][sc] = color
+    while colorQueue:
+        poppedColorLocation = colorQueue.popleft()
+        
+        checkDirections = [[poppedColorLocation[0] - 1, poppedColorLocation[1]], 
+                           [poppedColorLocation[0], poppedColorLocation[1] + 1], 
+                           [poppedColorLocation[0] + 1, poppedColorLocation[1]],
+                           [poppedColorLocation[0], poppedColorLocation[1] - 1]
+                           ]
+        
+        for count in range(0, len(checkDirections)):
+            if checkDirections[count][0] < len(image) and checkDirections[count][0] > -1 and checkDirections[count][1] < len(image[0]) and checkDirections[count][1] > -1 and image[checkDirections[count][0]][checkDirections[count][1]] == startingValue and (checkDirections[count][0], checkDirections[count][1]) not in visited:
+                image[checkDirections[count][0]][checkDirections[count][1]] = color
+                colorQueue.append((checkDirections[count][0], checkDirections[count][1]))
+                visited.add((checkDirections[count][0], checkDirections[count][1]))
+    
+    return image
+        
 if __name__ == "__main__":
-    grid = [
-        ["1","1","1","1","0"],
-        ["1","1","0","1","0"],
-        ["1","1","0","0","1"],
-        ["0","0","1","0","1"],
-        ["1","0","0","1","1"]
+    image = [
+        [1, 1, 1],
+        [1, 1, 0],
+        [1, 0, 1]
     ]
     
-    # grid = [
-    #     ["1"],
-    #     ["0"],
-    #     ["1"],
-    #     ["0"],
-    #     ["1"],
-    #     ["1"]]
-
-
-    print(numIslands(grid))
+    sr = 1
+    sc = 1
+    color = 2
+    
+    editedImage = floodFill(image, sr, sc, color)
+    
+    for array in editedImage:
+        for value in array:
+            print(value, end = " ")
+        print()
+    
