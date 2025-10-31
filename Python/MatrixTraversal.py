@@ -11,7 +11,7 @@ def numIslands(grid: list[list[str]]) -> int:
     islandCount = 0 #Counting the islands meaning separate "1"'s 
 
     def breadthFirstSearch(rowNumber: int, columnNumber: int):
-        myQueue = collections.deque()
+        myQueue = deque()
         
         visited.add((rowNumber, columnNumber))
         myQueue.append((rowNumber, columnNumber))

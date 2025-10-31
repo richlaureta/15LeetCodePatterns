@@ -169,3 +169,4 @@ bool depthFirstSearchCourseII(int courseNumber, vector<int> &topologyCourseList,
 vector<vector<int>> levelOrderI(TreeNode *root);
 int orangesRotting(vector<vector<int>> &grid);
 int ladderLength(string beginWord, string endWord, vector<string> &wordList);
+vector<vector<int>> floodFill(vector<vector<int>> &image, int sr, int sc, int color);

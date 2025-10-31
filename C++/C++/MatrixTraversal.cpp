@@ -61,3 +61,48 @@ int numIslands(vector<vector<char>>& grid)
     
     return islandCount;
 }
+
+vector<vector<int>> floodFill(vector<vector<int>> &image, int sr, int sc, int color)
+{
+    //Problem #733 Flood Fill - Easy
+    
+    deque<pair<int, int>> colorQueue;
+    set<pair<int, int>> visited;
+    
+    colorQueue.push_back({sr, sc});
+    visited.insert({sr, sc});
+    
+    int startingValue = image[sr][sc];
+    
+    image[sr][sc] = color;
+    
+    while(colorQueue.size() != 0)
+    {
+        pair<int, int> poppedLocation = colorQueue.front();
+        colorQueue.pop_front();
+        
+        vector<pair<int, int>> checkDirections = {
+            {poppedLocation.first - 1, poppedLocation.second},
+            {poppedLocation.first, poppedLocation.second + 1},
+            {poppedLocation.first + 1, poppedLocation.second},
+            {poppedLocation.first, poppedLocation.second - 1}
+        };
+        
+        for(int i = 0; i < checkDirections.size(); i++)
+        {
+            if(checkDirections[i].first < image.size() and
+               checkDirections[i].first > -1 and
+               checkDirections[i].second < image[0].size() and
+               checkDirections[i].second > -1 and
+               image[checkDirections[i].first][checkDirections[i].second] == startingValue and
+               visited.find({checkDirections[i].first, checkDirections[i].second}) == visited.end())
+            {
+                visited.insert({checkDirections[i].first, checkDirections[i].second});
+                colorQueue.push_front({checkDirections[i].first, checkDirections[i].second});
+                image[checkDirections[i].first][checkDirections[i].second] = color;
+            }
+        }
+    }
+    
+    return image;
+}

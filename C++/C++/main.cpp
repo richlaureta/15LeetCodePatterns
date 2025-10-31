@@ -688,11 +688,33 @@ int main(int argc, const char * argv[]) {
 //    
 //    cout << ladderLength(beginWord, endWord, wordList) << endl;
     
-    //TESTING VsCode with C++ in WINDOWS
-    string s = "gramana";
-    string t = "anagram";
+    //Problem #733 Flood Fill - Easy
     
-    cout << isAnagram(s, t) << endl;
+    vector<vector<int>> image = {
+        {0, 0, 0},
+        {0, 0, 0},
+        {0, 0, 0}
+    };
+    
+    int sr = 0;
+    int sc = 0;
+    int color = 0;
+    
+    vector<vector<int>> editedImage = floodFill(image, sr, sc, color);
+    
+    for(int i = 0; i < editedImage.size(); i++)
+    {
+        for(int j = 0; j < editedImage[i].size(); j++)
+        {
+            cout << editedImage[i][j] << " ";
+        }
+        cout << endl;
+    }
+    //TESTING VsCode with C++ in WINDOWS
+//    string s = "gramana";
+//    string t = "anagram";
+//    
+//    cout << isAnagram(s, t) << endl;
     
     return EXIT_SUCCESS;
 }
