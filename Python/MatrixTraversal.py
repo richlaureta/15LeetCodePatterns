@@ -1,7 +1,7 @@
 from collections import deque 
 
 def numIslands(grid: list[list[str]]) -> int:
-    #Problem #200 Number of Islands - The concept that I learned the solution from is YouTube Channel named NeetCode
+    #Problem #200 Number of Islands - Medium - The concept that I learned the solution from is YouTube Channel named NeetCode
         
     if not grid: 
         return 0
