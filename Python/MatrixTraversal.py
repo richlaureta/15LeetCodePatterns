@@ -2,36 +2,43 @@ from collections import deque
 
 def numIslands(grid: list[list[str]]) -> int:
     #Problem #200 Number of Islands - Medium - The concept that I learned the solution from is YouTube Channel named NeetCode
-        
-    if not grid: 
+    
+    if not grid:
         return 0
     
-    rows, columns = len(grid), len(grid[0]) #Get the dimensions of the grid
-    visited = set() #Marking visited squares
-    islandCount = 0 #Counting the islands meaning separate "1"'s 
-
-    def breadthFirstSearch(rowNumber: int, columnNumber: int):
-        myQueue = deque()
+    visited = set()
+    locationQueue = deque()
+    
+    numberOfIslandsCount = 0
+    
+    def breadthFirstSearchIslands(index0: int, index1: int):
+        visited.add((index0, index1))
+        locationQueue.appendleft((index0, index1))
         
-        visited.add((rowNumber, columnNumber))
-        myQueue.append((rowNumber, columnNumber))
-
-        while myQueue:
-            rowNumber, columnNumber = myQueue.popleft()
-            directions = [[rowNumber - 1, columnNumber], [rowNumber, columnNumber + 1], [rowNumber + 1, columnNumber], [rowNumber, columnNumber - 1]]
-
-            for rowNumber, columnNumber in directions:
-                if (rowNumber in range(rows) and columnNumber in range(columns) and grid[rowNumber][columnNumber] == "1" and (rowNumber, columnNumber) not in visited):
-                    myQueue.append((rowNumber, columnNumber))
-                    visited.add((rowNumber, columnNumber))
-    for row in range(rows):
-        for square in range(columns):
-            if grid[row][square] == "1" and (row, square) not in visited:
-                breadthFirstSearch(row, square)
-                islandCount += 1
-
-    return islandCount
-
+        while locationQueue:
+            verticalPop, horizontalPop = locationQueue.popleft()
+            
+            checkDirections = [
+                [verticalPop - 1, horizontalPop], 
+                [verticalPop, horizontalPop + 1],
+                [verticalPop + 1, horizontalPop],
+                [verticalPop, horizontalPop - 1]
+            ]
+            
+            for direction in checkDirections:
+                if direction[0] > -1 and direction[0] < len(grid) and direction[1] > -1 and direction[1] < len(grid[0]) and grid[direction[0]][direction[1]] == "1" and (direction[0], direction[1]) not in visited:
+                    visited.add((direction[0], direction[1]))
+                    locationQueue.append((direction[0], direction[1]))
+                    
+    for index0, value0 in enumerate(grid):
+        for index1, value1 in enumerate(value0):
+            if grid[index0][index1] == "1" and (index0, index1) not in visited:
+                numberOfIslandsCount += 1
+                breadthFirstSearchIslands(index0, index1)
+    
+    return numberOfIslandsCount
+            
+        
 def floodFill(image: list[list[int]], sr: int, sc: int, color: int) -> list[list[int]]:
     #Problem #733 Flood Fill - Easy 
     
@@ -61,20 +68,11 @@ def floodFill(image: list[list[int]], sr: int, sc: int, color: int) -> list[list
     return image
         
 if __name__ == "__main__":
-    image = [
-        [1, 1, 1],
-        [1, 1, 0],
-        [1, 0, 1]
+    grid = [
+    ["1","1","1","1","0"],
+    ["1","1","0","1","0"],
+    ["1","1","0","0","0"],
+    ["0","0","0","0","0"]
     ]
-    
-    sr = 1
-    sc = 1
-    color = 2
-    
-    editedImage = floodFill(image, sr, sc, color)
-    
-    for array in editedImage:
-        for value in array:
-            print(value, end = " ")
-        print()
-    
+
+    print(numIslands(grid))
