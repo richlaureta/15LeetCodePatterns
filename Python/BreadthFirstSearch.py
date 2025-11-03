@@ -35,7 +35,7 @@ def levelOrder(root: TreeNode) -> list[list[int]]:
     return levelOrderList
 
 def orangesRotting(grid: list[list[int]]) -> int:
-    #Problem #994 Rotting Oranges - Solution Concept by YouTube Channel - Deepti Talesra - Understanding the Solution
+    #Problem #994 Rotting Oranges - Medium - Solution Concept by YouTube Channel - Deepti Talesra - Understanding the Solution
     
     minuteCount = 0
     freshOrangesCount = 0

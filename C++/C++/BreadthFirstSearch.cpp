@@ -51,7 +51,7 @@ vector<vector<int>> levelOrderI(TreeNode* root)
 
 int orangesRotting(vector<vector<int>> &grid)
 {
-    //Problem #994 Rotting Oranges - Solution Concept by YouTube Channel Deepti Talesra - Understanding the Solution
+    //Problem #994 Rotting Oranges - Medium - Solution Concept by YouTube Channel Deepti Talesra - Understanding the Solution
     
     int freshOrangesCount = 0;
     int minuteCount = 0;
