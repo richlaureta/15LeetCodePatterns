@@ -106,3 +106,8 @@ vector<vector<int>> floodFill(vector<vector<int>> &image, int sr, int sc, int co
     
     return image;
 }
+
+void solve(vector<vector<char>> &board)
+{
+    cout << "TESTING" << endl;
+}

@@ -690,26 +690,45 @@ int main(int argc, const char * argv[]) {
     
     //Problem #733 Flood Fill - Easy
     
-    vector<vector<int>> image = {
-        {0, 0, 0},
-        {0, 0, 0},
-        {0, 0, 0}
+//    vector<vector<int>> image = {
+//        {0, 0, 0},
+//        {0, 0, 0},
+//        {0, 0, 0}
+//    };
+//    
+//    int sr = 0;
+//    int sc = 0;
+//    int color = 0;
+//    
+//    vector<vector<int>> editedImage = floodFill(image, sr, sc, color);
+//    
+//    for(int i = 0; i < editedImage.size(); i++)
+//    {
+//        for(int j = 0; j < editedImage[i].size(); j++)
+//        {
+//            cout << editedImage[i][j] << " ";
+//        }
+//        cout << endl;
+//    }
+    //Problem #130 Surrounded Regions - Medium
+    vector<vector<char>> board = {
+        {'X', 'X', 'X', 'X'},
+        {'X', 'O', 'O', 'X'},
+        {'X', 'X', 'O', 'X'},
+        {'X', 'O', 'X', 'X'}
     };
     
-    int sr = 0;
-    int sc = 0;
-    int color = 0;
+    solve(board);
     
-    vector<vector<int>> editedImage = floodFill(image, sr, sc, color);
-    
-    for(int i = 0; i < editedImage.size(); i++)
+    for(int i = 0; i < board.size(); i++)
     {
-        for(int j = 0; j < editedImage[i].size(); j++)
+        for(int j = 0; j < board[i].size(); j++)
         {
-            cout << editedImage[i][j] << " ";
+            cout << board[i][j] << " ";
         }
         cout << endl;
     }
+    
     //TESTING VsCode with C++ in WINDOWS
 //    string s = "gramana";
 //    string t = "anagram";
