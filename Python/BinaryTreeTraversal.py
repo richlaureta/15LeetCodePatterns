@@ -51,7 +51,7 @@ def levelOrder(root: TreeNode) -> list[list[int]]:
     return ans
 
 def binaryTreePaths(root: TreeNode) -> list[str]:
-    #Problem #257 Binary Tree Paths - Algo.monster Concept Solution
+    #Problem #257 Binary Tree Paths - Easy - Algo.monster Concept Solution
 
     resultList = []
     currentPath = []
