@@ -79,6 +79,7 @@ def solve(board: list[list[str]]) -> None:
     def breadthFirstSearchRegion(index0: int, index1: int):
         locationQueue.append((index0, index1))
         flipOArray.append([index0, index1])
+        visited.add((index0, index1))
         
         if index0 == 0 or index0 == len(board) - 1 or index1 == 0 or index1 == len(board[0]) - 1:
             onBorderFlag[0] = True
@@ -117,11 +118,11 @@ if __name__ == "__main__":
         ["X","O","X","O"]
     ]
     
-    board = [
-        ["X", "X", "X"],
-        ["X", "O", "X"],
-        ["X", "X", "X"]
-    ]
+    # board = [
+    #     ["X", "X", "X"],
+    #     ["X", "O", "X"],
+    #     ["X", "X", "X"]
+    # ]
     
     solve(board)
     
