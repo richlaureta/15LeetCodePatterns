@@ -711,13 +711,15 @@ int main(int argc, const char * argv[]) {
 //        cout << endl;
 //    }
     //Problem #130 Surrounded Regions - Medium
+//    vector<vector<char>> board = {
+//        {'X', 'X', 'X', 'X'},
+//        {'X', 'O', 'O', 'X'},
+//        {'X', 'X', 'O', 'X'},
+//        {'X', 'O', 'X', 'X'}
+//    };
     vector<vector<char>> board = {
-        {'X', 'X', 'X', 'X'},
-        {'X', 'O', 'O', 'X'},
-        {'X', 'X', 'O', 'X'},
-        {'X', 'O', 'X', 'X'}
+        {'X'}
     };
-    
     solve(board);
     
     for(int i = 0; i < board.size(); i++)

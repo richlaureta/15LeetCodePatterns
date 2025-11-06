@@ -107,7 +107,76 @@ vector<vector<int>> floodFill(vector<vector<int>> &image, int sr, int sc, int co
     return image;
 }
 
+void breadthFirstSearchRegion(int index0, int index1, vector<vector<char>> &board, bool &nearBorderFlag, set<pair<int,int>> &visited, deque<pair<int, int>> &locationQueue, vector<pair<int,int>> &setToO)
+{
+    //Problem #130 Surrounded Region - Medium
+    visited.insert({index0, index1});
+    setToO.push_back({index0, index1});
+    locationQueue.push_back({index0, index1});
+    
+    if((index0 == 0) or (index0 == board.size() - 1) or (index1 == 0) or (index1 == board[0].size() - 1))
+    {
+        nearBorderFlag = true;
+    }
+    
+    while(locationQueue.size() != 0)
+    {
+        int row = locationQueue.front().first;
+        int column = locationQueue.front().second;
+        
+        locationQueue.pop_front();
+        
+        vector<pair<int, int>> checkDirections = {{row - 1, column}, {row, column + 1}, {row + 1, column}, {row, column - 1}};
+        
+        for(int i = 0; i < checkDirections.size(); i++)
+        {
+            if((checkDirections[i].first > -1) and (checkDirections[i].first < board.size()) and (checkDirections[i].second > -1) and (checkDirections[i].second < board[0].size()) and board[checkDirections[i].first][checkDirections[i].second] == 'O' and (visited.find({checkDirections[i].first, checkDirections[i].second}) == visited.end()))
+            {
+                visited.insert({checkDirections[i].first, checkDirections[i].second});
+                locationQueue.push_back({checkDirections[i].first, checkDirections[i].second});
+                setToO.push_back({checkDirections[i].first, checkDirections[i].second});
+                
+                if((checkDirections[i].first == 0) or (checkDirections[i].first == board.size() - 1) or (checkDirections[i].second == 0) or (checkDirections[i].second == board[0].size() - 1))
+                {
+                    nearBorderFlag = true;
+                }
+            }
+        }
+    }
+}
+
 void solve(vector<vector<char>> &board)
 {
-    cout << "TESTING" << endl;
+    //Problem #130 Surrounded Regions - Medium
+    
+    set<pair<int, int>> visited;
+    deque<pair<int, int>> locationQueue;
+    vector<pair<int,int>> setToO;
+    bool nearBorderFlag = false;
+    
+    
+    for(int i = 0; i < board.size(); i++)
+    {
+        for(int j = 0; j < board[i].size(); j++)
+        {
+            if((board[i][j] == 'O') and (visited.find({i, j}) == visited.end()))
+            {
+                breadthFirstSearchRegion(i, j, board, nearBorderFlag, visited, locationQueue, setToO);
+                
+                if(nearBorderFlag == false)
+                {
+                    for(int i = 0; i < setToO.size(); i++)
+                    {
+                        board[setToO[i].first][setToO[i].second] = 'X';
+                    }
+                    setToO = {};
+                }
+                else
+                {
+                    nearBorderFlag = false;
+                    setToO = {};
+                }
+            }
+        }
+    }
 }

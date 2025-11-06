@@ -171,3 +171,4 @@ int orangesRotting(vector<vector<int>> &grid);
 int ladderLength(string beginWord, string endWord, vector<string> &wordList);
 vector<vector<int>> floodFill(vector<vector<int>> &image, int sr, int sc, int color);
 void solve(vector<vector<char>> &board);
+void breadthFirstSearchRegion(int index0, int index1, vector<vector<char>> &board, bool &nearBorderFlag, set<pair<int,int>> &visited, deque<pair<int, int>> &locationQueue, vector<pair<int,int>> &setToO);
