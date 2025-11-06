@@ -75,7 +75,7 @@ def binaryTreePaths(root: TreeNode) -> list[str]:
     return resultList
          
 def kthSmallest(root: TreeNode, k: int) -> int:
-    #Problem #230 Kth Smallest Element in BST
+    #Problem #230 Kth Smallest Element in BST - Medium
 
     ascendingArray = []
     
