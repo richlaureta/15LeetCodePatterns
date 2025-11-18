@@ -102,7 +102,7 @@ def maxDepth(root: TreeNode) -> int:
     return 1 + max(left, right)
 
 def widthOfBinaryTree(root: TreeNode) -> int:
-    #Problem #662 Maximum Width of Binary Tree - Solution Concept by YouTuber NeetCodeIO - Understanding the Solution
+    #Problem #662 Maximum Width of Binary Tree - Medium - Solution Concept by YouTuber NeetCodeIO - Understanding the Solution
     
     width = 0
     
