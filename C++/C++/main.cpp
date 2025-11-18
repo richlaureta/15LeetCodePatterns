@@ -730,25 +730,25 @@ int main(int argc, const char * argv[]) {
 //        }
 //        cout << endl;
 //    }
-//
+
     //Problem #46 Permutaions - Medium - Solution Concept by Greg Hogg - Understanding the Solution
-    vector<int> nums = {1, 2, 3};
-    
-    vector<vector<int>> answer = permute(nums);
-    
-    for(int i = 0; i < answer.size(); i++)
-    {
-        for(int j = 0; j < answer[i].size(); j++)
-        {
-            cout << answer[i][j] << " ";
-        }
-        cout << endl;
-    }
-    //TESTING VsCode with C++ in WINDOWS
-//    string s = "gramana";
-//    string t = "anagram";
+//    vector<int> nums = {1, 2, 3};
 //    
-//    cout << isAnagram(s, t) << endl;
+//    vector<vector<int>> answer = permute(nums);
+//    
+//    for(int i = 0; i < answer.size(); i++)
+//    {
+//        for(int j = 0; j < answer[i].size(); j++)
+//        {
+//            cout << answer[i][j] << " ";
+//        }
+//        cout << endl;
+//    }
+    //TESTING VsCode with C++ in WINDOWS
+    string s = "magaran";
+    string t = "anagram";
+    
+    cout << isAnagram(s, t) << endl;
     
     return EXIT_SUCCESS;
 }
