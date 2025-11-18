@@ -717,20 +717,33 @@ int main(int argc, const char * argv[]) {
 //        {'X', 'X', 'O', 'X'},
 //        {'X', 'O', 'X', 'X'}
 //    };
-    vector<vector<char>> board = {
-        {'X'}
-    };
-    solve(board);
+//    vector<vector<char>> board = {
+//        {'X'}
+//    };
+//    solve(board);
+//    
+//    for(int i = 0; i < board.size(); i++)
+//    {
+//        for(int j = 0; j < board[i].size(); j++)
+//        {
+//            cout << board[i][j] << " ";
+//        }
+//        cout << endl;
+//    }
+//
+    //Problem #46 Permutaions - Medium - Solution Concept by Greg Hogg - Understanding the Solution
+    vector<int> nums = {1, 2, 3};
     
-    for(int i = 0; i < board.size(); i++)
+    vector<vector<int>> answer = permute(nums);
+    
+    for(int i = 0; i < answer.size(); i++)
     {
-        for(int j = 0; j < board[i].size(); j++)
+        for(int j = 0; j < answer[i].size(); j++)
         {
-            cout << board[i][j] << " ";
+            cout << answer[i][j] << " ";
         }
         cout << endl;
     }
-    
     //TESTING VsCode with C++ in WINDOWS
 //    string s = "gramana";
 //    string t = "anagram";
