@@ -1,24 +1,26 @@
 def subsets(nums: list[int]) -> list[list[int]]:
-    #Problem #78 Subsets - Medium -  Concept by Greg Hogg(Youtuber)
+    #Problem #78 Subsets - Medium -  Solution Concept by YouTube Channel Greg Hogg - Understanding the Solution 
     
-    n = len(nums)
-    finalAnswer, tracker = [], []
-
-    def backTrack(index: int):
-        if index == n:
-            finalAnswer.append(tracker[:]) #Return copy of the tracker
+    answer: list[list[int]] = []
+    partialSolution: list[int] = []
+  
+    def depthFirstSearchSubsets(index):
+        if index == len(nums):
+            answer.append(partialSolution.copy())
             return
         
-        #Don't pick nums[index]
-        backTrack(index + 1)
-
-        #Pick nums[index]
-        tracker.append(nums[index])
-        backTrack(index + 1)
-        tracker.pop()
-
-    backTrack(0)
-    return finalAnswer
+        depthFirstSearchSubsets(index + 1)
+        
+        partialSolution.append(nums[index])
+        
+        depthFirstSearchSubsets(index + 1)
+        
+        partialSolution.pop()
+                            
+    depthFirstSearchSubsets(0)
+        
+    return answer
+    
 
 def permute(nums: list[int]) -> list[list[int]]:
     #Problem #46 Permutations - Medium - Solution Concept by YouTube Channel Greg Hogg - Understanding the Solution
@@ -44,5 +46,5 @@ def permute(nums: list[int]) -> list[list[int]]:
 
 if __name__ == "__main__":
     nums = [1, 2, 3]
-
-    print(permute(nums))
+    
+    print(subsets(nums))
