@@ -28,8 +28,8 @@ def permutaions(nums: list[int]) -> list[list[int]]:
     return solutionList
 
 def subsets(nums: list[int]) -> list[list[int]]:
-    partialList: list[int]
-    solutionList: list[list[int]]
+    partialList: list[int] = []
+    solutionList: list[list[int]] = []
     
     def depthFirstSearchSubsets(index):
         if index == len(nums):
@@ -51,4 +51,4 @@ def subsets(nums: list[int]) -> list[list[int]]:
 if __name__ == "__main__":
     nums = [1, 2, 3]
     
-    forLoop(0, 2, "GO")
+    print(subsets(nums))
