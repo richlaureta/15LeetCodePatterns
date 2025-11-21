@@ -5,7 +5,6 @@ def forLoop(count, endCount, word) -> int:
     print(word[count])
        
     count += 1
-    print(id(count))
     forLoop(count, endCount, word)
 
 def permutaions(nums: list[int]) -> list[list[int]]:
@@ -49,6 +48,6 @@ def subsets(nums: list[int]) -> list[list[int]]:
     return solutionList
     
 if __name__ == "__main__":
-    nums = [1, 2, 3]
-    
-    print(subsets(nums))
+    nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    hello = "hello"
+    print(forLoop(0, 5, hello))
