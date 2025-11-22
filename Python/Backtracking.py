@@ -45,20 +45,43 @@ def permute(nums: list[int]) -> list[list[int]]:
     return answer
 
 def solveNQueens(n: int) -> list[list[str]]:
-    match n:
-        case 1:
-            return [["Q"]]
-        case 4:
-            return [[".Q..", "...Q", "Q...", "..Q."],
-             ["..Q.","Q...","...Q",".Q.."]
-             ]
-        case 5:
-            return [
-                [".Q...", "...Q.", "Q....", "..Q..","....Q"],
-                ["Q...", "...Q.", ".Q...", "....Q","..Q.."],
-                
-            ]
-if __name__ == "__main__":
-    nums = [1, 2, 3]
+    #Problem #51 N-Queens - Medium - Solution Concept by YouTube Channel NeetCode - Understanding the Solution
     
-    print(subsets(nums))
+    column = set()
+    positiveDiagonal = set()
+    negativeDiagonal = set()
+    
+    result = []
+    
+    board = [["."] * n for i in range(n)]
+    
+    def depthFirstSearchQueens(row0):
+        if row0 == n:
+            copy = ["".join(row1) for row1 in board]
+            result.append(copy)
+            return
+        
+        for column1 in range(n):
+            if column1 in column or (row0 + column1) in positiveDiagonal or (row0 - column1) in negativeDiagonal:
+                continue
+            
+            column.add(column1)
+            positiveDiagonal.add(row0 + column1)
+            negativeDiagonal.add(row0 - column1)
+            board[row0][column1] = "Q"
+            
+            depthFirstSearchQueens(row0 + 1)
+            
+            column.remove(column1)
+            positiveDiagonal.remove(row0 + column1)
+            negativeDiagonal.remove(row0 - column1)
+            board[row0][column1] = "."
+            
+        depthFirstSearchQueens(0)
+    
+        return result
+    
+if __name__ == "__main__":
+    n = 4
+    
+    print(solveNQueens(n))
