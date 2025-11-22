@@ -732,17 +732,31 @@ int main(int argc, const char * argv[]) {
 //    }
 
     //Problem #46 Permutaions - Medium - Solution Concept by Greg Hogg - Understanding the Solution
-    vector<int> nums = {1, 2, 3};
+//    vector<int> nums = {1, 2, 3};
+//    
+//    vector<vector<int>> answer = permute(nums);
+//    
+//    for(int i = 0; i < answer.size(); i++)
+//    {
+//        for(int j = 0; j < answer[i].size(); j++)
+//        {
+//            cout << answer[i][j] << " ";
+//        }
+//        cout << endl;
+//    }
     
-    vector<vector<int>> answer = permute(nums);
+    //Problem #51 N-Queens - Hard - Solution Concept by NeetCode - Understanding the Solution
+    int n = 4;
+    
+    vector<vector<string>> answer = solveNQueens(n);
     
     for(int i = 0; i < answer.size(); i++)
     {
         for(int j = 0; j < answer[i].size(); j++)
         {
-            cout << answer[i][j] << " ";
+            cout << answer[i][j] << endl;
         }
-        cout << endl;
+        cout << "---------------------" << endl;
     }
     //TESTING VsCode with C++ in WINDOWS
 //    string s = "magaran";

@@ -88,3 +88,70 @@ vector<vector<int>> permute(vector<int> &nums)
     return answer;
     
 }
+
+void depthFirstSearchQueens(int row0, int nSize, set<int> &column, set<int> &positiveDiagonal, set<int> &negativeDiagonal, vector<vector<string>> &result, vector<vector<char>> &board)
+{
+    if(row0 == nSize)
+    {
+        vector<string> copy = {};
+        for(int i = 0; i < board.size(); i++)
+        {
+            string characterCopy = {};
+            for(int j = 0; j < board[i].size(); j++)
+            {
+                characterCopy += board[i][j];
+            }
+            copy.push_back(characterCopy);
+        }
+        result.push_back(copy);
+        return;
+    }
+    
+    for(int i = 0; i < nSize; i++)
+    {
+        if((column.find(i) != column.end()) or (positiveDiagonal.find(row0 + i) != positiveDiagonal.end()) or (negativeDiagonal.find(row0 - i) != negativeDiagonal.end()))
+        {
+            continue;
+        }
+        
+        column.insert(i);
+        positiveDiagonal.insert(row0 + i);
+        negativeDiagonal.insert(row0 - i);
+        board[row0][i] = 'Q';
+        
+        depthFirstSearchQueens(row0 + 1, nSize, column, positiveDiagonal, negativeDiagonal, result, board);
+        
+        column.erase(i);
+        positiveDiagonal.erase(row0 + i);
+        negativeDiagonal.erase(row0 - i);
+        board[row0][i] = '.';
+    }
+
+}
+
+vector<vector<string>> solveNQueens(int n)
+{
+    set<int> column;
+    set<int> positiveDiagonal;
+    set<int> negativeDiagonal;
+    
+    vector<vector<string>> result;
+    
+    vector<char> dots = {};
+    
+    for(int i = 0; i < n; i++)
+    {
+        dots.push_back('.');
+    }
+    
+    vector<vector<char>> board;
+    
+    for(int i = 0; i < n; i++)
+    {
+        board.push_back(dots);
+    }
+    
+    depthFirstSearchQueens(0, n, column, positiveDiagonal, negativeDiagonal, result, board);
+    
+    return result;
+}

@@ -77,9 +77,9 @@ def solveNQueens(n: int) -> list[list[str]]:
             negativeDiagonal.remove(row0 - column1)
             board[row0][column1] = "."
             
-        depthFirstSearchQueens(0)
+    depthFirstSearchQueens(0)
     
-        return result
+    return result
     
 if __name__ == "__main__":
     n = 4

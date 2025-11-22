@@ -175,3 +175,5 @@ void breadthFirstSearchRegion(int index0, int index1, vector<vector<char>> &boar
 vector<vector<int>> permute(vector<int> &nums);
 void depthFirstSearchPermutation(vector<int> &partialSolution, vector<vector<int>> &answer, vector<int> &nums);
 void depthFirstSearchSubsets(int index, vector<int>& nums, vector<int>& partialSolution, vector<vector<int>>& answer);
+vector<vector<string>> solveNQueens(int n);
+void depthFirstSearchQueens(int row0, int nSize, set<int> &column, set<int> &positiveDiagonal, set<int> &negativeDiagonal, vector<vector<string>> &result, vector<vector<char>> &board);
