@@ -45,7 +45,7 @@ def permute(nums: list[int]) -> list[list[int]]:
     return answer
 
 def solveNQueens(n: int) -> list[list[str]]:
-    #Problem #51 N-Queens - Medium - Solution Concept by YouTube Channel NeetCode - Understanding the Solution
+    #Problem #51 N-Queens - Hard - Solution Concept by YouTube Channel NeetCode - Understanding the Solution
     
     column = set()
     positiveDiagonal = set()

@@ -89,8 +89,16 @@ vector<vector<int>> permute(vector<int> &nums)
     
 }
 
-void depthFirstSearchQueens(int row0, int nSize, set<int> &column, set<int> &positiveDiagonal, set<int> &negativeDiagonal, vector<vector<string>> &result, vector<vector<char>> &board)
+void depthFirstSearchQueens(int row0,
+                            int nSize,
+                            set<int> &column,
+                            set<int> &positiveDiagonal,
+                            set<int> &negativeDiagonal,
+                            vector<vector<string>> &result,
+                            vector<vector<char>> &board)
 {
+    //Problem #51 N-Queens - Hard - Solution Concept by YouTube Channel NeetCode - Understanding the Solution
+    
     if(row0 == nSize)
     {
         vector<string> copy = {};
@@ -131,6 +139,8 @@ void depthFirstSearchQueens(int row0, int nSize, set<int> &column, set<int> &pos
 
 vector<vector<string>> solveNQueens(int n)
 {
+    //Problem #51 N-Queens - Hard - Solution Concept by YouTube Channel NeetCode - Understanding the Solution
+    
     set<int> column;
     set<int> positiveDiagonal;
     set<int> negativeDiagonal;
