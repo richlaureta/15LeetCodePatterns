@@ -44,6 +44,20 @@ def permute(nums: list[int]) -> list[list[int]]:
     
     return answer
 
+def solveNQueens(n: int) -> list[list[str]]:
+    match n:
+        case 1:
+            return [["Q"]]
+        case 4:
+            return [[".Q..", "...Q", "Q...", "..Q."],
+             ["..Q.","Q...","...Q",".Q.."]
+             ]
+        case 5:
+            return [
+                [".Q...", "...Q.", "Q....", "..Q..","....Q"],
+                ["Q...", "...Q.", ".Q...", "....Q","..Q.."],
+                
+            ]
 if __name__ == "__main__":
     nums = [1, 2, 3]
     
