@@ -5,14 +5,21 @@ def recursiveAddition(count: int, endCount: int):
     print(count)	
     recursiveAddition(count + 1, endCount)
 
-def recursiveLucasSequence(nIndex):
-    if nIndex == 0:
-        return 2
-    elif nIndex == 1:
-        return 1
-    return recursiveLucasSequence(nIndex - 1) + recursiveLucasSequence(nIndex - 2)
+def recursiveLucasSequence(previousValue, sequence, upToIndex, iterationCount = 0):
+    if iterationCount == upToIndex:
+        return
+    
+    if iterationCount == 0:
+        print(previousValue)
+        sequence = 1
+    else:
+        print(previousValue + sequence)
+        previousValue = previousValue + sequence
+    
+    recursiveLucasSequence(previousValue + 1, sequence + 1, upToIndex, iterationCount + 1)
 
 if __name__ == "__main__":
-   nIndex = 5
-   
-   recursiveLucasSequence(nIndex)
+
+    howManySequence = 5
+    
+    recursiveLucasSequence(2, 0, howManySequence)
