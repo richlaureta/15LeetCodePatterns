@@ -44,8 +44,8 @@ def recursiveFibonacciSequence(index: int) -> int:
     
     return sequenceList[index]
 
+def fibonacciFormula(n: int) -> int:
+    return int(((((1 + (5 ** 0.5))/2) ** n) - (((1-(5 ** 0.5))/2) ** n)) / (5 ** 0.5))
+
 if __name__ == "__main__":
-    
-    print(recursiveFibonacciSequence(6))
-    
-    
+    print(fibonacciFormula(6))
