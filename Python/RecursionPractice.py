@@ -18,10 +18,33 @@ def recursiveLucasSequence(previousValue, sequence, howManySequence, arrayList: 
     
     recursiveLucasSequence(previousValue + 1, sequence + 1, howManySequence, arrayList, iterationCount + 1)
 
+def recursiveFibonacciSequence(previousValue1: int, previousValue2: int, howManySequence: int, sequenceList: list[int], iterationCount: int = 0):
+    if iterationCount == howManySequence:
+        return
+    
+    if iterationCount > 1:
+        sequenceList.append(previousValue1 + previousValue2)
+        temporaryValue = previousValue1
+        previousValue1 = previousValue1 + previousValue2
+        previousValue2 = temporaryValue
+    else:
+        if iterationCount == 0:
+            sequenceList.append(0)
+        else:
+            sequenceList.append(1)
+            previousValue1 = 1
+            previousValue2 = 0
+                
+    
+    recursiveFibonacciSequence(previousValue1, previousValue2, howManySequence, sequenceList, iterationCount + 1)
+    
+    
+    
 if __name__ == "__main__":
 
-    howManySequence = 10
+    howManySequence: int = int(input("How many sequence of numbers do you want to see in the Fibonacci pattern(s)? "))
+    
     array = []
-    recursiveLucasSequence(2, 0, howManySequence, array)
+    recursiveFibonacciSequence(0, 1, howManySequence, array)
     
     print(array)
