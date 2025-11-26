@@ -1,3 +1,5 @@
+import math
+
 def recursiveAddition(count: int, endCount: int):
     if count == endCount:
         return
@@ -45,7 +47,7 @@ def recursiveFibonacciSequence(index: int) -> int:
     return sequenceList[index]
 
 def fibonacciFormula(n: int) -> int:
-    return int(((((1 + (5 ** 0.5))/2) ** n) - (((1-(5 ** 0.5))/2) ** n)) / (5 ** 0.5))
+    return int(((math.pow(((1 + (math.pow(5, 0.5)))/2), n)) - (math.pow(((1-(math.pow(5, 0.5)))/2), n))) / (math.pow(5, 0.5)))
 
 if __name__ == "__main__":
     print(fibonacciFormula(6))
