@@ -49,5 +49,15 @@ def recursiveFibonacciSequence(index: int) -> int:
 def fibonacciFormula(n: int) -> int:
     return int(((math.pow(((1 + (math.pow(5, 0.5)))/2), n)) - (math.pow(((1-(math.pow(5, 0.5)))/2), n))) / (math.pow(5, 0.5)))
 
+def fib(n: int) -> int:
+    #Problem #509 Fibonacci Number - Easy 
+    
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    
+    return fib(n-1) + fib(n-2)
+
 if __name__ == "__main__":
-    print(fibonacciFormula(6))
+    print(fib(6))
