@@ -51,7 +51,6 @@ def fibonacciFormula(n: int) -> int:
 
 def fib(n: int) -> int:
     #Problem #509 Fibonacci Number - Easy 
-    
     if n == 0:
         return 0
     elif n == 1:
@@ -59,5 +58,20 @@ def fib(n: int) -> int:
     
     return fib(n-1) + fib(n-2)
 
+def fib1(n: int) -> int:
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        firstNumber = 0
+        secondNumber = 1
+        currentNumber = 0
+        for i in range(0, n-1):
+            currentNumber = firstNumber + secondNumber
+            firstNumber = secondNumber
+            secondNumber = currentNumber
+        return currentNumber
+
 if __name__ == "__main__":
-    print(fib(6))
+    print(fib1(11))
