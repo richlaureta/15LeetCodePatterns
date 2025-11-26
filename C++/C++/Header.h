@@ -177,4 +177,4 @@ void depthFirstSearchPermutation(vector<int> &partialSolution, vector<vector<int
 void depthFirstSearchSubsets(int index, vector<int>& nums, vector<int>& partialSolution, vector<vector<int>>& answer);
 vector<vector<string>> solveNQueens(int n);
 void depthFirstSearchQueens(int row0, int nSize, set<int> &column, set<int> &positiveDiagonal, set<int> &negativeDiagonal, vector<vector<string>> &result, vector<vector<char>> &board);
-int fib(int n);
+int fib1(int n);

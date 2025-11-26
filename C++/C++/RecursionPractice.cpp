@@ -7,7 +7,7 @@
 
 #include "Header.h"
 
-int fib(int n)
+int fib1(int n)
 {
     //Problem #507 Fibonacci Number - Easy
     
