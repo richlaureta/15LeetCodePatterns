@@ -180,3 +180,5 @@ vector<vector<string>> solveNQueens(int n);
 void depthFirstSearchQueens(int row0, int nSize, set<int> &column, set<int> &positiveDiagonal, set<int> &negativeDiagonal, vector<vector<string>> &result, vector<vector<char>> &board);
 int fib1(int n);
 int fibonacciFormula(int n);
+int fib2(int n);
+int functionNumber(int n, unordered_map<int, int> &sequenceMap);
