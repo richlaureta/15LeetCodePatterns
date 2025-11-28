@@ -28,4 +28,4 @@ def fib1(n: int) -> int:
     return function(n)
      
 if __name__ == "__main__":
-    print(fib(9))
+    print(fib1(9))
