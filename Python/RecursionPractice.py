@@ -74,4 +74,4 @@ def fib1(n: int) -> int:
         return currentNumber
 
 if __name__ == "__main__":
-    print(fib1(11))
+    print(fib(6))
