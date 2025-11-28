@@ -13,5 +13,19 @@ def fib(n: int) -> int:
 
     return array[n]
 
+def fib1(n: int) -> int:
+    #Problem #509 Fibonacci Number - Easy - Solution Concept by YouTube Channel Greg Hogg - Understanding the Solution
+    
+    sequenceDictionary = {0: 0, 1:1}
+    
+    def function(number: int) -> int :
+        if number in sequenceDictionary:
+            return sequenceDictionary[number]
+        else:
+            sequenceDictionary[number] = function(number - 1) + function(number - 2)
+            return sequenceDictionary[number]
+        
+    return function(n)
+     
 if __name__ == "__main__":
-    print(fib(8))
+    print(fib(9))
