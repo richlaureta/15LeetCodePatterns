@@ -26,6 +26,20 @@ def fib1(n: int) -> int:
             return sequenceDictionary[number]
         
     return function(n)
-     
+
+def climbStairs(n: int) -> int:
+    #Problem #70 Climbing Stairs - Easy - Solution Concept by Greg Hogg - Understanding the Solution
+    
+    waysDictionary = {1: 1, 2: 2}
+    
+    def function(number: int) -> int:
+        if number in waysDictionary:
+           return waysDictionary[number]
+        else:
+            waysDictionary[number] = function(number - 2) + function(number -1)
+            return waysDictionary[number]
+        
+    return function(n)
+
 if __name__ == "__main__":
-    print(fib1(9))
+    print(climbStairs(4))
