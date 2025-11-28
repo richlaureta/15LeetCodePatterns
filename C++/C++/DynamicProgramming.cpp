@@ -55,3 +55,23 @@ int fib2(int n)
     
     return functionNumber(n, sequenceMap);
 }
+
+int functionNumber1(int number, unordered_map<int, int> &waysMap)
+{
+    if(waysMap.find(number) != waysMap.end())
+    {
+        return waysMap[number];
+    }
+    else
+    {
+        waysMap[number] = functionNumber1(number - 2, waysMap) + functionNumber1(number - 1, waysMap);
+        return waysMap[number];
+    }
+}
+
+int climbStairs(int n)
+{
+    unordered_map<int, int> waysMap = {{1,1}, {2,2}};
+    
+    return functionNumber1(n, waysMap);
+}

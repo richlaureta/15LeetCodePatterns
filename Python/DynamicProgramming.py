@@ -36,7 +36,7 @@ def climbStairs(n: int) -> int:
         if number in waysDictionary:
            return waysDictionary[number]
         else:
-            waysDictionary[number] = function(number - 2) + function(number -1)
+            waysDictionary[number] = function(number - 2) + function(number - 1)
             return waysDictionary[number]
         
     return function(n)
