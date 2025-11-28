@@ -16,3 +16,11 @@ int fib1(int n)
     
     return fib(n - 1) + fib(n - 2);
 }
+
+int fibonacciFormula(int n)
+{
+    //Problem #507 Fibonacci Number - Easy
+    
+    return round((pow(((1 + (pow(5, 0.5)))/2), n) - pow(((1 - (pow(5, 0.5)))/2), n))/(pow(5, 0.5)));
+    
+}

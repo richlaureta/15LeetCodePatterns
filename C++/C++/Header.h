@@ -23,6 +23,7 @@
 #include <functional>
 #include <tuple>
 #include <climits>
+#include <cmath>
 
 using namespace std;
 
@@ -178,3 +179,4 @@ void depthFirstSearchSubsets(int index, vector<int>& nums, vector<int>& partialS
 vector<vector<string>> solveNQueens(int n);
 void depthFirstSearchQueens(int row0, int nSize, set<int> &column, set<int> &positiveDiagonal, set<int> &negativeDiagonal, vector<vector<string>> &result, vector<vector<char>> &board);
 int fib1(int n);
+int fibonacciFormula(int n);

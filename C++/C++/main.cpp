@@ -761,7 +761,7 @@ int main(int argc, const char * argv[]) {
     
     //Problem #507 Fibonacci Numbers - Easy
     
-    cout << fib1(9) << endl;
+    cout << fibonacciFormula(9) << endl;
     //TESTING VsCode with C++ in WINDOWS
 //    string s = "magaran";
 //    string t = "anagram";
