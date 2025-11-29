@@ -58,6 +58,8 @@ int fib2(int n)
 
 int functionNumber1(int number, unordered_map<int, int> &waysMap)
 {
+    //Problem #70 Climb Stairs - Easy
+    
     if(waysMap.find(number) != waysMap.end())
     {
         return waysMap[number];
@@ -71,6 +73,8 @@ int functionNumber1(int number, unordered_map<int, int> &waysMap)
 
 int climbStairs(int n)
 {
+    //Problem #70 Climb Stairs - Easy
+    
     unordered_map<int, int> waysMap = {{1,1}, {2,2}};
     
     return functionNumber1(n, waysMap);

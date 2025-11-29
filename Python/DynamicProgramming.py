@@ -41,5 +41,36 @@ def climbStairs(n: int) -> int:
         
     return function(n)
 
+def coinChange(coins: list[int], amount: int) -> int:
+    #Problem #322 Coin Exchange - Medium - Solution Concept by YouTube Channel Greg Hogg - Understanding the Solution
+    
+    coinsDictionary = {0: 0}
+    coins.sort()
+    
+    def minimumCoins(numberAmount: int):
+        if numberAmount in coinsDictionary:
+            return coinsDictionary[numberAmount]
+        
+        minimum = float('inf')
+        for coin in coins:
+            difference = numberAmount - coin
+            if difference < 0:
+                break
+            
+            minimum = min(minimum, 1 + minimumCoins(difference))
+
+        coinsDictionary[numberAmount] = minimum
+        return minimum
+        
+    coinCount = minimumCoins(amount)
+    
+    if coinCount < float('inf'):
+        return coinCount
+    
+    return -1
+ 
 if __name__ == "__main__":
-    print(climbStairs(4))
+    coins = [1, 2, 5]
+    amount = 11 
+    
+    print(coinChange(coins, amount))
