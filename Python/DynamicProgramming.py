@@ -41,6 +41,24 @@ def climbStairs(n: int) -> int:
         
     return function(n)
 
+def climbStairs1(n: int):
+    #Problem #70 Climbing Stairs - Easy
+    
+    if n == 1:
+        return 1
+    elif n == 2:
+        return 2
+    
+    nMinus2 = 1
+    nMinus1 = 2
+    current = 0
+    for i in range(2, n):
+        current = nMinus2 + nMinus1
+        nMinus2 = nMinus1
+        nMinus1 = current
+    
+    return current
+    
 def coinChange(coins: list[int], amount: int) -> int:
     #Problem #322 Coin Exchange - Medium - Solution Concept by YouTube Channel Greg Hogg - Understanding the Solution
     
@@ -70,7 +88,6 @@ def coinChange(coins: list[int], amount: int) -> int:
     return -1
  
 if __name__ == "__main__":
-    coins = [1, 2, 5]
-    amount = 11 
+    n = 3
     
-    print(coinChange(coins, amount))
+    print(climbStairs1(4))
