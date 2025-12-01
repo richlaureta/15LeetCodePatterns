@@ -764,7 +764,7 @@ int main(int argc, const char * argv[]) {
 //    cout << fib2(9) << endl;
     
     //Problem #70 Climbing Stairs - Easy
-    cout << climbStairs(5) << endl;
+    cout << climbStairs1(5) << endl;
     //TESTING VsCode with C++ in WINDOWS
 //    string s = "magaran";
 //    string t = "anagram";

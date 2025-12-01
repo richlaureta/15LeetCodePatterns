@@ -184,3 +184,4 @@ int fib2(int n);
 int functionNumber(int n, unordered_map<int, int> &sequenceMap);
 int climbStairs(int n);
 int functionNumber1(int number, unordered_map<int, int> &waysMap);
+int climbStairs1(int n);

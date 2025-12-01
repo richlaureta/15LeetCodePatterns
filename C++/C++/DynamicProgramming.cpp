@@ -79,3 +79,23 @@ int climbStairs(int n)
     
     return functionNumber1(n, waysMap);
 }
+
+int climbStairs1(int n)
+{
+    //Problem #70 Climb Stairs - Easy
+    
+    if(n == 1) return 1;
+    else if (n == 2) return 2;
+        
+    int nMinus2 = 1;
+    int nMinus1 = 2;
+    int current = 0;
+    for(int i = 2; i < n; i++)
+    {
+        current = nMinus2 + nMinus1;
+        nMinus2 = nMinus1;
+        nMinus1 = current;
+    }
+    
+    return current;
+}
