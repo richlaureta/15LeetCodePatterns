@@ -61,6 +61,7 @@ def climbStairs1(n: int):
     
 def coinChange(coins: list[int], amount: int) -> int:
     #Problem #322 Coin Exchange - Medium - Solution Concept by YouTube Channel Greg Hogg - Understanding the Solution
+    #Top Down Dynamic Programming (Memoization)
     
     coinsDictionary = {0: 0}
     coins.sort()
@@ -87,7 +88,11 @@ def coinChange(coins: list[int], amount: int) -> int:
     
     return -1
  
+def coinChange1(coins: list[int], amount: int) -> int:
+    pass
+ 
 if __name__ == "__main__":
-    n = 3
+    coins = [1, 2, 5]
+    amount = 11
     
-    print(climbStairs1(4))
+    print(coinChange(coins, amount))

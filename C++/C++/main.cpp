@@ -764,7 +764,13 @@ int main(int argc, const char * argv[]) {
 //    cout << fib2(9) << endl;
     
     //Problem #70 Climbing Stairs - Easy
-    cout << climbStairs1(5) << endl;
+    
+//    cout << climbStairs1(5) << endl;
+    //Problem #322 Coin Change - Medium - Solution Concept by YouTube Channel - Greg Hogg
+    vector<int> coins = {2};
+    int amount = 3;
+    cout << coinChange(coins, amount) << endl;
+    
     //TESTING VsCode with C++ in WINDOWS
 //    string s = "magaran";
 //    string t = "anagram";

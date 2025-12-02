@@ -99,3 +99,39 @@ int climbStairs1(int n)
     
     return current;
 }
+
+int minimumCoins(vector<int> &coins, unordered_map<int, int> &coinsMap, int numberAmount)
+{
+    //Problem #322 Coin Change - Medium - Solution Concept by YouTube Channel - Greg Hogg
+        
+    if(coinsMap.find(numberAmount) != coinsMap.end()) return coinsMap[numberAmount];
+    
+    int minimum = 10000;
+    for(int i = 0; i < coins.size(); i++)
+    {
+        int difference = numberAmount - coins[i];
+        
+        if(difference < 0) break;
+        
+        minimum = min(minimum, 1 + minimumCoins(coins, coinsMap, difference));
+    }
+    
+    coinsMap[numberAmount] = minimum;
+    return minimum;
+}
+
+int coinChange(vector<int> &coins, int amount)
+{
+    //Problem #322 Coin Change - Medium - Solution Concept by YouTube Channel - Greg Hogg
+    //Top Down Dynamic Programming Approach - Memoization
+    
+    unordered_map<int, int> coinsMap{{0, 0}};
+    
+    sort(coins.begin(), coins.end());
+    
+    int answer = minimumCoins(coins, coinsMap, amount);
+    
+    if(answer != 10000) return answer;
+    
+    return -1;
+}
