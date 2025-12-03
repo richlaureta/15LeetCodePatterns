@@ -135,3 +135,38 @@ int coinChange(vector<int> &coins, int amount)
     
     return -1;
 }
+
+int coinChange1(vector<int> &coins, int amount)
+{
+    //Problem #322 Coin Change - Medium - Solution Concept by YouTube Channel - Greg Hogg
+    //Bottom Up Dynamic Programming Approach - Memoization
+    
+    sort(coins.begin(), coins.end());
+    vector<int> coinIndex(amount + 1);
+    
+    for(int i = 1; i < coinIndex.size(); i++)
+    {
+        int minimum = 100000;
+        
+        for(int j = 0; j < coins.size(); j++)
+        {
+            int difference = i - coins[j];
+            
+            if(difference < 0)
+            {
+                break;
+            }
+            
+            minimum = min(minimum , coinIndex[difference] + 1);
+        }
+        
+        coinIndex[i] = minimum;
+    }
+    
+    if(coinIndex[amount] != 100000)
+    {
+        return coinIndex[amount];
+    }
+    
+    return -1;
+}

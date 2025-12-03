@@ -93,7 +93,7 @@ def coinChange1(coins: list[int], amount: int) -> int:
     #Bottom Up Dynamic Programming (Memoization)
     
     coins.sort()
-    indices = [0] * amount + 1
+    indices = [0] * (amount + 1)
     
     for i in range(1, amount + 1):
         minimum = float('inf')
@@ -117,4 +117,4 @@ if __name__ == "__main__":
     coins = [1, 2, 5]
     amount = 11
     
-    print(coinChange(coins, amount))
+    print(coinChange1(coins, amount))

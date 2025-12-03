@@ -767,9 +767,9 @@ int main(int argc, const char * argv[]) {
     
 //    cout << climbStairs1(5) << endl;
     //Problem #322 Coin Change - Medium - Solution Concept by YouTube Channel - Greg Hogg
-    vector<int> coins = {2};
-    int amount = 3;
-    cout << coinChange(coins, amount) << endl;
+    vector<int> coins = {1, 2, 5};
+    int amount = 11;
+    cout << coinChange1(coins, amount) << endl;
     
     //TESTING VsCode with C++ in WINDOWS
 //    string s = "magaran";
