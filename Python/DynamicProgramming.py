@@ -89,7 +89,29 @@ def coinChange(coins: list[int], amount: int) -> int:
     return -1
  
 def coinChange1(coins: list[int], amount: int) -> int:
-    pass
+    #Problem #322 Coin Exchange - Medium - Solution Concept by YouTube Channel Greg Hogg - Understanding the Solution
+    #Bottom Up Dynamic Programming (Memoization)
+    
+    coins.sort()
+    indices = [0] * amount + 1
+    
+    for i in range(1, amount + 1):
+        minimum = float('inf')
+        
+        for coin in coins:
+            difference = i - coin
+            
+            if difference < 0:
+                break
+            
+            minimum = min(minimum, indices[difference] + 1)
+        
+        indices[i] = minimum
+    
+    if indices[amount] < float('inf'):
+        return indices[amount]
+    else:
+        return -1
  
 if __name__ == "__main__":
     coins = [1, 2, 5]
