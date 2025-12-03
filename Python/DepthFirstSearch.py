@@ -120,7 +120,7 @@ def pathSum(root: TreeNode, targetSum: int)-> list[list[int]]:
      return returnPathList
 
 def canFinish(numCourses: int, prerequisites: list[list[int]]) -> bool:
-     #Problem #207 Course Schedule - Solution Concept by YouTube Channel Deepti Talesra - Understanding the Solution
+     #Problem #207 Course Schedule - Nedium - Solution Concept by YouTube Channel Deepti Talesra - Understanding the Solution
      
         mapList = defaultdict(list)
               
