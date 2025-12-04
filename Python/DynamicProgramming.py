@@ -114,32 +114,24 @@ def coinChange1(coins: list[int], amount: int) -> int:
         return -1
 
 def lengthOfLIS(nums: list[int]) -> int:
-    #Problem #300 Longest Increasing Subsequence - Medium
+    #Problem #300 Longest Increasing Subsequence - Medium - Solution Concept by YouTube Channel Depti Talesra - Understanding the Solution
     
-    greaterList: list[list[int]] = []
-    for i in range(0, len(nums)):
-        greaterList.append([]) 
+    increasingList: list[int] = [nums[0]]
+    maxCount = 1
+    print(increasingList[-1])
+    for number in nums[1:]:
+        if number > increasingList[-1]:
+            increasingList.append(number)
+            maxCount += 1
+        else:
+            index = 0
+            while index < len(increasingList) and increasingList[index] < number:
+                index += 1
+                
+            increasingList[index] = number
     
-    for index0 in range(0, len(nums)):
-        for index1 in range(index0 + 1, len(nums)):
-            if nums[index0] < nums[index1]:
-                greaterList[index0].append(index1)
-   
-    maxCount = 0
-    
-    for i in range(0, len(greaterList)):
-        for j in range(0, len(greaterList[i])):
-            count = 1
-            while True:
-                k = i
-                l = j
-                if greaterList[greaterList[k][l]] == []:
-                    break
-                count += 1
-            if count > maxCount:
-                maxCount = count
-    return maxCount
-            
+    return maxCount 
+        
 if __name__ == "__main__":
     nums = [10, 9, 2, 5, 3, 7, 101, 18]
     
