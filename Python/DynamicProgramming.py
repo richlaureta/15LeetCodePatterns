@@ -112,9 +112,35 @@ def coinChange1(coins: list[int], amount: int) -> int:
         return indices[amount]
     else:
         return -1
- 
-if __name__ == "__main__":
-    coins = [1, 2, 5]
-    amount = 11
+
+def lengthOfLIS(nums: list[int]) -> int:
+    #Problem #300 Longest Increasing Subsequence - Medium
     
-    print(coinChange1(coins, amount))
+    greaterList: list[list[int]] = []
+    for i in range(0, len(nums)):
+        greaterList.append([]) 
+    
+    for index0 in range(0, len(nums)):
+        for index1 in range(index0 + 1, len(nums)):
+            if nums[index0] < nums[index1]:
+                greaterList[index0].append(index1)
+   
+    maxCount = 0
+    
+    for i in range(0, len(greaterList)):
+        for j in range(0, len(greaterList[i])):
+            count = 1
+            while True:
+                k = i
+                l = j
+                if greaterList[greaterList[k][l]] == []:
+                    break
+                count += 1
+            if count > maxCount:
+                maxCount = count
+    return maxCount
+            
+if __name__ == "__main__":
+    nums = [10, 9, 2, 5, 3, 7, 101, 18]
+    
+    print(lengthOfLIS(nums))
