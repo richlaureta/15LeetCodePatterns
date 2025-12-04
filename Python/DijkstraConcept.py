@@ -1,7 +1,7 @@
 import heapq
 from collections import defaultdict
 def networkDelayTime(times: list[list[int]], n: int, k: int) -> int:
-    #Problem #743 Network Delay Time
+    #Problem #743 Network Delay Time - Medium 
 
     adjacentVertex = defaultdict(list)
 
