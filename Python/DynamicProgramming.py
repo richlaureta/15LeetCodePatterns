@@ -118,18 +118,16 @@ def lengthOfLIS(nums: list[int]) -> int:
     
     increasingList: list[int] = [nums[0]]
     maxCount = 1
-    print(increasingList[-1])
+   
     for number in nums[1:]:
         if number > increasingList[-1]:
             increasingList.append(number)
             maxCount += 1
         else:
-            index = 0
-            while index < len(increasingList) and increasingList[index] < number:
-                index += 1
-                
-            increasingList[index] = number
-    
+            for index in range(0, len(increasingList)):
+                if increasingList[index] >= number:
+                    increasingList[index] = number
+                    break 
     return maxCount 
         
 if __name__ == "__main__":
