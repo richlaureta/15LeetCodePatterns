@@ -170,3 +170,33 @@ int coinChange1(vector<int> &coins, int amount)
     
     return -1;
 }
+
+int lengthOfLIS(vector<int> &nums)
+{
+    //Problem #300 Longest Increasing Subsequence - Medium - Solution Concept by YouTube Channel Deepti Talesra - Understanding the Solution
+    
+    vector<int> increasingList = {nums[0]};
+    int maxCount = 1;
+    
+    for(int i = 1; i < nums.size(); i++)
+    {
+        if(nums[i] > increasingList.back())
+        {
+            increasingList.push_back(nums[i]);
+            maxCount++;
+        }
+        else
+        {
+            for(int j = 0; j < increasingList.size(); j++)
+            {
+                if(increasingList[j] >= nums[i])
+                {
+                    increasingList[j] = nums[i];
+                    break;
+                }
+            }
+        }
+    }
+    
+    return maxCount;
+}
