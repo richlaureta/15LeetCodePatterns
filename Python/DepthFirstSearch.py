@@ -151,7 +151,7 @@ def canFinish(numCourses: int, prerequisites: list[list[int]]) -> bool:
         return True
             
 def findOrder(numCourses: int, prerequisites: list[list[int]]) -> list[int]:
-     #Problem # 210 Course Schedule II - Solution Concept by NeetCode - Understanding the Solution
+     #Problem # 210 Course Schedule II - Medium - Solution Concept by NeetCode - Understanding the Solution
      
      coursePrerequisiteDictionary = defaultdict(list)
      topologyCourseList = []
