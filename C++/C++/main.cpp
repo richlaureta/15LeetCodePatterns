@@ -775,7 +775,7 @@ int main(int argc, const char * argv[]) {
     
     vector<int> nums = {10, 9, 2, 5, 3, 7, 101, 18};
     
-    cout << lengthOfLIS(nums) << endl;
+    cout << lengthOfLIS1(nums) << endl;
     
     //TESTING VsCode with C++ in WINDOWS
 //    string s = "magaran";

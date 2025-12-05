@@ -136,7 +136,7 @@ def lengthOfLIS1(nums: list) -> int:
     increasingList = [nums[0]]
     maxCount = 1
     
-    for number in nums:
+    for number in nums[1:]:
         if increasingList[-1] < number:
             increasingList.append(number)
             maxCount += 1

@@ -200,3 +200,43 @@ int lengthOfLIS(vector<int> &nums)
     
     return maxCount;
 }
+
+int lengthOfLIS1(vector<int> &nums)
+{
+    //Problem #300 Longest Increasing Subsequence - Medium - Solution Concept by YouTube Channel Deepti Talesra - Understanding the Solution
+    
+    vector<int> increasingList = {nums[0]};
+    int maxCount = 1;
+    
+    for(int i = 1; i < nums.size(); i++)
+    {
+        if(nums[i] > increasingList.back())
+        {
+            increasingList.push_back(nums[i]);
+            maxCount++;
+        }
+        else
+        {
+            int leftPointer = 0;
+            int rightPointer = (int) increasingList.size() - 1;
+            
+            while(leftPointer < rightPointer)
+            {
+                int midPointer = floor((leftPointer + rightPointer)/2);
+                
+                if(increasingList[midPointer] < nums[i])
+                {
+                    leftPointer = midPointer + 1;
+                }
+                else
+                {
+                    rightPointer = midPointer;
+                }
+            }
+            
+            increasingList[leftPointer] = nums[i];
+        }
+    }
+    
+    return maxCount;
+}
