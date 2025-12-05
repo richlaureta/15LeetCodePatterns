@@ -129,8 +129,34 @@ def lengthOfLIS(nums: list[int]) -> int:
                     increasingList[index] = number
                     break 
     return maxCount 
+
+def lengthOfLIS1(nums: list) -> int:
+    #Problem #300 Longest Increasing Subsequence - Medium - Solution Concept by YouTube Channel Depti Talesra - Understanding the Solution
+    
+    increasingList = [nums[0]]
+    maxCount = 1
+    
+    for number in nums:
+        if increasingList[-1] < number:
+            increasingList.append(number)
+            maxCount += 1
+        else:
+            leftPointer = 0
+            rightPointer = len(increasingList) - 1
+            
+            while leftPointer < rightPointer:
+                midPointer = (leftPointer + rightPointer)//2
+                
+                if increasingList[midPointer] < number:
+                    leftPointer = midPointer + 1
+                else:
+                    rightPointer = midPointer
+            
+            increasingList[leftPointer] = number
         
+    return maxCount 
+    
 if __name__ == "__main__":
     nums = [10, 9, 2, 5, 3, 7, 101, 18]
     
-    print(lengthOfLIS(nums))
+    print(lengthOfLIS1(nums))
