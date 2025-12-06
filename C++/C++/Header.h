@@ -24,6 +24,7 @@
 #include <tuple>
 #include <climits>
 #include <cmath>
+#include <numeric>
 
 using namespace std;
 
@@ -190,3 +191,4 @@ int minimumCoins(vector<int> &coins, unordered_map<int, int> &coinsMap, int numb
 int coinChange1(vector<int> &coins, int amount);
 int lengthOfLIS(vector<int> &nums);
 int lengthOfLIS1(vector<int> &nums);
+bool canPartition(vector<int> &nums);

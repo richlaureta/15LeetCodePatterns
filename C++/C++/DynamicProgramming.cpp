@@ -240,3 +240,37 @@ int lengthOfLIS1(vector<int> &nums)
     
     return maxCount;
 }
+
+bool canPartition(vector<int> &nums)
+{
+    //Problem #416 Partition Equal Subset Sum - Medium - Solution Concept by NeetCode - Understanding the Solution
+    
+    int sum = accumulate(nums.begin(), nums.end(), 0);
+    if((sum % 2) == 1) return false;
+    
+    set<int> totalSet;
+    totalSet.insert(0);
+    int targetNumber = floor(sum/2);
+    
+    for(int i = 0; i < nums.size(); i++)
+    {
+        set<int> anotherSet;
+        for(int element: totalSet)
+        {
+            int newSum = element + nums[i];
+            
+            if(newSum == targetNumber) return true;
+            
+            if(newSum < targetNumber) anotherSet.insert(newSum);
+        }
+        
+        for(int item: anotherSet)
+        {
+            totalSet.insert(item);
+        }
+    }
+    
+    if(totalSet.find(targetNumber) != totalSet.end()) return true;
+    
+    return false;
+}
