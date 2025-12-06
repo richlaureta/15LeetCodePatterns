@@ -156,38 +156,30 @@ def lengthOfLIS1(nums: list) -> int:
         
     return maxCount 
 
-def canPartion(nums: list[int]) -> bool:
+def canPartition(nums: list[int]) -> bool:
     #Problem #416 Partition Equal Subset Sum - Medium - Solution Concept by NeetCode - Understanding the Solution
-    if len(nums) == 1:
-        return True
     
-    nums.sort()
-    sumLeft = nums[0]
-    sumRight = nums[len(nums) - 1]
-    leftPointer = 0
-    rightPointer = len(nums) - 1
+    if sum(nums) % 2:
+        return False
     
-    while leftPointer < rightPointer and (rightPointer - leftPointer) != 1:
-        if sumLeft < sumRight:
-            leftPointer += 1
-            sumLeft += nums[leftPointer]
-        elif sumLeft > sumRight:
-            rightPointer -= 1
-            sumRight += nums[rightPointer]
-        else:
-            leftPointer += 1
-            rightPointer -= 1
-            if leftPointer == rightPointer:
-                return False
-            sumLeft += nums[leftPointer]
-            sumRight += nums[rightPointer]
-
-    if sumLeft == sumRight:
+    numberSet = set()
+    numberSet.add(0)
+    targetNumber = sum(nums) // 2
+    
+    for i in range(len(nums) - 1, -1, -1):
+        otherSet = set()
+        
+        for total in numberSet:
+            otherSet.add(total + nums[i])
+            otherSet.add(total)
+        numberSet = otherSet
+    
+    if targetNumber in numberSet:
         return True
     
     return False
-    
+        
 if __name__ == "__main__":
-    nums = [2, 2, 1, 1]
+    nums = [1, 5, 11, 5]
     
-    print(canPartion(nums))
+    print(canPartition(nums))
