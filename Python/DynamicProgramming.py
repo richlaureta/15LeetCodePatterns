@@ -184,8 +184,32 @@ def canPartition(nums: list[int]) -> bool:
         return True
     
     return False
-        
-if __name__ == "__main__":
-    nums = [1, 5, 11, 5]
+
+def maxCoins(nums: list[int]) -> int:
+    #Problem #312 Burst Balloons - Hard - Solution Concept by NeetCode - Understanding the Solution
     
-    print(canPartition(nums))
+    nums = [1] + nums + [1]
+    numberDictionary = {}
+    
+    def depthFirstSearchCoins(leftPointer, rightPointer):
+        if leftPointer > rightPointer:
+            return 0
+
+        if (leftPointer, rightPointer) in numberDictionary:
+            return numberDictionary[(leftPointer, rightPointer)]
+        
+        numberDictionary[(leftPointer, rightPointer)] = 0
+        
+        for index in range(leftPointer, rightPointer + 1):
+            totalCoins = nums[leftPointer - 1] * nums[index] * nums[rightPointer + 1]
+            totalCoins += depthFirstSearchCoins(leftPointer, index - 1) + depthFirstSearchCoins(index + 1, rightPointer)
+            numberDictionary[(leftPointer, rightPointer)] = max(numberDictionary[(leftPointer, rightPointer)], totalCoins)
+        
+        return numberDictionary[((leftPointer, rightPointer))]
+        
+    return depthFirstSearchCoins(1, len(nums) - 2)
+    
+if __name__ == "__main__":
+    nums = [3, 1, 5, 8]
+    
+    print(maxCoins(nums))
