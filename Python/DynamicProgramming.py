@@ -157,7 +157,7 @@ def lengthOfLIS1(nums: list) -> int:
     return maxCount 
 
 def canPartition(nums: list[int]) -> bool:
-    #Problem #416 Partition Equal Subset Sum - Medium - Solution Concept by NeetCode - Understanding the Solution
+    #Problem #416 Partition Equal Subset Sum - Medium - Solution Concept by YouTube Cahnnel NeetCode - Understanding the Solution
     
     if sum(nums) % 2:
         return False
@@ -186,7 +186,7 @@ def canPartition(nums: list[int]) -> bool:
     return False
 
 def maxCoins(nums: list[int]) -> int:
-    #Problem #312 Burst Balloons - Hard - Solution Concept by NeetCode - Understanding the Solution
+    #Problem #312 Burst Balloons - Hard - Solution Concept by YouTube Channel NeetCode - Understanding the Solution
     
     nums = [1] + nums + [1]
     numberDictionary = {}
@@ -205,7 +205,7 @@ def maxCoins(nums: list[int]) -> int:
             totalCoins += depthFirstSearchCoins(leftPointer, index - 1) + depthFirstSearchCoins(index + 1, rightPointer)
             numberDictionary[(leftPointer, rightPointer)] = max(numberDictionary[(leftPointer, rightPointer)], totalCoins)
         
-        return numberDictionary[((leftPointer, rightPointer))]
+        return numberDictionary[(leftPointer, rightPointer)]
         
     return depthFirstSearchCoins(1, len(nums) - 2)
     

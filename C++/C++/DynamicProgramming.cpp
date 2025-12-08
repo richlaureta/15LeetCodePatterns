@@ -243,7 +243,7 @@ int lengthOfLIS1(vector<int> &nums)
 
 bool canPartition(vector<int> &nums)
 {
-    //Problem #416 Partition Equal Subset Sum - Medium - Solution Concept by NeetCode - Understanding the Solution
+    //Problem #416 Partition Equal Subset Sum - Medium - Solution Concept by YouTube Channel NeetCode - Understanding the Solution
     
     int sum = accumulate(nums.begin(), nums.end(), 0);
     if((sum % 2) == 1) return false;
@@ -273,4 +273,43 @@ bool canPartition(vector<int> &nums)
     if(totalSet.find(targetNumber) != totalSet.end()) return true;
     
     return false;
+}
+
+int depthFirstSearchCoins(int leftPointer, int rightPointer, vector<int> &nums, unordered_map<pair<int,int>, int, PairHash> &coinMap)
+{
+    //Problem #312 Burst Balloons - Hard - Solution Concept by YouTube Channel NeetCode - Understanding the Solution
+    
+    if(leftPointer > rightPointer)
+    {
+        return 0;
+    }
+    
+    if(coinMap.find(make_pair(leftPointer, rightPointer)) != coinMap.end())
+    {
+        return coinMap[make_pair(leftPointer, rightPointer)];
+    }
+    
+    coinMap[make_pair(leftPointer, rightPointer)] = 0;
+
+    for(int i = leftPointer; i < rightPointer + 1; i++)
+    {
+        int totalCoins = nums[leftPointer - 1] * nums[i] * nums[rightPointer + 1];
+        totalCoins += depthFirstSearchCoins(leftPointer, i - 1, nums, coinMap) + depthFirstSearchCoins(i + 1, rightPointer, nums, coinMap);
+    
+        coinMap[make_pair(leftPointer, rightPointer)] = max(coinMap[make_pair(leftPointer, rightPointer)], totalCoins);
+    }
+    
+    return coinMap[make_pair(leftPointer, rightPointer)];
+}
+
+int maxCoins(vector<int> &nums)
+{
+    //Problem #312 Burst Balloons - Hard - Solution Concept by YouTube Channel NeetCode - Understanding the Solution
+    
+    nums.insert(nums.begin(), 1);
+    nums.push_back(1);
+    
+    unordered_map<pair<int,int>, int, PairHash> coinMap;
+    
+    return depthFirstSearchCoins(1, ((int) nums.size()) - 2, nums, coinMap);
 }

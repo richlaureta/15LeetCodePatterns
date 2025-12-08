@@ -25,6 +25,7 @@
 #include <climits>
 #include <cmath>
 #include <numeric>
+#include <utility>
 
 using namespace std;
 
@@ -192,3 +193,17 @@ int coinChange1(vector<int> &coins, int amount);
 int lengthOfLIS(vector<int> &nums);
 int lengthOfLIS1(vector<int> &nums);
 bool canPartition(vector<int> &nums);
+
+struct PairHash {
+    template <class T1, class T2>
+    std::size_t operator () (const std::pair<T1, T2>& p) const {
+        auto h1 = std::hash<T1>{}(p.first);
+        auto h2 = std::hash<T2>{}(p.second);
+
+        return h1 ^ (h2 << 1);
+    }
+};
+
+int maxCoins(vector<int> &nums);
+int depthFirstSearchCoins(int leftPointer, int rightPointer, vector<int> &nums, unordered_map<pair<int,int>, int, PairHash> &coinMap);
+
