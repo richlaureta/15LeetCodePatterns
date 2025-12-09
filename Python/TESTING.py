@@ -1,3 +1,4 @@
+import re
 def forLoop(count, endCount, word) -> int:
     if count == endCount:
         return
@@ -48,21 +49,20 @@ def subsets(nums: list[int]) -> list[list[int]]:
     return solutionList
 
 def isPalindrome(s: str) -> bool:
-    #Problem #125 Valid Palindrome - Easy 
+    #Problem #125 Valid Palindrome - Easy
     
-    newString = s.replace(" ", "").replace(",", "").replace(":", "").lower()
+    newString = re.sub(r'[^a-zA-Z0-9]', '', s).lower()
     
     leftPointer = 0
     rightPointer = len(newString) - 1
-    
-    while leftPointer < rightPointer:
         
+    while leftPointer < rightPointer:
         if newString[leftPointer] != newString[rightPointer]:
             return False
         leftPointer += 1
         rightPointer -= 1
-    
-    return True
+        
+        return True
 if __name__ == "__main__":
     s = "A man, a plan, a canal: Panama"
     print(isPalindrome(s))
