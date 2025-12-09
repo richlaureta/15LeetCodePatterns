@@ -208,8 +208,22 @@ def maxCoins(nums: list[int]) -> int:
         return numberDictionary[(leftPointer, rightPointer)]
         
     return depthFirstSearchCoins(1, len(nums) - 2)
+
+def maxCoins1(nums: list[int]) -> int:
+    #Problem #312 Burst Balloons - Hard - Solution Concept by YouTube Channel Happy Coding - Understanding the Solution
+    
+    nums = [1] + nums + [1]
+    numSize = len(nums)
+    coinDictionary = [[0] * numSize for number in range(numSize)]
+    
+    for i in range(numSize - 2, 0, -1):
+        for j in range(i, numSize - 1):
+            for k in range(i, j+ 1):
+                coinDictionary[i][j] = max(coinDictionary[i][j], nums[k]*nums[i-1] * nums[j+1] + coinDictionary[i][k - 1] + coinDictionary[k + 1][j])
+    
+    return coinDictionary[1][numSize - 2]
     
 if __name__ == "__main__":
     nums = [3, 1, 5, 8]
     
-    print(maxCoins(nums))
+    print(maxCoins1(nums))
