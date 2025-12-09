@@ -26,6 +26,7 @@
 #include <cmath>
 #include <numeric>
 #include <utility>
+#include <cctype>
 
 using namespace std;
 
@@ -208,3 +209,4 @@ int maxCoins(vector<int> &nums);
 int depthFirstSearchCoins(int leftPointer, int rightPointer, vector<int> &nums, unordered_map<pair<int,int>, int, PairHash> &coinMap);
 
 int maxCoins1(vector<int> &nums);
+bool isPalindrome(string s);

@@ -778,10 +778,17 @@ int main(int argc, const char * argv[]) {
     //    cout << canPartition(nums) << endl;
     
     //Problem #312 Burst Balloons - Solution Concept by YouTube Channel NeetCode - Understanding the Solution
-    vector<int> nums = {3, 1, 5, 8};
+//    vector<int> nums = {3, 1, 5, 8};
+//    
+//    cout << maxCoins1(nums) << endl;
     
-    cout << maxCoins1(nums) << endl;
+    //Problem #125
+    string s = "A man, a plan, a canal: Panama";
+    cout << isPalindrome(s) << endl;
     
+    string a = "h";
+    
+    if(isdigit(a[0])) cout << "Digit" << endl;
     //TESTING VsCode with C++ in WINDOWS
 //    unordered_map<vector<int>, int> testing;
 //    vector<int> key = {1, 2};

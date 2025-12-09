@@ -48,13 +48,14 @@ def subsets(nums: list[int]) -> list[list[int]]:
     return solutionList
 
 def isPalindrome(s: str) -> bool:
+    #Problem #125 Valid Palindrome - Easy 
+    
     newString = s.replace(" ", "").replace(",", "").replace(":", "").lower()
     
     leftPointer = 0
     rightPointer = len(newString) - 1
     
     while leftPointer < rightPointer:
-        #Problem #125 Valid Palindrome - Easy 
         
         if newString[leftPointer] != newString[rightPointer]:
             return False
