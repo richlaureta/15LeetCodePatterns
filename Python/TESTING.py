@@ -46,8 +46,23 @@ def subsets(nums: list[int]) -> list[list[int]]:
     depthFirstSearchSubsets(0)
     
     return solutionList
+
+def isPalindrome(s: str) -> bool:
+    newString = s.replace(" ", "").replace(",", "").replace(":", "").lower()
     
+    leftPointer = 0
+    rightPointer = len(newString) - 1
+    
+    while leftPointer < rightPointer:
+        #Problem #125 Valid Palindrome - Easy 
+        
+        if newString[leftPointer] != newString[rightPointer]:
+            return False
+        leftPointer += 1
+        rightPointer -= 1
+    
+    return True
 if __name__ == "__main__":
-    nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-    hello = "hello"
-    print(forLoop(0, 5, hello))
+    s = "A man, a plan, a canal: Panama"
+    print(isPalindrome(s))
+    
