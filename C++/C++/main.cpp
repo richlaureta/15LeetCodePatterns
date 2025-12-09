@@ -780,7 +780,7 @@ int main(int argc, const char * argv[]) {
     //Problem #312 Burst Balloons - Solution Concept by YouTube Channel NeetCode - Understanding the Solution
     vector<int> nums = {3, 1, 5, 8};
     
-    cout << maxCoins(nums) << endl;
+    cout << maxCoins1(nums) << endl;
     
     //TESTING VsCode with C++ in WINDOWS
 //    unordered_map<vector<int>, int> testing;

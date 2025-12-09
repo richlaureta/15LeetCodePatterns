@@ -313,3 +313,26 @@ int maxCoins(vector<int> &nums)
     
     return depthFirstSearchCoins(1, ((int) nums.size()) - 2, nums, coinMap);
 }
+
+int maxCoins1(vector<int> &nums)
+{
+    //Problem #312 Burst Balloons - Hard - Solution Concept by YouTube Channel Happy Coding - Understanding the Solution
+    
+    nums.insert(nums.begin(), 1);
+    nums.push_back(1);
+    
+    vector<vector<int>> coinStorage((int)nums.size(), vector<int>(nums.size()));
+    
+    for(int i = (int) nums.size() - 2; i > 0; i--)
+    {
+        for(int j = i; j < (int)nums.size() - 1; j++)
+        {
+            for(int k = i; k < j + 1; k++)
+            {
+                coinStorage[i][j] = max(coinStorage[i][j], nums[k] * nums[i - 1] * nums[j + 1] + coinStorage[i][k-1] + coinStorage[k + 1][j]);
+            }
+        }
+    }
+    
+    return coinStorage[1][nums.size() - 2];
+}
