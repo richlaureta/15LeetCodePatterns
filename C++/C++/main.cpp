@@ -791,8 +791,13 @@ int main(int argc, const char * argv[]) {
 //    if(isdigit(a[0])) cout << "Digit" << endl;
     
     //TESTING
-    int n = 5;
-    cout << recursion1(n) << endl;
+//    int n = 5;
+//    cout << recursion1(n) << endl;
+    
+    string text1 = "cabde";
+    string text2 = "bdecabe";
+    
+    cout << longestCommonSubsequence(text1, text2) << endl;
     
     return EXIT_SUCCESS;
 }

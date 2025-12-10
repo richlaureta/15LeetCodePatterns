@@ -336,3 +336,27 @@ int maxCoins1(vector<int> &nums)
     
     return coinStorage[1][nums.size() - 2];
 }
+
+int longestCommonSubsequence(string text1, string text2)
+{
+    //Problem #1143 Longest Common Subsequence - Medium Solution Concept by YouTube Channel Deepti Talesra - Understanding the Solution
+    
+    vector<vector<int>> textMatrix(text2.size() + 1, vector<int>(text1.size() + 1));
+    
+    for(int i = 1; i < textMatrix.size(); i++)
+    {
+        for(int j = 1; j < textMatrix[i].size(); j++)
+        {
+            if(text2[i - 1] == text1[j - 1])
+            {
+                textMatrix[i][j] = textMatrix[i - 1][j - 1] + 1;
+            }
+            else
+            {
+                textMatrix[i][j] = max(textMatrix[i -1][j], textMatrix[i][j - 1]);
+            }
+        }
+    }
+    
+    return textMatrix[textMatrix.size() - 1][textMatrix[0].size() - 1];
+}

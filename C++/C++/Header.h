@@ -212,3 +212,5 @@ int maxCoins1(vector<int> &nums);
 bool isPalindrome(string s);
 int recursion0(int n);
 int recursion1(int n);
+
+int longestCommonSubsequence(string text1, string text2);
