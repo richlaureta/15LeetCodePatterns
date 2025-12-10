@@ -783,18 +783,16 @@ int main(int argc, const char * argv[]) {
 //    cout << maxCoins1(nums) << endl;
     
     //Problem #125
-    string s = "A man, a plan, a canal: Panama";
-    cout << isPalindrome(s) << endl;
-    
-    string a = "h";
-    
-    if(isdigit(a[0])) cout << "Digit" << endl;
-    //TESTING VsCode with C++ in WINDOWS
-//    unordered_map<vector<int>, int> testing;
-//    vector<int> key = {1, 2};
-//    testing[{1, 2}] = 1;
+//    string s = "A man, a plan, a canal: Panama";
+//    cout << isPalindrome(s) << endl;
 //    
-//    cout << testing[];
+//    string a = "h";
+//    
+//    if(isdigit(a[0])) cout << "Digit" << endl;
+    
+    //TESTING
+    int n = 7;
+    cout << recursion0(n) << endl;
     
     return EXIT_SUCCESS;
 }

@@ -23,3 +23,10 @@ int fibonacciFormula(int n)
     
     return round((pow(((1 + (pow(5, 0.5)))/2), n) - pow(((1 - (pow(5, 0.5)))/2), n))/(pow(5, 0.5)));
 }
+
+int recursion0(int n)
+{
+    if(n == 1) return 3;
+    
+    return recursion0(n - 1) + 2;
+}
