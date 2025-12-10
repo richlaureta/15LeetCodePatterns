@@ -73,5 +73,13 @@ def fib1(n: int) -> int:
             secondNumber = currentNumber
         return currentNumber
 
+def recurse0(n: int) -> int:
+    if n == 1:
+        return 3
+    
+    return recurse0(n - 1) + 2
+
 if __name__ == "__main__":
-    print(fib(6))
+    n = 3
+    
+    print(recurse0(n))
