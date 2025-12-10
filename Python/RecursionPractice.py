@@ -79,7 +79,13 @@ def recurse0(n: int) -> int:
     
     return recurse0(n - 1) + 2
 
-if __name__ == "__main__":
-    n = 3
+def recurse1(n: int):
+    if n == 1:
+        return 3
     
-    print(recurse0(n))
+    return recurse1(n - 1) * 2
+
+if __name__ == "__main__":
+    n = 5
+    
+    print(recurse1(n))

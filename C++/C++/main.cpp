@@ -791,8 +791,8 @@ int main(int argc, const char * argv[]) {
 //    if(isdigit(a[0])) cout << "Digit" << endl;
     
     //TESTING
-    int n = 7;
-    cout << recursion0(n) << endl;
+    int n = 5;
+    cout << recursion1(n) << endl;
     
     return EXIT_SUCCESS;
 }

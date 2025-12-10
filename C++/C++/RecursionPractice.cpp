@@ -30,3 +30,10 @@ int recursion0(int n)
     
     return recursion0(n - 1) + 2;
 }
+
+int recursion1(int n)
+{
+    if(n == 1) return 3;
+    
+    return recursion1(n - 1) * 2;
+}

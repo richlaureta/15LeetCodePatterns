@@ -211,3 +211,4 @@ int depthFirstSearchCoins(int leftPointer, int rightPointer, vector<int> &nums, 
 int maxCoins1(vector<int> &nums);
 bool isPalindrome(string s);
 int recursion0(int n);
+int recursion1(int n);
