@@ -222,8 +222,22 @@ def maxCoins1(nums: list[int]) -> int:
                 coinDictionary[i][j] = max(coinDictionary[i][j], nums[k]*nums[i-1] * nums[j+1] + coinDictionary[i][k - 1] + coinDictionary[k + 1][j])
     
     return coinDictionary[1][numSize - 2]
+
+def longestCommonSubsequence(text1: str, text2: str) -> int:
+    #Problem #1143 Longest Common Subsequence - Medium - Solution Concept by YouTube Channel Deepti Talesra - Understanding the Solution
     
+    textMatrix: list[list[int]] = [[0 for square in range(len(text1) + 1)] for square in range(len(text2) + 1)]
+    
+    for index0 in range(1, len(textMatrix)):
+        for index1 in range(1, len(textMatrix[index0])):
+            if text2[index0 - 1] == text1[index1 - 1]:
+                textMatrix[index0][index1] = textMatrix[index0 - 1][index1 - 1] + 1
+            else:
+                textMatrix[index0][index1] = max(textMatrix[index0 -1][index1], textMatrix[index0][index1 - 1])
+                
+    return textMatrix[len(textMatrix) - 1][len(textMatrix[0]) - 1]     
 if __name__ == "__main__":
-    nums = [3, 1, 5, 8]
+    text1 = "abc"
+    text2 = "def"
     
-    print(maxCoins1(nums))
+    print(longestCommonSubsequence(text1, text2))

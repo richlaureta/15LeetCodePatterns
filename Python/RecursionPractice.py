@@ -91,7 +91,6 @@ def recurse2(n: int) -> int:
     
     return (1/2) * recurse2(n - 1) 
 
-
 if __name__ == "__main__":
     n = 5
     
