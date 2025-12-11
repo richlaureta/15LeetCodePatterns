@@ -83,8 +83,8 @@ def hasCycle(head: linkedListNode) -> bool:
     return False
 
 def findDuplicate(nums: list[int]) -> int:
-    #Problem #287 Find the Duplicate Number
-    #Start at index 0 which is the valuePointer.
+    #Problem #287 Find the Duplicate Number - Medium
+    #Start at index 0 which is the valuePointer 
 
     slowPointer = nums[0]
     fastPointer = nums[0]
