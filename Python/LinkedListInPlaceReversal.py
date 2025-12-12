@@ -105,7 +105,7 @@ def reverseList(head: Optional[ListNode]) -> Optional [ListNode]:
     return currentNode
 
 def reverseBetween(head: Optional[ListNode], left: int, right: int) -> Optional[ListNode]:
-    #Problem #92 Reverse Linked List II
+    #Problem #92 Reverse Linked List II - Medium
 
     rememberLeftNode = None
     rememberReversedLeftNode = None
