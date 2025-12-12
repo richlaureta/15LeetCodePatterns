@@ -106,7 +106,7 @@ def findDuplicate(nums: list[int]) -> int:
     return pointer2
 
 def isHappy(n: int) -> bool:
-    #Problem #202 Happy Number
+    #Problem #202 Happy Number - Easy 
 
     modulos = n
     sum = 0

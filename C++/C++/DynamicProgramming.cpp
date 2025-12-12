@@ -360,3 +360,4 @@ int longestCommonSubsequence(string text1, string text2)
     
     return textMatrix[textMatrix.size() - 1][textMatrix[0].size() - 1];
 }
+
