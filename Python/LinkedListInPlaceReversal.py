@@ -145,7 +145,7 @@ def reverseBetween(head: Optional[ListNode], left: int, right: int) -> Optional[
         leftIndex += 1
 
 def swapPairs(head: Optional[ListNode]) -> Optional[ListNode]:
-    #Problem #24 Swap Nodes in Pairs
+    #Problem #24 Swap Nodes in Pairs - Medium
 
     if (head == None) or (head.next == None):
         return head
