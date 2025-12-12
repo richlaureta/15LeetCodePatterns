@@ -65,7 +65,7 @@ class LinkedList:
             currentNode = currentNode.next
 
 def hasCycle(head: ListNode) -> bool:
-    #Problem #141 Linked List Cycle
+    #Problem #141 Linked List Cycle - Easy
     
     if head is None:
         return False
