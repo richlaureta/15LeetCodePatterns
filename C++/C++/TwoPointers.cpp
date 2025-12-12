@@ -9,7 +9,7 @@
 
 vector<int> twoSum2(vector<int>& nums, int target)
 {
-    // Problem #167 Two Sum II - Input Array is Sorted
+    // Problem #167 Two Sum II - Input Array is Sorted - Medium
     
     int startIndex = 0;
     int endIndex = int(nums.size() - 1);
