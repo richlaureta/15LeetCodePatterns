@@ -32,20 +32,25 @@ def prefixSum(numbers: List[int]):
             numbers[i] += numbers[i - 1]
 
 class NumArray:
-    #Problem #303 Range Sum Query - Immutable
-
+    #Problem #303 Range Sum Query - Immutable - Easy
+    #Pattern: Prefix Sum
+    
     def __init__(self, nums: List[int]):
-        for i in range(1, len(nums)):
-            nums[i] += nums[i - 1]
-
-        self.prefixSumArray = nums
+        #The first thing to do is the sum all the preceeding numbers up to the index and make it equal to that index.
+        for index in range (1, len(nums)):
+            nums[index] += nums[index - 1]
+        
+        #Make the passed nums equal to the class variable scope
+        self.numberArray = nums
 
     def sumRange(self, left: int, right: int) -> int:
+        #If the left equals 0 just return the number on the index right
         if left == 0:
-            return self.prefixSumArray[right]
-        else:
-            return (self.prefixSumArray[right] - self.prefixSumArray[left - 1])
-
+            return self.numberArray[right]
+        
+        #Otherwise just return the index right minus index left - 1
+        return self.numberArray[right] - self.numberArray[left - 1]
+     
 def subArraySum(nums: list[int], k: int) ->int:
     #Problem #560 Subarray Sum Equals K
     
@@ -63,21 +68,9 @@ def subArraySum(nums: list[int], k: int) ->int:
 
     return result
 
-def main():
-    # nums: List[int] = [-2,0,3,-5,2,-1]
-
-    # prefixSum(nums)
-    
-    # print(nums)
-
-    # nums = [1, 1, 1, 0, 0]
-
-    # print(findMaxLength(nums))
-
-    nums = [0, 1, 0, 1, 0, 1]
-    k = 2
-
-    print(subArraySum(nums, k))
-
 if __name__ == "__main__":
-    sys.exit(main())
+    rangeSum = NumArray([-2, 0, 3, -5, 2, -1])
+    print(rangeSum.sumRange(0, 2))
+    print(rangeSum.sumRange(2, 5))
+    print(rangeSum.sumRange(0, 5))
+    
