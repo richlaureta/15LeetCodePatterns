@@ -24,7 +24,7 @@ def search(nums: list[int], target: int) -> int:
     return -1
 
 def findMin(nums: list[int]) -> int:
-    #Problem #153 Find minimum in Rotated Sorted Array
+    #Problem #153 Find minimum in Rotated Sorted Array - Medium
 
     leftIndex = 0
     rightIndex = len(nums) - 1
