@@ -44,7 +44,7 @@ def findMin(nums: list[int]) -> int:
     return nums[leftIndex]
 
 def searchMatrix(matrix: list[list[int]], target: int) -> bool:
-    #Problem # 240 Search a 2D Matrix II
+    #Problem # 240 Search a 2D Matrix II - Medium
     
     row = len(matrix) - 1
     column = 0 
