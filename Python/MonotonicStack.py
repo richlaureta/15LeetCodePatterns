@@ -25,7 +25,7 @@ def nextGreaterElement(nums1: list[int], nums2: list[int]) -> list[int]:
     return arrayQuery
 
 def dailyTemperatures(temperatures: list[int]) -> list[int]:
-    #Problem #739 Daily Temperatures
+    #Problem #739 Daily Temperatures - Medium 
     
     returnList = [0] * len(temperatures)
     decreasingStack = []
