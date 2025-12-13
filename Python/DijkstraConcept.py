@@ -59,10 +59,7 @@ def shortestPath(n: int, edges: list[list[int]], src: int) -> dict[int, int]:
 
 if __name__ == "__main__":
     n = 5
-    # edges = [[0,1,10], [0,2,3], [1,3,2], [2,1,4], [2,3,8], [2,4,2], [3,4,5]]
-    # edges = [[2,1,1], [2,3,1], [3,4,1]]
     edges = [[1, 2, 1]]
     src = 0
 
-    # print(shortestPath(n, edges, src))
     print(networkDelayTime(edges, 2, 2))
