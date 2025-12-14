@@ -36,7 +36,10 @@ class NumArray:
     #Pattern: Prefix Sum
     
     def __init__(self, nums: List[int]):
-        #The first thing to do is the sum all the preceeding numbers up to the index and make it equal to that index.
+        """
+        The first thing to do is to iterate through the nums then adding the previous index-value to the current
+        index-value and making the current index value to the sum of both those numbers.
+        """ 
         for index in range (1, len(nums)):
             nums[index] += nums[index - 1]
         
