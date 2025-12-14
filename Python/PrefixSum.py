@@ -38,7 +38,7 @@ class NumArray:
     def __init__(self, nums: List[int]):
         """
         The first thing to do is to iterate through the nums then adding the previous index-value to the current
-        index-value and making the current index value to the sum of both those numbers.
+        index-value and making the current index value equal to the sum of both those numbers.
         """ 
         for index in range (1, len(nums)):
             nums[index] += nums[index - 1]
