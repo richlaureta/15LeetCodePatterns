@@ -37,21 +37,22 @@ class NumArray:
     
     def __init__(self, nums: List[int]):
         """
-        The first thing to do is to iterate through the nums then adding the previous index-value to the current
-        index-value and making the current index value equal to the sum of both those numbers.
-        """ 
+        The first step is to iterate through the nums, whilst iterating, add the previous index-value to the 
+        current index-value, and let the current index value equal the sum of both those integers.
+        """
+        
         for index in range (1, len(nums)):
             nums[index] += nums[index - 1]
         
-        #Make the passed nums equal to the class variable scope
+        #Make the passed nums equal to the class variable scope.
         self.numberArray = nums
 
     def sumRange(self, left: int, right: int) -> int:
-        #If the left equals 0 just return the number on the index right
+        #If the left equals 0, just return the number at the index right.
         if left == 0:
             return self.numberArray[right]
         
-        #Otherwise just return the index right minus index left - 1
+        #Otherwise, just return the index right minus index left - 1.
         return self.numberArray[right] - self.numberArray[left - 1]
      
 def subArraySum(nums: list[int], k: int) ->int:
