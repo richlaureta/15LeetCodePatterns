@@ -790,14 +790,21 @@ int main(int argc, const char * argv[]) {
 //    
 //    if(isdigit(a[0])) cout << "Digit" << endl;
     
+    //Problem #303 Range Sum Query - Immutable - Easy
+    vector<int> nums = {-2, 0, 3, -5, 2, -1};
+    NumArray access(nums);
+    cout << access.sumRange(0, 2) << endl;
+    cout << access.sumRange(2, 5) << endl;
+    cout << access.sumRange(0, 5) << endl;
+    
     //TESTING
 //    int n = 5;
 //    cout << recursion1(n) << endl;
     
-    string text1 = "cabde";
-    string text2 = "bdecabe";
-    
-    cout << longestCommonSubsequence(text1, text2) << endl;
+//    string text1 = "cabde";
+//    string text2 = "bdecabe";
+//    
+//    cout << longestCommonSubsequence(text1, text2) << endl;
     
     return EXIT_SUCCESS;
 }

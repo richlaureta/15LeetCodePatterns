@@ -78,3 +78,32 @@ int subArraySum(vector<int> &nums, int k)
     }
     return result;
 }
+
+NumArray::NumArray(vector<int> &nums)
+{
+    //Problem #303 Range Sum Query - Easy
+    
+    /*
+     The first step is to iterate through the nums starting at index 1, whilst iterating,
+     add the previous index-value to the current index-value, and let the current index value
+     equal the sum of both those integers.
+     */
+    for(int i = 1; i < nums.size(); i++)
+    {
+        nums[i] += nums[i - 1];
+    }
+    
+    //Make the passed nums equal to the class variable scope.
+    prefixSumArray = nums;
+}
+
+int NumArray::sumRange(int leftPointer, int rightPointer)
+{
+    //Problem #303 Range Sum Query - Easy
+    
+    //If the left equals 0, just return the number at the index right.
+    if(leftPointer == 0) return prefixSumArray.at(rightPointer);
+    
+    //Otherwise, just return the index right minus index left - 1.
+    return prefixSumArray.at(rightPointer) - prefixSumArray.at(leftPointer - 1);
+}

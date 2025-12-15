@@ -40,7 +40,6 @@ class NumArray:
         The first step is to iterate through the nums, whilst iterating, add the previous index-value to the 
         current index-value, and let the current index value equal the sum of both those integers.
         """
-        
         for index in range (1, len(nums)):
             nums[index] += nums[index - 1]
         

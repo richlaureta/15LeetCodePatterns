@@ -4,6 +4,7 @@
 //
 //  Created by Richmond Laureta on 6/4/25.
 //
+#pragma once
 
 #ifndef Header_h
 #define Header_h
@@ -30,6 +31,13 @@
 
 using namespace std;
 
+class NumArray
+{
+public:
+    vector<int> prefixSumArray;
+    NumArray(vector<int> &nums);
+    int sumRange(int leftPointer, int rightPointer);
+};
 
 class Node {
 public:
