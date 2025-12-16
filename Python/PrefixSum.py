@@ -1,24 +1,37 @@
 def findMaxLength(nums: list[int]) -> int:
     #Problem #525 Contiguous Array - Medium - Solution Concept by YouTube Channel Cracking FAANG - Understanding the Solution
 
+    #Initialize the offset variable. We will add 1 if it is a 1 and will subtract 1 if it is a zero.
     countOffset = 0
+    #Initialize a dictionary to store the offset value paired with the index. 
+    # We will start with the imaginary index -1 to store the 0 count offset. 
     offsetDictionary = {0: -1}
+    #Initialize a variable to count the maximum length of equal 0’s and 1’s.
     maxLength = 0
     
+    #Iterate through the nums with enumerate.
     for index, number in enumerate(nums):
+        #If the nums[i] is 1, add 1 to countOffset.
         if number == 1:
             countOffset += 1
+        #If nums[i] is 0, subtract 1 from countOffset. 
         else:
             countOffset -= 1
         
+        #If countOffset becomes 0, let maxLength equal the index + 1.
         if countOffset == 0:
             maxLength = index + 1
+        
+        #If countOffset is in the dictionary, get the maximum between maxLength and index minus 
+        # the offsetDictionary[countOffset], and continue.
         elif countOffset in offsetDictionary:
             maxLength = max(maxLength, index - offsetDictionary[countOffset])
             continue    
-            
+         
+        #Store the countOffset as the key and let that equal the index.   
         offsetDictionary[countOffset] = index
     
+    #Return the maxLength.
     return maxLength
         
 def prefixSum(numbers: list[int]):
