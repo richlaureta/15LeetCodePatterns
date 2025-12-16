@@ -248,9 +248,9 @@ int main(int argc, const char * argv[]) {
     //Problem #509 Fibonacci Number
     //    cout << fib(3) << endl;
     
-    //Problem #525 Contiguous Array
-    //    vector<int> nums = {1, 1, 1, 0, 0};
-    //    cout << findMaxLength(nums) << endl;
+    //Problem #525 Contiguous Array - Medium - Solution Concept by YouTube Channel Cracking FAANG - Understanding the Solution
+        vector<int> nums = {0, 1};
+        cout << findMaxLength(nums) << endl;
     //
     //Problem #560 Subarray Sum Equals K
     //    vector<int> nums = {1, 1, 1};
@@ -791,11 +791,11 @@ int main(int argc, const char * argv[]) {
 //    if(isdigit(a[0])) cout << "Digit" << endl;
     
     //Problem #303 Range Sum Query - Immutable - Easy
-    vector<int> nums = {-2, 0, 3, -5, 2, -1};
-    NumArray access(nums);
-    cout << access.sumRange(0, 2) << endl;
-    cout << access.sumRange(2, 5) << endl;
-    cout << access.sumRange(0, 5) << endl;
+//    vector<int> nums = {-2, 0, 3, -5, 2, -1};
+//    NumArray access(nums);
+//    cout << access.sumRange(0, 2) << endl;
+//    cout << access.sumRange(2, 5) << endl;
+//    cout << access.sumRange(0, 5) << endl;
     
     //TESTING
 //    int n = 5;

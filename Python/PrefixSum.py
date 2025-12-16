@@ -1,6 +1,5 @@
 def findMaxLength(nums: list[int]) -> int:
     #Problem #525 Contiguous Array - Medium - Solution Concept by YouTube Channel Cracking FAANG - Understanding the Solution
-    #Pattern: Prefix Sum
 
     countOffset = 0
     offsetDictionary = {0: -1}
@@ -28,7 +27,6 @@ def prefixSum(numbers: list[int]):
 
 class NumArray:
     #Problem #303 Range Sum Query - Immutable - Easy
-    #Pattern: Prefix Sum
     
     def __init__(self, nums: list[int]):
         """

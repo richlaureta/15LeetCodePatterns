@@ -9,43 +9,33 @@
 
 int findMaxLength(vector<int> &nums)
 {
-    //Problem #525 Contiguous Array - Needs to revisit this problem for clarification
+    //Problem #525 Contiguous Array - Medium - Solution Concept by YouTube Channel Cracking FAANG - Understanding the Solution
+
+    int countOffset = 0;
+    unordered_map<int, int> offsetMap = {{0, -1}};
     
-    //Solution Concept by Youtuber "NeetCodeIO"
-    int zeroCount = 0;
-    int oneCount = 0;
-    int maxResult = 0;
+    int maxLength = 0;
     
-    unordered_map<int, int> differenceIndex;
-    
-    for(int i = 0; i < nums.size(); ++i)
+    for(int i = 0; i < nums.size(); i++)
     {
-        if(nums[i] == 1)
+        if(nums[i] == 0) countOffset--;
+    
+        else countOffset++;
+        
+        if(countOffset == 0)
         {
-            oneCount++;
+            maxLength = i + 1;
         }
-        else
+        else if(offsetMap.find(countOffset) != offsetMap.end())
         {
-            zeroCount++;
+            maxLength = max(maxLength, i - offsetMap[countOffset]);
+            continue;
         }
         
-        if(differenceIndex.count(oneCount - zeroCount) == 0)
-        {
-            differenceIndex[oneCount - zeroCount] = i;
-        }
-        
-        if(oneCount == zeroCount)
-        {
-            maxResult = oneCount + zeroCount;
-        }
-        else
-        {
-            int index0 = differenceIndex[oneCount - zeroCount];
-            maxResult = max(maxResult, i - index0);
-        }
+        offsetMap[countOffset] = i;
     }
     
-    return maxResult;
+    return maxLength;
 }
 
 int subArraySum(vector<int> &nums, int k)
