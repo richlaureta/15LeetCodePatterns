@@ -1,33 +1,28 @@
-import sys
-from typing import List
-
 def findMaxLength(nums: list[int]) -> int:
-    #Problem #525 Contiguous Array
+    #Problem #525 Contiguous Array - Medium - Solution Concept by YouTube Channel Cracking FAANG - Understanding the Solution
+    #Pattern: Prefix Sum
 
-    #Solution Concept by Youtuber NeetCodeIO
-    zeroCount = 0
-    oneCount = 0
-    result = 0
-    differenceIndex = {} # count of 1 - count of 0 -> index 
-
-    for index, value in enumerate(nums):
-        if value == 1:
-            oneCount += 1
+    countOffset = 0
+    offsetDictionary = {0: -1}
+    maxLength = 0
+    
+    for index, number in enumerate(nums):
+        if number == 1:
+            countOffset += 1
         else:
-            zeroCount += 1
-
-        if (oneCount - zeroCount) not in differenceIndex:
-            differenceIndex[oneCount - zeroCount] = index
+            countOffset -= 1
         
-        if oneCount == zeroCount:
-            result = oneCount + zeroCount
-        else:
-            index0 = differenceIndex[oneCount - zeroCount]
-            result = max(result, index - index0)
-
-    return result
-
-def prefixSum(numbers: List[int]):
+        if countOffset == 0:
+            maxLength = index + 1
+        elif countOffset in offsetDictionary:
+            maxLength = max(maxLength, index - offsetDictionary[countOffset])
+            continue    
+            
+        offsetDictionary[countOffset] = index
+    
+    return maxLength
+        
+def prefixSum(numbers: list[int]):
     for i in range(1, len(numbers)):
             numbers[i] += numbers[i - 1]
 
@@ -35,9 +30,9 @@ class NumArray:
     #Problem #303 Range Sum Query - Immutable - Easy
     #Pattern: Prefix Sum
     
-    def __init__(self, nums: List[int]):
+    def __init__(self, nums: list[int]):
         """
-        The first step is to iterate through the nums, whilst iterating, add the previous index-value to the 
+        The first step is to iterate through the nums starting at index 1, whilst iterating, add the previous index-value to the 
         current index-value, and let the current index value equal the sum of both those integers.
         """
         for index in range (1, len(nums)):
@@ -72,8 +67,8 @@ def subArraySum(nums: list[int], k: int) ->int:
     return result
 
 if __name__ == "__main__":
-    rangeSum = NumArray([-2, 0, 3, -5, 2, -1])
-    print(rangeSum.sumRange(0, 2))
-    print(rangeSum.sumRange(2, 5))
-    print(rangeSum.sumRange(0, 5))
+    # nums = [0, 1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1]
     
+    nums = [0, 0, 1, 0, 0, 0, 1, 1]
+    
+    print(findMaxLength(nums))
