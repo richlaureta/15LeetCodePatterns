@@ -74,6 +74,7 @@ def subArraySum(nums: list[int], k: int) ->int:
     counting = 0
     sums = 0
     sumDictionary[0] = 1
+    
     for number in nums:
         sums += number
         counting += sumDictionary[sums - k]
