@@ -48,12 +48,12 @@ class NumArray:
     def __init__(self, nums: list[int]):
         """
         The first step is to iterate through the nums starting at index 1, whilst iterating, add the previous index-value to the 
-        current index-value, and let the current index value equal the sum of both those integers.
+        current index-value, and let the current index value equal the sum of both those integers. O(n) time complexity.
         """
         for index in range (1, len(nums)):
             nums[index] += nums[index - 1]
-        
-        #Make the passed nums equal to the class variable scope.
+    
+        #Make the passed nums equal to the class variable scope. O(n) space complexity.
         self.numberArray = nums
 
     def sumRange(self, left: int, right: int) -> int:
@@ -65,12 +65,21 @@ class NumArray:
         return self.numberArray[right] - self.numberArray[left - 1]
      
 def subArraySum(nums: list[int], k: int) ->int:
-    #Problem #560 Subarray Sum Equals K - Medium 
-    pass
+    #Problem #560 Subarray Sum Equals K - Medium
+     
+    sumEqualsKCount = 0
+    sumToK = 0
+    
+    for i in range(0, len(nums)):
+        sumToK = nums[i]
+        for j in range(i + 1, len(nums)):
+            sumToK += nums[j]
+            if sumToK == k:
+                sumEqualsKCount += 1
+                
+    return sumEqualsKCount
 
 if __name__ == "__main__":
-    
-    
-    nums = [0, 0, 1, 0, 0, 0, 1, 1]
-    
-    print(findMaxLength(nums))
+    nums = [1, 1, 1, 1, 1, -1, -2, -1]
+    k = 4
+    print(subArraySum(nums, k))
