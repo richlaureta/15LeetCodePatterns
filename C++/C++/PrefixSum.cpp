@@ -50,33 +50,21 @@ int findMaxLength(vector<int> &nums)
 
 int subArraySum(vector<int> &nums, int k)
 {
-    //Problem #560 Subarray Sum Equals K - Needs to revisit this for clarification
+    //Problem #560 Subarray Sum Equals K - Medium - Solution Concept by YouTube Channel Deepti Talesra - Understanding the Solution
+    unordered_map<int, int> sumMap;
+    sumMap[0] = 1;
     
-    //Solution Concept by Youtuber "NeetCodeIO"
-    int result = 0;
+    int sumEqualsKCount = 0;
     int currentSum = 0;
-    int difference = 0;
-    unordered_map<int, int> myMap;
-    myMap[0] = 1;
     
-    for(int i = 0; i < nums.size(); ++i)
+    for(int number: nums)
     {
-        currentSum += nums[i];
-        difference = currentSum - k;
-        
-        if(myMap.count(difference) > 0)
-        {
-            result += myMap[difference];
-        }
-        
-        myMap[currentSum] += 1;
-        
-        if(myMap.count(currentSum) > 0)
-        {
-            myMap[currentSum] = myMap[currentSum];
-        }
+        currentSum += number;
+        sumEqualsKCount += sumMap[currentSum - k];
+        sumMap[currentSum] += 1;
     }
-    return result;
+    
+    return sumEqualsKCount;
 }
 
 NumArray::NumArray(vector<int> &nums)

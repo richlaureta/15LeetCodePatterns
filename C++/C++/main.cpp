@@ -249,14 +249,14 @@ int main(int argc, const char * argv[]) {
     //    cout << fib(3) << endl;
     
     //Problem #525 Contiguous Array - Medium - Solution Concept by YouTube Channel Cracking FAANG - Understanding the Solution
-        vector<int> nums = {0, 1};
-        cout << findMaxLength(nums) << endl;
+//        vector<int> nums = {0, 1};
+//        cout << findMaxLength(nums) << endl;
     //
-    //Problem #560 Subarray Sum Equals K
-    //    vector<int> nums = {1, 1, 1};
-    //    int k = 2;
-    //
-    //    cout << subArraySum(nums, k) << endl;
+//    Problem #560 Subarray Sum Equals K
+        vector<int> nums = {1, 2, 3};
+        int k = 2;
+    
+        cout << subArraySum(nums, k) << endl;
     
     //Problem #15 3Sum
     //    vector<int> nums = {-2, 0, 1, 1, 2};
