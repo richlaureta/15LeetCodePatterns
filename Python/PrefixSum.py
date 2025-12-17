@@ -1,3 +1,5 @@
+from collections import defaultdict
+
 def findMaxLength(nums: list[int]) -> int:
     #Problem #525 Contiguous Array - Medium - Solution Concept by YouTube Channel Cracking FAANG - Understanding the Solution
 
@@ -65,29 +67,21 @@ class NumArray:
         return self.numberArray[right] - self.numberArray[left - 1]
      
 def subArraySum(nums: list[int], k: int) ->int:
-    #Problem #560 Subarray Sum Equals K - Medium
+    #Problem #560 Subarray Sum Equals K - Medium - Solution Concept by YouTube Channel Deepti Talesra - 
+    #Understanding the Solution
     
-    sumEqualsKCount = 0
-    sumSet = set()
-    sumSet.add(nums[0])
+    sumDictionary = defaultdict(int)
+    counting = 0
+    sums = 0
+    sumDictionary[0] = 1
+    for number in nums:
+        sums += number
+        counting += sumDictionary[sums - k]
+        sumDictionary[sums] += 1
     
-    for index in range(1, len(nums)):
-        if nums[index] == k:
-            sumEqualsKCount += 1
-        
-        nums[index] += nums[index - 1]
-        
-        if nums[index] - k in sumSet:
-            sumEqualsKCount += 1 
-        
-        sumSet.add(nums[index])
-         
-        if nums[index] == k:
-            sumEqualsKCount += 1
-    print(nums)    
-    return sumEqualsKCount
+    return counting
 
 if __name__ == "__main__":
-    nums = [1, 1, 1, 1, -1, -1, -1, 1, 1, 1, 3, -4]
-    k = 3
+    nums = [0, 0]
+    k = 0
     print(subArraySum(nums, k))
