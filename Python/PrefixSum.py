@@ -1,15 +1,19 @@
 def findMaxLength(nums: list[int]) -> int:
     #Problem #525 Contiguous Array - Medium - Solution Concept by YouTube Channel Cracking FAANG - Understanding the Solution
 
-    #Initialize the offset variable. We will add 1 if it is a 1 and will subtract 1 if it is a zero.
-    countOffset = 0
+    #Initialize the offset variable. We will add 1 if it is a 1 and will subtract 1 if it is a zero. 
+    # O(1) space complexity.
+    countOffset = 0 
     #Initialize a dictionary to store the offset value paired with the index. 
-    # We will start with the imaginary index -1 to store the 0 count offset. 
+    # We will start with the imaginary index -1 to store the 0 count offset.
+    #O(n) space complexity.
     offsetDictionary = {0: -1}
     #Initialize a variable to count the maximum length of equal 0’s and 1’s.
+    #O(1) space complexity.
     maxLength = 0
     
     #Iterate through the nums with enumerate.
+    #O(n) time complexity.
     for index, number in enumerate(nums):
         #If the nums[i] is 1, add 1 to countOffset.
         if number == 1:
@@ -61,24 +65,11 @@ class NumArray:
         return self.numberArray[right] - self.numberArray[left - 1]
      
 def subArraySum(nums: list[int], k: int) ->int:
-    #Problem #560 Subarray Sum Equals K
-    
-    #Solution Concept by Youtube Channel NeetCodeIO
-    result = 0
-    currentSum = 0
-    prefixSums = {0 : 1}
-
-    for number in nums:
-        currentSum += number
-        difference = currentSum - k
-
-        result += prefixSums.get(difference, 0)
-        prefixSums[currentSum] = 1 + prefixSums.get(currentSum, 0)
-
-    return result
+    #Problem #560 Subarray Sum Equals K - Medium 
+    pass
 
 if __name__ == "__main__":
-    # nums = [0, 1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1]
+    
     
     nums = [0, 0, 1, 0, 0, 0, 1, 1]
     
