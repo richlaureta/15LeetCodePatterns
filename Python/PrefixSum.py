@@ -71,18 +71,19 @@ def subArraySum(nums: list[int], k: int) ->int:
     #Understanding the Solution
     
     sumDictionary = defaultdict(int)
-    counting = 0
-    sums = 0
     sumDictionary[0] = 1
-    
+        
+    currentSum = 0
+    sumEqualsKCount = 0
+
     for number in nums:
-        sums += number
-        counting += sumDictionary[sums - k]
-        sumDictionary[sums] += 1
-    
-    return counting
+        currentSum += number
+        sumEqualsKCount += sumDictionary[currentSum - k]
+        sumDictionary[currentSum] += 1
+        
+    return sumEqualsKCount
 
 if __name__ == "__main__":
-    nums = [0, 0]
-    k = 0
+    nums = [1, 2, 3]
+    k = 3
     print(subArraySum(nums, k))
