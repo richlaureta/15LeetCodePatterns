@@ -66,20 +66,28 @@ class NumArray:
      
 def subArraySum(nums: list[int], k: int) ->int:
     #Problem #560 Subarray Sum Equals K - Medium
-     
-    sumEqualsKCount = 0
-    sumToK = 0
     
-    for i in range(0, len(nums)):
-        sumToK = nums[i]
-        for j in range(i + 1, len(nums)):
-            sumToK += nums[j]
-            if sumToK == k:
-                sumEqualsKCount += 1
-                
+    sumEqualsKCount = 0
+    sumSet = set()
+    sumSet.add(nums[0])
+    
+    for index in range(1, len(nums)):
+        if nums[index] == k:
+            sumEqualsKCount += 1
+        
+        nums[index] += nums[index - 1]
+        
+        if nums[index] - k in sumSet:
+            sumEqualsKCount += 1 
+        
+        sumSet.add(nums[index])
+         
+        if nums[index] == k:
+            sumEqualsKCount += 1
+    print(nums)    
     return sumEqualsKCount
 
 if __name__ == "__main__":
-    nums = [1, 1, 1, 1, 1, -1, -2, -1]
-    k = 4
+    nums = [1, 1, 1, 1, -1, -1, -1, 1, 1, 1, 3, -4]
+    k = 3
     print(subArraySum(nums, k))
