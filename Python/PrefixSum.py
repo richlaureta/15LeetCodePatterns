@@ -70,17 +70,27 @@ def subArraySum(nums: list[int], k: int) ->int:
     #Problem #560 Subarray Sum Equals K - Medium - Solution Concept by YouTube Channel Deepti Talesra - 
     #Understanding the Solution
     
+    #Start by creating a dictionary to store the frequency of the sums. O(n) space.
     sumDictionary = defaultdict(int)
+    #nitialize the key 0 to a frequency of 1 so that when you 
+    #subtract the k with a difference of 0, you can add 1 to the sumEqualsKCount.
     sumDictionary[0] = 1
-        
+    
+    #Create a variable for the sum. O(1) space.
     currentSum = 0
+    #Create a variable that will return the count of sum(s) equal to k. O(1) space.
     sumEqualsKCount = 0
 
+    
     for number in nums:
+        #Add currentSum to the current number.
         currentSum += number
+        #Add sumEqualsKCount with the frequency of key, sum minus the difference.
         sumEqualsKCount += sumDictionary[currentSum - k]
+        #Then store the sum key, then add 1 to its value.
         sumDictionary[currentSum] += 1
-        
+
+    #Return the count.
     return sumEqualsKCount
 
 if __name__ == "__main__":
