@@ -1,5 +1,3 @@
-import sys
-
 def myPow(x: float, n: int) -> float:
     #Problem #5 Pow(x, n)
     

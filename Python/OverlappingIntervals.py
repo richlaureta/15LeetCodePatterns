@@ -23,7 +23,7 @@ def insert(intervals: list[list[int]], newInterval: list[int]) -> list[list[int]
     return merge(intervals)
 
 def eraseOverlapIntervals(intervals: list[list[int]]) -> int:
-    #Problem #435 Non-Overlapping Intervals
+    #Problem #435 Non-Overlapping Intervals - Medium
     
     if len(intervals) == 1:
         return 0
