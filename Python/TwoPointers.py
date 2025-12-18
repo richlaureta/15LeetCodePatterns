@@ -35,6 +35,7 @@ def threeSum(nums: list[int]) -> list[list[int]]:
 
 def twoSum(numbers: list[int], target: int) -> list[int]:
     #Problem #167 Two Sum II - Input Array Is Sorted - Medium
+    
     leftPointer = 0
     rightPointer = len(numbers) - 1
         

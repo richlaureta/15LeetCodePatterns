@@ -183,16 +183,16 @@ int main(int argc, const char * argv[]) {
     //
     
     //Problem #167 Two Sum II - Input Array is Sorted
-    //    vector<int> numbers = {2, 7, 11, 15};
-    //    int target = 9;
-    //
-    //    vector<int> answerthis = twoSum2(numbers, target);
-    //
-    //    for(size_t i = 0; i < answerthis.size(); ++i)
-    //    {
-    //        cout << answerthis[i] << " ";
-    //    }
-    //    cout << endl;
+        vector<int> numbers = {2, 7, 11, 15};
+        int target = 9;
+    
+        vector<int> answerthis = twoSum2(numbers, target);
+    
+        for(size_t i = 0; i < answerthis.size(); ++i)
+        {
+            cout << answerthis[i] << " ";
+        }
+        cout << endl;
     //
     //Problem #347 Top K Frequent Elements
     
@@ -253,10 +253,10 @@ int main(int argc, const char * argv[]) {
 //        cout << findMaxLength(nums) << endl;
     //
 //    Problem #560 Subarray Sum Equals K
-        vector<int> nums = {1, 2, 3};
-        int k = 2;
-    
-        cout << subArraySum(nums, k) << endl;
+//        vector<int> nums = {1, 2, 3};
+//        int k = 2;
+//    
+//        cout << subArraySum(nums, k) << endl;
     
     //Problem #15 3Sum
     //    vector<int> nums = {-2, 0, 1, 1, 2};

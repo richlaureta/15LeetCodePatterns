@@ -7,27 +7,17 @@
 
 #include "Header.h"
 
-vector<int> twoSum2(vector<int>& nums, int target)
+vector<int> twoSum2(vector<int>& numbers, int target)
 {
     // Problem #167 Two Sum II - Input Array is Sorted - Medium
+    int leftPointer = 0;
+    int rightPointer = (int)numbers.size() - 1;
     
-    int startIndex = 0;
-    int endIndex = int(nums.size() - 1);
-    
-    while(startIndex < endIndex)
+    while (leftPointer < rightPointer)
     {
-        if((nums[startIndex] + nums[endIndex]) > target)
-        {
-            endIndex--;
-        }
-        else if((nums[startIndex] + nums[endIndex]) < target)
-        {
-            startIndex++;
-        }
-        else
-        {
-            return {++startIndex, ++endIndex};
-        }
+        if(numbers[leftPointer] + numbers[rightPointer] == target) return {++leftPointer, ++rightPointer};
+        else if (numbers[leftPointer] + numbers[rightPointer] < target) leftPointer++;
+        else rightPointer--;
     }
     
     return {};
