@@ -51,19 +51,30 @@ int findMaxLength(vector<int> &nums)
 int subArraySum(vector<int> &nums, int k)
 {
     //Problem #560 Subarray Sum Equals K - Medium - Solution Concept by YouTube Channel Deepti Talesra - Understanding the Solution
+    
+    //Start by creating a map to store the frequency of the sums. O(n) space.
     unordered_map<int, int> sumMap;
+    //Initialize the key 0 to a frequency of 1 so that when you subtract the k with a difference of 0, you can add 1 to the
+    //sumEqualsKCount.
     sumMap[0] = 1;
     
+    //Create a variable that will return the count of sum(s) equal to k. O(1) space.
     int sumEqualsKCount = 0;
+    //Create a variable for the sum. O(1) space.
     int currentSum = 0;
     
+    //Iterate through the nums. O(n) time complexity.
     for(int number: nums)
     {
+        //Add currentSum to the current number.
         currentSum += number;
+        //Add sumEqualsKCount with the frequency of key, sum minus the difference.
         sumEqualsKCount += sumMap[currentSum - k];
+        //Then store the sum key, then add 1 to its value.
         sumMap[currentSum] += 1;
     }
     
+    //Return the count.
     return sumEqualsKCount;
 }
 
