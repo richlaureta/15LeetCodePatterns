@@ -33,18 +33,19 @@ def threeSum(nums: list[int]) -> list[list[int]]:
                 leftIndex += 1
     return answer
 
-def twoSum2(numbers: list[int], target: int) -> list[int]:
-    startIndex = 0
-    endIndex = len(numbers) - 1
-
-    while startIndex < endIndex:
-        if (numbers[startIndex] + numbers[endIndex]) == target:
-            return [startIndex + 1, endIndex + 1]
-        elif numbers[startIndex] + numbers[endIndex] > target:
-            endIndex -= 1
-        else: 
-            startIndex += 1
-
+def twoSum(numbers: list[int], target: int) -> list[int]:
+    #Problem #167 Two Sum II - Input Array Is Sorted - Medium
+    leftPointer = 0
+    rightPointer = len(numbers) - 1
+        
+    while leftPointer < rightPointer:
+        if numbers[leftPointer] + numbers[rightPointer] == target:
+            return [leftPointer + 1, rightPointer + 1]
+        elif numbers[leftPointer] + numbers[rightPointer] < target:
+            leftPointer += 1
+        else:
+            rightPointer -= 1
+    
 def maxArea(height: list[int]) -> int:
     #Problem #11 Container with the Most Water
     
@@ -70,15 +71,7 @@ def maxArea(height: list[int]) -> int:
             
         
 if __name__ == "__main__":
-    # numbers = [2, 7, 11, 15]
-    # target = 9
-
-    # print(twoSum2(numbers, target))
-
-    # nums = [-1, 0, 1, 2, -1, -1, -4]
-
-    # print(threeSum(nums))
-
-    height = [1, 8, 6, 2, 5, 4, 8, 3, 7]
-
-    print(maxArea(height))
+    nums = [-1, 0]
+    target = -1
+    
+    print(twoSum(nums, target))
