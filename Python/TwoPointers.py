@@ -1,31 +1,46 @@
 def threeSum(nums: list[int]) -> list[list[int]]:
-    #Problem #15 3Sum - Medium
+    #Problem #15 3Sum - Medium 
     
+    #Sort the array. O(n log n) time complexity.
     nums.sort()
+    #Create a storage for the triplets array. O(1) space.
     threeSumArray = []
-        
+
+    #Iterate through the nums array. O(n) time complexity.
     for index in range(0, len(nums)):
+        #If the index is greater than 0 and nums[index] is equal to the previous nums, continue.
         if index > 0 and nums[index] == nums[index - 1]:
             continue
-            
+        
+        #Initialize the leftPointer to index + 1.
         leftPointer = index + 1
+        #Initialize the rightPointer to the length of nums - 1.
         rightPointer = len(nums) - 1
-            
-        while leftPointer < rightPointer: 
+        
+        #Initialize a while loop, whilst leftPointer is less than rightPointer. O(n) time complexity.
+        while leftPointer < rightPointer:
+            #Initialize a totalSum variable equal to nums[index] + nums[leftPointer] + nums[rightPointer]. 
             totalSum = nums[index] + nums[leftPointer] + nums[rightPointer]
-                
+            
+            #If totalSum equals 0, append the triplets [nums[index], nums[leftPointer], nums[rightPointer].    
             if totalSum == 0:
                 threeSumArray.append([nums[index], nums[leftPointer], nums[rightPointer]])
+                #Increment the leftPointer by 1.
                 leftPointer += 1
+                
+                #Initialize a while loop with the condition leftPointer is less than rightPointer, 
+                #and when nums[leftPointer] equals nums[leftPointer - 1].
                 while leftPointer < rightPointer and nums[leftPointer] == nums[leftPointer - 1]:
+                    #Increment leftPointer by 1.
                     leftPointer += 1
+            #If totalSum is less than 0, increment the leftPointer by 1.
             elif totalSum < 0:
                 leftPointer += 1
+            #If totalSum is more than 0, decrement the rightPointer by 1.
             else:
                 rightPointer -= 1
-            
-        return threeSumArray
-        
+    
+    #Return threeSumArray    
     return threeSumArray 
                    
 def twoSum(numbers: list[int], target: int) -> list[int]:
