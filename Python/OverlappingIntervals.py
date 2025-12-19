@@ -16,7 +16,7 @@ def merge(intervals: list[list[int]]) -> list[list[int]]:
     return merged
 
 def insert(intervals: list[list[int]], newInterval: list[int]) -> list[list[int]]:
-    #Problem #57 Insert Interval
+    #Problem #57 Insert Interval - Medium
     
     intervals.append(newInterval)
 
