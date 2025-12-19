@@ -11,13 +11,19 @@ vector<int> twoSum2(vector<int>& numbers, int target)
 {
     // Problem #167 Two Sum II - Input Array is Sorted - Medium
     
+    //Start by setting the leftPointer to 0. O(1) space.
     int leftPointer = 0;
+    //Let rightPointer equal the size - 1. O(1) space.
     int rightPointer = (int)numbers.size() - 1;
     
+    //Initialize a while loop, whilst leftPointer is less than rightPointer. O(n - 1).
     while (leftPointer < rightPointer)
     {
+        //If numbers[leftPointer] + numbers[rightPointer] equals the target. Return the array [leftPointer + 1, rightPointer +  1].
         if(numbers[leftPointer] + numbers[rightPointer] == target) return {++leftPointer, ++rightPointer};
+        //If numbers[leftPointer] + numbers[rightPointer] is less than the target, increment the leftPointer by 1.
         else if (numbers[leftPointer] + numbers[rightPointer] < target) leftPointer++;
+        //If numbers[leftPointer] + numbers[rightPointer] is greater than the target, decrement the rightPointer by 1.
         else rightPointer--;
     }
     
