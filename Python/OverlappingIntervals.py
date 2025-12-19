@@ -1,5 +1,5 @@
 def merge(intervals: list[list[int]]) -> list[list[int]]:
-    #Problem #56 Merge Intervals
+    #Problem #56 Merge Intervals - Medium
     
     if not intervals:
         return []
