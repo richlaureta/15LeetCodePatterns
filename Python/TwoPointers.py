@@ -36,14 +36,19 @@ def threeSum(nums: list[int]) -> list[list[int]]:
 def twoSum(numbers: list[int], target: int) -> list[int]:
     #Problem #167 Two Sum II - Input Array Is Sorted - Medium
     
+    #Start by setting the leftPointer to 0. O(1) space.
     leftPointer = 0
+    #Let rightPointer equal the size - 1. O(1) space.
     rightPointer = len(numbers) - 1
         
     while leftPointer < rightPointer:
+        #If numbers[leftPointer] + numbers[rightPointer] equals the target.
         if numbers[leftPointer] + numbers[rightPointer] == target:
             return [leftPointer + 1, rightPointer + 1]
+        #If numbers[leftPointer] + numbers[rightPointer] is less than the target, increment the leftPointer by 1.
         elif numbers[leftPointer] + numbers[rightPointer] < target:
             leftPointer += 1
+        #If numbers[leftPointer] + numbers[rightPointer] is greater than the target, decrement the rightPointer by 1.
         else:
             rightPointer -= 1
     

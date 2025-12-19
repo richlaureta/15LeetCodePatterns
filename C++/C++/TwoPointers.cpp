@@ -10,6 +10,7 @@
 vector<int> twoSum2(vector<int>& numbers, int target)
 {
     // Problem #167 Two Sum II - Input Array is Sorted - Medium
+    
     int leftPointer = 0;
     int rightPointer = (int)numbers.size() - 1;
     
