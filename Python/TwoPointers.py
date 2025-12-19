@@ -40,9 +40,10 @@ def twoSum(numbers: list[int], target: int) -> list[int]:
     
     #Start by setting the leftPointer to 0. O(1) space.
     leftPointer = 0
-    #Let rightPointer equal the size - 1. O(1) space.
+    #Let rightPointer equal the array size - 1. O(1) space.
     rightPointer = len(numbers) - 1
-        
+     
+    #Initialize a while loop, whilst leftPointer is less than rightPointer. O(n - 1) time complexity.   
     while leftPointer < rightPointer:
         #If numbers[leftPointer] + numbers[rightPointer] equals the target.
         if numbers[leftPointer] + numbers[rightPointer] == target:
