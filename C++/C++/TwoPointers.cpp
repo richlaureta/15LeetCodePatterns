@@ -34,40 +34,56 @@ vector<vector<int>> threeSum(vector<int> &nums)
 {
     //Problem #15 3Sum - Medium
     
+    //Sort the array. O(n log n) time complexity.
     sort(nums.begin(), nums.end());
+    //Create a storage for the triplets array. O(1) space.
     vector<vector<int>> threeSumArray;
     
+    //#Iterate through the nums vector. O(n) time complexity.
     for(int i = 0; i < nums.size(); i++)
     {
+        //If the index is greater than 0 and nums[index] is equal to the previous nums, continue.
         if((i > 0) and (nums[i] == nums[i - 1]))
         {
             continue;
         }
         
+        //Initialize the leftPointer to index + 1.
         int leftPointer = i + 1;
+        //Initialize the rightPointer to the length of nums - 1.
         int rightPointer = (int)nums.size() - 1;
         
+        //Initialize a while loop, whilst leftPointer is less than rightPointer. O(n) time complexity.
         while(leftPointer < rightPointer)
         {
+            //Initialize a totalSum variable equal to nums[index] + nums[leftPointer] + nums[rightPointer].
             int totalSum = nums[i] + nums[leftPointer] + nums[rightPointer];
             
+            //If totalSum equals 0, append the triplets [nums[index], nums[leftPointer], nums[rightPointer].
             if(totalSum == 0)
             {
                 threeSumArray.push_back({nums[i], nums[leftPointer], nums[rightPointer]});
+                //#Increment the leftPointer by 1.
                 leftPointer++;
+                //Initialize a while loop with the condition leftPointer is less than rightPointer,
+                //and when nums[leftPointer] equals nums[leftPointer - 1].
                 while((leftPointer < rightPointer) and (nums[leftPointer] == nums[leftPointer - 1]))
                 {
+                    //Increment leftPointer by 1.
                     leftPointer++;
                 }
             }
             else if(totalSum < 0)
             {
+                //If totalSum is less than 0, increment the leftPointer by 1.
                 leftPointer++;
             }
+            //If totalSum is more than 0, decrement the rightPointer by 1.
             else rightPointer--;
         }
     }
     
+    //Return threeSumArray
     return threeSumArray;
 }
 
