@@ -13,10 +13,10 @@ vector<int> twoSum2(vector<int>& numbers, int target)
     
     //Start by setting the leftPointer to 0. O(1) space.
     int leftPointer = 0;
-    //Let rightPointer equal the size - 1. O(1) space.
+    //Let rightPointer equal the vector size - 1. O(1) space.
     int rightPointer = (int)numbers.size() - 1;
     
-    //Initialize a while loop, whilst leftPointer is less than rightPointer. O(n - 1).
+    //Initialize a while loop, whilst leftPointer is less than rightPointer. O(n - 1) time complexity.
     while (leftPointer < rightPointer)
     {
         //If numbers[leftPointer] + numbers[rightPointer] equals the target. Return the array [leftPointer + 1, rightPointer +  1].
