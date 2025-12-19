@@ -17,7 +17,7 @@ def threeSum(nums: list[int]) -> list[list[int]]:
             if totalSum == 0:
                 threeSumArray.append([nums[index], nums[leftPointer], nums[rightPointer]])
                 leftPointer += 1
-                while leftPointer <rightPointer and nums[leftPointer] == nums[leftPointer - 1]:
+                while leftPointer < rightPointer and nums[leftPointer] == nums[leftPointer - 1]:
                     leftPointer += 1
             elif totalSum < 0:
                 leftPointer += 1

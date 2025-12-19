@@ -183,16 +183,16 @@ int main(int argc, const char * argv[]) {
     //
     
     //Problem #167 Two Sum II - Input Array is Sorted
-        vector<int> numbers = {2, 7, 11, 15};
-        int target = 9;
-    
-        vector<int> answerthis = twoSum2(numbers, target);
-    
-        for(size_t i = 0; i < answerthis.size(); ++i)
-        {
-            cout << answerthis[i] << " ";
-        }
-        cout << endl;
+//        vector<int> numbers = {2, 7, 11, 15};
+//        int target = 9;
+//    
+//        vector<int> answerthis = twoSum2(numbers, target);
+//    
+//        for(size_t i = 0; i < answerthis.size(); ++i)
+//        {
+//            cout << answerthis[i] << " ";
+//        }
+//        cout << endl;
     //
     //Problem #347 Top K Frequent Elements
     
@@ -259,18 +259,18 @@ int main(int argc, const char * argv[]) {
 //        cout << subArraySum(nums, k) << endl;
     
     //Problem #15 3Sum
-    //    vector<int> nums = {-2, 0, 1, 1, 2};
-    //    vector<vector<int>> result = threeSum(nums);
-    //
-    //    for(int i = 0; i < result.size(); i++)
-    //    {
-    //        for(int j = 0; j < result[i].size(); j++)
-    //        {
-    //            cout << result[i][j] << " ";
-    //        }
-    //        cout << endl;
-    //    }
-    //    cout << endl;
+        vector<int> nums = {-1, 0, 1, 2, -1, -4};
+        vector<vector<int>> result = threeSum(nums);
+    
+        for(int i = 0; i < result.size(); i++)
+        {
+            for(int j = 0; j < result[i].size(); j++)
+            {
+                cout << result[i][j] << " ";
+            }
+            cout << endl;
+        }
+        cout << endl;
     
     //Problem #11 Container With The Most Water
     //    vector<int> height = {1, 8, 6, 2, 5, 4, 8, 3, 7};

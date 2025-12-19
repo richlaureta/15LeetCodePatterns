@@ -32,59 +32,43 @@ vector<int> twoSum2(vector<int>& numbers, int target)
 
 vector<vector<int>> threeSum(vector<int> &nums)
 {
-    //Problem #15 3Sum
+    //Problem #15 3Sum - Medium
     
     sort(nums.begin(), nums.end());
-    int leftIndex = 0;
-    int rightIndex = 0;
-    int sum = 0;
-    vector<vector<int>> answer;
+    vector<vector<int>> threeSumArray;
     
     for(int i = 0; i < nums.size(); i++)
     {
-        if((i > 0) and (nums[i] == nums[i-1]))
+        if((i > 0) and (nums[i] == nums[i - 1]))
         {
             continue;
         }
         
-        leftIndex = i + 1;
-        rightIndex = ((int)nums.size()) - 1;
+        int leftPointer = i + 1;
+        int rightPointer = (int)nums.size() - 1;
         
-        while(leftIndex < rightIndex)
+        while(leftPointer < rightPointer)
         {
-            sum = nums[i] + nums[leftIndex] + nums[rightIndex];
+            int totalSum = nums[i] + nums[leftPointer] + nums[rightPointer];
             
-            if(sum > 0)
+            if(totalSum == 0)
             {
-                rightIndex--;
-            }
-            else if(sum < 0)
-            {
-                leftIndex++;
-            }
-            else
-            {
-                answer.push_back({nums[i], nums[leftIndex], nums[rightIndex]});
-                
-                leftIndex++;
-                rightIndex--;
-
-                while((leftIndex < rightIndex) and (nums[leftIndex] == nums[leftIndex - 1]))
+                threeSumArray.push_back({nums[i], nums[leftPointer], nums[rightPointer]});
+                leftPointer++;
+                while((leftPointer < rightPointer) and (nums[leftPointer] == nums[leftPointer - 1]))
                 {
-                    leftIndex++;
-                }
-                
-                
-                while((leftIndex < rightIndex) and (nums[rightIndex] == nums[rightIndex + 1]))
-                {
-                    rightIndex--;
-
+                    leftPointer++;
                 }
             }
+            else if(totalSum < 0)
+            {
+                leftPointer++;
+            }
+            else rightPointer--;
         }
     }
     
-    return answer;
+    return threeSumArray;
 }
 
 int maxArea(vector<int> &height)
