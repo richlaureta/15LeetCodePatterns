@@ -53,7 +53,7 @@ def twoSum(numbers: list[int], target: int) -> list[int]:
             rightPointer -= 1
     
 def maxArea(height: list[int]) -> int:
-    #Problem #11 Container with the Most Water
+    #Problem #11 Container with the Most Water - Medium
     
     maxWaterSquare = 0
     leftIndex = 0
