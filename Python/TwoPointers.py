@@ -1,40 +1,33 @@
 def threeSum(nums: list[int]) -> list[list[int]]:
-    #Problem #15 3Sum - Medium  
+    #Problem #15 3Sum - Medium
     
     nums.sort()
-    answer = []
-    leftIndex = 0
-    rightIndex = 0
-    sum = 0
-    
-    for i in range(len(nums) - 2):
-        if i > 0 and nums[i] == nums[i-1]: #Help of Google CLI AI - debugged snippet code
-            continue
-
-        leftIndex = i + 1
-        rightIndex = len(nums) - 1
+    threeSumArray = []
         
-        while leftIndex < rightIndex:
-            sum = nums[i] +  nums[leftIndex] + nums[rightIndex]
-
-            if sum == 0:
-                answer.append([nums[i], nums[leftIndex], nums[rightIndex]])
+    for index in range(0, len(nums)):
+        if index > 0 and nums[index] == nums[index - 1]:
+            continue
+            
+        leftPointer = index + 1
+        rightPointer = len(nums) - 1
+            
+        while leftPointer < rightPointer: 
+            totalSum = nums[index] + nums[leftPointer] + nums[rightPointer]
                 
-
-                rightIndex -= 1
-                while(leftIndex < rightIndex and nums[rightIndex] == nums[rightIndex + 1]):
-                    rightIndex -= 1
-
-                leftIndex += 1
-                while(leftIndex < rightIndex and nums[leftIndex] == nums[leftIndex - 1]):
-                    leftIndex += 1
-                
-            elif sum > 0:
-                rightIndex -= 1
+            if totalSum == 0:
+                threeSumArray.append([nums[index], nums[leftPointer], nums[rightPointer]])
+                leftPointer += 1
+                while leftPointer <rightPointer and nums[leftPointer] == nums[leftPointer - 1]:
+                    leftPointer += 1
+            elif totalSum < 0:
+                leftPointer += 1
             else:
-                leftIndex += 1
-    return answer
-
+                rightPointer -= 1
+            
+        return threeSumArray
+        
+    return threeSumArray 
+                   
 def twoSum(numbers: list[int], target: int) -> list[int]:
     #Problem #167 Two Sum II - Input Array Is Sorted - Medium
     
@@ -80,7 +73,6 @@ def maxArea(height: list[int]) -> int:
             
         
 if __name__ == "__main__":
-    nums = [-1, 0]
-    target = -1
+    nums = [0, 0, 0]
     
-    print(twoSum(nums, target))
+    print(threeSum(nums))
