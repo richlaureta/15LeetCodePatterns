@@ -258,24 +258,24 @@ int main(int argc, const char * argv[]) {
 //    
 //        cout << subArraySum(nums, k) << endl;
     
-    //Problem #15 3Sum
-        vector<int> nums = {-1, 0, 1, 2, -1, -4};
-        vector<vector<int>> result = threeSum(nums);
+    //Problem #15 3Sum - Medium
+//        vector<int> nums = {-1, 0, 1, 2, -1, -4};
+//        vector<vector<int>> result = threeSum(nums);
+//    
+//        for(int i = 0; i < result.size(); i++)
+//        {
+//            for(int j = 0; j < result[i].size(); j++)
+//            {
+//                cout << result[i][j] << " ";
+//            }
+//            cout << endl;
+//        }
+//        cout << endl;
     
-        for(int i = 0; i < result.size(); i++)
-        {
-            for(int j = 0; j < result[i].size(); j++)
-            {
-                cout << result[i][j] << " ";
-            }
-            cout << endl;
-        }
-        cout << endl;
+    //Problem #11 Container With The Most Water - Medium
+        vector<int> height = {1, 8, 6, 2, 5, 4, 8, 3, 7};
     
-    //Problem #11 Container With The Most Water
-    //    vector<int> height = {1, 8, 6, 2, 5, 4, 8, 3, 7};
-    //
-    //    cout << maxArea(height) << endl;
+        cout << maxArea(height) << endl;
     
     // Problem #3 Longest Substring Without Repeating Characters
     //    string s = "abcabcbb";

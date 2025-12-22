@@ -89,48 +89,20 @@ vector<vector<int>> threeSum(vector<int> &nums)
 
 int maxArea(vector<int> &height)
 {
-    //Problem #11 Container With The Most Water
+    //Problem #11 Container With The Most Water - Medium
     
-    size_t maxArea = 0;
-    size_t leftIndex = 0;
-    size_t rightIndex = (int)(height.size() - 1);
-    size_t minimum = 0;
+    int leftPointer = 0;
+    int rightPointer = (int) height.size() - 1;
     
-    while(leftIndex < rightIndex)
+    int maxSquareArea = 0;
+    
+    while(leftPointer < rightPointer)
     {
-        if(height[leftIndex] < height[rightIndex])
-        {
-            minimum = height[leftIndex];
-        }
-        else if (height[leftIndex] > height[rightIndex])
-        {
-            minimum = height[rightIndex];
-        }
-        else
-        {
-            minimum = height[rightIndex];
-        }
+        maxSquareArea = max(maxSquareArea, min(height[leftPointer], height[rightPointer]) * (rightPointer - leftPointer));
         
-        size_t square = minimum * (rightIndex - leftIndex);
-        
-        if(square > maxArea)
-        {
-            maxArea = square;
-        }
-        
-        if(height[leftIndex] > height[rightIndex])
-        {
-            rightIndex--;
-        }
-        else if (height[leftIndex] < height[rightIndex])
-        {
-            leftIndex++;
-        }
-        else
-        {
-            leftIndex++;
-        }
+        if(height[leftPointer] < height[rightPointer]) leftPointer++;
+        else rightPointer--;
     }
     
-    return (int)maxArea;
+    return maxSquareArea;
 }
