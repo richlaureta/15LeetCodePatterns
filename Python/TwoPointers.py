@@ -65,20 +65,30 @@ def twoSum(numbers: list[int], target: int) -> list[int]:
     
 def maxArea(height: list[int]) -> int:
     #Problem #11 Container with the Most Water - Medium
-
+    
+    #Initialize a leftPointer variable to zero index. O(1) space.
     leftPointer = 0
+    #Initialize a rightPointer variable to equal the length of the height array minus - 1.  O(1) space.
     rightPointer = len(height) - 1
     
+    #Initialize a variable to store the maximum square value. O(1) space.
     maxSquareArea = 0
     
+    #Iterate with the while loop with the condition leftPointer is less than rightPointer. O(n - 1) time complexity. 
     while leftPointer < rightPointer:
+        #Calculate the max between the max area now, and the minimum between the leftPointer and 
+        # rightPointer index-value multiplied with distance (rightPointer - leftPointer), 
+        # and let that equal the variable maxSquareArea.
         maxSquareArea = max(maxSquareArea, min(height[leftPointer], height[rightPointer]) * (rightPointer - leftPointer))
         
+        #If height[leftPointer] is less than height[rightPointer], then increment leftPointer by 1.
         if height[leftPointer] < height[rightPointer]:
             leftPointer += 1
+        #Otherwise, decrement rightPointer by 1.
         else:
             rightPointer -= 1
     
+    #Return the maxSquareArea.
     return maxSquareArea
         
 if __name__ == "__main__":
