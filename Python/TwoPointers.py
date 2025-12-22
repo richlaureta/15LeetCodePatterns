@@ -65,29 +65,23 @@ def twoSum(numbers: list[int], target: int) -> list[int]:
     
 def maxArea(height: list[int]) -> int:
     #Problem #11 Container with the Most Water - Medium
+
+    leftPointer = 0
+    rightPointer = len(height) - 1
     
-    maxWaterSquare = 0
-    leftIndex = 0
-    rightIndex = len(height) - 1
-
-    while leftIndex < rightIndex:
-        minimum = min(height[leftIndex], height[rightIndex])
-        square = minimum * (rightIndex - leftIndex)
-
-        if square > maxWaterSquare:
-            maxWaterSquare = square
+    maxSquareArea = 0
+    
+    while leftPointer < rightPointer:
+        maxSquareArea = max(maxSquareArea, min(height[leftPointer], height[rightPointer]) * (rightPointer - leftPointer))
         
-        if height[leftIndex] > height[rightIndex]:
-            rightIndex -= 1
-        elif height[leftIndex] < height[rightIndex]:
-            leftIndex += 1
+        if height[leftPointer] < height[rightPointer]:
+            leftPointer += 1
         else:
-            leftIndex += 1
+            rightPointer -= 1
     
-    return maxWaterSquare
-            
+    return maxSquareArea
         
 if __name__ == "__main__":
-    nums = [0, 0, 0]
+    height = [1, 8, 6, 2, 5, 4, 8, 3, 7]
     
-    print(threeSum(nums))
+    print(maxArea(height))
