@@ -127,7 +127,7 @@ def widthOfBinaryTree(root: TreeNode) -> int:
     return width
 
 def maxPathSum(root: TreeNode) -> int:
-    #Problem #124 Binary Tree Maximum Path Sum - HARD - Concept Solution by YouTube Channel NeetCode - Understanding the Solution
+    #Problem #124 Binary Tree Maximum Path Sum - Hard - Concept Solution by YouTube Channel NeetCode - Understanding the Solution
 
     sum = [root.value]
 
