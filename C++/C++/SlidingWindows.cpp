@@ -92,7 +92,7 @@ int maxVowels(string s, int k)
 
 int lengthOfLongestSubstring(string s)
 {
-    //Problem #3 Longest Substring Without Repeating Character
+    //Problem #3 Longest Substring Without Repeating Character - Medium 
     
     unordered_map<int, int> myMap;
     int count = 0;

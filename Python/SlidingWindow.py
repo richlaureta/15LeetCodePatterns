@@ -1,5 +1,4 @@
-from typing import List
-
+from collections import defaultdict
 def maxVowels(s: str, k: int) -> int:
     count = 0
 
@@ -28,7 +27,7 @@ def maxVowels(s: str, k: int) -> int:
     return maxCount
 
 
-def findMaxAverage(nums: List[int], k: int) -> float:
+def findMaxAverage(nums: list[int], k: int) -> float:
     #Problem #643 Maximum Average Subarray I - Easy
     
     #Create a variable maxAverage equal to the lowest possible integer. O(1) space complexity.
@@ -60,27 +59,38 @@ def findMaxAverage(nums: List[int], k: int) -> float:
     return maxAverage
         
 def lengthOfLongestSubstring(s: str) -> int:
-    #Problem #3 Longest Substring Without Repeating
-
-    maxCount = 0
-    count = 0
-    memoryMap = {}
-    pointer = 0
-                                                   
-    while pointer != len(s):
-        if s[pointer] not in memoryMap:
-            memoryMap[s[pointer]] = pointer
-            count += 1
-            if count > maxCount:
-                maxCount = count
+    #Problem #3 Longest Substring Without Repeating - Medium
+    
+    letterIndexDictionary = defaultdict(int)
+    
+    startingPoint = 0
+    
+    longestSubstringCount = 0
+    uniqueCount = 0
+    
+    for index in range(0, len(s)):
+        if s[index] not in letterIndexDictionary:
+            if s[index] != " ":
+                letterIndexDictionary[s[index]] = index
+                uniqueCount += 1
+            else:
+                letterIndexDictionary[" "] = index
+                uniqueCount += 1
         else:
-            count = 0
-            pointer = memoryMap[s[pointer]]
-            memoryMap = {}
-        
-        pointer += 1
+            longestSubstringCount = max(longestSubstringCount, uniqueCount)
+            
+            previousStartingPoint = startingPoint
+            startingPoint = letterIndexDictionary[s[index]] + 1
+            uniqueCount = index - startingPoint + 1
+            
+            for index1 in range(previousStartingPoint, letterIndexDictionary[s[index]] + 1):
+                del letterIndexDictionary[s[index1]]
+            
+            letterIndexDictionary[s[index]] = index            
 
-    return maxCount
+    longestSubstringCount = max(longestSubstringCount, uniqueCount)
+    
+    return longestSubstringCount
 
 def minWindow(s: str, t: str) -> str:
     #Problem #76 Minimum Window Substring
@@ -132,7 +142,6 @@ def minWindow(s: str, t: str) -> str:
     return ""
 
 if __name__ == "__main__":
-    nums = [1, 12, -5, -6, 50, 3]
-    k = 4
+    s = "   "
     
-    print(findMaxAverage(nums, k))
+    print(lengthOfLongestSubstring(s))
