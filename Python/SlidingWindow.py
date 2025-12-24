@@ -70,11 +70,7 @@ def lengthOfLongestSubstring(s: str) -> int:
     
     for index in range(0, len(s)):
         if s[index] not in letterIndexDictionary:
-            if s[index] != " ":
                 letterIndexDictionary[s[index]] = index
-                uniqueCount += 1
-            else:
-                letterIndexDictionary[" "] = index
                 uniqueCount += 1
         else:
             longestSubstringCount = max(longestSubstringCount, uniqueCount)
@@ -142,6 +138,6 @@ def minWindow(s: str, t: str) -> str:
     return ""
 
 if __name__ == "__main__":
-    s = "   "
+    s = "   a"
     
     print(lengthOfLongestSubstring(s))
