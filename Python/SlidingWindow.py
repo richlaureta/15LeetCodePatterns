@@ -31,27 +31,33 @@ def maxVowels(s: str, k: int) -> int:
 def findMaxAverage(nums: List[int], k: int) -> float:
     #Problem #643 Maximum Average Subarray I - Easy
     
+    #Create a variable maxAverage equal to the lowest possible integer. O(1) space complexity.
     maxAverage = float('-inf')
+    #Create a variable to sum all the contiguous lengths of k. O(1) space complexity.
     sumAdd = 0
     
+    #Iterate through the length of k and add them. O(k) time complexity.
     for index in range(0, k):
         sumAdd += nums[index]
     
+    #Create a variable for the startPointer index equal to 0. O(1) space complexity.
     startPointer = 0
-    
+    #Take the maximum average between the current maximum average and the new one. 
     maxAverage = max(maxAverage, sumAdd/k)
     
+    #Iterate through the nums. O(n - k) time complexity.
     for index in range(k, len(nums)):
-        if index > len(nums) - 1:
-            break
-        
+        #Subtract the nums[startPointer] from sumAdd.
         sumAdd -= nums[startPointer]
+        #Add the current nums[index] to sumAdd.
         sumAdd += nums[index]
+        #Take the maximum average between the current maximum average and the new one. 
         maxAverage = max(maxAverage, sumAdd/k)
+        #Increment the startPointer by 1.
         startPointer += 1
-        
+    
+    #Return maxAverage.
     return maxAverage
-        
         
 def lengthOfLongestSubstring(s: str) -> int:
     #Problem #3 Longest Substring Without Repeating
@@ -126,7 +132,7 @@ def minWindow(s: str, t: str) -> str:
     return ""
 
 if __name__ == "__main__":
-    nums = [5]
-    k = 1
+    nums = [1, 12, -5, -6, 50, 3]
+    k = 4
     
     print(findMaxAverage(nums, k))
