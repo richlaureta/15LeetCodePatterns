@@ -29,7 +29,7 @@ def maxVowels(s: str, k: int) -> int:
 
 
 def findMaxAverage(nums: List[int], k: int) -> float:
-    #Problem #643 Maximum Average Subarray I
+    #Problem #643 Maximum Average Subarray I - Easy
     
     maxAverage = float('-inf')
     sumAdd = 0

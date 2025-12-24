@@ -9,7 +9,7 @@
 
 double findMaxAverage(vector<int> &nums, int k)
 {
-    //Problem #643 Maximum Average Subarray I
+    //Problem #643 Maximum Average Subarray I - Easy
     
     double maxAverage = INT_MIN;
     double sumAdd = 0;
