@@ -22,11 +22,11 @@ int main(int argc, const char * argv[]) {
     //        cout << "not Anagrams!" << endl;
     //    }
     //
-    //    //Maximum Subarray Average I Problem
-    //    vector<int> arr = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-    //    int k = 4;
-    //
-    //    cout << findMaxAverage(arr, k) << endl;
+    //    //Maximum Subarray Average I Problem - Easy
+        vector<int> arr = {1, 12, -5, -6, 50, 3};
+        int k = 4;
+    
+        cout << findMaxAverage(arr, k) << endl;
     //
     //    //Linked List Cycle Problem
     //    ListNode node0 = ListNode(3);
@@ -273,9 +273,9 @@ int main(int argc, const char * argv[]) {
 //        cout << endl;
     
     //Problem #11 Container With The Most Water - Medium
-        vector<int> height = {1, 8, 6, 2, 5, 4, 8, 3, 7};
-    
-        cout << maxArea(height) << endl;
+//        vector<int> height = {1, 8, 6, 2, 5, 4, 8, 3, 7};
+//    
+//        cout << maxArea(height) << endl;
     
     // Problem #3 Longest Substring Without Repeating Characters
     //    string s = "abcabcbb";

@@ -11,29 +11,29 @@ double findMaxAverage(vector<int> &nums, int k)
 {
     //Problem #643 Maximum Average Subarray I
     
-    double total = 0;
-    size_t leftIndex = 0;
-    double maxSum = 0;
-
-    for (size_t i = 0; i < k; ++i)
+    double maxAverage = INT_MIN;
+    double sumAdd = 0;
+    
+    for(int i = 0; i < k; i++)
     {
-        total += nums[i];
+        sumAdd += nums[i];
     }
-
-    maxSum = total;
-
-    for (size_t i = k; i < nums.size(); ++i)
+    
+    int startPointer = 0;
+    
+    maxAverage = max(maxAverage, sumAdd/k);
+    
+    for(int i = k; i < nums.size(); i++)
     {
-        total += nums[i] - nums[leftIndex];
-        leftIndex++;
-
-        if (total > maxSum)
-        {
-            maxSum = total;
-        }
+        sumAdd -= nums[startPointer];
+        sumAdd += nums[i];
+        
+        maxAverage = max(maxAverage, sumAdd/k);
+        
+        startPointer++;
     }
-
-    return maxSum / k;
+    
+    return maxAverage;
 }
 
 int maxVowels(string s, int k)
