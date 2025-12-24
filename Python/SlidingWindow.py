@@ -2,33 +2,6 @@ from typing import List
 import sys
 
 def maxVowels(s: str, k: int) -> int:
-    #Problem # 1456. Maximum Number of Vowels in a Substring of given length
-
-    # Count = 0
-    # left = 0
-    # for i in range(k):
-    #     if(ord(s[i]) == 97 or  ord(s[i]) == 101 or ord(s[i]) == 105 or ord(s[i]) == 111 or ord(s[i]) == 117):
-    #         Count += 1
-    # aCount = Count
-    # maxCount = Count
-    # if Count == k: return k
-
-    # for i in range(k, len(s)):
-    #     if(ord(s[left]) == 97 or  ord(s[left]) == 101 or ord(s[left]) == 105 or ord(s[left]) == 111 or ord(s[left]) == 117):
-    #         aCount -= 1
-        
-    #     if(ord(s[i]) == 97 or  ord(s[i]) == 101 or ord(s[i]) == 105 or ord(s[i]) == 111 or ord(s[i]) == 117):
-    #         aCount += 1
-        
-    #     if aCount > maxCount:
-    #         maxCount = aCount
-
-    #     left += 1
-
-    #     if maxCount == k : return k
-    
-    # return maxCount
-
     count = 0
 
     for i in range(k):
