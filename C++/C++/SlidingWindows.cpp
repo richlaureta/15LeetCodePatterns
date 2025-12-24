@@ -11,28 +11,36 @@ double findMaxAverage(vector<int> &nums, int k)
 {
     //Problem #643 Maximum Average Subarray I - Easy
     
+    //Create a variable maxAverage equal to the lowest possible integer. O(1) space complexity.
     double maxAverage = INT_MIN;
+    //Create a variable to sum all the contiguous lengths of k. O(1) space complexity.
     double sumAdd = 0;
     
+    //Iterate through the length of k and add them. O(k) time complexity.
     for(int i = 0; i < k; i++)
     {
         sumAdd += nums[i];
     }
     
+    //Create a variable for the startPointer index equal to 0. O(1) space complexity.
     int startPointer = 0;
-    
+    //Take the maximum average between the current maximum average and the new one.
     maxAverage = max(maxAverage, sumAdd/k);
     
+    //Iterate through the nums. O(n - k) time complexity.
     for(int i = k; i < nums.size(); i++)
     {
+        //Subtract the nums[startPointer] from sumAdd.
         sumAdd -= nums[startPointer];
+        //Add the current nums[index] to sumAdd.
         sumAdd += nums[i];
-        
+        //Take the maximum average between the current maximum average and the new one.
         maxAverage = max(maxAverage, sumAdd/k);
-        
+        //Increment the startPointer by 1.
         startPointer++;
     }
     
+    //Return maxAverage.
     return maxAverage;
 }
 
