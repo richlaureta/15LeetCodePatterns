@@ -1,5 +1,4 @@
 from typing import List
-import sys
 
 def maxVowels(s: str, k: int) -> int:
     count = 0
@@ -32,25 +31,28 @@ def maxVowels(s: str, k: int) -> int:
 def findMaxAverage(nums: List[int], k: int) -> float:
     #Problem #643 Maximum Average Subarray I
     
-    leftMostIndex = 0
-    rightMostIndex = k
-    total = 0
-    maxValue = 0
-
-    for i in range(leftMostIndex, k):
-        total += nums[i]
-    maxValue = total
+    maxAverage = float('-inf')
+    sumAdd = 0
     
-    for i in range(rightMostIndex, len(nums)):
-        total += nums[i]
-        total -= nums[leftMostIndex]
-        leftMostIndex += 1
-
-        if total > maxValue:
-            maxValue = total
-
-    return float(maxValue/k)
-
+    for index in range(0, k):
+        sumAdd += nums[index]
+    
+    startPointer = 0
+    
+    maxAverage = max(maxAverage, sumAdd/k)
+    
+    for index in range(k, len(nums)):
+        if index > len(nums) - 1:
+            break
+        
+        sumAdd -= nums[startPointer]
+        sumAdd += nums[index]
+        maxAverage = max(maxAverage, sumAdd/k)
+        startPointer += 1
+        
+    return maxAverage
+        
+        
 def lengthOfLongestSubstring(s: str) -> int:
     #Problem #3 Longest Substring Without Repeating
 
@@ -124,7 +126,7 @@ def minWindow(s: str, t: str) -> str:
     return ""
 
 if __name__ == "__main__":
-    s = "a"
-    t = "b"
+    nums = [5]
+    k = 1
     
-    print(minWindow(s, t))
+    print(findMaxAverage(nums, k))
