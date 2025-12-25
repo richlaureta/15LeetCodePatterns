@@ -1,4 +1,5 @@
 from collections import defaultdict
+
 def maxVowels(s: str, k: int) -> int:
     count = 0
 
@@ -155,7 +156,30 @@ def minWindow(s: str, t: str) -> str:
     
     return ""
 
-if __name__ == "__main__":
-    s = "abcdefghd"
+def isPalindrome(s: str) -> bool:
+    #Problem #125 Valid Palindrome - Easy
     
-    print(lengthOfLongestSubstring(s))
+    leftPointer = 0
+    rightPointer = len(s) - 1
+    
+    while leftPointer < rightPointer:
+        if not s[leftPointer].isalnum():
+            leftPointer += 1
+            continue
+        
+        if not s[rightPointer].isalnum():
+            rightPointer -= 1
+            continue
+        
+        if s[leftPointer].lower() != s[rightPointer].lower():
+            return False
+        
+        leftPointer += 1
+        rightPointer -= 1
+        
+    return True
+
+if __name__ == "__main__":
+    s = " "
+    
+    print(isPalindrome(s))
