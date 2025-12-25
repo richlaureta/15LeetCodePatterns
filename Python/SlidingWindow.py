@@ -138,6 +138,6 @@ def minWindow(s: str, t: str) -> str:
     return ""
 
 if __name__ == "__main__":
-    s = "   a"
+    s = "abcdefghddfhfjhjl"
     
     print(lengthOfLongestSubstring(s))

@@ -23,10 +23,10 @@ int main(int argc, const char * argv[]) {
     //    }
     //
     //    //Maximum Subarray Average I Problem - Easy
-        vector<int> arr = {1, 12, -5, -6, 50, 3};
-        int k = 4;
-    
-        cout << findMaxAverage(arr, k) << endl;
+//        vector<int> arr = {1, 12, -5, -6, 50, 3};
+//        int k = 4;
+//    
+//        cout << findMaxAverage(arr, k) << endl;
     //
     //    //Linked List Cycle Problem
     //    ListNode node0 = ListNode(3);
@@ -278,8 +278,8 @@ int main(int argc, const char * argv[]) {
 //        cout << maxArea(height) << endl;
     
     // Problem #3 Longest Substring Without Repeating Characters
-    //    string s = "abcabcbb";
-    //    cout << lengthOfLongestSubstring(s) << endl;
+        string s = "pwwkew";
+        cout << lengthOfLongestSubstring(s) << endl;
     //
     // Problem #76 Minimum Window Substring
     //    string s = "a";

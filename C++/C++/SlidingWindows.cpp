@@ -92,35 +92,43 @@ int maxVowels(string s, int k)
 
 int lengthOfLongestSubstring(string s)
 {
-    //Problem #3 Longest Substring Without Repeating Character - Medium 
+    //Problem #3 Longest Substring Without Repeating Character - Medium
     
-    unordered_map<int, int> myMap;
-    int count = 0;
-    int maxCount = 0;
-    int pointer = 0;
+    unordered_map<char, int> letterIndexMap;
     
-    while(pointer != s.size())
+    int startingPoint = 0;
+    
+    int uniqueCount = 0;
+    int longestSubstringCount = 0;
+    
+    for(int i = 0; i < s.size(); i++)
     {
-        if(myMap.count(s[pointer]) == 0)
+        if(letterIndexMap.find(s[i]) == letterIndexMap.end())
         {
-            myMap[s[pointer]] = pointer;
-            count++;
-            if(count > maxCount)
-            {
-                maxCount = count;
-            }
+            letterIndexMap[s[i]] = i;
+            uniqueCount++;
         }
         else
         {
-            count = 0;
-            pointer = myMap[s[pointer]];
-            myMap.clear();
+            longestSubstringCount = max(longestSubstringCount, uniqueCount);
+            
+            
+            int previousStartingPoint = startingPoint;
+            startingPoint = letterIndexMap[s[i]] + 1;
+            uniqueCount = i - startingPoint + 1;
+            
+            for(int j = previousStartingPoint; j < letterIndexMap[s[i]] + 1; j++)
+            {
+                letterIndexMap.erase(s[j]);
+            }
+            
+            letterIndexMap[s[i]] = i;
         }
-        
-        pointer++;
     }
     
-    return maxCount;
+    longestSubstringCount = max(longestSubstringCount, uniqueCount);
+    
+    return longestSubstringCount;
 }
 
 string minWindow(string s, string t)
