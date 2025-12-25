@@ -61,31 +61,49 @@ def findMaxAverage(nums: list[int], k: int) -> float:
 def lengthOfLongestSubstring(s: str) -> int:
     #Problem #3 Longest Substring Without Repeating Characters - Medium
     
+    #Create a default dictionary variable. O(n) space complexity.
     letterIndexDictionary = defaultdict(int)
-    
+    #Create a startingPoint variable. O(1) space complexity.
     startingPoint = 0
     
+    #Create a longestSubstringCount variable. O(1) space complexity.
     longestSubstringCount = 0
+    #Create a uniqueCount variable. O(1) space complexity.
     uniqueCount = 0
     
+    #Iterate through the string s. O(n) time complexity.
     for index in range(0, len(s)):
+        #If the character in s[index] is not in the dictionary.
         if s[index] not in letterIndexDictionary:
-                letterIndexDictionary[s[index]] = index
-                uniqueCount += 1
+            #Make the character key equal to the index.
+            letterIndexDictionary[s[index]] = index
+            #Increment uniqueCount by 1.
+            uniqueCount += 1
+        #Else if the s[index] is not in the dictionary.
         else:
+            #Get the maximum between longestSubstringCount and uniqueCount.
             longestSubstringCount = max(longestSubstringCount, uniqueCount)
             
+            #Get the previous starting point.
             previousStartingPoint = startingPoint
+            #Make the startingPoint equal to the letterIndexDictionary[s[index]] + 1.
             startingPoint = letterIndexDictionary[s[index]] + 1
+            #Set uniqueCount equal to the index minus the new starting point + 1.
             uniqueCount = index - startingPoint + 1
             
+            #Iterate from the previous StartingPoint to the letterIndexDictionary[s[index]] + 1. 
+            # O(n) * O(log n) time complexity.
             for index1 in range(previousStartingPoint, letterIndexDictionary[s[index]] + 1):
+                #Delete the previous character that got repeated.
                 del letterIndexDictionary[s[index1]]
             
-            letterIndexDictionary[s[index]] = index            
-
+            #Create a new character that has the new index.
+            letterIndexDictionary[s[index]] = index
+                        
+    #Get the maximum between longestSubstringCount and uniqueCount.
     longestSubstringCount = max(longestSubstringCount, uniqueCount)
     
+    #Return the longestSubstringCount.
     return longestSubstringCount
 
 def minWindow(s: str, t: str) -> str:

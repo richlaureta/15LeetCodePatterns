@@ -112,7 +112,6 @@ int lengthOfLongestSubstring(string s)
         {
             longestSubstringCount = max(longestSubstringCount, uniqueCount);
             
-            
             int previousStartingPoint = startingPoint;
             startingPoint = letterIndexMap[s[i]] + 1;
             uniqueCount = i - startingPoint + 1;
