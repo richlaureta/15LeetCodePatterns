@@ -92,7 +92,7 @@ int maxVowels(string s, int k)
 
 int lengthOfLongestSubstring(string s)
 {
-    //Problem #3 Longest Substring Without Repeating Character - Medium
+    //Problem #3 Longest Substring Without Repeating Characters - Medium
     
     unordered_map<char, int> letterIndexMap;
     
@@ -133,7 +133,7 @@ int lengthOfLongestSubstring(string s)
 
 string minWindow(string s, string t)
 {
-    //Problem #76. Minimum Window Substring
+    //Problem #76. Minimum Window Substring - Hard
     
     if((t == "") or (t.size() > s.size()))
     {

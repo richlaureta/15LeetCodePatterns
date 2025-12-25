@@ -59,7 +59,7 @@ def findMaxAverage(nums: list[int], k: int) -> float:
     return maxAverage
         
 def lengthOfLongestSubstring(s: str) -> int:
-    #Problem #3 Longest Substring Without Repeating - Medium
+    #Problem #3 Longest Substring Without Repeating Characters - Medium
     
     letterIndexDictionary = defaultdict(int)
     
@@ -89,7 +89,7 @@ def lengthOfLongestSubstring(s: str) -> int:
     return longestSubstringCount
 
 def minWindow(s: str, t: str) -> str:
-    #Problem #76 Minimum Window Substring
+    #Problem #76 Minimum Window Substring - Hard
 
     if t == "" or len(t) > len(s):
         return ""
@@ -138,6 +138,6 @@ def minWindow(s: str, t: str) -> str:
     return ""
 
 if __name__ == "__main__":
-    s = "abcdefghddfhfjhjl"
+    s = "abcdefghd"
     
     print(lengthOfLongestSubstring(s))
