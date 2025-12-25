@@ -94,39 +94,55 @@ int lengthOfLongestSubstring(string s)
 {
     //Problem #3 Longest Substring Without Repeating Characters - Medium
     
+    //Create an unordered map to store the key letter to value index. O(n) space complexity.
     unordered_map<char, int> letterIndexMap;
-    
+    //Create a startingPoint variable. O(1) space complexity.
     int startingPoint = 0;
     
+    //Create a uniqueCount variable. O(1) space complexity.
     int uniqueCount = 0;
+    //Create a longestSubstringCount variable. O(1) space complexity.
     int longestSubstringCount = 0;
     
+    //Iterate through the string s. O(n) time complexity.
     for(int i = 0; i < s.size(); i++)
     {
+        //If the character in s[index] is not in the map.
         if(letterIndexMap.find(s[i]) == letterIndexMap.end())
         {
             letterIndexMap[s[i]] = i;
             uniqueCount++;
         }
+        //Else if the s[index] is not in the dictionary.
         else
         {
+            //Get the maximum between longestSubstringCount and uniqueCount.
             longestSubstringCount = max(longestSubstringCount, uniqueCount);
             
+            //Get the previous starting point.
             int previousStartingPoint = startingPoint;
+            //Make the startingPoint equal to the letterIndexDictionary[s[index]] + 1.
             startingPoint = letterIndexMap[s[i]] + 1;
+            //Set uniqueCount equal to the index minus the new starting point + 1.
             uniqueCount = i - startingPoint + 1;
             
+            //Iterate from the previous StartingPoint to the letterIndexDictionary[s[index]] + 1.
+            //O(n) * O(log n) time complexity.
             for(int j = previousStartingPoint; j < letterIndexMap[s[i]] + 1; j++)
             {
+                //Erase the previous character that got repeated.
                 letterIndexMap.erase(s[j]);
             }
             
+            //Create a new character that has the new index.
             letterIndexMap[s[i]] = i;
         }
     }
     
+    //Get the maximum between longestSubstringCount and uniqueCount.
     longestSubstringCount = max(longestSubstringCount, uniqueCount);
     
+    //Return the longestSubstringCount.
     return longestSubstringCount;
 }
 
