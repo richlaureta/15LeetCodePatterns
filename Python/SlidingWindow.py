@@ -6,17 +6,12 @@ def countGoodSubstrings(s: str) -> int:
     index = 0
     goodCount = 0
     
-    while index < len(s) and index + 2 < len(s) :
-        letterFrequency = defaultdict(int)
-        for index1 in range(index, index + 3):
-            letterFrequency[s[index1]] += 1
-            if letterFrequency[s[index1]] > 1:
-                break
-            if index1 == index + 2:
-                goodCount += 1
+    while index + 2 < len(s):
+        if s[index] != s[index + 1] and s[index] != s[index + 2] and s[index + 1] != s[index + 2]:
+            goodCount += 1
         
         index += 1
-    
+
     return goodCount
         
 def maxVowels(s: str, k: int) -> int:

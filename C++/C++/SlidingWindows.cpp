@@ -10,6 +10,7 @@
 int countGoodSubstrings(string s)
 {
     //Problem #1876 Substrings of Size Three with Distinct Characters - Easy
+    
     int goodCount = 0;
     int index = 0;
     
