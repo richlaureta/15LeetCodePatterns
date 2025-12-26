@@ -14,17 +14,9 @@ int countGoodSubstrings(string s)
     int goodCount = 0;
     int index = 0;
     
-    while(index + 2 < s.size() - 1)
+    while(index + 2 < s.size())
     {
-        unordered_map<int, int> letterFrequencyMap;
-        
-        for(int i = index; i < index + 3; i++)
-        {
-            letterFrequencyMap[s[i]] += 1;
-            if(letterFrequencyMap[s[i]] > 1) break;
-            
-            if(i == index + 2) goodCount++;
-        }
+        if(s[index] != s[index + 1] and s[index] != s[index + 2] and s[index + 1] != s[index + 2]) goodCount++;
         
         index++;
     }
