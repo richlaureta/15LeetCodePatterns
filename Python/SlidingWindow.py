@@ -1,8 +1,24 @@
 from collections import defaultdict
 
 def countGoodSubstrings(s: str) -> int:
-    pass
-
+    #Problem #1876 Substrings if Size Three With Distinct Characters
+    
+    index = 0
+    goodCount = 0
+    
+    while index < len(s) and index + 2 < len(s) :
+        letterFrequency = defaultdict(int)
+        for index1 in range(index, index + 3):
+            letterFrequency[s[index1]] += 1
+            if letterFrequency[s[index1]] > 1:
+                break
+            if index1 == index + 2:
+                goodCount += 1
+        
+        index += 1
+    
+    return goodCount
+        
 def maxVowels(s: str, k: int) -> int:
     #Problem #1456 Maximum Number of Vowels in a Substring of Given Length - Medium
     
@@ -162,4 +178,6 @@ def minWindow(s: str, t: str) -> str:
     return ""
 
 if __name__ == "__main__":
-    s = "xyzzaz"
+    s = "aababcabc"
+    
+    print(countGoodSubstrings(s))
