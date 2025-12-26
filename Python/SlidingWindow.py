@@ -156,14 +156,5 @@ def minWindow(s: str, t: str) -> str:
     
     return ""
 
-def isPalindrome(s: str) -> bool:
-    #Problem #125 Valid Palindrome - Easy
-    
-    alphaNumericString = ''.join(filter(str.isalnum, s)).lower()
-    
-    return alphaNumericString == alphaNumericString[::-1]
-
 if __name__ == "__main__":
-    s = "A man, a plan, a canal: Panama"
-    
-    print(isPalindrome(s))
+    pass

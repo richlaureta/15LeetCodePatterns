@@ -90,7 +90,14 @@ def maxArea(height: list[int]) -> int:
     
     #Return the maxSquareArea.
     return maxSquareArea
-        
+
+def isPalindrome(s: str) -> bool:
+    #Problem #125 Valid Palindrome - Easy
+    
+    alphaNumericString = ''.join(filter(str.isalnum, s)).lower()
+    
+    return alphaNumericString == alphaNumericString[::-1]
+  
 if __name__ == "__main__":
     height = [1, 8, 6, 2, 5, 4, 8, 3, 7]
     
