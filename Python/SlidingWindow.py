@@ -1,6 +1,11 @@
 from collections import defaultdict
 
+def countGoodSubstrings(s: str) -> int:
+    pass
+
 def maxVowels(s: str, k: int) -> int:
+    #Problem #1456 Maximum Number of Vowels in a Substring of Given Length - Medium
+    
     count = 0
 
     for i in range(k):
@@ -157,4 +162,4 @@ def minWindow(s: str, t: str) -> str:
     return ""
 
 if __name__ == "__main__":
-    pass
+    s = "xyzzaz"
