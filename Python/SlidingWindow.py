@@ -1,7 +1,7 @@
 from collections import defaultdict
 
 def countGoodSubstrings(s: str) -> int:
-    #Problem #1876 Substrings if Size Three With Distinct Characters
+    #Problem #1876 Substrings if Size Three With Distinct Characters - Easy
     
     index = 0
     goodCount = 0

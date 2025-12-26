@@ -7,6 +7,30 @@
 
 #include "Header.h"
 
+int countGoodSubstrings(string s)
+{
+    //Problem #1876 Substrings of Size Three with Distinct Characters - Easy
+    int goodCount = 0;
+    int index = 0;
+    
+    while(index + 2 < s.size() - 1)
+    {
+        unordered_map<int, int> letterFrequencyMap;
+        
+        for(int i = index; i < index + 3; i++)
+        {
+            letterFrequencyMap[s[i]] += 1;
+            if(letterFrequencyMap[s[i]] > 1) break;
+            
+            if(i == index + 2) goodCount++;
+        }
+        
+        index++;
+    }
+    
+    return goodCount;
+}
+
 double findMaxAverage(vector<int> &nums, int k)
 {
     //Problem #643 Maximum Average Subarray I - Easy

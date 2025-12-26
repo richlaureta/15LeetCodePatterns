@@ -278,8 +278,8 @@ int main(int argc, const char * argv[]) {
 //        cout << maxArea(height) << endl;
     
     // Problem #3 Longest Substring Without Repeating Characters
-        string s = "pwwkew";
-        cout << lengthOfLongestSubstring(s) << endl;
+//        string s = "pwwkew";
+//        cout << lengthOfLongestSubstring(s) << endl;
     //
     // Problem #76 Minimum Window Substring
     //    string s = "a";
@@ -796,7 +796,10 @@ int main(int argc, const char * argv[]) {
 //    cout << access.sumRange(0, 2) << endl;
 //    cout << access.sumRange(2, 5) << endl;
 //    cout << access.sumRange(0, 5) << endl;
+    //Problem #1876 Substrings of Size Three With Distinct Characters
     
+    string s = "aababcabc";
+    cout << countGoodSubstrings(s) << endl;
     //TESTING
 //    int n = 5;
 //    cout << recursion1(n) << endl;

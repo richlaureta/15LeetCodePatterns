@@ -222,3 +222,4 @@ int recursion0(int n);
 int recursion1(int n);
 
 int longestCommonSubsequence(string text1, string text2);
+int countGoodSubstrings(string s);
