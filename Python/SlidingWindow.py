@@ -159,27 +159,11 @@ def minWindow(s: str, t: str) -> str:
 def isPalindrome(s: str) -> bool:
     #Problem #125 Valid Palindrome - Easy
     
-    leftPointer = 0
-    rightPointer = len(s) - 1
+    alphaNumericString = ''.join(filter(str.isalnum, s)).lower()
     
-    while leftPointer < rightPointer:
-        if not s[leftPointer].isalnum():
-            leftPointer += 1
-            continue
-        
-        if not s[rightPointer].isalnum():
-            rightPointer -= 1
-            continue
-        
-        if s[leftPointer].lower() != s[rightPointer].lower():
-            return False
-        
-        leftPointer += 1
-        rightPointer -= 1
-        
-    return True
+    return alphaNumericString == alphaNumericString[::-1]
 
 if __name__ == "__main__":
-    s = " "
+    s = "A man, a plan, a canal: Panama"
     
     print(isPalindrome(s))
