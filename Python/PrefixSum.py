@@ -1,7 +1,36 @@
 from collections import defaultdict
 
+def leftRightDifference(nums: list[int]) -> list[int]:
+    #Problem #2574 Left and Right Sum Differences - Easy
+    
+    if len(nums) == 1:
+        return [0]
+    
+    leftSum = [0, nums[0]]
+    leftNumbers = nums.copy()
+    
+    for index in range(1, len(nums) - 1):
+        leftSum.append(leftNumbers[index - 1] + leftNumbers[index])
+        leftNumbers[index] = leftNumbers[index - 1] + leftNumbers[index]
+    
+    rightNumbers = nums.copy()
+    rightSum = [0, rightNumbers[len(rightNumbers) - 1]]
+    for index in range(len(nums) - 1, 1, -1):
+        rightSum.append(rightNumbers[index - 1 ] + rightNumbers[index])
+        rightNumbers[index - 1] = rightNumbers[index - 1] + rightNumbers[index]
+        
+    
+    
+    leftRighAnswer = []
+    rightSumPointer = len(rightSum) - 1
+    for index in range(0, len(nums)):
+        leftRighAnswer.append(abs(leftSum[index] - rightSum[rightSumPointer]))
+        rightSumPointer -= 1
+    
+    return leftRighAnswer
+        
 def runningSum(nums: list[int]) -> list[int]:
-    #Problem #1480 Running Sum of 1d Array
+    #Problem #1480 Running Sum of 1d Array - Easy
     
     for index in range(1, len(nums)):
         nums[index] += nums[index - 1]
@@ -103,6 +132,6 @@ def subArraySum(nums: list[int], k: int) ->int:
     return sumEqualsKCount
 
 if __name__ == "__main__":
-    nums = [1, 2, 3, 4]
+    nums = [10, 4, 8, 3]
     
-    print(runningSum(nums))
+    print(leftRightDifference(nums))
