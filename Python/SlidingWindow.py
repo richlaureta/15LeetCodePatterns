@@ -7,7 +7,10 @@ def countGoodSubstrings(s: str) -> int:
     goodCount = 0
     
     while index + 2 < len(s):
-        if s[index] != s[index + 1] and s[index] != s[index + 2] and s[index + 1] != s[index + 2]:
+        if (s[index] != s[index + 1] and 
+            s[index] != s[index + 2] and 
+            s[index + 1] != s[index + 2]):
+            
             goodCount += 1
         
         index += 1

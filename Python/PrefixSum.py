@@ -1,5 +1,14 @@
 from collections import defaultdict
 
+def runningSum(nums: list[int]) -> list[int]:
+    #Problem #1480 Running Sum of 1d Array
+    
+    for index in range(1, len(nums)):
+        nums[index] += nums[index - 1]
+    
+    return nums
+        
+
 def findMaxLength(nums: list[int]) -> int:
     #Problem #525 Contiguous Array - Medium - Solution Concept by YouTube Channel Cracking FAANG - Understanding the Solution
 
@@ -94,6 +103,6 @@ def subArraySum(nums: list[int], k: int) ->int:
     return sumEqualsKCount
 
 if __name__ == "__main__":
-    nums = [1, 2, 3]
-    k = 3
-    print(subArraySum(nums, k))
+    nums = [1, 2, 3, 4]
+    
+    print(runningSum(nums))
