@@ -1,7 +1,7 @@
 from collections import defaultdict
 
 def leftRightDifference(nums: list[int]) -> list[int]:
-    #Problem #2574 Left and Right Sum Differences - Easy
+    #Problem #2574 Left and Right Sum Differences - Easy - NEEDS OPTIMIZATION
     
     if len(nums) == 1:
         return [0]
@@ -19,8 +19,6 @@ def leftRightDifference(nums: list[int]) -> list[int]:
         rightSum.append(rightNumbers[index - 1 ] + rightNumbers[index])
         rightNumbers[index - 1] = rightNumbers[index - 1] + rightNumbers[index]
         
-    
-    
     leftRighAnswer = []
     rightSumPointer = len(rightSum) - 1
     for index in range(0, len(nums)):
