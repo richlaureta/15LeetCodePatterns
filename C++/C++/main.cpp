@@ -798,8 +798,19 @@ int main(int argc, const char * argv[]) {
 //    cout << access.sumRange(0, 5) << endl;
     //Problem #1876 Substrings of Size Three With Distinct Characters
     
-    string s = "aababcabc";
-    cout << countGoodSubstrings(s) << endl;
+//    string s = "aababcabc";
+//    cout << countGoodSubstrings(s) << endl;
+    
+    //Problem #1480 Running Sum of 1d Array - Easy
+    vector<int> nums = {1, 2, 3, 4};
+    
+    runningSum(nums);
+    
+    for(int i = 0; i < nums.size(); i++)
+    {
+        cout << nums[i] << endl;
+    }
+    
     //TESTING
 //    int n = 5;
 //    cout << recursion1(n) << endl;

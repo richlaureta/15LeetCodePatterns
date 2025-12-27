@@ -223,3 +223,4 @@ int recursion1(int n);
 
 int longestCommonSubsequence(string text1, string text2);
 int countGoodSubstrings(string s);
+vector<int> runningSum(vector<int> &nums);

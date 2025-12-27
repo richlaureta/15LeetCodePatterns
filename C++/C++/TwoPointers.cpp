@@ -7,6 +7,18 @@
 
 #include "Header.h"
 
+vector<int> runningSum(vector<int> &nums)
+{
+    //Problem #1480 Running Sum 1d Array - Easy
+    
+    for(int i = 1; i < nums.size(); i++)
+    {
+        nums[i] += nums[i - 1];
+    }
+    
+    return nums;
+}
+
 vector<int> twoSum2(vector<int>& numbers, int target)
 {
     // Problem #167 Two Sum II - Input Array is Sorted - Medium
