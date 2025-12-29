@@ -8,16 +8,16 @@ def leftRightDifference(nums: list[int]) -> list[int]:
     
     leftSum = [0, nums[0]]
     leftNumbers = nums.copy()
+    rightNumbers = nums.copy()
+    rightIndex = len(nums) - 2
+    rightSum = [0, nums[len(nums) - 1]]
     
     for index in range(1, len(nums) - 1):
         leftSum.append(leftNumbers[index - 1] + leftNumbers[index])
         leftNumbers[index] = leftNumbers[index - 1] + leftNumbers[index]
-    
-    rightNumbers = nums.copy()
-    rightSum = [0, rightNumbers[len(rightNumbers) - 1]]
-    for index in range(len(nums) - 1, 1, -1):
-        rightSum.append(rightNumbers[index - 1 ] + rightNumbers[index])
-        rightNumbers[index - 1] = rightNumbers[index - 1] + rightNumbers[index]
+        rightSum.append(rightNumbers[rightIndex] + rightNumbers[rightIndex + 1])
+        rightNumbers[rightIndex] = rightNumbers[rightIndex] + rightNumbers[rightIndex + 1]
+        rightIndex -= 1
         
     leftRighAnswer = []
     rightSumPointer = len(rightSum) - 1
