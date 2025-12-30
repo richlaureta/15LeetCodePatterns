@@ -802,13 +802,21 @@ int main(int argc, const char * argv[]) {
 //    cout << countGoodSubstrings(s) << endl;
     
     //Problem #1480 Running Sum of 1d Array - Easy
-    vector<int> nums = {1, 2, 3, 4};
-    
-    runningSum(nums);
+//    vector<int> nums = {1, 2, 3, 4};
+//    
+//    runningSum(nums);
+//    
+//    for(int i = 0; i < nums.size(); i++)
+//    {
+//        cout << nums[i] << endl;
+//    }
+    //Problem #2574 Left and Right Sum Differences - Easy - Learning from Submitted Solution
+    vector<int> nums = {10, 4, 8, 3};
+    vector<int> number = leftRightDifference(nums);
     
     for(int i = 0; i < nums.size(); i++)
     {
-        cout << nums[i] << endl;
+        cout << number[i] << endl;
     }
     
     //TESTING

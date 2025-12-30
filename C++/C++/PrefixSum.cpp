@@ -7,6 +7,24 @@
 
 #include "Header.h"
 
+vector<int> leftRightDifference(vector<int> &nums)
+{
+    //Problem #2574 Left and Right Sum Differences - Easy - Learning from Submitted Solution
+    
+    int leftSum = 0;
+    vector<int> leftRightSumDifference;
+    int rightSum = accumulate(nums.begin(),nums.end(), 0);
+    
+    for(int i = 0; i < nums.size(); i++)
+    {
+        rightSum -= nums[i];
+        if(i > 0) leftSum += nums[i - 1];
+        leftRightSumDifference.push_back(abs(leftSum - rightSum));
+    }
+    
+    return leftRightSumDifference;
+}
+
 int findMaxLength(vector<int> &nums)
 {
     //Problem #525 Contiguous Array - Medium - Solution Concept by YouTube Channel Cracking FAANG - Understanding the Solution

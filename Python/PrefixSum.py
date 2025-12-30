@@ -1,5 +1,7 @@
 from collections import defaultdict
 
+
+
 def leftRightDifference(nums: list[int]) -> list[int]:
     #Problem #2574 Left and Right Sum Differences - Easy - Learning from a submitted solution.
     
