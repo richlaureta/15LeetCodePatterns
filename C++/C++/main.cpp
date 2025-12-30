@@ -811,13 +811,18 @@ int main(int argc, const char * argv[]) {
 //        cout << nums[i] << endl;
 //    }
     //Problem #2574 Left and Right Sum Differences - Easy - Learning from Submitted Solution
-    vector<int> nums = {10, 4, 8, 3};
-    vector<int> number = leftRightDifference(nums);
+//    vector<int> nums = {10, 4, 8, 3};
+//    vector<int> number = leftRightDifference(nums);
+//    
+//    for(int i = 0; i < nums.size(); i++)
+//    {
+//        cout << number[i] << endl;
+//    }
     
-    for(int i = 0; i < nums.size(); i++)
-    {
-        cout << number[i] << endl;
-    }
+    //Problem #2824 Count Pairs Whose Sum is Less Than Target - Easy
+    vector<int> nums = {-6, 2, 5, -2 , -7, -1, 3};
+    int target = -2;
+    cout << countPairs(nums, target) << endl;
     
     //TESTING
 //    int n = 5;

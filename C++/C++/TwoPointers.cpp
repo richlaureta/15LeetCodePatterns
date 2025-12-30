@@ -7,6 +7,20 @@
 
 #include "Header.h"
 
+int countPairs(vector<int> &nums, int target)
+{
+    int pairCount = 0;
+    
+    for(int i = 0; i < nums.size(); i++)
+    {
+        for(int j = i + 1; j < nums.size(); j++)
+        {
+            if(nums[i] + nums[j] < target) pairCount++;
+        }
+    }
+    
+    return pairCount;
+}
 vector<int> runningSum(vector<int> &nums)
 {
     //Problem #1480 Running Sum 1d Array - Easy
