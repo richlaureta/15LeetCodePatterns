@@ -1,27 +1,19 @@
 def countPairs(nums: list[int], target: int) -> int:
     #Problem #2824 Count Pairs Whose Sum is Less Than Target - Easy
-    # nums.sort()
+    nums.sort()
     
-    # leftPointer = 0
-    # rightPointer = len(nums) - 1
-    # pairCount = 0
-    # while leftPointer < rightPointer:
-    #     if nums[leftPointer] + nums[rightPointer] < target:
-    #         pairCount += 1
-    #         rightPointer -= 1
-            
-    #     elif nums[leftPointer] + nums[rightPointer] > target:
-    #         rightPointer -= 1
-    #     else:
-    #         rightPointer -= 1 
-    # return pairCount
-    
+    leftPointer = 0
+    rightPointer = len(nums) - 1
     pairCount = 0
-    for index in range(0, len(nums)):
-        for index1 in range(index + 1, len(nums)):
-            if nums[index] + nums[index1] < target:
-                pairCount += 1
+    
+    while leftPointer < rightPointer:
+        if nums[leftPointer] + nums[rightPointer] < target:
+            pairCount += rightPointer - leftPointer
+            leftPointer += 1
+        else:
+            rightPointer -= 1
     return pairCount
+
 def threeSum(nums: list[int]) -> list[list[int]]:
     #Problem #15 3Sum - Medium 
     
