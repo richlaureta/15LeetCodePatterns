@@ -1,5 +1,5 @@
 def countPairs(nums: list[int], target: int) -> int:
-    #Problem #2824 Count Pairs Whose Sum is Less Than Target - Easy
+    #Problem #2824 Count Pairs Whose Sum is Less Than Target - Easy - Learning from a Submitted Solution
     nums.sort()
     
     leftPointer = 0

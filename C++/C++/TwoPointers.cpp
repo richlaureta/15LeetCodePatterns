@@ -9,14 +9,22 @@
 
 int countPairs(vector<int> &nums, int target)
 {
+    //Problem #2824 Count Pairs Whose Sum is Less than Target - Easy - Learning from a Submitted Solution
+    
+    sort(nums.begin(), nums.end());
+    
+    int leftPointer = 0;
+    int rightPointer = (int) nums.size() - 1;
     int pairCount = 0;
     
-    for(int i = 0; i < nums.size(); i++)
+    while(leftPointer < rightPointer)
     {
-        for(int j = i + 1; j < nums.size(); j++)
+        if(nums[leftPointer] + nums[rightPointer] < target)
         {
-            if(nums[i] + nums[j] < target) pairCount++;
+            pairCount += (rightPointer - leftPointer);
+            leftPointer++;
         }
+        else rightPointer--;
     }
     
     return pairCount;
