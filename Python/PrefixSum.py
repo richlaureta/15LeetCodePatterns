@@ -1,6 +1,20 @@
 from collections import defaultdict
 
+def countPartitions(nums: list[int]) -> int:
+    #Problem #3432 Count Partitions with Even Sum Difference - Easy
+    
+    goingLeftSum = 0
+    goingRightSum = sum(nums)
+    partitionCount = 0
+    
+    for index in range(0, len(nums)- 1):
+        goingRightSum -= nums[index]
+        goingLeftSum += nums[index]
+        partionSum = goingLeftSum - goingRightSum
+        if partionSum % 2 == 0:
+            partitionCount += 1
 
+    return partitionCount
 
 def leftRightDifference(nums: list[int]) -> list[int]:
     #Problem #2574 Left and Right Sum Differences - Easy - Learning from a submitted solution.
@@ -120,6 +134,6 @@ def subArraySum(nums: list[int], k: int) ->int:
     return sumEqualsKCount
 
 if __name__ == "__main__":
-    nums = [10, 4, 8, 3]
+    nums = [1, 2, 2]
     
-    print(leftRightDifference(nums))
+    print(countPartitions(nums))
