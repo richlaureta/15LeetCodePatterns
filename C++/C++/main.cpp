@@ -820,10 +820,14 @@ int main(int argc, const char * argv[]) {
 //    }
     
     //Problem #2824 Count Pairs Whose Sum is Less Than Target - Easy
-    vector<int> nums = {-6, 2, 5, -2 , -7, -1, 3};
-    int target = -2;
-    cout << countPairs(nums, target) << endl;
+//    vector<int> nums = {-6, 2, 5, -2 , -7, -1, 3};
+//    int target = -2;
+//    cout << countPairs(nums, target) << endl;
     
+    //Problem #3432 Count Partitions with Even Sum Difference - Easy
+    vector<int> nums = {10, 10, 3, 7, 6};
+    
+    cout << countPartitions(nums) << endl;
     //TESTING
 //    int n = 5;
 //    cout << recursion1(n) << endl;

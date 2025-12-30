@@ -10,8 +10,7 @@ def countPartitions(nums: list[int]) -> int:
     for index in range(0, len(nums)- 1):
         goingRightSum -= nums[index]
         goingLeftSum += nums[index]
-        partionSum = goingLeftSum - goingRightSum
-        if partionSum % 2 == 0:
+        if (goingLeftSum - goingRightSum) % 2 == 0:
             partitionCount += 1
 
     return partitionCount

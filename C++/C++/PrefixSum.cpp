@@ -7,6 +7,26 @@
 
 #include "Header.h"
 
+int countPartitions(vector<int> &nums)
+{
+    //Problem #3432 Count Partitions with Even Sum Difference - Easy
+    
+    int goingLeftSum = 0;
+    int goingRightSum = accumulate(nums.begin(), nums.end(), 0);
+    
+    int partitionCount = 0;
+    
+    for(int index = 0; index < nums.size() - 1; index++)
+    {
+        goingRightSum -= nums[index];
+        goingLeftSum += nums[index];
+        
+        if((goingLeftSum - goingRightSum) % 2 == 0) partitionCount++;
+    }
+    
+    return partitionCount;
+}
+
 vector<int> leftRightDifference(vector<int> &nums)
 {
     //Problem #2574 Left and Right Sum Differences - Easy - Learning from Submitted Solution

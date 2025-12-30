@@ -226,3 +226,4 @@ int countGoodSubstrings(string s);
 vector<int> runningSum(vector<int> &nums);
 vector<int> leftRightDifference(vector<int> &nums);
 int countPairs(vector<int> &nums, int target);
+int countPartitions(vector<int> &nums);
