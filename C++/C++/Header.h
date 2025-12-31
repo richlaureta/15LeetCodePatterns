@@ -228,3 +228,4 @@ vector<int> leftRightDifference(vector<int> &nums);
 int countPairs(vector<int> &nums, int target);
 int countPartitions(vector<int> &nums);
 vector<int> minOperations(string boxes);
+int subArray(vector<int> &nums);

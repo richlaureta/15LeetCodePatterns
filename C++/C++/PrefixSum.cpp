@@ -7,7 +7,27 @@
 
 #include "Header.h"
 
-
+int subArray(vector<int> &nums)
+{
+    //Problem #3427 Sum of Variable Length Subarrays - Easy
+    vector<int> numsCopy = nums;
+    for(int index = 1; index < nums.size(); index++)
+    {
+        numsCopy[index] += numsCopy[index - 1];
+    }
+    
+    int totalSum = 0;
+    
+    for(int index = 0; index < nums.size(); index++)
+    {
+        int start = max(0, index - nums[index]);
+        
+        if(start > 0) totalSum += numsCopy[index] - numsCopy[start - 1];
+        else totalSum += numsCopy[index];
+    }
+    
+    return totalSum;
+}
 
 vector<int> minOperations(string boxes)
 {

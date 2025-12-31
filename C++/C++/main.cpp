@@ -830,14 +830,18 @@ int main(int argc, const char * argv[]) {
 //    cout << countPartitions(nums) << endl;
     
     //Problem #1769 Minimum Number of Operations to Move All Balls to Each Box - Medium
-    string boxes = "001011";
+//    string boxes = "001011";
+//    
+//    vector<int> operationArray = minOperations(boxes);
+//    
+//    for(int number: operationArray)
+//    {
+//        cout << number << endl;
+//    }
+    //Problem #3427 Sum of Variable Length Subarrays - Easy
+    vector<int> nums = {3, 1, 1, 2};
     
-    vector<int> operationArray = minOperations(boxes);
-    
-    for(int number: operationArray)
-    {
-        cout << number << endl;
-    }
+    cout << subArray(nums) << endl;
     
     //TESTING
 //    int n = 5;
