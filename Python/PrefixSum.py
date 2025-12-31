@@ -3,20 +3,14 @@ from collections import defaultdict
 def minOperations(boxes: str) -> list[int]:
     #Problem #1769 Minimum Number of Operations to Move All Balls to Each Box - Medium
     
-    operationCountArray = []
-    indexBallArray = []
+    operationsCountArray = [0] * len(boxes)
     
     for index in range(0, len(boxes)):
         if boxes[index] == '1':
-            indexBallArray.append(index)
-            
-    for index in range(0, len(boxes)):
-        operationCount = 0
-        for index1 in range(0, len(indexBallArray)):
-            operationCount += abs(indexBallArray[index1] - index)
-        operationCountArray.append(operationCount)
-
-    return operationCountArray
+            for index1 in range(0, len(boxes)):
+                operationsCountArray[index1]  += abs(index1 - index)
+                
+    return operationsCountArray
 
 def countPartitions(nums: list[int]) -> int:
     #Problem #3432 Count Partitions with Even Sum Difference - Easy
@@ -151,6 +145,6 @@ def subArraySum(nums: list[int], k: int) ->int:
     return sumEqualsKCount
 
 if __name__ == "__main__":
-    boxes = "001011"
+    boxes = "110"
     
     print(minOperations(boxes))
