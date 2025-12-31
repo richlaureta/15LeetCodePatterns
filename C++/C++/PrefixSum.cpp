@@ -11,22 +11,17 @@ vector<int> minOperations(string boxes)
 {
     //Problem #1769 Minimum Number of Operations to Move All Balls to Each Box - Medium
     
-    vector<int> operationsCountArray;
-    vector<int> indexBallArray;
+    vector<int> operationsCountArray(boxes.size());
     
     for(int i = 0; i < boxes.size(); i++)
     {
-        if(boxes[i] == '1') indexBallArray.push_back(i);
-    }
-    
-    for(int i = 0; i < boxes.size(); i++)
-    {
-        int operationsCount = 0;
-        for(int j = 0; j < indexBallArray.size(); j++)
+        if(boxes[i] == '1')
         {
-            operationsCount += abs(indexBallArray[j] - i);
+            for(int j = 0; j < operationsCountArray.size(); j++)
+            {
+                operationsCountArray[j] += abs(j - i);
+            }
         }
-        operationsCountArray.push_back(operationsCount);
     }
     
     return operationsCountArray;
