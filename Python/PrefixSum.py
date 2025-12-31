@@ -1,5 +1,22 @@
 from collections import defaultdict
 
+def subArray(nums: list[int]) -> int:
+    #Problem #3427 Sum of Variable Length Subarrays - Easy
+    
+    numsCopy = nums.copy()
+    for index in range(1, len(nums)):
+        numsCopy[index] = numsCopy[index - 1] + numsCopy[index]
+    
+    totalSum = 0
+    for index in range(0, len(nums)):
+        start = max(0, index - nums[index])
+        
+        if start == 0:
+            totalSum += numsCopy[index]
+        else:
+            totalSum += numsCopy[index] - numsCopy[start - 1]
+            
+    return totalSum 
 def minOperations(boxes: str) -> list[int]:
     #Problem #1769 Minimum Number of Operations to Move All Balls to Each Box - Medium
     
@@ -145,6 +162,6 @@ def subArraySum(nums: list[int], k: int) ->int:
     return sumEqualsKCount
 
 if __name__ == "__main__":
-    boxes = "110"
-    
-    print(minOperations(boxes))
+    nums = [3, 1, 1, 2]
+
+    print(subArray(nums))
