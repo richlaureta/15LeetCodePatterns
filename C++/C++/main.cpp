@@ -825,9 +825,20 @@ int main(int argc, const char * argv[]) {
 //    cout << countPairs(nums, target) << endl;
     
     //Problem #3432 Count Partitions with Even Sum Difference - Easy
-    vector<int> nums = {10, 10, 3, 7, 6};
+//    vector<int> nums = {10, 10, 3, 7, 6};
+//    
+//    cout << countPartitions(nums) << endl;
     
-    cout << countPartitions(nums) << endl;
+    //Problem #1769 Minimum Number of Operations to Move All Balls to Each Box - Medium
+    string boxes = "001011";
+    
+    vector<int> operationArray = minOperations(boxes);
+    
+    for(int number: operationArray)
+    {
+        cout << number << endl;
+    }
+    
     //TESTING
 //    int n = 5;
 //    cout << recursion1(n) << endl;

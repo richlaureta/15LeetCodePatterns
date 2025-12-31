@@ -7,6 +7,31 @@
 
 #include "Header.h"
 
+vector<int> minOperations(string boxes)
+{
+    //Problem #1769 Minimum Number of Operations to Move All Balls to Each Box - Medium
+    
+    vector<int> operationsCountArray;
+    vector<int> indexBallArray;
+    
+    for(int i = 0; i < boxes.size(); i++)
+    {
+        if(boxes[i] == '1') indexBallArray.push_back(i);
+    }
+    
+    for(int i = 0; i < boxes.size(); i++)
+    {
+        int operationsCount = 0;
+        for(int j = 0; j < indexBallArray.size(); j++)
+        {
+            operationsCount += abs(indexBallArray[j] - i);
+        }
+        operationsCountArray.push_back(operationsCount);
+    }
+    
+    return operationsCountArray;
+}
+
 int countPartitions(vector<int> &nums)
 {
     //Problem #3432 Count Partitions with Even Sum Difference - Easy
