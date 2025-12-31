@@ -3,20 +3,16 @@ from collections import defaultdict
 def subArray(nums: list[int]) -> int:
     #Problem #3427 Sum of Variable Length Subarrays - Easy
     
-    numsCopy = nums.copy()
     for index in range(1, len(nums)):
-        numsCopy[index] = numsCopy[index - 1] + numsCopy[index]
-    
+        nums[index] = nums[index - 1] + nums[index]
+    nums.append(0)
     totalSum = 0
-    for index in range(0, len(nums)):
-        start = max(0, index - nums[index])
-        
-        if start == 0:
-            totalSum += numsCopy[index]
-        else:
-            totalSum += numsCopy[index] - numsCopy[start - 1]
+    for index in range(0, len(nums) - 1):
+        start = max(0, index - (nums[index] - nums[index - 1]))
+        totalSum += nums[index]  - nums[start - 1]
             
-    return totalSum 
+    return totalSum
+
 def minOperations(boxes: str) -> list[int]:
     #Problem #1769 Minimum Number of Operations to Move All Balls to Each Box - Medium
     
