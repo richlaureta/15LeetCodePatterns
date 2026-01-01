@@ -839,10 +839,10 @@ int main(int argc, const char * argv[]) {
 //        cout << number << endl;
 //    }
     //Problem #3427 Sum of Variable Length Subarrays - Easy
-    vector<int> nums = {3, 1, 1, 2};
-    
-    cout << subArray(nums) << endl;
-    
+//    vector<int> nums = {3, 1, 1, 2};
+//    
+//    cout << subArray(nums) << endl;
+    //
     //TESTING
 //    int n = 5;
 //    cout << recursion1(n) << endl;

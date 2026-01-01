@@ -7,6 +7,9 @@ def garbageCollection(garbage: list[str], travel: list[int]) -> int:
     totalMinutesCount = 0
     houseIndex = 0
     
+    for index in range(1, len(travel)):
+        travel[index] += travel[index - 1]
+        
     for house in garbage:
         totalMinutesCount += len(house)
         if "M" in house:
@@ -16,10 +19,10 @@ def garbageCollection(garbage: list[str], travel: list[int]) -> int:
         if "G" in house:
             trucks["G"] = houseIndex
         houseIndex += 1
-    
+    travel.append(0)
     for letter in trucks:
-        for index in range(0, trucks[letter]):
-            totalMinutesCount += travel[index]
+        if trucks[letter] != -1:
+            totalMinutesCount += travel[trucks[letter] - 1]
         
     return totalMinutesCount   
     
@@ -181,7 +184,7 @@ def subArraySum(nums: list[int], k: int) ->int:
     return sumEqualsKCount
 
 if __name__ == "__main__":
-    garbage = ["G", "P", "GP", "GG"]
-    travel = [2, 4, 3]
+    garbage = ["G", "M"]
+    travel = [1]
 
     print(garbageCollection(garbage, travel))
