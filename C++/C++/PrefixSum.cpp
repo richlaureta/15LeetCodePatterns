@@ -10,6 +10,7 @@
 int subArray(vector<int> &nums)
 {
     //Problem #3427 Sum of Variable Length Subarrays - Easy
+    
     vector<int> numsCopy = nums;
     for(int index = 1; index < nums.size(); index++)
     {
