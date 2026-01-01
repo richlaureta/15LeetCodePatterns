@@ -3,33 +3,26 @@ from collections import defaultdict
 def garbageCollection(garbage: list[str], travel: list[int]) -> int:
     #Problem #2391 Minimum Amount of Time to Collect Garbage - Medium
     
-    trucks = "MPG"
+    trucks = {"M": -1, "P":-1, "G":-1}
     totalMinutesCount = 0
+    houseIndex = 0
+    
+    for house in garbage:
+        totalMinutesCount += len(house)
+        if "M" in house:
+            trucks["M"] = houseIndex
+        if "P" in house:
+            trucks["P"] = houseIndex
+        if "G" in house:
+            trucks["G"] = houseIndex
+        houseIndex += 1
     
     for letter in trucks:
-        farthestTrashTypeIndex = -1
-        count = 0
-        index = 0
-        for house in garbage:
-            for trashType in house:
-                if letter == trashType:
-                    farthestTrashTypeIndex = index
-                    count += 1
-            if index < len(travel):
-                count += travel[index]
-            index += 1
+        for index in range(0, trucks[letter]):
+            totalMinutesCount += travel[index]
         
-        subtractReverse = len(travel) - farthestTrashTypeIndex
-        for subtract in reversed(travel):
-            if subtractReverse == 0:
-                break
-            count -= subtract
-            subtractReverse -= 1
-            
-        totalMinutesCount += count
-        
-    return totalMinutesCount 
-
+    return totalMinutesCount   
+    
 def subArray(nums: list[int]) -> int:
     #Problem #3427 Sum of Variable Length Subarrays - Easy
     
@@ -188,7 +181,7 @@ def subArraySum(nums: list[int], k: int) ->int:
     return sumEqualsKCount
 
 if __name__ == "__main__":
-    garbage = ["MMM", "PGM", "GP"]
-    travel = [3, 10]
+    garbage = ["G", "P", "GP", "GG"]
+    travel = [2, 4, 3]
 
     print(garbageCollection(garbage, travel))
