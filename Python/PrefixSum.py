@@ -1,7 +1,7 @@
 from collections import defaultdict
 
 def garbageCollection(garbage: list[str], travel: list[int]) -> int:
-    #Problem #2391 Minimum Amount of Time to Collect Garbage - Medium
+    #Problem #2391 Minimum Amount of Time to Collect Garbage - Medium - TESTING
     
     trucks = {"M": -1, "P":-1, "G":-1}
     totalMinutesCount = 0
