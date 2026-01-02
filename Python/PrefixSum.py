@@ -3,42 +3,28 @@ from collections import defaultdict
 def garbageCollection(garbage: list[str], travel: list[int]) -> int:
     #Problem #2391 Minimum Amount of Time to Collect Garbage - Medium
     
-    trucksIndexDictionary = {"M": -1, "P":-1, "G":-1}
+    trucks = {"M": -1, "P":-1, "G":-1}
     totalMinutesCount = 0
     houseIndex = 0
-    
+        
     for index in range(1, len(travel)):
         travel[index] += travel[index - 1]
-    
-    travel.append(0)
-        
+            
     for house in garbage:
         totalMinutesCount += len(house)
         if "M" in house:
-            if houseIndex > 0:
-                if trucksIndexDictionary["M"] != -1:
-                    totalMinutesCount += travel[houseIndex - 1] - travel[trucksIndexDictionary["M"] - 1]
-                else:
-                    totalMinutesCount += travel[houseIndex - 1]
-            trucksIndexDictionary["M"] = houseIndex
+            trucks["M"] = houseIndex
         if "P" in house:
-            if houseIndex > 0:
-                if trucksIndexDictionary["P"] != -1:
-                    totalMinutesCount += travel[houseIndex - 1] - travel[trucksIndexDictionary["P"] - 1]
-                else:
-                    totalMinutesCount += travel[houseIndex - 1]
-            trucksIndexDictionary["P"] = houseIndex
+            trucks["P"] = houseIndex
         if "G" in house:
-            if houseIndex > 0:
-                if trucksIndexDictionary["G"] != -1:
-                    totalMinutesCount += travel[houseIndex - 1] - travel[trucksIndexDictionary["G"] - 1]
-                else:
-                    totalMinutesCount += travel[houseIndex - 1]
-            trucksIndexDictionary["G"] = houseIndex
-            
+            trucks["G"] = houseIndex
         houseIndex += 1
-        
-    return totalMinutesCount   
+    travel.append(0)
+    for letter in trucks:
+        if trucks[letter] != -1:
+            totalMinutesCount += travel[trucks[letter] - 1]
+            
+    return totalMinutesCount
     
 def subArray(nums: list[int]) -> int:
     #Problem #3427 Sum of Variable Length Subarrays - Easy
