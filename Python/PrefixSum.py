@@ -3,27 +3,34 @@ from collections import defaultdict
 def garbageCollection(garbage: list[str], travel: list[int]) -> int:
     #Problem #2391 Minimum Amount of Time to Collect Garbage - Medium
     
-    trucks = {"M": -1, "P":-1, "G":-1}
+    M = False
+    P = False
+    G = False
+    
     totalMinutesCount = 0
-    houseIndex = 0
-        
+    houseIndex = len(garbage) - 1
+    
     for index in range(1, len(travel)):
         travel[index] += travel[index - 1]
-            
-    for house in garbage:
-        totalMinutesCount += len(house)
-        if "M" in house:
-            trucks["M"] = houseIndex
-        if "P" in house:
-            trucks["P"] = houseIndex
-        if "G" in house:
-            trucks["G"] = houseIndex
-        houseIndex += 1
+    
     travel.append(0)
-    for letter in trucks:
-        if trucks[letter] != -1:
-            totalMinutesCount += travel[trucks[letter] - 1]
+    
+    for house in reversed(garbage):
+        totalMinutesCount += len(house)
+        if "M" in house and M == False:
+            M = True
+            totalMinutesCount += travel[houseIndex - 1]
+        
+        if "P" in house and P == False:
+            P = True
+            totalMinutesCount += travel[houseIndex - 1]
+        
+        if "G" in house and G == False:
+            G = True
+            totalMinutesCount += travel[houseIndex - 1]
             
+        houseIndex -= 1
+    
     return totalMinutesCount
     
 def subArray(nums: list[int]) -> int:
