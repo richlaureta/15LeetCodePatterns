@@ -7,6 +7,51 @@
 
 #include "Header.h"
 
+int garbageCollection(vector<string> &garbage, vector<int> &travel)
+{
+    //Problem #2391 Minimum Amount of Time to Collect Garbage - Medium
+    
+    int totalMinutesCount = 0;
+    
+    bool M = false;
+    bool P = false;
+    bool G = false;
+    
+    for(int index = (int) garbage.size() - 1; index > -1; index--)
+    {
+        totalMinutesCount += garbage[index].size();
+        
+        if((garbage[index].find('M') != string::npos) and (M == false))
+        {
+            M = true;
+            for(int i = 0; i < index; i++)
+            {
+                totalMinutesCount += travel[i];
+            }
+        }
+        
+        if((garbage[index].find('P') != string::npos) and (P == false))
+        {
+            P = true;
+            for(int i = 0; i < index; i++)
+            {
+                totalMinutesCount += travel[i];
+            }
+        }
+        
+        if((garbage[index].find('G') != string::npos) and (G == false))
+        {
+            G = true;
+            for(int i = 0; i < index; i++)
+            {
+                totalMinutesCount += travel[i];
+            }
+        }
+    }
+    
+    return totalMinutesCount;
+}
+
 int subArray(vector<int> &nums)
 {
     //Problem #3427 Sum of Variable Length Subarrays - Easy

@@ -843,6 +843,14 @@ int main(int argc, const char * argv[]) {
 //    
 //    cout << subArray(nums) << endl;
     //
+    
+    //Problem #2391 Minimum Amount of Time to Collect Garbage - Medium
+    vector<string> garbage = {"MMM", "PGM", "GP"};
+    
+    vector<int> travel = {3, 10};
+    
+    cout << garbageCollection(garbage, travel) << endl;
+    
     //TESTING
 //    int n = 5;
 //    cout << recursion1(n) << endl;
