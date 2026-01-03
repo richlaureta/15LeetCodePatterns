@@ -1,3 +1,28 @@
+def reversePrefix(word: str, ch: str) -> str:
+    #Problem #2000 Reverse Prefix of Word - Easy
+    
+    foundIndex = -1
+    for index in range(0, len(word)):
+        if word[index] == ch:
+            foundIndex = index
+            break
+    
+    if foundIndex == -1:
+        return word
+    
+    stringReverseIndex = ""
+    
+    for index in range(foundIndex, -1, -1):
+        stringReverseIndex += word[index]
+    
+    for index in range(foundIndex + 1, len(word)):
+        stringReverseIndex += word[index]
+    
+    return stringReverseIndex
+    
+def isStrictlyPalindromic(n: int) -> bool:
+    #Problem #2396 Strictly Palindromic Number - Medium
+    pass
 def countPairs(nums: list[int], target: int) -> int:
     #Problem #2824 Count Pairs Whose Sum is Less Than Target - Easy - Learning from a Submitted Solution
     nums.sort()
@@ -115,6 +140,7 @@ def isPalindrome(s: str) -> bool:
     return alphaNumericString == alphaNumericString[::-1]
   
 if __name__ == "__main__":
-    nums = [-1, 1, 2, 3, 1]
+    word = "abcdefd"
+    ch = "d"
     
-    print(countPairs(nums, 2))
+    print(reversePrefix(word, ch))

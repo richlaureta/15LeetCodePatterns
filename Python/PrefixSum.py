@@ -1,5 +1,9 @@
 from collections import defaultdict
 
+def countTriplets(arr: list[int]) -> int:
+    #Problem #1442 Count Triplets That can Form Two Arrays of Equal XOR
+    pass
+
 def garbageCollection(garbage: list[str], travel: list[int]) -> int:
     #Problem #2391 Minimum Amount of Time to Collect Garbage - Medium
     
