@@ -7,7 +7,37 @@
 
 #include "Header.h"
 
-
+string reversePrefix(string word, char ch)
+{
+    //Problem #2000 Reverse Prefix of Word - Easy
+    
+    int foundIndex = -1;
+    
+    for(int index = 0; index < word.size(); index++)
+    {
+        if(word[index] == ch)
+        {
+            foundIndex = index;
+            break;
+        }
+    }
+    
+    if(foundIndex == -1) return word;
+    
+    string reversedStringIndex = "";
+    
+    for(int index = foundIndex; index > -1; index--)
+    {
+        reversedStringIndex += word[index];
+    }
+    
+    for(int index = foundIndex + 1; index < word.size(); index++)
+    {
+        reversedStringIndex += word[index];
+    }
+    
+    return reversedStringIndex;
+}
 
 int countPairs(vector<int> &nums, int target)
 {

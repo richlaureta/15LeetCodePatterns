@@ -230,3 +230,4 @@ int countPartitions(vector<int> &nums);
 vector<int> minOperations(string boxes);
 int subArray(vector<int> &nums);
 int garbageCollection(vector<string> &garbage, vector<int> &travel);
+string reversePrefix(string word, char ch);

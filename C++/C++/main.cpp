@@ -845,11 +845,18 @@ int main(int argc, const char * argv[]) {
     //
     
     //Problem #2391 Minimum Amount of Time to Collect Garbage - Medium
-    vector<string> garbage = {"MMM", "PGM", "GP"};
+//    vector<string> garbage = {"MMM", "PGM", "GP"};
+//    
+//    vector<int> travel = {3, 10};
+//    
+//    cout << garbageCollection(garbage, travel) << endl;
     
-    vector<int> travel = {3, 10};
+    //Problem #2000 Reverse Prefix of Word - Easy
     
-    cout << garbageCollection(garbage, travel) << endl;
+    string word = "abcdefd";
+    char ch = 'd';
+    
+    cout << reversePrefix(word, ch) << endl;
     
     //TESTING
 //    int n = 5;
