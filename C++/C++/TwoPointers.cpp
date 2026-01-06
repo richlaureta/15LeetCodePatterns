@@ -7,6 +7,29 @@
 
 #include "Header.h"
 
+vector<int> pivotArray(vector<int> &nums, int pivot)
+{
+    vector<int> lessThanPivot = {};
+    vector<int> equalsPivot = {};
+    vector<int> greaterThanPivot = {};
+    
+    for(int number: nums)
+    {
+        if(number < pivot) lessThanPivot.push_back(number);
+        else if(number > pivot) greaterThanPivot.push_back(number);
+        else equalsPivot.push_back(number);
+    }
+    
+    vector<int> firstMerger;
+    vector<int> secondMerger;
+    
+    merge(lessThanPivot.begin(), lessThanPivot.end(), equalsPivot.begin(), equalsPivot.end(), back_inserter(firstMerger));
+    
+    merge(firstMerger.begin(), firstMerger.end(), greaterThanPivot.begin(), greaterThanPivot.end(), back_inserter(secondMerger));
+    
+    return secondMerger;
+}
+
 string reversePrefix0(string s, int k)
 {
     string reversedString = "";

@@ -859,10 +859,21 @@ int main(int argc, const char * argv[]) {
 //    cout << reversePrefix(word, ch) << endl;
     
     //Problem #3794 Reverse String Prefix - Easy
+//    
+//    string s = "abcd";
+//    int k = 2;
+//    cout << reversePrefix0(s, k) << endl;
     
-    string s = "abcd";
-    int k = 2;
-    cout << reversePrefix0(s, k) << endl;
+    //Problem #2161 Partition Array According to Given Plot - Medium
+    vector<int> nums = {9, 12, 5, 10, 14, 3, 10};
+    int pivot = 10;
+    
+    vector<int> sortedPivotArray = pivotArray(nums, pivot);
+    
+    for(int i = 0; i < sortedPivotArray.size(); i++)
+    {
+        cout << sortedPivotArray[i] << endl;
+    }
     
     //TESTING
 //    int n = 5;
