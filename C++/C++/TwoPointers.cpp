@@ -10,24 +10,27 @@
 vector<int> pivotArray(vector<int> &nums, int pivot)
 {
     vector<int> lessThanPivot = {};
-    vector<int> equalsPivot = {};
     vector<int> greaterThanPivot = {};
+    
+    int pivotCounts = 0;
     
     for(int number: nums)
     {
         if(number < pivot) lessThanPivot.push_back(number);
         else if(number > pivot) greaterThanPivot.push_back(number);
-        else equalsPivot.push_back(number);
+        else pivotCounts++;
     }
     
-    vector<int> firstMerger;
-    vector<int> secondMerger;
+    for(int i = 0; i < pivotCounts; i++)
+    {
+        lessThanPivot.push_back(pivot);
+    }
     
-    merge(lessThanPivot.begin(), lessThanPivot.end(), equalsPivot.begin(), equalsPivot.end(), back_inserter(firstMerger));
+    vector<int> merger;
     
-    merge(firstMerger.begin(), firstMerger.end(), greaterThanPivot.begin(), greaterThanPivot.end(), back_inserter(secondMerger));
+    merge(lessThanPivot.begin(), lessThanPivot.end(), greaterThanPivot.begin(), greaterThanPivot.end(), back_inserter(merger));
     
-    return secondMerger;
+    return merger;
 }
 
 string reversePrefix0(string s, int k)
