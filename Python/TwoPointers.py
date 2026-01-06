@@ -5,13 +5,13 @@ def pivotArray(nums: list[int], pivot: int) -> list[int]:
     equalsPivot = []
     greaterThanPivot = []
     
-    for index in range(0, len(nums)):
-        if nums[index] < pivot:
-            lessThanPivot.append(nums[index])
-        elif nums[index] > pivot:
-            greaterThanPivot.append(nums[index])
+    for number in nums:
+        if number < pivot:
+            lessThanPivot.append(number)
+        elif number > pivot:
+            greaterThanPivot.append(number)
         else:
-            equalsPivot.append(nums[index])
+            equalsPivot.append(number)
             
     return lessThanPivot + equalsPivot + greaterThanPivot
 
