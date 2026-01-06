@@ -9,6 +9,8 @@
 
 vector<int> pivotArray(vector<int> &nums, int pivot)
 {
+    //Problem #2161 Partition Array According to Given Plot - Medium
+    
     vector<int> lessThanPivot = {};
     vector<int> greaterThanPivot = {};
     

@@ -864,7 +864,7 @@ int main(int argc, const char * argv[]) {
 //    int k = 2;
 //    cout << reversePrefix0(s, k) << endl;
     
-    //Problem #2161 Partition Array According to Given Plot - Medium
+    //Problem #2161 Partition Array According to Given Pivot - Medium
     vector<int> nums = {9, 12, 5, 10, 14, 3, 10};
     int pivot = 10;
     
