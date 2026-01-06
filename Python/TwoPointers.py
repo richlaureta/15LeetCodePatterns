@@ -1,3 +1,15 @@
+def reversePrefix0(s: str, k:int ) -> str:
+    #Problem #3794 String Prefix - Easy
+    
+    reversedString = ""
+    for index in range(k - 1, -1, -1):
+        reversedString += s[index]
+    
+    for index in range(k, len(s)):
+        reversedString += s[index]
+    
+    return reversedString
+
 def reversePrefix(word: str, ch: str) -> str:
     #Problem #2000 Reverse Prefix of Word - Easy
     
@@ -140,7 +152,7 @@ def isPalindrome(s: str) -> bool:
     return alphaNumericString == alphaNumericString[::-1]
   
 if __name__ == "__main__":
-    word = "abcdefd"
-    ch = "d"
+    s = "abcd"
+    k = 2
     
-    print(reversePrefix(word, ch))
+    print(reversePrefix0(s, k))
