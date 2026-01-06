@@ -1,20 +1,19 @@
 def pivotArray(nums: list[int], pivot: int) -> list[int]:
     #Problem #2161 Partition Array According to Given Pivot - Medium
     
-    mergedPartition = []
-    insertIndex = 0
-    pivotIndexPosition = 0
+    lessThanPivot = []
+    equalsPivot = []
+    greaterThanPivot = []
+    
     for index in range(0, len(nums)):
         if nums[index] < pivot:
-            mergedPartition.insert(insertIndex, nums[index])
-            insertIndex += 1
-            pivotIndexPosition += 1
+            lessThanPivot.append(nums[index])
         elif nums[index] > pivot:
-            mergedPartition.append(nums[index])
+            greaterThanPivot.append(nums[index])
         else:
-            mergedPartition.insert(pivotIndexPosition, nums[index])
-    
-    return mergedPartition 
+            equalsPivot.append(nums[index])
+            
+    return lessThanPivot + equalsPivot + greaterThanPivot
 
 def reversePrefix0(s: str, k:int ) -> str:
     #Problem #3794 String Prefix - Easy
