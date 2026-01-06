@@ -26,9 +26,9 @@ vector<int> pivotArray(vector<int> &nums, int pivot)
         lessThanPivot.push_back(pivot);
     }
     
-    for(int i = 0; i < greaterThanPivot.size(); i++)
+    for(int number: greaterThanPivot)
     {
-        lessThanPivot.push_back(greaterThanPivot[i]);
+        lessThanPivot.push_back(number);
     }
     
     return lessThanPivot;
