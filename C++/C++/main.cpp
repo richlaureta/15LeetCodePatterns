@@ -852,11 +852,17 @@ int main(int argc, const char * argv[]) {
 //    cout << garbageCollection(garbage, travel) << endl;
     
     //Problem #2000 Reverse Prefix of Word - Easy
+//    
+//    string word = "abcdefd";
+//    char ch = 'd';
+//    
+//    cout << reversePrefix(word, ch) << endl;
     
-    string word = "abcdefd";
-    char ch = 'd';
+    //Problem #3794 Reverse String Prefix - Easy
     
-    cout << reversePrefix(word, ch) << endl;
+    string s = "abcd";
+    int k = 2;
+    cout << reversePrefix0(s, k) << endl;
     
     //TESTING
 //    int n = 5;

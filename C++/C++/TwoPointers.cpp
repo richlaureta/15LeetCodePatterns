@@ -7,6 +7,23 @@
 
 #include "Header.h"
 
+string reversePrefix0(string s, int k)
+{
+    string reversedString = "";
+    
+    for(int index = k - 1; index > -1; index--)
+    {
+        reversedString += s[index];
+    }
+    
+    for(int index = k; index < s.size(); index++)
+    {
+        reversedString += s[index];
+    }
+    
+    return reversedString;
+}
+
 string reversePrefix(string word, char ch)
 {
     //Problem #2000 Reverse Prefix of Word - Easy
