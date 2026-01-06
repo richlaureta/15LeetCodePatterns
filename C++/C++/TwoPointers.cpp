@@ -26,11 +26,12 @@ vector<int> pivotArray(vector<int> &nums, int pivot)
         lessThanPivot.push_back(pivot);
     }
     
-    vector<int> merger;
+    for(int i = 0; i < greaterThanPivot.size(); i++)
+    {
+        lessThanPivot.push_back(greaterThanPivot[i]);
+    }
     
-    merge(lessThanPivot.begin(), lessThanPivot.end(), greaterThanPivot.begin(), greaterThanPivot.end(), back_inserter(merger));
-    
-    return merger;
+    return lessThanPivot;
 }
 
 string reversePrefix0(string s, int k)
