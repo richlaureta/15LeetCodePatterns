@@ -1,3 +1,21 @@
+def pivotArray(nums: list[int], pivot: int) -> list[int]:
+    #Problem #2161 Partition Array According to Given Pivot - Medium
+    
+    mergedPartition = []
+    insertIndex = 0
+    pivotIndexPosition = 0
+    for index in range(0, len(nums)):
+        if nums[index] < pivot:
+            mergedPartition.insert(insertIndex, nums[index])
+            insertIndex += 1
+            pivotIndexPosition += 1
+        elif nums[index] > pivot:
+            mergedPartition.append(nums[index])
+        else:
+            mergedPartition.insert(pivotIndexPosition, nums[index])
+    
+    return mergedPartition 
+
 def reversePrefix0(s: str, k:int ) -> str:
     #Problem #3794 String Prefix - Easy
     
@@ -152,7 +170,7 @@ def isPalindrome(s: str) -> bool:
     return alphaNumericString == alphaNumericString[::-1]
   
 if __name__ == "__main__":
-    s = "abcd"
-    k = 2
+    nums = [-3, 4, 3, 2]
+    pivot = 2
     
-    print(reversePrefix0(s, k))
+    print(pivotArray(nums, pivot))
