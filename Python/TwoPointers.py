@@ -1,20 +1,7 @@
 def isStrictlyPalindromic(n: int) -> bool:
     #Problem #2396 Strictly Palindromic Number - Medium
     
-    for base in range(2, n - 1):
-        division = n
-        mod = -1
-        baseString = ""
-        while division != 0:
-            mod = division % base
-            if mod == 0:
-                baseString += "0"
-            else:
-                baseString += "1"
-            division //= base
-        if baseString != baseString[::-1]:
-            return False
-    return True
+    return False
 
 def pivotArray(nums: list[int], pivot: int) -> list[int]:
     #Problem #2161 Partition Array According to Given Pivot - Medium

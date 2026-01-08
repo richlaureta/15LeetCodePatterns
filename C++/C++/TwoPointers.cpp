@@ -7,6 +7,13 @@
 
 #include "Header.h"
 
+bool isStrictlyPalindromic(int n)
+{
+    //Problem #2396 Strictly Palindromic Number - Medium
+    
+    return false;
+}
+
 vector<int> pivotArray(vector<int> &nums, int pivot)
 {
     //Problem #2161 Partition Array According to Given Plot - Medium

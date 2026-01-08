@@ -865,15 +865,17 @@ int main(int argc, const char * argv[]) {
 //    cout << reversePrefix0(s, k) << endl;
     
     //Problem #2161 Partition Array According to Given Pivot - Medium
-    vector<int> nums = {9, 12, 5, 10, 14, 3, 10};
-    int pivot = 10;
-    
-    vector<int> sortedPivotArray = pivotArray(nums, pivot);
-    
-    for(int i = 0; i < sortedPivotArray.size(); i++)
-    {
-        cout << sortedPivotArray[i] << endl;
-    }
+//    vector<int> nums = {9, 12, 5, 10, 14, 3, 10};
+//    int pivot = 10;
+//    
+//    vector<int> sortedPivotArray = pivotArray(nums, pivot);
+//    
+//    for(int i = 0; i < sortedPivotArray.size(); i++)
+//    {
+//        cout << sortedPivotArray[i] << endl;
+//    }
+    //Problem #2396 Strictly Palindromic Number - Medium
+    cout << isStrictlyPalindromic(9) << endl;
     
     //TESTING
 //    int n = 5;

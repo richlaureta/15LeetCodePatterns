@@ -233,3 +233,4 @@ int garbageCollection(vector<string> &garbage, vector<int> &travel);
 string reversePrefix(string word, char ch);
 string reversePrefix0(string s, int k);
 vector<int> pivotArray(vector<int> &nums, int pivot);
+bool isStrictlyPalindromic(int n);
