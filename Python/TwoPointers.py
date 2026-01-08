@@ -1,3 +1,21 @@
+def isStrictlyPalindromic(n: int) -> bool:
+    #Problem #2396 Strictly Palindromic Number - Medium
+    
+    for base in range(2, n - 1):
+        division = n
+        mod = -1
+        baseString = ""
+        while division != 0:
+            mod = division % base
+            if mod == 0:
+                baseString += "0"
+            else:
+                baseString += "1"
+            division //= base
+        if baseString != baseString[::-1]:
+            return False
+    return True
+
 def pivotArray(nums: list[int], pivot: int) -> list[int]:
     #Problem #2161 Partition Array According to Given Pivot - Medium
     
@@ -48,10 +66,7 @@ def reversePrefix(word: str, ch: str) -> str:
         stringReverseIndex += word[index]
     
     return stringReverseIndex
-    
-def isStrictlyPalindromic(n: int) -> bool:
-    #Problem #2396 Strictly Palindromic Number - Medium
-    pass
+
 def countPairs(nums: list[int], target: int) -> int:
     #Problem #2824 Count Pairs Whose Sum is Less Than Target - Easy - Learning from a Submitted Solution
     nums.sort()
@@ -168,8 +183,7 @@ def isPalindrome(s: str) -> bool:
     
     return alphaNumericString == alphaNumericString[::-1]
   
-if __name__ == "__main__":
-    nums = [-3, 4, 3, 2]
-    pivot = 2
-    
-    print(pivotArray(nums, pivot))
+if __name__ == "__main__":    
+    n = 5
+
+    print(isStrictlyPalindromic(n))
