@@ -281,11 +281,11 @@ int main(int argc, const char * argv[]) {
 //        string s = "pwwkew";
 //        cout << lengthOfLongestSubstring(s) << endl;
     //
-    // Problem #76 Minimum Window Substring
-    //    string s = "a";
-    //    string t = "aa";
-    //
-    //    cout << minWindow(s, t) << endl;
+    // Problem #76 Minimum Window Substring - Hard - Solution Concept by YouTube Channel Deepti Talesra - Understanding the Solution
+    string s = "ADOBECODEBANC";
+    string t = "ABC";
+    
+    cout << minWindow(s, t) << endl;
     
     //Problem #202 Happy Number
     //    int n = 19;
@@ -875,7 +875,7 @@ int main(int argc, const char * argv[]) {
 //        cout << sortedPivotArray[i] << endl;
 //    }
     //Problem #2396 Strictly Palindromic Number - Medium
-    cout << isStrictlyPalindromic(9) << endl;
+//    cout << isStrictlyPalindromic(9) << endl;
     
     //TESTING
 //    int n = 5;

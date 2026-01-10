@@ -168,64 +168,61 @@ int lengthOfLongestSubstring(string s)
 
 string minWindow(string s, string t)
 {
-    //Problem #76. Minimum Window Substring - Hard
+    //Problem #76. Minimum Window Substring - Hard - Solution Concept by YouTube Channel Deepti Talesra - Understanding the Solution
     
-    if((t == "") or (t.size() > s.size()))
+    unordered_map<char, int> tDictionary;
+    
+    for(char character: t) tDictionary[character] += 1;
+    
+    int leftMostPointer = 0;
+    int rightMostPointer = 0;
+    
+    int formed = 0;
+    int total = (int)tDictionary.size();
+    
+    int minimumWindowLengthSubstring = 100001;
+    int leftIndex = 0;
+    int rightIndex = 0;
+    
+    while(rightMostPointer < s.size())
     {
-        return "";
-    }
-    
-    unordered_map<char, int> tMap;
-    unordered_map<char, int> haveMap;
-    int have = 0;
-    vector<int> rangeOfString;
-    int minimumLength = 100001;
-    int leftPointer = 0;
-    
-    for(int i = 0; i < t.size(); i++)
-    {
-        tMap[t[i]]++;
-    }
-    
-    int need = (int) tMap.size();
-    
-    for(int rightPointer = 0; rightPointer < s.size(); rightPointer++)
-    {
-        haveMap[s[rightPointer]]++;
-        
-        if((tMap.count(s[rightPointer]) > 0) and haveMap[s[rightPointer]] == tMap[s[rightPointer]])
+        if(tDictionary.contains(s[rightMostPointer]))
         {
-            have++;
+            tDictionary[s[rightMostPointer]] -= 1;
+            if(tDictionary[s[rightMostPointer]] == 0) formed += 1;
         }
         
-        while(need == have)
+        while(formed == total and leftMostPointer <= rightMostPointer)
         {
-            if(((rightPointer - leftPointer) + 1) < minimumLength)
+            if(rightMostPointer - leftMostPointer + 1 < minimumWindowLengthSubstring)
             {
-                minimumLength = (rightPointer - leftPointer) + 1;
-                rangeOfString = {leftPointer, rightPointer};
+                minimumWindowLengthSubstring = rightMostPointer - leftMostPointer + 1;
+                leftIndex = leftMostPointer;
+                rightIndex = rightMostPointer;
             }
             
-            haveMap[s[leftPointer]]--;
-            
-            if((tMap.count(s[leftPointer]) > 0) and haveMap[s[leftPointer]] < tMap[s[leftPointer]])
+            if(tDictionary.contains(s[leftMostPointer]))
             {
-                have--;
+                tDictionary[s[leftMostPointer]] += 1;
+                if(tDictionary[s[leftMostPointer]] == 1)
+                {
+                    formed -= 1;
+                }
             }
             
-            leftPointer++;
+            leftMostPointer++;
         }
+            
+        rightMostPointer++;
     }
     
-    if(minimumLength != 100001)
+    if (minimumWindowLengthSubstring == 100001) return "";
+    
+    string minimumWindow = "";
+    for(int i = leftIndex; i < rightIndex + 1; i++)
     {
-        string answer;
-        for(int i = rangeOfString[0]; i < rangeOfString[1] + 1; i++)
-        {
-            answer += s[i];
-        }
-        return answer;
+        minimumWindow += s[i];
     }
-    
-    return "";
+        
+    return minimumWindow;
 }
