@@ -154,7 +154,7 @@ def minWindow(s: str, t: str) -> str:
             if rightMostPointer - leftMostPointer + 1 < minimumSubstring:
                 minimumSubstring = rightMostPointer - leftMostPointer + 1
                 leftIndex = leftMostPointer
-                rightIndex = rightMostPointer + 1
+                rightIndex = rightMostPointer 
             
             if s[leftMostPointer] in tDictionary:
                 tDictionary[s[leftMostPointer]] += 1
@@ -164,7 +164,7 @@ def minWindow(s: str, t: str) -> str:
             
         rightMostPointer += 1
     
-    return "" if minimumSubstring == float('inf') else s[leftIndex:rightIndex]
+    return "" if minimumSubstring == float('inf') else s[leftIndex:rightIndex + 1]
         
 if __name__ == "__main__":
     s = "ADOBEACODAEABANC"
