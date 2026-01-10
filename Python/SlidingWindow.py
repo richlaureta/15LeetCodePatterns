@@ -127,55 +127,47 @@ def lengthOfLongestSubstring(s: str) -> int:
     return longestSubstringCount
 
 def minWindow(s: str, t: str) -> str:
-    #Problem #76 Minimum Window Substring - Hard
-
-    if t == "" or len(t) > len(s):
-        return ""
+    #Problem #76 Minimum Window Substring - Hard - Solution Concept By YouTube Channel Deepti Talesra - Understanding the Solution
     
-    leftPointer = 0
-    tDictionary = {}
-    haveDictionary = {}
-    have = 0
-    minimumLength = float("infinity")
-    rangeOfWindow = []
-
-    for i in t:
-        if i not in tDictionary:
-            tDictionary[i] = 1
-        else:
-            tDictionary[i] += 1
+    tDictionary = defaultdict(int)
     
-    need = len(tDictionary)
+    for index in range(len(t)):
+        tDictionary[t[index]] += 1
 
-    for rightPointer in range(len(s)):
-        if s[rightPointer] not in haveDictionary:
-            haveDictionary[s[rightPointer]] = 1
-        else:
-            haveDictionary[s[rightPointer]] += 1
-        
-        if s[rightPointer] in tDictionary and haveDictionary[s[rightPointer]] == tDictionary[s[rightPointer]]:
-            have += 1
-        
-        while have == need:
-            if (rightPointer - leftPointer) + 1 < minimumLength:
-                minimumLength = (rightPointer - leftPointer) + 1
-                rangeOfWindow = [leftPointer, rightPointer]
+    leftMostPointer = 0
+    rightMostPointer = 0
+    
+    formed = 0
+    total = len(tDictionary)
+    
+    minimumSubstring = float('inf')
+    leftIndex = 0
+    rightIndex = 0
+    
+    while rightMostPointer < len(s):
+        if s[rightMostPointer] in tDictionary:
+            tDictionary[s[rightMostPointer]] -= 1
+            if tDictionary[s[rightMostPointer]] == 0:
+                formed += 1
+                
+        while formed == total and leftMostPointer <= rightMostPointer:
+            if rightMostPointer - leftMostPointer + 1 < minimumSubstring:
+                minimumSubstring = rightMostPointer - leftMostPointer + 1
+                leftIndex = leftMostPointer
+                rightIndex = rightMostPointer + 1
             
-            haveDictionary[s[leftPointer]] -= 1
-            if s[leftPointer] in tDictionary and haveDictionary[s[leftPointer]] < tDictionary[s[leftPointer]]:
-                have -= 1
-            leftPointer += 1
-
-    if minimumLength != float("infinity"):
-        answer = ""
-        for i in range(rangeOfWindow[0], rangeOfWindow[1] + 1):
-            answer += s[i]
+            if s[leftMostPointer] in tDictionary:
+                tDictionary[s[leftMostPointer]] += 1
+                if tDictionary[s[leftMostPointer]] == 1:
+                    formed -= 1
+            leftMostPointer += 1
+            
+        rightMostPointer += 1
     
-        return answer
-    
-    return ""
-
+    return "" if minimumSubstring == float('inf') else s[leftIndex:rightIndex]
+        
 if __name__ == "__main__":
-    s = "aababcabc"
+    s = "ADOBEACODAEABANC"
+    t = "AABC"
     
-    print(countGoodSubstrings(s))
+    print(minWindow(s, t))
