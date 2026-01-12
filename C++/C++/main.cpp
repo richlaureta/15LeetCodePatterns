@@ -282,10 +282,10 @@ int main(int argc, const char * argv[]) {
 //        cout << lengthOfLongestSubstring(s) << endl;
     //
     // Problem #76 Minimum Window Substring - Hard - Solution Concept by YouTube Channel Deepti Talesra - Understanding the Solution
-    string s = "ADOBECODEBANC";
-    string t = "ABC";
-    
-    cout << minWindow(s, t) << endl;
+//    string s = "ADOBECODEBANC";
+//    string t = "ABC";
+//    
+//    cout << minWindow(s, t) << endl;
     
     //Problem #202 Happy Number
     //    int n = 19;
@@ -878,13 +878,9 @@ int main(int argc, const char * argv[]) {
 //    cout << isStrictlyPalindromic(9) << endl;
     
     //TESTING
-//    int n = 5;
-//    cout << recursion1(n) << endl;
+    string a = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     
-//    string text1 = "cabde";
-//    string text2 = "bdecabe";
-//    
-//    cout << longestCommonSubsequence(text1, text2) << endl;
+    cout << a.substr(1, 2) << endl;
     
     return EXIT_SUCCESS;
 }

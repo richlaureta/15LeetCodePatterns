@@ -170,30 +170,45 @@ string minWindow(string s, string t)
 {
     //Problem #76. Minimum Window Substring - Hard - Solution Concept by YouTube Channel Deepti Talesra - Understanding the Solution
     
-    unordered_map<char, int> tDictionary;
+    //Initialize an unordered_map variable and call it tMap.
+    unordered_map<char, int> tMap;
     
-    for(char character: t) tDictionary[character] += 1;
+    //Count the frequency of letters in string t.
+    for(char character: t) tMap[character] += 1;
     
+    //Initialize a leftMostPointer variable to 0.
     int leftMostPointer = 0;
+    //Initialize a rightMostPointer variable to 0.
     int rightMostPointer = 0;
     
+    //Initialize a variable formed to 0. This is the count to satisfy the frequency in tMap so we can find the minimum length.
     int formed = 0;
-    int total = (int)tDictionary.size();
+    //Initialize a variable total to the length of tMap.
+    int total = (int)tMap.size();
     
+    //Initialize minimumWindowLengthSubstring to the most max according to the constraint.
     int minimumWindowLengthSubstring = 100001;
+    //Initialize a leftIndex to 0 that will mark the index of the minimum length.
     int leftIndex = 0;
+    //Initialize a rightIndex to 0 that will mark the index of the minimum length.
     int rightIndex = 0;
     
+    //Initialize a while loop whilst rightMostPointer is less than the length of s.
     while(rightMostPointer < s.size())
     {
-        if(tDictionary.contains(s[rightMostPointer]))
+        //If tMap contains the character at s[rightMostPointer], then decrement the tMap key by 1.
+        if(tMap.contains(s[rightMostPointer]))
         {
-            tDictionary[s[rightMostPointer]] -= 1;
-            if(tDictionary[s[rightMostPointer]] == 0) formed += 1;
+            tMap[s[rightMostPointer]] -= 1;
+            //If we satisfy the frequency and it is 0, we increment variable formed by 1.
+            if(tMap[s[rightMostPointer]] == 0) formed += 1;
         }
         
+        //Initialize another while loop if formed equals total and leftMostPointer is less than or equal to rightMostPointer
         while(formed == total and leftMostPointer <= rightMostPointer)
         {
+            //If rightMostPointer minus leftMostPointer + 1 is less than minimumWindowLengthSubstring then update
+            //the length of the minimumWindowLengthSubstring and leftIndex and rightIndex.
             if(rightMostPointer - leftMostPointer + 1 < minimumWindowLengthSubstring)
             {
                 minimumWindowLengthSubstring = rightMostPointer - leftMostPointer + 1;
@@ -201,24 +216,31 @@ string minWindow(string s, string t)
                 rightIndex = rightMostPointer;
             }
             
-            if(tDictionary.contains(s[leftMostPointer]))
+            //If tMap contains s leftMostPointer character index, then increment the key by 1.
+            if(tMap.contains(s[leftMostPointer]))
             {
-                tDictionary[s[leftMostPointer]] += 1;
-                if(tDictionary[s[leftMostPointer]] == 1)
+                tMap[s[leftMostPointer]] += 1;
+                
+                //If it equals 1, then decrement the variable formed by 1.
+                if(tMap[s[leftMostPointer]] == 1)
                 {
                     formed -= 1;
                 }
             }
             
+            //Decrement leftMostPointer by 1.
             leftMostPointer++;
         }
-            
+        
+        //Increment rightMostPointer by 1.
         rightMostPointer++;
     }
     
+    //Return an empty no-space string if it is 100001, otherwise return the leftIndex and rightIndex length of s.
     if (minimumWindowLengthSubstring == 100001) return "";
     
     string minimumWindow = "";
+    
     for(int i = leftIndex; i < rightIndex + 1; i++)
     {
         minimumWindow += s[i];
