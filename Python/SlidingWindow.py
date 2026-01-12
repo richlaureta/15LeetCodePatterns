@@ -129,41 +129,66 @@ def lengthOfLongestSubstring(s: str) -> int:
 def minWindow(s: str, t: str) -> str:
     #Problem #76 Minimum Window Substring - Hard - Solution Concept By YouTube Channel Deepti Talesra - Understanding the Solution
     
+    #Initialize a dictionary for string t.
     tDictionary = defaultdict(int)
     
+    #Iterate through the t letters and count the frequency.
     for index in range(len(t)):
         tDictionary[t[index]] += 1
 
+    #Initialize a leftMostPointer.
     leftMostPointer = 0
+    #Initialize a rightMostPointer.
     rightMostPointer = 0
     
+    #Initialize a formed variable. We increment this if we satisfy the frequency of a letter.
     formed = 0
+    #Initialize a total variable. This is the total amount that we have to meet. 
     total = len(tDictionary)
     
+    #Initialize a minimum count of the substring that satisfies the frequency of t.
     minimumSubstring = float('inf')
+    #Initialize a leftIndex to keep track of the minimum length index.
     leftIndex = 0
+    #Initialize a rightIndex to keep track of the minimum length index.
     rightIndex = 0
     
+    #Initialize a while loop whilst rightMostPointer is less than the length of s.
     while rightMostPointer < len(s):
+        #If the index character of string s is in the dictionary, decrement it by one.
         if s[rightMostPointer] in tDictionary:
             tDictionary[s[rightMostPointer]] -= 1
+            
+            #If the dictionary key is equal to 0, then we increment the formed by 1.
             if tDictionary[s[rightMostPointer]] == 0:
                 formed += 1
-                
+        
+        #We initialize another while loop with the condition if formed is equal to the 
+        # variable total, and if the leftMostPointer is less than or equal to rightMostPointer.        
         while formed == total and leftMostPointer <= rightMostPointer:
+            #If the length of rightMostPointer minus leftMostpointer + 1 is less than the minimumSubstring, 
+            # then update the minimumSubstring length and update the leftIndex and rightIndex to take up 
+            # the minimum length.
             if rightMostPointer - leftMostPointer + 1 < minimumSubstring:
                 minimumSubstring = rightMostPointer - leftMostPointer + 1
                 leftIndex = leftMostPointer
                 rightIndex = rightMostPointer 
             
+            #If the leftMostPointer index s is in the dictionary, then increment the key by 1.
             if s[leftMostPointer] in tDictionary:
                 tDictionary[s[leftMostPointer]] += 1
+                
+                #If it equals 1, decrement the variable "formed" by 1.
                 if tDictionary[s[leftMostPointer]] == 1:
                     formed -= 1
+                    
+            #Increment the leftMostPointer.
             leftMostPointer += 1
             
+        #Increment the rightMostPointer.    
         rightMostPointer += 1
     
+    #Return an empty no-space string if it is infinity, otherwise return the leftIndex and rightIndex length of s.
     return "" if minimumSubstring == float('inf') else s[leftIndex:rightIndex + 1]
         
 if __name__ == "__main__":
