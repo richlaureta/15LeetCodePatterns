@@ -31,7 +31,6 @@ def decrypt(code: list[int], k: int) -> list[int]:
         
     return bombCodeArray    
             
-
 def countGoodSubstrings(s: str) -> int:
     #Problem #1876 Substrings if Size Three With Distinct Characters - Easy
     

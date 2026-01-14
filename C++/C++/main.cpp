@@ -877,10 +877,21 @@ int main(int argc, const char * argv[]) {
     //Problem #2396 Strictly Palindromic Number - Medium
 //    cout << isStrictlyPalindromic(9) << endl;
     
-    //TESTING
-    string a = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    //Problem #1652 Defuse the Bomb - Easy
+    vector<int> code = {2, 4, 9, 3};
+    int k = 2;
     
-    cout << a.substr(1, 2) << endl;
+    vector<int> bombCode = decrypt(code, k);
+    
+    for(int i = 0; i < bombCode.size(); i++)
+    {
+        cout << bombCode[i] << endl;
+    }
+    
+    //TESTING
+//    string a = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+//    
+//    cout << a.substr(1, 2) << endl;
     
     return EXIT_SUCCESS;
 }

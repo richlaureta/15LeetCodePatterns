@@ -7,6 +7,42 @@
 
 #include "Header.h"
 
+vector<int> decrypt(vector<int> &code, int k)
+{
+    //Problem #1652 Defuse the Bomb - Easy
+    
+    if(k == 0)
+    {
+        vector<int> k0Array((int)code.size(), 0);
+        return k0Array;
+    }
+    
+    vector<int> bombCodeVector;
+    
+    for(int i = 0; i < code.size(); i++)
+    {
+        int sum = 0;
+        int index2 = 0;
+        if(k > 0) index2 = i + 1;
+        else index2 = i - 1;
+        
+        for(int j = 0; j < abs(k); j++)
+        {
+            if(k > 0 and code.size() == index2) index2 = 0;
+            else if(k < 0 and index2 == -1) index2 = (int)code.size() - 1;
+            
+            sum += code[index2];
+            
+            if(k > 0) index2 += 1;
+            else index2 -= 1;
+        }
+        
+        bombCodeVector.push_back(sum);
+    }
+    
+    return bombCodeVector;
+}
+
 int countGoodSubstrings(string s)
 {
     //Problem #1876 Substrings of Size Three with Distinct Characters - Easy
