@@ -8,44 +8,27 @@ def decrypt(code: list[int], k: int) -> list[int]:
     
     bombCodeArray = []
     
-    index1 = 0
-    
-    if k < 0:
-        index1 = len(code) - 1
-    else:
-        index1 = 1
-    
     for index in range(len(code)):
-        count = 0
-        sum = 0
         if k > 0:
-            index2 = index1
-        elif k < 0:
-            index2 = index1
-        while count != abs(k):
-            if index2 == len(code) and k > 0:
+            index2 = index + 1
+        else:
+            index2 = index - 1
+        sum = 0
+        for index1 in range(abs(k)):
+            if k > 0 and len(code) == index2:
                 index2 = 0
-            elif index2 == -1 and k < 0:
+            elif k < 0 and index2 == -1:
                 index2 = len(code) - 1
             
             sum += code[index2]
             
             if k > 0:
                 index2 += 1
-            elif k < 0:
+            else:
                 index2 -= 1
                 
-            count += 1
-            
-        if k > 0:
-            index1 += 1
-        elif k < 0:
-            index1 += 1
-            if index1 == len(code):
-                index1 = 0
-        
         bombCodeArray.append(sum)
-    
+        
     return bombCodeArray    
             
 
@@ -241,7 +224,7 @@ def minWindow(s: str, t: str) -> str:
     return "" if minimumSubstring == float('inf') else s[leftIndex:rightIndex + 1]
         
 if __name__ == "__main__":
-    code = [1, 2, 3, 4]
-    k = 0
+    code = [2, 4, 9, 3]
+    k = -2
     
     print(decrypt(code, k))
