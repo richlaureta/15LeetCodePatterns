@@ -879,7 +879,7 @@ int main(int argc, const char * argv[]) {
     
     //Problem #1652 Defuse the Bomb - Easy
     vector<int> code = {2, 4, 9, 3};
-    int k = 2;
+    int k = 0;
     
     vector<int> bombCode = decrypt(code, k);
     

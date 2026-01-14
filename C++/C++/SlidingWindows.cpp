@@ -11,31 +11,46 @@ vector<int> decrypt(vector<int> &code, int k)
 {
     //Problem #1652 Defuse the Bomb - Easy
     
-    if(k == 0)
-    {
-        vector<int> k0Array((int)code.size(), 0);
-        return k0Array;
-    }
-    
     vector<int> bombCodeVector;
     
-    for(int i = 0; i < code.size(); i++)
+    int sum = 0;
+    int count = 0;
+    int index = 0;
+    
+    if(k > 0) index = 1;
+    else index = (int)code.size() - 1;
+    
+    while(count != abs(k))
     {
-        int sum = 0;
-        int index2 = 0;
-        if(k > 0) index2 = i + 1;
-        else index2 = i - 1;
+        if(index == (int)code.size() and k > 0) index = 0;
+        else if(index == -1 and k < 0) index = (int) code.size() - 1;
         
-        for(int j = 0; j < abs(k); j++)
-        {
-            if(k > 0 and code.size() == index2) index2 = 0;
-            else if(k < 0 and index2 == -1) index2 = (int)code.size() - 1;
-            
-            sum += code[index2];
-            
-            if(k > 0) index2 += 1;
-            else index2 -= 1;
-        }
+        sum += code[index];
+        
+        if(k > 0) index += 1;
+        else index -= 1;
+        
+        count++;
+    }
+    
+    bombCodeVector.push_back(sum);
+    
+    int previousIndex = 1;
+    if(k < 0) previousIndex = (int)code.size() - abs(k);
+    
+    int endIndex = previousIndex + abs(k);
+    if(k < 0) endIndex = previousIndex + abs(k);
+    
+    for(int i = 0; i < (int)code.size() - 1; i++)
+    {
+        if(endIndex == (int)code.size()) endIndex = 0;
+        
+        if(previousIndex == (int)code.size()) previousIndex = 0;
+        
+        sum -= code[previousIndex];
+        previousIndex++;
+        sum += code[endIndex];
+        endIndex++;
         
         bombCodeVector.push_back(sum);
     }
