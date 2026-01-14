@@ -2,35 +2,56 @@ from collections import defaultdict
 
 def decrypt(code: list[int], k: int) -> list[int]:
     #Problem #1652 Defuse the Bomb - Easy
-    
-    if k == 0:
-        return [0] * len(code)
-    
+        
     bombCodeArray = []
     
-    for index in range(len(code)):
+    sum = 0
+    count = 0
+    if k > 0:
+        index = 1
+    else:
+        index = len(code) - 1
+    
+    while count != abs(k):
+        if index == len(code) and k > 0:
+            index = 0
+        elif index == -1 and k < 0:
+            index = len(code) - 1
+            
+        sum += code[index]
         if k > 0:
-            index2 = index + 1
+            index += 1
         else:
-            index2 = index - 1
-        sum = 0
-        for index1 in range(abs(k)):
-            if k > 0 and len(code) == index2:
-                index2 = 0
-            elif k < 0 and index2 == -1:
-                index2 = len(code) - 1
-            
-            sum += code[index2]
-            
-            if k > 0:
-                index2 += 1
-            else:
-                index2 -= 1
-                
+            index -= 1
+        count += 1
+    
+    bombCodeArray.append(sum)
+    
+    previousIndex = 1
+    if k < 0:
+        previousIndex = len(code) - abs(k)
+    
+    
+    endIndex = previousIndex + abs(k) 
+    if k < 0:
+        endIndex = previousIndex + abs(k)
+    
+    for index2 in range(len(code) - 1):
+        if endIndex == len(code):
+            endIndex = 0
+        
+        if previousIndex == len(code):
+            previousIndex = 0
+        
+        sum -= code[previousIndex]
+        previousIndex += 1
+        sum += code[endIndex]
+        endIndex += 1
+
         bombCodeArray.append(sum)
         
-    return bombCodeArray    
-            
+    return bombCodeArray
+                
 def countGoodSubstrings(s: str) -> int:
     #Problem #1876 Substrings if Size Three With Distinct Characters - Easy
     
@@ -224,6 +245,6 @@ def minWindow(s: str, t: str) -> str:
         
 if __name__ == "__main__":
     code = [2, 4, 9, 3]
-    k = -2
+    k = 0
     
     print(decrypt(code, k))
