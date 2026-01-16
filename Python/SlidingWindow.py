@@ -1,7 +1,7 @@
 from collections import defaultdict
 
 def countKConstraintSubstrings(s: str, k: int) -> int:
-    #Problem #3258 Count Substring That Satisfy K-Constraint I - Easy
+    #Problem #3258 Count Substring That Satisfy K-Constraint I - Easy - Learning from a submitted solution in LeetCode
 
     zerosAndOnes = [0,0]
     leftPointer = 0
