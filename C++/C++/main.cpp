@@ -878,20 +878,26 @@ int main(int argc, const char * argv[]) {
 //    cout << isStrictlyPalindromic(9) << endl;
     
     //Problem #1652 Defuse the Bomb - Easy
-    vector<int> code = {2, 4, 9, 3};
-    int k = 0;
+//    vector<int> code = {2, 4, 9, 3};
+//    int k = 0;
+//    
+//    vector<int> bombCode = decrypt(code, k);
+//    
+//    for(int i = 0; i < bombCode.size(); i++)
+//    {
+//        cout << bombCode[i] << endl;
+//    }
     
-    vector<int> bombCode = decrypt(code, k);
-    
-    for(int i = 0; i < bombCode.size(); i++)
-    {
-        cout << bombCode[i] << endl;
-    }
+    //Problem #3258 Count Substrings That Satisfy K-Constraint I - Easy
+    string s = "1010101";
+    int k = 2;
+    cout << countKConstraintSubstrings(s, k) << endl;
     
     //TESTING
-//    string a = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+//    char digit = '1';
+//    int digit1 = (int) digit;
 //    
-//    cout << a.substr(1, 2) << endl;
+//    cout << digit1 << endl;
     
     return EXIT_SUCCESS;
 }

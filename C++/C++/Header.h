@@ -235,3 +235,4 @@ string reversePrefix0(string s, int k);
 vector<int> pivotArray(vector<int> &nums, int pivot);
 bool isStrictlyPalindromic(int n);
 vector<int> decrypt(vector<int> &code, int k);
+int countKConstraintSubstrings(string s, int k);

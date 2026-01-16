@@ -7,6 +7,30 @@
 
 #include "Header.h"
 
+int countKConstraintSubstrings(string s, int k)
+{
+    //Problem #3258 Count Substrings That Satisfy K-Constraint I - Easy
+    vector<int> zeroesAndOnes = {0,0};
+    int leftPointer = 0;
+    
+    int countKConstraints = 0;
+    
+    for(int rightPointer = 0; rightPointer < (int)s.size(); rightPointer++)
+    {
+        zeroesAndOnes[(int)s[rightPointer] - 48 ] += 1;
+        
+        while(min(zeroesAndOnes[0], zeroesAndOnes[1]) > k)
+        {
+            zeroesAndOnes[(int)s[leftPointer] - 48] -= 1;
+            leftPointer++;
+        }
+        
+        countKConstraints += rightPointer - leftPointer + 1;
+    }
+    
+    return countKConstraints;
+}
+
 vector<int> decrypt(vector<int> &code, int k)
 {
     //Problem #1652 Defuse the Bomb - Easy
