@@ -3,26 +3,22 @@ from collections import defaultdict
 def countKConstraintSubstrings(s: str, k: int) -> int:
     #Problem #3258 Count Substring That Satisfy K-Constraint I - Easy
 
-    count = 0
-    for index in range(0, len(s)):
-        zerosOnesDictionary = {'0':0, '1':0}
-        if s[index] == '0':
-            zerosOnesDictionary['0'] += 1
-        else:
-            zerosOnesDictionary['1'] += 1
-            
-        if zerosOnesDictionary['0'] <= k or zerosOnesDictionary['1'] <= k:
-            count += 1
-        for index1 in range(index + 1, len(s)):
-            if s[index1] == '0':
-                zerosOnesDictionary['0'] += 1
-            else:
-                zerosOnesDictionary['1'] += 1
-                
-            if zerosOnesDictionary['0'] <= k or zerosOnesDictionary['1'] <= k:
-                count += 1
-            
-    return count
+    zerosAndOnes = [0,0]
+    leftPointer = 0
+    
+    countOfKconstraint = 0
+    
+    for rightPointer in range(len(s)):
+        zerosAndOnes[int(s[rightPointer])] += 1
+        
+        while min(zerosAndOnes[0], zerosAndOnes[1]) > k:
+            zerosAndOnes[int(s[leftPointer])] -= 1
+            leftPointer += 1
+        
+        countOfKconstraint += (rightPointer -leftPointer + 1)
+        
+    return countOfKconstraint
+
 def decrypt(code: list[int], k: int) -> list[int]:
     #Problem #1652 Defuse the Bomb - Easy
         
@@ -267,7 +263,7 @@ def minWindow(s: str, t: str) -> str:
     return "" if minimumSubstring == float('inf') else s[leftIndex:rightIndex + 1]
         
 if __name__ == "__main__":
-    s = "11111"
-    k = 1
+    s = "1010101"
+    k = 2
     
     print(countKConstraintSubstrings(s, k))
