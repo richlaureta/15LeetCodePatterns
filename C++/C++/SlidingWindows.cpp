@@ -10,6 +10,7 @@
 int countKConstraintSubstrings(string s, int k)
 {
     //Problem #3258 Count Substrings That Satisfy K-Constraint I - Easy
+    
     vector<int> zeroesAndOnes = {0,0};
     int leftPointer = 0;
     

@@ -10,7 +10,6 @@
 #define Header_h
 
 
-#endif /* Header_h */
 
 #include <string>
 #include <vector>
@@ -236,3 +235,5 @@ vector<int> pivotArray(vector<int> &nums, int pivot);
 bool isStrictlyPalindromic(int n);
 vector<int> decrypt(vector<int> &code, int k);
 int countKConstraintSubstrings(string s, int k);
+
+#endif // !Header_h
