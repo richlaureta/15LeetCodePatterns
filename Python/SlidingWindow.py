@@ -41,7 +41,7 @@ def minOperations(nums: list[int]) -> int:
     if countOnes == len(nums):
         return countMinOperations
     else:
-        -1
+        return -1
             
 
 def countKConstraintSubstrings(s: str, k: int) -> int:
@@ -307,6 +307,6 @@ def minWindow(s: str, t: str) -> str:
     return "" if minimumSubstring == float('inf') else s[leftIndex:rightIndex + 1]
         
 if __name__ == "__main__":
-    nums = [1, 1, 1, 1]
+    nums = [0, 1, 1, 1]
 
     print(minOperations(nums))
