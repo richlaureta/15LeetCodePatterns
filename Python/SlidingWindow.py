@@ -1,7 +1,7 @@
 from collections import defaultdict
 
 def minOperations(nums: list[int]) -> int:
-    #Problem # Minimum Operations to Make Binary Array Elements to One I - Medium
+    #Problem #3191 Minimum Operations to Make Binary Array Elements to One I - Medium
     
     countOnes = 0
     countMinOperations = 0
