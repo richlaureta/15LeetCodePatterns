@@ -889,9 +889,9 @@ int main(int argc, const char * argv[]) {
 //    }
     
     //Problem #3258 Count Substrings That Satisfy K-Constraint I - Easy
-    string s = "1010101";
-    int k = 2;
-    cout << countKConstraintSubstrings(s, k) << endl;
+//    string s = "1010101";
+//    int k = 2;
+//    cout << countKConstraintSubstrings(s, k) << endl;
     
     //TESTING
 //    char digit = '1';
