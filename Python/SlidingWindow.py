@@ -1,5 +1,41 @@
 from collections import defaultdict
 
+def minOperations(nums: list[int]) -> int:
+    #Problem # Minimum Operations to Make Binary Array Elements to One I - Medium
+    
+    countOnes = 0
+    countMinOperations = 0
+    for index in range(len(nums)):
+        if index + 2 == len(nums) - 1:
+            if nums[index] == 0:
+                countMinOperations += 1
+                nums[index] = 1
+                countOnes += 1
+                for index2 in range(index + 1, index + 3):
+                    if nums[index2] == 0:
+                        nums[index2] = 1
+                        countOnes += 1
+                    else:
+                        nums[index2] = 0
+            break
+        if nums[index] == 0:
+            countMinOperations += 1
+            nums[index] = 1
+            countOnes += 1
+            for index1 in range(index + 1, index + 3):
+                if nums[index1] == 0:
+                    nums[index1] = 1
+                else:
+                    nums[index1] = 0
+        else:
+            countOnes += 1
+    
+    if countOnes == len(nums):
+        return countMinOperations
+    else:
+        -1
+            
+
 def countKConstraintSubstrings(s: str, k: int) -> int:
     #Problem #3258 Count Substring That Satisfy K-Constraint I - Easy - Learning from a submitted solution in LeetCode
 
@@ -263,7 +299,6 @@ def minWindow(s: str, t: str) -> str:
     return "" if minimumSubstring == float('inf') else s[leftIndex:rightIndex + 1]
         
 if __name__ == "__main__":
-    s = "1010101"
-    k = 2
-    
-    print(countKConstraintSubstrings(s, k))
+    nums = [0, 1, 1, 1, 0, 0]
+
+    print(minOperations(nums))
