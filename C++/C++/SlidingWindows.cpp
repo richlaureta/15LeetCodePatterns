@@ -7,6 +7,40 @@
 
 #include "Header.h"
 
+int minOperations1(vector<int> &nums)
+{
+    int firstIndex = 0;
+    int secondIndex = 1;
+    int thirdIndex = 2;
+    
+    int countOnes = 0;
+    int countMinimumOperations = 0;
+    
+    while(thirdIndex < nums.size())
+    {
+        if(nums[firstIndex] == 0)
+        {
+            nums[firstIndex] = 1;
+            countMinimumOperations++;
+            
+            if(nums[secondIndex] == 0) nums[secondIndex] = 1;
+            else nums[secondIndex] = 0;
+            
+            if(nums[thirdIndex] == 0) nums[thirdIndex] = 1;
+            else nums[thirdIndex] = 0;
+        }
+        
+        countOnes++;
+        firstIndex++;
+        secondIndex++;
+        thirdIndex++;
+    }
+    
+    if(countOnes == nums.size() - 2 and nums[nums.size() - 1] and nums[nums.size() - 2]) return countMinimumOperations;
+    
+    return -1;
+}
+
 int countKConstraintSubstrings(string s, int k)
 {
     //Problem #3258 Count Substrings That Satisfy K-Constraint I - Easy

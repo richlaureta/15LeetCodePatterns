@@ -893,6 +893,11 @@ int main(int argc, const char * argv[]) {
 //    int k = 2;
 //    cout << countKConstraintSubstrings(s, k) << endl;
     
+    //Problem #3191 Minimum Operations to Make Binary Array Elements Equal to One I - Medium
+    vector<int> nums = {0, 1, 1, 1, 0, 0};
+    
+    cout << minOperations1(nums) << endl;
+
     //TESTING
 //    char digit = '1';
 //    int digit1 = (int) digit;

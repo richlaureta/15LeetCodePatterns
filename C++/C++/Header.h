@@ -235,6 +235,6 @@ vector<int> pivotArray(vector<int> &nums, int pivot);
 bool isStrictlyPalindromic(int n);
 vector<int> decrypt(vector<int> &code, int k);
 int countKConstraintSubstrings(string s, int k);
-
+int minOperations1(vector<int> &nums);
 
 #endif // !Header_h
