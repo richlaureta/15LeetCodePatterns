@@ -5,6 +5,7 @@ def minOperations(nums: list[int]) -> int:
     
     countOnes = 0
     countMinOperations = 0
+    
     for index in range(len(nums)):
         if index + 2 == len(nums) - 1:
             if nums[index] == 0:
@@ -17,6 +18,13 @@ def minOperations(nums: list[int]) -> int:
                         countOnes += 1
                     else:
                         nums[index2] = 0
+            else:
+                countOnes += 1
+                for index2 in range(index + 1, index + 3):
+                    if nums[index2] == 0:
+                        break
+                    else:
+                        countOnes += 1
             break
         if nums[index] == 0:
             countMinOperations += 1
@@ -299,6 +307,6 @@ def minWindow(s: str, t: str) -> str:
     return "" if minimumSubstring == float('inf') else s[leftIndex:rightIndex + 1]
         
 if __name__ == "__main__":
-    nums = [0, 1, 1, 1, 0, 0]
+    nums = [1, 1, 1, 1]
 
     print(minOperations(nums))
