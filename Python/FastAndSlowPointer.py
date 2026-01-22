@@ -104,30 +104,25 @@ def findDuplicate(nums: list[int]) -> int:
 
 def isHappy(n: int) -> bool:
     #Problem #202 Happy Number - Easy 
-
-    modulos = n
-    sum = 0
-    seen = set()
-
-    while sum != 1:
-        sum = 0
-        while n > 0:
-            modulos = n % 10
-            n = n // 10
-
-            sum += modulos * modulos
-
-        n = sum
-        if n in seen:
-            return False
+    squaresSum = n
+    seenNumbers = set()
+    while squaresSum != 1:
+        numberArray = []
+        temporaryNumber = squaresSum
+        while temporaryNumber != 0:
+            squaresSum = temporaryNumber % 10
+            numberArray.append(squaresSum)
+            temporaryNumber //= 10
+        squaresSum = 0
+        for number in numberArray:
+            squaresSum += number ** 2
             
-        seen.add(n)
-    
+        if squaresSum in seenNumbers:
+            return False
+        seenNumbers.add(squaresSum)
+        
     return True
-
 if __name__ == "__main__":
-    # n = 19
-    # print(isHappy(n))
+    n = 2
+    print(isHappy(n))
 
-    nums = [1, 3, 4, 2, 2]
-    print(findDuplicate(nums))
