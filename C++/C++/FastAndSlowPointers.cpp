@@ -66,7 +66,7 @@ bool hasCycle (ListNode *head)
 
 bool isHappy(int n)
 {
-    //Problem #202 Happy Number
+    //Problem #202 Happy Number - Easy
     
     set<int> seen;
     int sum = 0;

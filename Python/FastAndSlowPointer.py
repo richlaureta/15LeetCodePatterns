@@ -103,26 +103,24 @@ def findDuplicate(nums: list[int]) -> int:
     return pointer2
 
 def isHappy(n: int) -> bool:
-    #Problem #202 Happy Number - Easy 
+    #Problem #202 Happy Number - Easy
+    
     squaresSum = n
     seenNumbers = set()
     while squaresSum != 1:
-        numberArray = []
         temporaryNumber = squaresSum
+        numberSum = 0
         while temporaryNumber != 0:
             squaresSum = temporaryNumber % 10
-            numberArray.append(squaresSum)
             temporaryNumber //= 10
-        squaresSum = 0
-        for number in numberArray:
-            squaresSum += number ** 2
-            
+            numberSum += squaresSum ** 2
+        squaresSum = numberSum    
         if squaresSum in seenNumbers:
             return False
-        seenNumbers.add(squaresSum)
+        seenNumbers.add(numberSum)
         
     return True
 if __name__ == "__main__":
-    n = 2
+    n = 19
     print(isHappy(n))
 
