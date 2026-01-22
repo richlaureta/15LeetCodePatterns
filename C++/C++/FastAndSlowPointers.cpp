@@ -57,47 +57,11 @@ bool hasCycle (ListNode *head)
         
         if(slowPointer == fastPointer)
         {
-            cout << "The linked list has a cycle. Do you want to remove the cycle? Enter y for yes and press any key for no. ";
-            char input;
-            cin >> input;
-            if(tolower(input) == 'y')
-            {
-                removeCycle(head);
-                return false;
-            }
-            
             return true;
         }
     }
     
     return false;
-}
-
-void removeCycle(ListNode* head){
-    ListNode* behindPointer = head;
-    ListNode* pointer = head;
-    
-    unordered_map<ListNode*, int> addressMap;
-    size_t counter = 0;
-    
-    while(pointer != nullptr)
-    {
-        addressMap[pointer]++;
-        
-        if(addressMap[pointer] > 1)
-        {
-            behindPointer->next = nullptr;
-            return;
-        }
-        
-        if(counter != 0)
-        {
-            behindPointer = behindPointer->next;
-        }
-        
-        pointer = pointer->next;
-        counter = 1;
-    }
 }
 
 bool isHappy(int n)

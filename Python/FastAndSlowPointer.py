@@ -3,9 +3,9 @@ from time import sleep
 import sys
 import random
 class linkedListNode:
-    def __init__(self, value, nextNode = None):
-        self.value = value
-        self.nextNode = nextNode
+    def __init__(self, val, next = None):
+        self.val = val
+        self.next = next
 
 class LinkedList:
     def __init__(self, head = None):
@@ -67,19 +67,16 @@ class LinkedList:
 def hasCycle(head: linkedListNode) -> bool:
     #Problem #141 Linked List Cycle - Easy
     
-    if head is None:
-        return False
+    slowPointer = head
+    fastPointer = head
     
-    pointer = head
-    mySet = set()
-
-    while pointer != None:
-       if(str(hex(id(pointer)))) in mySet:
-           return True
-       mySet.add(str(hex(id(pointer))))
-       
-       pointer = pointer.nextNode
-
+    while fastPointer != None and fastPointer.next != None:
+        slowPointer = slowPointer.next
+        fastPointer = fastPointer.next.next
+        
+        if slowPointer == fastPointer:
+            return True
+    
     return False
 
 def findDuplicate(nums: list[int]) -> int:
