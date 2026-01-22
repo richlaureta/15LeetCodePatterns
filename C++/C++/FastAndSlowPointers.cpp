@@ -82,11 +82,11 @@ bool isHappy(int n)
             
             sum += modulus * modulus;
         }
+        
         n = sum;
-        if(seen.count(n) > 0)
-        {
-            return false;
-        }
+        
+        if(seen.count(n) > 0) return false;
+    
         seen.insert(n);
     }
     
