@@ -96,14 +96,25 @@ bool isHappy(int n)
 int findDuplicate(vector<int> &nums)
 {
     //Problem #287 Find the Duplicate Number
+    int slowPointer = nums[0];
+    int fastPointer = nums[0];
     
-    set<int> seenNumber;
-    
-    for(int number: nums)
+    while(true)
     {
-        if(seenNumber.find(number) != seenNumber.end()) return number;
-        seenNumber.insert(number);
+        slowPointer = nums[slowPointer];
+        fastPointer = nums[nums[fastPointer]];
+        
+        if(slowPointer == fastPointer) break;
     }
     
-    return -1;
+    int pointer1 = nums[0];
+    int pointer2 = fastPointer;
+    
+    while(pointer1 != pointer2)
+    {
+        pointer1 = nums[pointer1];
+        pointer2 = nums[pointer2];
+    }
+    
+    return pointer2;
 }

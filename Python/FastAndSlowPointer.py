@@ -81,12 +81,24 @@ def hasCycle(head: linkedListNode) -> bool:
 
 def findDuplicate(nums: list[int]) -> int:
     #Problem #287 Find the Duplicate Number - Medium
-    seenNumber = set()
-    for number in nums:
-        if number in seenNumber:
-            return number
-        seenNumber.add(number)
     
+    slowPointer = nums[0]
+    fastPointer = nums[0]
+    
+    while True:
+        slowPointer = nums[slowPointer]
+        fastPointer = nums[nums[fastPointer]]
+        if slowPointer == fastPointer:
+            break
+        
+    pointer1 = nums[0]
+    pointer2 = slowPointer
+    
+    while pointer1 != pointer2:
+        pointer1 = nums[pointer1]
+        pointer2 = nums[pointer2]
+
+    return pointer1
 
 def isHappy(n: int) -> bool:
     #Problem #202 Happy Number - Easy
