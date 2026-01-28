@@ -81,30 +81,15 @@ def hasCycle(head: linkedListNode) -> bool:
 
 def findDuplicate(nums: list[int]) -> int:
     #Problem #287 Find the Duplicate Number - Medium
-    #Start at index 0 which is the valuePointer 
-
-    slowPointer = nums[0]
-    fastPointer = nums[0]
-
-    while True:
-        slowPointer = nums[slowPointer] #Syntax for slowPointer
-        fastPointer = nums[nums[fastPointer]] #Syntax for fastPointer
-        if slowPointer == fastPointer:
-            break
-
-    #Find the entry Point of the cycle 
-    pointer1 = nums[0] 
-    pointer2 = fastPointer #This pointer is at the meeting point 
+    seenNumber = set()
+    for number in nums:
+        if number in seenNumber:
+            return number
+        seenNumber.add(number)
     
-    while pointer1 != pointer2:
-        pointer1 = nums[pointer1] #The value(pointer) is at index 0
-        pointer2 = nums[pointer2] #This is the meeting point 
-
-    return pointer2
 
 def isHappy(n: int) -> bool:
     #Problem #202 Happy Number - Easy
-    #TESTING
     squaresSum = n
     seenNumbers = set()
     while squaresSum != 1:
