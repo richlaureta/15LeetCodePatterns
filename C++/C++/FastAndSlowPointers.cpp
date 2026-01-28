@@ -97,25 +97,13 @@ int findDuplicate(vector<int> &nums)
 {
     //Problem #287 Find the Duplicate Number
     
-    int slowPointer = nums[0];
-    int fastPointer = nums[0];
+    set<int> seenNumber;
     
-    while(true)
+    for(int number: nums)
     {
-        slowPointer = nums[slowPointer];
-        fastPointer = nums[nums[fastPointer]];
-        
-        if (slowPointer == fastPointer) break;
+        if(seenNumber.find(number) != seenNumber.end()) return number;
+        seenNumber.insert(number);
     }
     
-    int pointer1 = nums[0];
-    int pointer2 = fastPointer;
-    
-    while(pointer1 != pointer2)
-    {
-        pointer1 = nums[pointer1];
-        pointer2 = nums[pointer2];
-    }
-    
-    return pointer2;
+    return -1;
 }
