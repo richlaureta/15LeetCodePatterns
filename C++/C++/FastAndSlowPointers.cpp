@@ -96,6 +96,7 @@ bool isHappy(int n)
 int findDuplicate(vector<int> &nums)
 {
     //Problem #287 Find the Duplicate Number
+    
     int slowPointer = nums[0];
     int fastPointer = nums[0];
     

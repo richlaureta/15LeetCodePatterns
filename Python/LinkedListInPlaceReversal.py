@@ -1,6 +1,4 @@
 from typing import Optional
-import sys
-
 
 class ListNode:
     def __init__(self, val = 0, next = None):
@@ -86,22 +84,21 @@ def hasCycle(head: ListNode) -> bool:
         if slowPointer == fastPointer:
             return True
 
-def reverseList(head: Optional[ListNode]) -> Optional [ListNode]:
-    if head is None:
-        return head
+def reverseList(head: ListNode) -> ListNode:
+    #Problem #206 Reverse Linked List - Easy
     
+    previousNode = None
     currentNode = head
-    previousNode = head
-    next = head.next
+    nextNode = currentNode.next
     
-    currentNode.next = None
-
-    while(next != None):
-        currentNode = next
-        next = next.next        
+    while nextNode != None:
         currentNode.next = previousNode
         previousNode = currentNode
-
+        currentNode = nextNode
+        nextNode = nextNode.next
+    
+    currentNode.next = previousNode
+    
     return currentNode
 
 def reverseBetween(head: Optional[ListNode], left: int, right: int) -> Optional[ListNode]:
@@ -199,7 +196,7 @@ def swapPairs(head: Optional[ListNode]) -> Optional[ListNode]:
 
 if __name__ == "__main__":
     
-    head = ListNode(1)
+    node1 = ListNode(1)
     node2 = ListNode(2)
     node3 = ListNode(3)
     node4 = ListNode(4)
@@ -209,21 +206,16 @@ if __name__ == "__main__":
     node8 = ListNode(14)
     node9 = ListNode(15)
 
-    head.next = node2
+    node1.next = node2
     node2.next = node3
     node3.next = node4
     node4.next = node5
-    node5.next = node6
-    node6.next = node7
-    node7.next = node8
-    node8.next = node9
-
-    editedLinkedList = swapPairs(head)
-
-    traverse = editedLinkedList
-
-    if (traverse == None) or (traverse == []):
-        print(None)
-    while traverse != None:
-        print(traverse.val)
-        traverse = traverse.next
+    
+    head = node1
+    
+    head = reverseList(head)
+    
+    currentNode = head
+    while currentNode != None:
+        print(currentNode.val)
+        currentNode = currentNode.next
