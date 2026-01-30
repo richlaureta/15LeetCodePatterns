@@ -87,6 +87,9 @@ def hasCycle(head: ListNode) -> bool:
 def reverseList(head: ListNode) -> ListNode:
     #Problem #206 Reverse Linked List - Easy
     
+    if head == None:
+        return head
+    
     previousNode = None
     currentNode = head
     nextNode = currentNode.next

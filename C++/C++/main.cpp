@@ -63,17 +63,29 @@ int main(int argc, const char * argv[]) {
     //    }
     //
     //    linkedList0.printLinkedList();
-    //    //Problem #206 Reverse Linked List
-    //
-    //    reverseList(&node0);
-    //    ListNode* currentNode = &node0;
-    //
-    //    while(currentNode->next != nullptr)
-    //    {
-    //        std::cout << currentNode->val << std::endl;
-    //        currentNode = currentNode->next;
-    //    }
-    //
+    //Problem #206 Reverse Linked List
+    
+    ListNode node1 = ListNode(1);
+    ListNode node2 = ListNode(2);
+    ListNode node3 = ListNode(3);
+    ListNode node4 = ListNode(4);
+    ListNode node5 = ListNode(5);
+    
+    node1.next = &node2;
+    node2.next = &node3;
+    node3.next = &node4;
+    node4.next = &node5;
+    
+    ListNode *head = &node1;
+    
+    ListNode* currentNode  = reverseList(head);
+    
+    while(currentNode != nullptr)
+    {
+        std::cout << currentNode->val << std::endl;
+        currentNode = currentNode->next;
+    }
+    
     //    //Problem #496 Next Greater Element I
     //
     //    vector<int> nums1 = {4, 1, 2};
@@ -894,9 +906,9 @@ int main(int argc, const char * argv[]) {
 //    cout << countKConstraintSubstrings(s, k) << endl;
     
     //Problem #3191 Minimum Operations to Make Binary Array Elements Equal to One I - Medium
-    vector<int> nums = {0, 1, 1, 1, 0, 0};
-    
-    cout << minOperations1(nums) << endl;
+//    vector<int> nums = {0, 1, 1, 1, 0, 0};
+//    
+//    cout << minOperations1(nums) << endl;
 
     //TESTING
 //    char digit = '1';

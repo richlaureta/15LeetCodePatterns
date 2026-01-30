@@ -9,20 +9,23 @@
 
 ListNode* reverseList(ListNode *head)
 {
-    ListNode* previousNode = head;
-    ListNode* currentNode = head;
-    ListNode* nextNode = head->next;
+    //Problem #206 Reverse Linked List - Easy
     
-    currentNode->next = nullptr;
+    if(head == nullptr) return head;
     
-    while (nextNode != nullptr)
+    ListNode *previousNode = nullptr;
+    ListNode *currentNode = head;
+    ListNode *nextNode = currentNode->next;
+    
+    while(nextNode != nullptr)
     {
-//        std::cout << currentNode->val << std::endl;
-        currentNode = nextNode;
-        nextNode = nextNode->next;
         currentNode->next = previousNode;
         previousNode = currentNode;
+        currentNode = nextNode;
+        nextNode = nextNode->next;
     }
+    
+    currentNode->next = previousNode;
     
     return currentNode;
 }
