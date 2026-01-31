@@ -33,57 +33,41 @@ ListNode* reverseList(ListNode *head)
 ListNode* reverseBetween(ListNode* head, int left, int right)
 {
     // Problem #92 Reverse Linked List II
+    if(left == right) return head;
     
-    ListNode* currentNode = head;
-    ListNode* rememberLeftNode = nullptr;
-    ListNode* rememberReversedLeftNode = nullptr;
-    int leftIndex = 1;
+    ListNode *currentNode = head;
+    ListNode *leftNode = nullptr;
+    int traverseIndex = 0;
     
-    while(currentNode != nullptr)
+    while(traverseIndex + 1 < left)
     {
-        if(leftIndex + 1 == left)
-        {
-            rememberLeftNode = currentNode;
-            rememberReversedLeftNode = currentNode->next;
-        }
-        
-        if(leftIndex == left)
-        {
-            ListNode* previousNode = nullptr;
-            ListNode* nextNode = currentNode->next;
-            
-            while(leftIndex != right)
-            {
-                currentNode->next = previousNode;
-                previousNode = currentNode;
-                currentNode = nextNode;
-                nextNode = nextNode->next;
-                leftIndex++;
-            }
-            currentNode->next = previousNode;
-            
-            if(rememberLeftNode == nullptr)
-            {
-                head->next = nextNode;
-                head = currentNode;
-            }
-            else
-            {
-                rememberLeftNode->next = currentNode;
-            }
-            
-            if(rememberReversedLeftNode != nullptr)
-            {
-                rememberReversedLeftNode->next = nextNode;
-            }
-            
-            return head;
-        }
-        
+        leftNode = currentNode;
         currentNode = currentNode->next;
-        leftIndex++;
+        traverseIndex++;
     }
-    return head;
+    
+    ListNode *pointRightEndNode = currentNode;
+    
+    ListNode *previousNode = currentNode;
+    ListNode *nextNode = currentNode->next;
+    while(traverseIndex + 1 < right)
+    {
+        currentNode = nextNode;
+        nextNode = nextNode->next;
+        currentNode->next = previousNode;
+        previousNode = currentNode;
+        traverseIndex++;
+    }
+    
+    pointRightEndNode->next = nextNode;
+    
+    if(left > 1)
+    {
+        leftNode->next = currentNode;
+        return head;
+    }
+    
+    return currentNode;
 }
 
 ListNode* swapPairs(ListNode* head)

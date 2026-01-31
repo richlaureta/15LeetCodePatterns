@@ -64,27 +64,27 @@ int main(int argc, const char * argv[]) {
     //
     //    linkedList0.printLinkedList();
     //Problem #206 Reverse Linked List
-    
-    ListNode node1 = ListNode(1);
-    ListNode node2 = ListNode(2);
-    ListNode node3 = ListNode(3);
-    ListNode node4 = ListNode(4);
-    ListNode node5 = ListNode(5);
-    
-    node1.next = &node2;
-    node2.next = &node3;
-    node3.next = &node4;
-    node4.next = &node5;
-    
-    ListNode *head = &node1;
-    
-    ListNode* currentNode  = reverseList(head);
-    
-    while(currentNode != nullptr)
-    {
-        std::cout << currentNode->val << std::endl;
-        currentNode = currentNode->next;
-    }
+//    
+//    ListNode node1 = ListNode(1);
+//    ListNode node2 = ListNode(2);
+//    ListNode node3 = ListNode(3);
+//    ListNode node4 = ListNode(4);
+//    ListNode node5 = ListNode(5);
+//    
+//    node1.next = &node2;
+//    node2.next = &node3;
+//    node3.next = &node4;
+//    node4.next = &node5;
+//    
+//    ListNode *head = &node1;
+//    
+//    ListNode* currentNode  = reverseList(head);
+//    
+//    while(currentNode != nullptr)
+//    {
+//        std::cout << currentNode->val << std::endl;
+//        currentNode = currentNode->next;
+//    }
     
     //    //Problem #496 Next Greater Element I
     //
@@ -310,27 +310,27 @@ int main(int argc, const char * argv[]) {
     //    cout << findDuplicate(nums) << endl;
     
     //Problem #92 Reverse Linked List II
-    //    ListNode* head = new ListNode(1);
-    //    ListNode* node2 = new ListNode(2);
-    //    ListNode* node3 = new ListNode(3);
-    //    ListNode* node4 = new ListNode(4);
-    //    ListNode* node5 = new ListNode(5);
-    //
-    //    int leftIndex = 1;
-    //    int rightIndex = 3;
-    //
-    //    head->next = node2;
-    //    node2->next = node3;
-    //    node3->next = node4;
-    //    node4->next = node5;
-    //
-    //    ListNode* editedLinkedList = reverseBetween(head, leftIndex, rightIndex);
-    //
-    //    while(editedLinkedList != nullptr)
-    //    {
-    //        cout << editedLinkedList->val << endl;
-    //        editedLinkedList = editedLinkedList->next;
-    //    }
+        ListNode* head = new ListNode(1);
+        ListNode* node2 = new ListNode(2);
+        ListNode* node3 = new ListNode(3);
+        ListNode* node4 = new ListNode(4);
+        ListNode* node5 = new ListNode(5);
+    
+        int leftIndex = 2;
+        int rightIndex = 4;
+    
+        head->next = node2;
+        node2->next = node3;
+        node3->next = node4;
+        node4->next = node5;
+    
+        ListNode* editedLinkedList = reverseBetween(head, leftIndex, rightIndex);
+    
+        while(editedLinkedList != nullptr)
+        {
+            cout << editedLinkedList->val << endl;
+            editedLinkedList = editedLinkedList->next;
+        }
     
     //Problem # 24 Swap Nodes in Pairs
     //    ListNode* head = new ListNode(1);
