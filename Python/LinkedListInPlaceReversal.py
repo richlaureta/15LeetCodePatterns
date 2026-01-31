@@ -106,43 +106,38 @@ def reverseList(head: ListNode) -> ListNode:
 
 def reverseBetween(head: Optional[ListNode], left: int, right: int) -> Optional[ListNode]:
     #Problem #92 Reverse Linked List II - Medium
-
-    rememberLeftNode = None
-    rememberReversedLeftNode = None
-    currentNode = head
-    leftIndex = 1
     
-    while currentNode != None:
-        if leftIndex + 1 == left:
-            rememberLeftNode = currentNode
-            rememberReversedLeftNode = currentNode.next
-        
-        if leftIndex == left:
-            previousNode = None
-            nextHere = currentNode.next
-
-            while leftIndex != right:
-                currentNode.next = previousNode
-                previousNode = currentNode
-                currentNode = nextHere
-                nextHere = nextHere.next
-                leftIndex += 1
-            
-            currentNode.next = previousNode
-
-            if rememberLeftNode == None:
-                head.next = nextHere
-                head = currentNode
-            else:
-                rememberLeftNode.next = currentNode
-
-            if rememberReversedLeftNode != None:
-                rememberReversedLeftNode.next = nextHere
-
-            return head
-        
+    if left == right:
+        return head
+    
+    currentNode = head
+    leftNode = None
+    traverseIndex = 0
+    
+    while traverseIndex + 1 < left:
+        leftNode = currentNode
         currentNode = currentNode.next
-        leftIndex += 1
+        traverseIndex += 1
+    
+    pointRightEndNode = currentNode
+    
+    previousNode = currentNode
+    nextNode = currentNode.next
+    while traverseIndex + 1 < right:
+        currentNode = nextNode
+        nextNode = nextNode.next
+        currentNode.next = previousNode
+        previousNode = currentNode
+            
+        traverseIndex += 1
+    
+    pointRightEndNode.next = nextNode
+    
+    if left > 1:
+        leftNode.next = currentNode
+        return head
+
+    return currentNode
 
 def swapPairs(head: Optional[ListNode]) -> Optional[ListNode]:
     #Problem #24 Swap Nodes in Pairs - Medium
@@ -196,7 +191,6 @@ def swapPairs(head: Optional[ListNode]) -> Optional[ListNode]:
 
     return head
 
-
 if __name__ == "__main__":
     
     node1 = ListNode(1)
@@ -216,9 +210,8 @@ if __name__ == "__main__":
     
     head = node1
     
-    head = reverseList(head)
+    currentNode = reverseBetween(head, 2, 5)
     
-    currentNode = head
     while currentNode != None:
         print(currentNode.val)
         currentNode = currentNode.next
