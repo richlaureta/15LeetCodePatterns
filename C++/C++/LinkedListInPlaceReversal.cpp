@@ -73,63 +73,35 @@ ListNode* reverseBetween(ListNode* head, int left, int right)
 
 ListNode* swapPairs(ListNode* head)
 {
-    if((head == nullptr) or head->next == nullptr)
+    //Problem #24 Swap Nodes in Pairs - Medium
+    
+    if(head == nullptr or head->next == nullptr) return head;
+    
+    ListNode *currentNode = head;
+    
+    ListNode *nextNode = currentNode->next;
+    ListNode *nextNextNode = nullptr;
+    ListNode *previousNode = currentNode;
+    bool initialSwapFlag = false;
+    
+    while(currentNode != nullptr and nextNode != nullptr)
     {
-        return head;
-    }
-    
-    ListNode* currentNode = head;
-    ListNode* nextNode = currentNode->next;
-    ListNode* nextNextNode = nullptr;
-    
-    if (currentNode->next != nullptr)
-    {
-        nextNextNode = currentNode->next->next;
-    }
-    
-    bool flag = false;
-    
-    while(nextNextNode != nullptr)
-    {
-        ListNode* temporaryNode = currentNode;
-        ListNode* temporary2Node = nextNode;
-        ListNode* temporary3Node = nextNextNode;
+        nextNextNode = nextNode->next;
+        currentNode->next = nextNextNode;
+        nextNode->next = currentNode;
+        currentNode = nextNextNode;
         
-        temporary2Node->next = temporaryNode;
-        
-        if(flag == false)
+        if(initialSwapFlag == true)
         {
-            flag = true;
-            head = temporary2Node;
+            previousNode->next = nextNode;
+            previousNode = nextNode->next;
         }
-        
-        ListNode* temporary4Node = temporary3Node->next;
-        
-        currentNode = temporary3Node;
-        nextNode = temporary4Node;
-        
-        if(temporary4Node == nullptr)
+        if(initialSwapFlag == false)
         {
-            temporaryNode->next = temporary3Node;
-            nextNextNode = nullptr;
+            head = nextNode;
+            initialSwapFlag = true;
         }
-        else
-        {
-            nextNextNode = temporary4Node->next;
-            
-            temporary4Node->next = currentNode;
-            temporaryNode->next = temporary4Node;
-            currentNode->next = nullptr;
-        }
-    }
-    
-    if(flag == false)
-    {
-        ListNode* temporary2Node = currentNode->next;
-        
-        temporary2Node->next = currentNode;
-        currentNode->next = nullptr;
-        head = temporary2Node;
+        if(currentNode != nullptr) nextNode = currentNode->next;
     }
     
     return head;
