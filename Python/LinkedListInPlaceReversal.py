@@ -171,17 +171,15 @@ def swapPairs(head: Optional[ListNode]) -> Optional[ListNode]:
 def swapNodes(head: ListNode, k: int) -> ListNode:
     #Problem #1721 Swapping Nodes in a Linked List - Medium
     
+    nodeAddressArray = []
+        
     currentNode = head
-    for index in range(k - 1):
+        
+    while currentNode:
+        nodeAddressArray.append(currentNode)    
         currentNode = currentNode.next
-    
-    leftSwapPointer = currentNode
-    rightSwapPointer = head
-    while currentNode.next:
-        rightSwapPointer = rightSwapPointer.next
-        currentNode = currentNode.next
-    
-    leftSwapPointer.val, rightSwapPointer.val = rightSwapPointer.val, leftSwapPointer.val
+        
+    nodeAddressArray[k - 1].val, nodeAddressArray[len(nodeAddressArray) - k].val = nodeAddressArray[len(nodeAddressArray) - k].val, nodeAddressArray[k - 1].val
     
     return head
    
