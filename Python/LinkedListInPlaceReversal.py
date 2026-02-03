@@ -175,22 +175,18 @@ def swapNodes(head: ListNode, k: int) -> ListNode:
     
     currentNode = head
     
-    while currentNode != None:
+    while currentNode:
         nodeAddressArray.append(currentNode)    
         currentNode = currentNode.next
     
-    
-    temporaryNodes = nodeAddressArray[k - 1].val
+    temporaryNodeValue = nodeAddressArray[k - 1].val
     nodeAddressArray[k-1].val = nodeAddressArray[len(nodeAddressArray) - k].val
-    nodeAddressArray[len(nodeAddressArray) - k].val = temporaryNodes
+    nodeAddressArray[len(nodeAddressArray) - k].val = temporaryNodeValue
     
     return head
     
-    
-                       
 if __name__ == "__main__":
     
-    node0 = ListNode(0)
     node1 = ListNode(1)
     node2 = ListNode(2)
     node3 = ListNode(3)
@@ -200,20 +196,17 @@ if __name__ == "__main__":
     node7 = ListNode(7)
     node8 = ListNode(8)
     node9 = ListNode(9)
-    
-    node7_1 = ListNode(7)
 
-    # node1.next = node2
-    # node2.next = node3
-    # node3.next = node4
-    # node4.next = node5
+    node1.next = node2
+    node2.next = node3
+    node3.next = node4
+    node4.next = node5
     # node5.next = node6
     # node6.next = node7
     # node7.next = node8
     # node8.next = node9
-    # head = node1
+    head = node1
     
-    node7
     currentNode = swapNodes(head, 2)
     
     while currentNode != None:

@@ -237,5 +237,7 @@ bool isStrictlyPalindromic(int n);
 vector<int> decrypt(vector<int> &code, int k);
 int countKConstraintSubstrings(string s, int k);
 int minOperations1(vector<int> &nums);
+ListNode *swapNodes(ListNode *head, int k);
+
 
 #endif // !Header_h

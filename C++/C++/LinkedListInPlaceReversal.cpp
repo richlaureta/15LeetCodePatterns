@@ -106,3 +106,22 @@ ListNode* swapPairs(ListNode* head)
     
     return head;
 }
+
+ListNode* swapNodes(ListNode* head, int k)
+{
+    vector<ListNode*> nodeAddressAray;
+    
+    ListNode *currentNode = head;
+    
+    while(currentNode)
+    {
+        nodeAddressAray.push_back(currentNode);
+        currentNode = currentNode->next;
+    }
+    
+    int temporaryNodeValue = nodeAddressAray[k - 1]->val;
+    nodeAddressAray[k - 1]->val = nodeAddressAray[(int)nodeAddressAray.size() - k]->val;
+    nodeAddressAray[(int)nodeAddressAray.size() - k]->val = temporaryNodeValue;
+ 
+    return head;
+}
