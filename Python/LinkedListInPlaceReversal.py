@@ -141,56 +141,37 @@ def reverseBetween(head: Optional[ListNode], left: int, right: int) -> Optional[
 
 def swapPairs(head: Optional[ListNode]) -> Optional[ListNode]:
     #Problem #24 Swap Nodes in Pairs - Medium
-
-    if (head == None) or (head.next == None):
-        return head
     
     currentNode = head
+    
+    if currentNode == None or currentNode.next == None:
+        return currentNode
+    
     nextNode = currentNode.next
     nextNextNode = None
-
-    if currentNode.next != None:
-        nextNextNode = currentNode.next.next
+    previousNode = currentNode
+    initialSwapFlag = False
     
-    flag = False
-
-    while nextNextNode != None:
-        temporaryNode = currentNode
-        temporary2Node = nextNode
-        temporary3Node = nextNextNode
-
-        temporary2Node.next = temporaryNode
-
-        if flag == False:
-            flag = True
-            head = temporary2Node
-
-        temporaryNode4 = temporary3Node.next
-
-        currentNode = temporary3Node
-        nextNode = temporaryNode4
-
-        if temporaryNode4 == None:
-            temporaryNode.next = temporary3Node
-            nextNextNode = None
-        else: 
-            nextNextNode = temporaryNode4.next
-
-            temporaryNode4.next = currentNode
-            temporaryNode.next = temporaryNode4
-            currentNode.next = None
-    
-    
-    if flag == False:
-        temporaryNode = currentNode
-        temporary2Node = currentNode.next
-
-        temporary2Node.next = currentNode
-        currentNode.next = None
-        head = temporary2Node
-
+    while currentNode != None:
+        if initialSwapFlag == False:
+            head = nextNode
+            
+        nextNextNode = nextNode.next
+        currentNode.next = nextNextNode
+        nextNode.next = currentNode
+        currentNode = nextNextNode
+        
+        if currentNode != None:
+            nextNode = currentNode.next
+        
+        if initialSwapFlag == True:
+            previousNode.next = nextNode
+            previousNode = nextNode.next
+        
+        initialSwapFlag = True
+        
     return head
-
+                   
 if __name__ == "__main__":
     
     node1 = ListNode(1)
@@ -206,11 +187,10 @@ if __name__ == "__main__":
     node1.next = node2
     node2.next = node3
     node3.next = node4
-    node4.next = node5
-    
+
     head = node1
     
-    currentNode = reverseBetween(head, 2, 5)
+    currentNode = swapPairs(head)
     
     while currentNode != None:
         print(currentNode.val)
