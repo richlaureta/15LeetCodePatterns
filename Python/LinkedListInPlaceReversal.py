@@ -179,12 +179,10 @@ def swapNodes(head: ListNode, k: int) -> ListNode:
         nodeAddressArray.append(currentNode)    
         currentNode = currentNode.next
     
-    temporaryNodeValue = nodeAddressArray[k - 1].val
-    nodeAddressArray[k-1].val = nodeAddressArray[len(nodeAddressArray) - k].val
-    nodeAddressArray[len(nodeAddressArray) - k].val = temporaryNodeValue
-    
+    nodeAddressArray[k - 1].val, nodeAddressArray[len(nodeAddressArray) - k].val = nodeAddressArray[len(nodeAddressArray) - k].val, nodeAddressArray[k - 1].val
+ 
     return head
-    
+   
 if __name__ == "__main__":
     
     node1 = ListNode(1)
