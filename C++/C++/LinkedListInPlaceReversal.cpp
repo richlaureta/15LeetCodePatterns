@@ -109,19 +109,20 @@ ListNode* swapPairs(ListNode* head)
 
 ListNode* swapNodes(ListNode* head, int k)
 {
-    vector<ListNode*> nodeAddressAray;
-    
+    //Problem 1721 Swapping Nodes in a Linked List - Medium
     ListNode *currentNode = head;
+    for(int index = 0; index < k - 1; index++) currentNode = currentNode->next;
     
-    while(currentNode)
+    ListNode *leftSwapPointer = currentNode;
+    ListNode *rightSwapPointer = head;
+    
+    while(currentNode->next)
     {
-        nodeAddressAray.push_back(currentNode);
+        rightSwapPointer = rightSwapPointer->next;
         currentNode = currentNode->next;
     }
     
-    int temporaryNodeValue = nodeAddressAray[k - 1]->val;
-    nodeAddressAray[k - 1]->val = nodeAddressAray[(int)nodeAddressAray.size() - k]->val;
-    nodeAddressAray[(int)nodeAddressAray.size() - k]->val = temporaryNodeValue;
- 
+    swap(leftSwapPointer->val, rightSwapPointer->val);
+    
     return head;
 }
