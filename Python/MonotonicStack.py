@@ -1,29 +1,31 @@
-import sys
-from collections import deque
+from collections import defaultdict
 
 def nextGreaterElement(nums1: list[int], nums2: list[int]) -> list[int]:
-    decrementIndex = len(nums2) - 1
-    stack = []
-    dictList = {}
-    arrayQuery =[]
-
-    for i in reversed(nums2):
-        while stack and i >= stack[-1]:
-            stack.pop()
-
-        if stack and i < stack[-1]:
-            dictList[i] = stack[-1]
-        else:
-            dictList[i] = -1
-
-        stack.append(i)
-        decrementIndex -= 1
-
-    for i in nums1:
-        arrayQuery.append(dictList[i])
+    #Problem 496 Next Greater Element I - Easy
+    
+    stack = [0]
+    increasingList = [0] * len(nums2)
+    
+    indexDictionary = defaultdict(int)
+    indexDictionary[nums2[0]] = 0
+    
+    greaterElementList = [0] * len(nums1)
+    
+    for index in range (1, len(nums2)):
+        while stack and nums2[stack[-1]] < nums2[index]:
+            increasingList[stack.pop()] = nums2[index]
         
-    return arrayQuery
+        stack.append(index)
+        indexDictionary[nums2[index]] = index
 
+    while stack:
+        increasingList[stack.pop()] = -1
+    
+    for index1 in range(0, len(greaterElementList)):
+        greaterElementList[index1] = increasingList[indexDictionary[nums1[index1]]]
+        
+    return greaterElementList
+    
 def dailyTemperatures(temperatures: list[int]) -> list[int]:
     #Problem #739 Daily Temperatures - Medium 
     
@@ -80,7 +82,7 @@ def largestRectangleArea(heights: list[int]) -> int:
     return maxArea
 
 if __name__ == "__main__":
-    # heights = [2, 1, 5, 6, 2, 3]
-    heights = [2]
+    nums1 = [2, 4]
+    nums2 = [1, 2, 3, 4]
 
-    print(largestRectangleArea(heights))
+    print(nextGreaterElement(nums1, nums2))
