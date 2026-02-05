@@ -86,12 +86,14 @@ int main(int argc, const char * argv[]) {
 //        currentNode = currentNode->next;
 //    }
     
-    //    //Problem #496 Next Greater Element I
-    //
-    //    vector<int> nums1 = {4, 1, 2};
-    //    vector<int> nums2 = {1, 3, 4, 2};
-    //
-    //    nextGreaterElement(nums1, nums2);
+        //Problem #496 Next Greater Element I
+    
+        vector<int> nums1 = {2, 4};
+        vector<int> nums2 = {1, 2, 3, 4};
+    
+        vector<int> answer = nextGreaterElement(nums1, nums2);
+        
+        for(int element: answer) cout << element << endl;
     
     //Accessing Heaps
     //    MaxHeap myMaxHeap;

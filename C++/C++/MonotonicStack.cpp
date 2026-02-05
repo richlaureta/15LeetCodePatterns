@@ -9,39 +9,39 @@
 
 vector<int> nextGreaterElement(vector<int> &nums1, vector<int> &nums2)
 {
+    //Problem 496 Next Greater Element I - Easy
     
-    stack<int> decreasingStack;
-    vector<int> array;
-    unordered_map<int, int> queryMap;
+    stack<int> indexStack({0});
     
-    int size = (int)nums2.size();
+    vector<int> increasingVector((int)nums2.size());
     
-    for (int i = size - 1; i >= 0; --i)
+    unordered_map<int, int> indexMap = {{nums2[0], 0}};
+    
+    vector<int> greaterElementVector((int)nums1.size());
+    
+    for(int index = 1; index < (int)nums2.size(); index++)
     {
-        while(!decreasingStack.empty() && nums2[i] > decreasingStack.top())
+        while((int)indexStack.size() > 0 and nums2[indexStack.top()] < nums2[index])
         {
-            decreasingStack.pop();
+            int stackTop = indexStack.top();
+            indexStack.pop();
+            increasingVector[stackTop] = nums2[index];
         }
         
-        if(!decreasingStack.empty() && nums2[i] < decreasingStack.top())
-        {
-            queryMap[nums2[i]] = decreasingStack.top();
-        }
-        else
-        {
-            queryMap[nums2[i]] = -1;
-        }
-        
-        decreasingStack.push(nums2[i]);
-        
+        indexStack.push(index);
+        indexMap[nums2[index]] = index;
     }
     
-    for(int i = 0; i < nums1.size(); ++i)
+    while((int)indexStack.size() > 0)
     {
-        array.push_back(queryMap[nums1[i]]);
+        int topStack = indexStack.top();
+        indexStack.pop();
+        increasingVector[topStack] = -1;
     }
     
-    return array;
+    for(int index1 = 0; index1 < (int)greaterElementVector.size(); index1++) greaterElementVector[index1] = increasingVector[indexMap[nums1[index1]]];
+    
+    return greaterElementVector;
 }
 
 vector<int> dailyTemperatures(vector<int> &temperatures)
