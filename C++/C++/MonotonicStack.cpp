@@ -13,7 +13,7 @@ vector<int> nextGreaterElement(vector<int> &nums1, vector<int> &nums2)
     
     stack<int> indexStack({0});
     
-    vector<int> increasingVector((int)nums2.size());
+    vector<int> increasingVector((int)nums2.size(), -1);
     
     unordered_map<int, int> indexMap = {{nums2[0], 0}};
     
@@ -32,13 +32,6 @@ vector<int> nextGreaterElement(vector<int> &nums1, vector<int> &nums2)
         indexMap[nums2[index]] = index;
     }
     
-    while((int)indexStack.size() > 0)
-    {
-        int topStack = indexStack.top();
-        indexStack.pop();
-        increasingVector[topStack] = -1;
-    }
-    
     for(int index1 = 0; index1 < (int)greaterElementVector.size(); index1++) greaterElementVector[index1] = increasingVector[indexMap[nums1[index1]]];
     
     return greaterElementVector;
@@ -46,37 +39,23 @@ vector<int> nextGreaterElement(vector<int> &nums1, vector<int> &nums2)
 
 vector<int> dailyTemperatures(vector<int> &temperatures)
 {
-    //Problem #739 Daily Temperatures
+    //Problem #739 Daily Temperatures - Medium
     
-    vector<int> returnList(temperatures.size(), 0);
-    stack<int> decreasingStack;
+    stack<int> stackIndex({0});
+    vector<int> increasingVector((int)temperatures.size());
     
-    if(temperatures.size() != 0)
+    for(int index = 1; index < (int)temperatures.size(); index++)
     {
-        decreasingStack.push(0);
-    }
-    
-    for(int i = 1; i < temperatures.size(); ++i)
-    {
-        while(temperatures[i] > temperatures[decreasingStack.top()])
+        while((int)stackIndex.size() > 0 and temperatures[stackIndex.top()] < temperatures[index])
         {
-            int poppedIndex = decreasingStack.top();
-            decreasingStack.pop();
-            returnList[poppedIndex] = i - poppedIndex;
-            
-            if(decreasingStack.size() == 0)
-            {
-                decreasingStack.push(i);
-                break;
-            }
+            increasingVector[stackIndex.top()] = index - stackIndex.top();
+            stackIndex.pop();
         }
         
-        if ((decreasingStack.size() != 0) and (temperatures[i] <= temperatures[decreasingStack.top()]))
-        {
-            decreasingStack.push(i);
-        }
+        stackIndex.push(index);
     }
-    return returnList;
+    
+    return increasingVector;
 }
 
 int largestRectangleArea(vector<int> &heights)

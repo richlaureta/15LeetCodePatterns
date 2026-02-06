@@ -88,12 +88,12 @@ int main(int argc, const char * argv[]) {
     
         //Problem #496 Next Greater Element I
     
-        vector<int> nums1 = {2, 4};
-        vector<int> nums2 = {1, 2, 3, 4};
-    
-        vector<int> answer = nextGreaterElement(nums1, nums2);
-        
-        for(int element: answer) cout << element << endl;
+//        vector<int> nums1 = {2, 4};
+//        vector<int> nums2 = {1, 2, 3, 4};
+//    
+//        vector<int> answer = nextGreaterElement(nums1, nums2);
+//        
+//        for(int element: answer) cout << element << endl;
     
     //Accessing Heaps
     //    MaxHeap myMaxHeap;
@@ -355,14 +355,12 @@ int main(int argc, const char * argv[]) {
     //    }
     
     //Problem #739 Daily Temperatures
-    //    vector<int> temperatures = {73, 74, 75, 71, 69, 72, 76, 73};
-    //
-    //    vector<int> daysToWaitForIncrease = dailyTemperatures(temperatures);
-    //
-    //    for(int i = 0; i < daysToWaitForIncrease.size(); i++)
-    //    {
-    //        cout << daysToWaitForIncrease[i] << endl;
-    //    }
+    vector<int> temperatures = {100, 100, 61, 30, 60, 90};
+    
+    vector<int> daysToWaitForIncrease = dailyTemperatures(temperatures);
+    
+    for(int element: daysToWaitForIncrease) cout << element << endl;
+    
     
     //Problem #84 Largest Rectangle in Histogram
     //    vector<int> heights = {2, 1, 5, 6, 2, 3};
