@@ -4,7 +4,7 @@ def nextGreaterElement(nums1: list[int], nums2: list[int]) -> list[int]:
     #Problem 496 Next Greater Element I - Easy
     
     stack = [0]
-    increasingList = [0] * len(nums2)
+    increasingList = [-1] * len(nums2)
     
     indexDictionary = defaultdict(int)
     indexDictionary[nums2[0]] = 0
@@ -17,9 +17,6 @@ def nextGreaterElement(nums1: list[int], nums2: list[int]) -> list[int]:
         
         stack.append(index)
         indexDictionary[nums2[index]] = index
-
-    while stack:
-        increasingList[stack.pop()] = -1
     
     for index1 in range(0, len(greaterElementList)):
         greaterElementList[index1] = increasingList[indexDictionary[nums1[index1]]]
@@ -27,28 +24,18 @@ def nextGreaterElement(nums1: list[int], nums2: list[int]) -> list[int]:
     return greaterElementList
     
 def dailyTemperatures(temperatures: list[int]) -> list[int]:
-    #Problem #739 Daily Temperatures - Medium 
+    #Problem #739 Daily Temperatures - Medium
     
-    returnList = [0] * len(temperatures)
-    decreasingStack = []
-
-    for index, temperature in enumerate(temperatures):
-        if len(decreasingStack) == 0:
-            decreasingStack.append(index)
-            continue
-        
-        while temperature > temperatures[decreasingStack[-1]]:
-            poppedIndex = decreasingStack.pop()
-            returnList[poppedIndex] = index - poppedIndex
-        
-            if len(decreasingStack) == 0:
-                decreasingStack.append(index)
-                break
-
-        if temperature <= temperatures[decreasingStack[-1]]:
-            decreasingStack.append(index)
-
-    return returnList
+    indexStack = [0]
+    increasingList = [0] * len(temperatures)
+    
+    for index in range(1, len(temperatures)):
+        while indexStack and temperatures[indexStack[-1]] < temperatures[index]:
+            increasingList[indexStack[-1]] = index - indexStack[-1]
+            indexStack.pop()
+        indexStack.append(index)
+    
+    return increasingList
 
 def largestRectangleArea(heights: list[int]) -> int:
     #Problem #84 Largest Rectangle in Histogram - Hard - Concept Solution by YouTuber Greg Hogg
@@ -82,7 +69,6 @@ def largestRectangleArea(heights: list[int]) -> int:
     return maxArea
 
 if __name__ == "__main__":
-    nums1 = [2, 4]
-    nums2 = [1, 2, 3, 4]
+    temperatures = [73, 74, 75, 71, 69, 72, 76, 73]
 
-    print(nextGreaterElement(nums1, nums2))
+    print(dailyTemperatures(temperatures))
