@@ -24,7 +24,7 @@ def nextGreaterElement(nums1: list[int], nums2: list[int]) -> list[int]:
     return greaterElementList
     
 def dailyTemperatures(temperatures: list[int]) -> list[int]:
-    #Problem #739 Daily Temperatures - Medium
+    #Problem #739 Daily Temperatures - Medium - not the most efficient
     
     indexStack = [0]
     increasingList = [0] * len(temperatures)
