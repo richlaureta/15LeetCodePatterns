@@ -38,7 +38,7 @@ def dailyTemperatures(temperatures: list[int]) -> list[int]:
     return increasingList
 
 def largestRectangleArea(heights: list[int]) -> int:
-    #Problem #84 Largest Rectangle in Histogram - Hard - Concept Solution by YouTuber Greg Hogg
+    #Problem #84 Largest Rectangle in Histogram - Hard - Concept Solution by YouTube Channel Greg Hogg
     
     maxArea = heights[0]
     increasingStack = [(heights[0], 0)]
