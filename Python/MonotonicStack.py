@@ -38,37 +38,27 @@ def dailyTemperatures(temperatures: list[int]) -> list[int]:
     return increasingList
 
 def largestRectangleArea(heights: list[int]) -> int:
-    #Problem #84 Largest Rectangle in Histogram - Hard - Concept Solution by YouTube Channel Greg Hogg
+    #Problem #84 Largest Rectangle in Histogram - Hard
     
-    maxArea = heights[0]
-    increasingStack = [(heights[0], 0)]
+    maxArea = 0
+    increasingStack = [] # Stores [start_index, height]
     
-    for index in range(1, len(heights)):
-        appendFlag = False
-
-        while increasingStack and (heights[index] < increasingStack[-1][0]):
-            heightAndIndex = increasingStack.pop()
-            area = heightAndIndex[0] * (index - heightAndIndex[1])
-
-            if area > maxArea:
-                maxArea = area
-
-            if (len(increasingStack) == 0) or (heights[index] > increasingStack[-1][0]):
-                increasingStack.append((heights[index], heightAndIndex[1]))
-                appendFlag = True
+    for index, height in enumerate(heights):
+        start = index
+        while increasingStack and increasingStack[-1][1] > height:
+            popped_index, popped_height = increasingStack.pop()
+            maxArea = max(maxArea, popped_height * (index - popped_index))
+            start = popped_index
         
-        if appendFlag == False:
-            increasingStack.append((heights[index], index))
+        increasingStack.append([start, height])
     
-    while increasingStack:
-        poppedValue = increasingStack.pop()
-        area = (poppedValue[0]) * (len(heights) - poppedValue[1])
-        if area > maxArea:
-            maxArea = area
-
+    # Process remaining elements in the stack
+    for start_index, height in increasingStack:
+        maxArea = max(maxArea, height * (len(heights) - start_index))
+         
     return maxArea
-
+            
 if __name__ == "__main__":
-    temperatures = [73, 74, 75, 71, 69, 72, 76, 73]
+    height = [1,3,2,1,2,1]
 
-    print(dailyTemperatures(temperatures))
+    print(largestRectangleArea(height))
