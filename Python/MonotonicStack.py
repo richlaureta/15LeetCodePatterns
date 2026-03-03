@@ -41,20 +41,19 @@ def largestRectangleArea(heights: list[int]) -> int:
     #Problem #84 Largest Rectangle in Histogram - Hard
     
     maxArea = 0
-    increasingStack = [] # Stores [start_index, height]
+    increasingStack = []
     
     for index, height in enumerate(heights):
-        start = index
+        resetingStartingIndex = index 
         while increasingStack and increasingStack[-1][1] > height:
-            popped_index, popped_height = increasingStack.pop()
-            maxArea = max(maxArea, popped_height * (index - popped_index))
-            start = popped_index
+            poppedIndexHeight = increasingStack.pop()
+            resetingStartingIndex = poppedIndexHeight[0]
+            maxArea = max(maxArea, poppedIndexHeight[1] * (index - poppedIndexHeight[0]))
         
-        increasingStack.append([start, height])
-    
-    # Process remaining elements in the stack
-    for start_index, height in increasingStack:
-        maxArea = max(maxArea, height * (len(heights) - start_index))
+        increasingStack.append([resetingStartingIndex, height])
+
+    for indexHeight in increasingStack:
+        maxArea = max(maxArea, indexHeight[1] * (len(heights) - indexHeight[0]))
          
     return maxArea
             
