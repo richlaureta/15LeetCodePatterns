@@ -9,25 +9,21 @@
 
 int findKthLargest(vector<int> &nums, int k)
 {
-    //Problem #215 Kth Largest Element in an Array
+    //Problem #215 Kth Largest Element in an Array - Medium
     
-    priority_queue<int, vector<int>, greater<int>> minHeap;
+    priority_queue<int, vector<int>, greater<int>> maxK;
     
-    for(int i = 0; i < k; ++i)
+    for(int number: nums)
     {
-        minHeap.push(nums[i]);
-    }
-    
-    for(int i = k; i < nums.size(); ++i)
-    {
-        if(nums[i] > minHeap.top())
+        if((int)maxK.size() < k) maxK.push(number);
+        else
         {
-            minHeap.pop();
-            minHeap.push(nums[i]);
+            maxK.push(number);
+            maxK.pop();
         }
     }
     
-    return minHeap.top();
+    return maxK.top();
 }
 
 vector<int> topKFrequent(vector<int>& nums, int k)

@@ -111,10 +111,11 @@ int main(int argc, const char * argv[]) {
     //
     //    myMaxHeap.printHeap();
     
-    //Find Kth Largest
-    //    vector<int> nums = {3,2,3,1,2,4,5,5,6};
-    //    int k = 4;
-    //    cout << findKthLargest(nums, k) << endl;
+    //Problem #215 Find Kth Largest Element in an Array - Medium
+    
+        vector<int> nums = {3, 2, 1, 5, 6, 4};
+        int k = 2;
+        cout << findKthLargest(nums, k) << endl;
     
     
     //Overlapping Intervals
@@ -355,11 +356,11 @@ int main(int argc, const char * argv[]) {
     //    }
     
     //Problem #739 Daily Temperatures
-    vector<int> temperatures = {100, 100, 61, 30, 60, 90};
-    
-    vector<int> daysToWaitForIncrease = dailyTemperatures(temperatures);
-    
-    for(int element: daysToWaitForIncrease) cout << element << endl;
+//    vector<int> temperatures = {100, 100, 61, 30, 60, 90};
+//    
+//    vector<int> daysToWaitForIncrease = dailyTemperatures(temperatures);
+//    
+//    for(int element: daysToWaitForIncrease) cout << element << endl;
     
     
     //Problem #84 Largest Rectangle in Histogram
