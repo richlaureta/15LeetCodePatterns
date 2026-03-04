@@ -1,5 +1,6 @@
 import heapq
 from collections import Counter
+from collections import defaultdict
 
 class MaxHeap:
     #These code concept for maxHeap are from Udemy titled Python Data Structures & Algorithms + LEETCODE Exercises by Scott Barett
@@ -74,37 +75,25 @@ def findKthLargestElement(nums: list[int], k: int) -> int:
     return maxK[0]
 
 def topKFrequent(nums: list[int], k: int) -> list[int]:
-    #Problem #347 Top K Frequent Elements
-
-    frequencyArray = [0] * (len(nums) + 1)
-    myDictionary = Counter(nums)
-
-    for key in myDictionary:
-        if frequencyArray[myDictionary[key]] == 0:
-            frequencyArray[myDictionary[key]] = [key]
-        else:
-            frequencyArray[myDictionary[key]].append(key)
-   
-    topKArray = []
-
-    for indexItem in reversed(frequencyArray):
-        if k == 0:
-            break
-
-        if indexItem == 0:
-            continue
-        elif indexItem != 0 and len(indexItem) > 1:
-            for item in indexItem:
-                if k == 0:
-                    break
-
-                topKArray.append(item)
-                k -= 1
-        else:
-            topKArray.append(indexItem[0])
-            k -= 1
+    #Problem #347 Top K Frequent Elements - Medium
     
-    return topKArray
+    frequencyDictionary = defaultdict(int)
+    
+    for number in nums:
+        frequencyDictionary[number] += 1
+    
+    minHeap = []
+    for uniqueNumber in frequencyDictionary:
+        if len(minHeap) < k:
+            heapq.heappush(minHeap, [frequencyDictionary[uniqueNumber], uniqueNumber])
+        else:
+            heapq.heappushpop(minHeap, [frequencyDictionary[uniqueNumber], uniqueNumber])
+    
+    topElements = []
+    for frequency, element in minHeap:
+        topElements.append(element)
+    
+    return topElements
 
 def kSmallestPairs(nums1: list[int], nums2: list[int], k: int) -> list[list[int]]:
     #Problem #373 Find K Pairs with Smallest Sums - Concept Solution by YouTuber TechError
@@ -134,8 +123,7 @@ def kSmallestPairs(nums1: list[int], nums2: list[int], k: int) -> list[list[int]
     return result
 
 if __name__ == "__main__":
-    nums = [3, 2, 1, 5, 6, 4]
-
+    nums = [1, 2, 1, 2, 1, 2, 3, 1, 3, 2]
     k = 2
 
-    print(findKthLargestElement(nums, k))
+    print(topKFrequent(nums, k))
