@@ -61,19 +61,16 @@ class MaxHeap:
                 return
 
 def findKthLargestElement(nums: list[int], k: int) -> int:
-    #Problem #215 Kth Largest Element in an Array
-
-    array = []
-
-    for i in range(0, k):
-        heapq.heappush(array, nums[i])
-
-    for i in range(k, len(nums)):
-        if nums[i] > array[0]:
-            heapq.heappop(array)
-            heapq.heappush(array, nums[i])
+    #Problem #215 Kth Largest Element in an Array - Medium
     
-    return array[0]
+    heapq._heapify_max(nums)
+    
+    kThLargest = 0
+    
+    for index in range(k):
+        kThLargest = heapq._heappop_max(nums)
+    
+    return kThLargest
 
 def topKFrequent(nums: list[int], k: int) -> list[int]:
     #Problem #347 Top K Frequent Elements
@@ -136,9 +133,8 @@ def kSmallestPairs(nums1: list[int], nums2: list[int], k: int) -> list[list[int]
     return result
 
 if __name__ == "__main__":
-    nums1 = [1, 7, 11]
-    nums2 = [2, 4, 6]
+    nums = [3, 2, 1, 5, 6, 4]
 
-    k = 3
+    k = 2
 
-    print(kSmallestPairs(nums1, nums2, k))
+    print(findKthLargestElement(nums, k))
