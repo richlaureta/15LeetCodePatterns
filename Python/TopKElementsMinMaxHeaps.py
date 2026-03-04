@@ -61,17 +61,17 @@ class MaxHeap:
                 return
 
 def findKthLargestElement(nums: list[int], k: int) -> int:
-    #Problem #215 Kth Largest Element in an Array - Medium
+    #Problem #215 Kth Largest Element in an Array - Medium - This solution uses heap.
     
     maxK = []
     
     for index in range(len(nums)):
-        heapq.heappush(maxK, nums[index])
-        if len(maxK) > k:
-            heapq.heappop(maxK)
+        if len(maxK) < k:
+            heapq.heappush(maxK, nums[index])
+        else:
+            heapq.heappushpop(maxK, nums[index])
     
     return maxK[0]
-        
 
 def topKFrequent(nums: list[int], k: int) -> list[int]:
     #Problem #347 Top K Frequent Elements
