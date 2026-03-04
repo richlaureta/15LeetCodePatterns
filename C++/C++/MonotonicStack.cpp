@@ -60,55 +60,34 @@ vector<int> dailyTemperatures(vector<int> &temperatures)
 
 int largestRectangleArea(vector<int> &heights)
 {
-    //Problem #84 Largest Rectangle in Histogram - Concept Solution by YouTuber Greg Hogg
+    //Problem #84 Largest Rectangle in Histogram - Hard
     
-    int maxArea = heights[0];
-    vector<vector<int>> increasingStack = {{heights[0], 0}};
-
-    for(int i = 1; i < heights.size(); ++i)
+    int maxArea = 0;
+    stack<vector<int>> increasingStack;
+    
+    for(int index = 0; index < (int)heights.size(); index++)
     {
-        bool appendFlag = false;
-        while ((increasingStack.size() != 0) and (heights[i] < increasingStack[increasingStack.size() - 1][0]))
+        int resetingStartingIndex = index;
+        while((int)increasingStack.size() != 0 and increasingStack.top()[1] > heights[index])
         {
-            int height = increasingStack[increasingStack.size() - 1][0];
-            int index = increasingStack[increasingStack.size() - 1][1];
+            int poppedIndex = increasingStack.top()[0];
+            int poppedHeight = increasingStack.top()[1];
+            increasingStack.pop();
             
-            increasingStack.pop_back();
+            resetingStartingIndex = poppedIndex;
             
-            int area = height * (i - index);
-            
-            if(area > maxArea)
-            {
-                maxArea = area;
-            }
-            
-            if((increasingStack.size() == 0) or (heights[i]) > increasingStack[increasingStack.size() - 1][0])
-            {
-                increasingStack.push_back({heights[i], index});
-                appendFlag = true;
-            }
+            maxArea = max(maxArea, poppedHeight * (index - poppedIndex));
         }
         
-        if(appendFlag == false)
-        {
-            increasingStack.push_back({heights[i], i});
-        }
+        increasingStack.push({resetingStartingIndex, heights[index]});
     }
     
-    while(increasingStack.size() != 0)
+    while((int)increasingStack.size() != 0)
     {
-        int height = increasingStack[increasingStack.size() - 1][0];
-        int index = increasingStack[increasingStack.size() - 1][1];
-        
-        increasingStack.pop_back();
-        
-        int area = (int)(height * (heights.size() - index));
-        
-        if(area > maxArea)
-        {
-            maxArea = area;
-        }
+        maxArea = max(maxArea, increasingStack.top()[1] * ((int)heights.size() - increasingStack.top()[0]));
+        increasingStack.pop();
     }
     
     return maxArea;
 }
+
