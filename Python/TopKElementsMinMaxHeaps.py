@@ -78,11 +78,11 @@ def topKFrequent(nums: list[int], k: int) -> list[int]:
     #Problem #347 Top K Frequent Elements - Medium
     
     frequencyDictionary = defaultdict(int)
-    
+    minHeap = []
     for number in nums:
         frequencyDictionary[number] += 1
     
-    minHeap = []
+    
     for uniqueNumber in frequencyDictionary:
         if len(minHeap) < k:
             heapq.heappush(minHeap, [frequencyDictionary[uniqueNumber], uniqueNumber])

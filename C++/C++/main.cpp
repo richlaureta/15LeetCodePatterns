@@ -113,9 +113,9 @@ int main(int argc, const char * argv[]) {
     
     //Problem #215 Find Kth Largest Element in an Array - Medium
     
-        vector<int> nums = {3, 2, 1, 5, 6, 4};
-        int k = 2;
-        cout << findKthLargest(nums, k) << endl;
+//        vector<int> nums = {3, 2, 1, 5, 6, 4};
+//        int k = 2;
+//        cout << findKthLargest(nums, k) << endl;
     
     
     //Overlapping Intervals
@@ -211,15 +211,15 @@ int main(int argc, const char * argv[]) {
     //
     //Problem #347 Top K Frequent Elements
     
-    //    vector<int> nums =  {-1, -1};
-    //    int k = 1;
-    //
-    //    vector<int> topKFrequentElements = topKFrequent(nums, k);
-    //
-    //    for(int i = 0; i < topKFrequentElements.size(); i++)
-    //    {
-    //        cout << topKFrequentElements[i] << endl;
-    //    }
+        vector<int> nums =  {1, 1, 1, 2, 2, 3};
+        int k = 2;
+    
+        vector<int> topKFrequentElements = topKFrequent(nums, k);
+    
+        for(int i = 0; i < topKFrequentElements.size(); i++)
+        {
+            cout << topKFrequentElements[i] << endl;
+        }
     
     //Problem #200 Number of Islands
     //    vector<vector<char>> grid = {
