@@ -96,34 +96,24 @@ def topKFrequent(nums: list[int], k: int) -> list[int]:
     return topElements
 
 def kSmallestPairs(nums1: list[int], nums2: list[int], k: int) -> list[list[int]]:
-    #Problem #373 Find K Pairs with Smallest Sums - Concept Solution by YouTuber TechError
-
-    result = []
-    visitedPairSet = set()
-    minHeap = []
-
-    sum = nums1[0] + nums2[0]
-    heapq.heappush(minHeap, (sum, 0, 0))
-    visitedPairSet.add((0, 0))
-
-    while k and minHeap:
-        sum, indexList1, indexList2 = heapq.heappop(minHeap)
-        result.append([nums1[indexList1], nums2[indexList2]])
-
-        if indexList1 + 1 < len(nums1) and (indexList1 + 1, indexList2) not in visitedPairSet:
-            heapq.heappush(minHeap, (nums1[indexList1+1] + nums2[indexList2], indexList1 + 1, indexList2 ))
-            visitedPairSet.add((indexList1 + 1, indexList2))
-
-        if indexList2 + 1 < len(nums2) and (indexList1, indexList2 + 1) not in visitedPairSet:
-            heapq.heappush(minHeap, (nums1[indexList1] + nums2[indexList2 + 1], indexList1, indexList2 + 1))
-            visitedPairSet.add((indexList1, indexList2 + 1))
-
-        k -= 1 
+    #Problem #373 Find K Pairs with Smallest Sums - Medium
     
-    return result
-
+    pairAndSumHeap = []
+    for index in range(len(nums1)):
+        for index1 in range(len(nums2)):
+            pairAndSumHeap.append([nums1[index] + nums2[index1], nums1[index], nums2[index1]])
+    heapq.heapify(pairAndSumHeap)
+    smallestSumPairs = []
+    for index2 in range(k):
+        temporaryPairAndSum = heapq.heappop(pairAndSumHeap)
+        smallestSumPairs.append([temporaryPairAndSum[1], temporaryPairAndSum[2]])
+    
+    return smallestSumPairs
+                    
 if __name__ == "__main__":
-    nums = [1, 2, 1, 2, 1, 2, 3, 1, 3, 2]
+    nums1 = [1, 1, 2]
+    nums2 = [1, 2, 3]
+    
     k = 2
 
-    print(topKFrequent(nums, k))
+    print(kSmallestPairs(nums1, nums2, k))
