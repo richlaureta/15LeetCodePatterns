@@ -98,18 +98,24 @@ def topKFrequent(nums: list[int], k: int) -> list[int]:
 def kSmallestPairs(nums1: list[int], nums2: list[int], k: int) -> list[list[int]]:
     #Problem #373 Find K Pairs with Smallest Sums - Medium
     
-    pairAndSumHeap = []
-    for index in range(len(nums1)):
-        for index1 in range(len(nums2)):
-            pairAndSumHeap.append([nums1[index] + nums2[index1], nums1[index], nums2[index1]])
-    heapq.heapify(pairAndSumHeap)
-    smallestSumPairs = []
-    for index2 in range(k):
-        temporaryPairAndSum = heapq.heappop(pairAndSumHeap)
-        smallestSumPairs.append([temporaryPairAndSum[1], temporaryPairAndSum[2]])
+    kSmallestPairSum = []
     
-    return smallestSumPairs
-                    
+    for firstNumber in nums1:
+        for secondNumber in nums2:
+            if len(kSmallestPairSum) < k:
+                heapq.heappush_max(kSmallestPairSum, [firstNumber + secondNumber, firstNumber, secondNumber])
+            elif firstNumber + secondNumber < kSmallestPairSum[0][0]:
+                heapq.heappushpop_max(kSmallestPairSum, [firstNumber + secondNumber, firstNumber, secondNumber])
+            else:
+                break
+    
+    kSmallestPairSumList = []
+    
+    while kSmallestPairSum:
+        poppedSum = heapq.heappop_max(kSmallestPairSum)
+        kSmallestPairSumList.append([poppedSum[1], poppedSum[2]])
+    
+    return kSmallestPairSumList
 if __name__ == "__main__":
     nums1 = [1, 1, 2]
     nums2 = [1, 2, 3]
