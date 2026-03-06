@@ -116,6 +116,7 @@ def kSmallestPairs(nums1: list[int], nums2: list[int], k: int) -> list[list[int]
         kSmallestPairSumList.append([poppedSum[1], poppedSum[2]])
     
     return kSmallestPairSumList
+
 if __name__ == "__main__":
     nums1 = [1, 1, 2]
     nums2 = [1, 2, 3]

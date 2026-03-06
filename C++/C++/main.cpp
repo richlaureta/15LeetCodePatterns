@@ -209,17 +209,17 @@ int main(int argc, const char * argv[]) {
 //        }
 //        cout << endl;
     //
-    //Problem #347 Top K Frequent Elements
+    //Problem #347 Top K Frequent Elements - Medium
     
-        vector<int> nums =  {1, 1, 1, 2, 2, 3};
-        int k = 2;
-    
-        vector<int> topKFrequentElements = topKFrequent(nums, k);
-    
-        for(int i = 0; i < topKFrequentElements.size(); i++)
-        {
-            cout << topKFrequentElements[i] << endl;
-        }
+//        vector<int> nums =  {1, 1, 1, 2, 2, 3};
+//        int k = 2;
+//    
+//        vector<int> topKFrequentElements = topKFrequent(nums, k);
+//    
+//        for(int i = 0; i < topKFrequentElements.size(); i++)
+//        {
+//            cout << topKFrequentElements[i] << endl;
+//        }
     
     //Problem #200 Number of Islands
     //    vector<vector<char>> grid = {
@@ -367,33 +367,33 @@ int main(int argc, const char * argv[]) {
     //    vector<int> heights = {2, 1, 5, 6, 2, 3};
     
     
-    //Problem #373 Find K Pairs with Smallest Sums
-    //    vector<int> nums1 = {1, 7, 11};
-    //    vector<int> nums2 = {2, 4, 6};
-    //    int k = 3;
-    //
-    //    vector<vector<int>> smallestPairs = kSmallestPairs(nums1, nums2, k);
-    //    cout << "[";
-    //    for(int i = 0; i < smallestPairs.size(); i++)
-    //    {
-    //        cout << "[";
-    //        for(int j = 0; j < smallestPairs[i].size(); j++)
-    //        {   if (j == 0)
-    //            {
-    //                cout << smallestPairs[i][j] << ", ";
-    //            }
-    //            else
-    //            {
-    //                cout << smallestPairs[i][j] << "]";
-    //            }
-    //        }
-    //        if (i != smallestPairs.size() - 1)
-    //        {
-    //            cout << ", ";
-    //        }
-    //    }
-    //
-    //    cout << "]" << endl;
+    //Problem #373 Find K Pairs with Smallest Sums - Medium
+        vector<int> nums1 = {1, 7, 11};
+        vector<int> nums2 = {2, 4, 6};
+        int k = 3;
+    
+        vector<vector<int>> smallestPairs = kSmallestPairs(nums1, nums2, k);
+        cout << "[";
+        for(int i = 0; i < smallestPairs.size(); i++)
+        {
+            cout << "[";
+            for(int j = 0; j < smallestPairs[i].size(); j++)
+            {   if (j == 0)
+                {
+                    cout << smallestPairs[i][j] << ", ";
+                }
+                else
+                {
+                    cout << smallestPairs[i][j] << "]";
+                }
+            }
+            if (i != smallestPairs.size() - 1)
+            {
+                cout << ", ";
+            }
+        }
+    
+        cout << "]" << endl;
     
     //Problem #57 Insert Interval
     //    vector<vector<int>> intervals = {{1, 3}, {6, 9}};

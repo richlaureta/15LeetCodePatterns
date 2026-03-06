@@ -58,38 +58,32 @@ vector<int> topKFrequent(vector<int>& nums, int k)
 
 vector<vector<int>> kSmallestPairs(vector<int> &nums1, vector<int> &nums2, int k)
 {
-    //Problem #373 Find K Pairs with Smallest Sums - Solution Concept by YouTuber TechError
+    //Problem #373 Find K Pairs with Smallest Sums - Medium
     
-    vector<vector<int>> result;
-    set<tuple<int, int>> visitedPairSet;
-    priority_queue<tuple<int, int, int>, vector<tuple<int, int, int>>, greater<tuple<int, int, int>>> minHeap;
+    priority_queue<vector<int>, vector<vector<int>>, less<vector<int>>> maxHeap;
     
-    visitedPairSet.insert(make_tuple(0, 0));
-    minHeap.emplace(make_tuple(nums1[0] + nums2[0], 0, 0));
-    
-    while(k and !minHeap.empty())
+    for(int index0 = 0; index0 < (int)nums1.size(); index0++)
     {
-        int indexNums1 = get<1>(minHeap.top());
-        int indexNums2 = get<2>(minHeap.top());
-    
-        minHeap.pop();
-        
-        result.push_back({nums1[indexNums1], nums2[indexNums2]});
-        
-        if((indexNums1 + 1 < nums1.size()) and (visitedPairSet.count(make_tuple(indexNums1 + 1, indexNums2)) == 0))
+        for(int index1 = 0; index1 < (int)nums2.size(); index1++)
         {
-            minHeap.push(make_tuple(nums1[indexNums1 + 1] + nums2[indexNums2], indexNums1 + 1, indexNums2));
-            visitedPairSet.insert(make_tuple(indexNums1 + 1, indexNums2));
+            if((int)maxHeap.size() < k) maxHeap.push({nums1[index0] + nums2[index1], nums1[index0], nums2[index1]});
+            else if(nums1[index0] + nums2[index1] < maxHeap.top()[0])
+            {
+                maxHeap.pop();
+                maxHeap.push({nums1[index0] + nums2[index1], nums1[index0], nums2[index1]});
+            }
+            else break;
         }
-        
-        if((indexNums2 + 1 < nums2.size()) and (visitedPairSet.count(make_tuple(indexNums1, indexNums2 + 1)) == 0))
-        {
-            minHeap.push(make_tuple(nums1[indexNums1] + nums2[indexNums2 + 1], indexNums1, indexNums2 + 1));
-            visitedPairSet.insert(make_tuple(indexNums1, indexNums2 + 1));
-        }
-        
-        k--;
     }
     
-    return result;
+    vector<vector<int>> smallestSumPairVector;
+    
+    while(maxHeap.size() > 0)
+    {
+        vector<int> poppedValue = maxHeap.top();
+        maxHeap.pop();
+        smallestSumPairVector.push_back({poppedValue[1], poppedValue[2]});
+    }
+    
+    return smallestSumPairVector;
 }
