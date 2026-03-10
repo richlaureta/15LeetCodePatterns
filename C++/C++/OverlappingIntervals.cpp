@@ -7,24 +7,34 @@
 
 #include "Header.h"
 
-vector<vector<int>> mergeIntervals(vector<vector<int>> &intervals)
+vector<vector<int>> merge(vector<vector<int>> &intervals)
 {
     //Problem #56 Merge Intervals
     
     sort(intervals.begin(), intervals.end());
-
-    vector<vector<int>> merged = {{intervals[0]}};
-
-    for (size_t i = 1; i < intervals.size(); i++) {
-        if ((intervals[i][0] <= merged[merged.size() - 1][1]) &&
-            (intervals[i][1] > merged[merged.size() - 1][1])) {
-            merged[merged.size() - 1][1] = intervals[i][1];
-        } else if (intervals[i][0] > merged[merged.size() - 1][1]) {
-            merged.push_back(intervals[i]);
+    vector<vector<int>> newMergedIntervalsVector = {{intervals[0]}};
+    
+    for(int index = 0; index < (int)intervals.size() - 1; index++)
+    {
+        pair<int, int> previousInterval = {newMergedIntervalsVector[(int)newMergedIntervalsVector.size() - 1][0], newMergedIntervalsVector[(int)newMergedIntervalsVector.size() - 1][1]};
+        
+        if(previousInterval.second >= intervals[index + 1][0])
+        {
+            if(intervals[index + 1][1] < previousInterval.second)
+            {
+                newMergedIntervalsVector.pop_back();
+                newMergedIntervalsVector.push_back({previousInterval.first, previousInterval.second});
+            }
+            else
+            {
+                newMergedIntervalsVector.pop_back();
+                newMergedIntervalsVector.push_back({previousInterval.first, intervals[index + 1][1]});
+            }
         }
+        else newMergedIntervalsVector.push_back({intervals[index + 1][0], intervals[index + 1][1]});
     }
     
-    return merged;
+    return newMergedIntervalsVector;
 }
 
 vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInterval) {
@@ -32,7 +42,7 @@ vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInter
     
     intervals.push_back(newInterval);
     
-    vector<vector<int>> insertedInterval = mergeIntervals(intervals);
+    vector<vector<int>> insertedInterval = merge(intervals);
     
     return insertedInterval;
 }

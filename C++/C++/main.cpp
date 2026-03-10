@@ -118,20 +118,19 @@ int main(int argc, const char * argv[]) {
 //        cout << findKthLargest(nums, k) << endl;
     
     
-    //Overlapping Intervals
-    //    vector<vector<int>> listsOfLists = {{1, 3}, {2, 6}, {15, 18}, {8, 10}};
-    //
-    ////    vector<vector<int>> listsOfLists = {{1, 4}, {4, 5}};
-    //    vector<vector<int>> mergedLists = mergeIntervals(listsOfLists);
-    //
-    //    for(size_t i = 0; i < mergedLists.size(); ++i)
-    //    {
-    //        for(size_t j = 0; j < mergedLists[i].size(); ++j)
-    //        {
-    //            cout << mergedLists[i][j] << " ";
-    //        }
-    //        cout << endl;
-    //    }
+    //Problem #56 Merge Intervals - Medium
+        vector<vector<int>> listsOfLists = {{1, 3}, {2, 6}, {15, 18}, {8, 10}};
+    
+        vector<vector<int>> mergedLists = merge(listsOfLists);
+    
+        for(size_t i = 0; i < mergedLists.size(); ++i)
+        {
+            for(size_t j = 0; j < mergedLists[i].size(); ++j)
+            {
+                cout << mergedLists[i][j] << " ";
+            }
+            cout << endl;
+        }
     
     //    // Tree Traversal
     //    TreeNode root = TreeNode(3);
@@ -368,32 +367,32 @@ int main(int argc, const char * argv[]) {
     
     
     //Problem #373 Find K Pairs with Smallest Sums - Medium
-        vector<int> nums1 = {1, 7, 11};
-        vector<int> nums2 = {2, 4, 6};
-        int k = 3;
-    
-        vector<vector<int>> smallestPairs = kSmallestPairs(nums1, nums2, k);
-        cout << "[";
-        for(int i = 0; i < smallestPairs.size(); i++)
-        {
-            cout << "[";
-            for(int j = 0; j < smallestPairs[i].size(); j++)
-            {   if (j == 0)
-                {
-                    cout << smallestPairs[i][j] << ", ";
-                }
-                else
-                {
-                    cout << smallestPairs[i][j] << "]";
-                }
-            }
-            if (i != smallestPairs.size() - 1)
-            {
-                cout << ", ";
-            }
-        }
-    
-        cout << "]" << endl;
+//        vector<int> nums1 = {1, 7, 11};
+//        vector<int> nums2 = {2, 4, 6};
+//        int k = 3;
+//    
+//        vector<vector<int>> smallestPairs = kSmallestPairs(nums1, nums2, k);
+//        cout << "[";
+//        for(int i = 0; i < smallestPairs.size(); i++)
+//        {
+//            cout << "[";
+//            for(int j = 0; j < smallestPairs[i].size(); j++)
+//            {   if (j == 0)
+//                {
+//                    cout << smallestPairs[i][j] << ", ";
+//                }
+//                else
+//                {
+//                    cout << smallestPairs[i][j] << "]";
+//                }
+//            }
+//            if (i != smallestPairs.size() - 1)
+//            {
+//                cout << ", ";
+//            }
+//        }
+//    
+//        cout << "]" << endl;
     
     //Problem #57 Insert Interval
     //    vector<vector<int>> intervals = {{1, 3}, {6, 9}};

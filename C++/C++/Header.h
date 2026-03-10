@@ -111,7 +111,7 @@ public:
 
 int findKthLargest(vector<int> &nums, int k);
 
-vector<vector<int>> mergeIntervals(vector<vector<int>> &intervals);
+vector<vector<int>> merge(vector<vector<int>> &intervals);
 
 struct TreeNode
 {
