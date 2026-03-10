@@ -1,19 +1,23 @@
 def merge(intervals: list[list[int]]) -> list[list[int]]:
     #Problem #56 Merge Intervals - Medium
+    intervals.sort()
     
-    if not intervals:
-        return []
+    newMergedIntervalsList = [intervals[0]]
+    for index in range(len(intervals) - 1):
+        previous = [newMergedIntervalsList[len(newMergedIntervalsList) - 1][0], newMergedIntervalsList[len(newMergedIntervalsList) - 1][1]]
+        
+        if previous[1] >= intervals[index + 1][0] and intervals[index + 1][1] >= previous[1]:
+            newMergedIntervalsList.pop()
+            newMergedIntervalsList.append([previous[0], intervals[index + 1][1]])
+            
+        elif previous[1] >= intervals[index + 1][0] and previous[1] >= intervals[index + 1][1]:
+            newMergedIntervalsList.pop()
+            newMergedIntervalsList.append([previous[0], previous[1]])
+        else:
+            newMergedIntervalsList.append([intervals[index + 1][0], intervals[index + 1][1]])
+        
+    return newMergedIntervalsList
 
-    intervals.sort(key = lambda time: time[0])
-    merged = [intervals[0]]
-
-    for index in range(1, len(intervals)):
-        if intervals[index][0] <= merged[len(merged) - 1][1] and intervals[index][1] > merged[len(merged) - 1][1]:
-            merged[len(merged) - 1][1] = intervals[index][1]
-        elif intervals[index][0] > merged[len(merged) - 1][1]:
-            merged.append(intervals[index])
-
-    return merged
 
 def insert(intervals: list[list[int]], newInterval: list[int]) -> list[list[int]]:
     #Problem #57 Insert Interval - Medium
@@ -42,6 +46,6 @@ def eraseOverlapIntervals(intervals: list[list[int]]) -> int:
     return len(intervals) - keepCount
 
 if __name__ == "__main__":
-    intervals = [[1, 2], [2, 3]]
+    intervals = [[1,4],[1,4]]
 
-    print(eraseOverlapIntervals(intervals))
+    print(merge(intervals))
