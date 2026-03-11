@@ -38,13 +38,76 @@ vector<vector<int>> merge(vector<vector<int>> &intervals)
 }
 
 vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInterval) {
-    //Problem #57 Insert Interval
+    //Problem #57 Insert Interval - Medium
     
-    intervals.push_back(newInterval);
+    vector<vector<int>> newIntervalsVector = {};
+    bool insertedFlag = false;
+    int index = 0;
     
-    vector<vector<int>> insertedInterval = merge(intervals);
+    for(vector<int> interval: intervals)
+    {
+        if(newInterval[0] >= interval[0] and
+           newInterval[0] <= interval[1] and
+           newInterval[1] >= interval[1])
+        {
+            newIntervalsVector.push_back({interval[0], newInterval[1]});
+            insertedFlag = true;
+            break;
+        }
+        else if(newInterval[0] >= interval[0] and
+                newInterval[0] < interval[1] and
+                newInterval[1] < interval[1])
+        {
+            newIntervalsVector.push_back({interval[0], interval[1]});
+            insertedFlag = true;
+            break;
+        }
+        else if(newInterval[0] == interval[0] and
+                newInterval[1] == interval[1])
+        {
+            newIntervalsVector.push_back({newInterval[0], newInterval[1]});
+            insertedFlag = true;
+            break;
+        }
+        else if(newInterval[0] < interval[0] and
+                newInterval[1] >= interval[0] and
+                newInterval[1] < interval[1])
+        {
+            newIntervalsVector.push_back({newInterval[0], interval[1]});
+            insertedFlag = true;
+            break;
+        }
+        else if(newInterval[1] < interval[0])
+        {
+            newIntervalsVector.push_back({newInterval[0], newInterval[1]});
+            newIntervalsVector.push_back({interval[0], interval[1]});
+            insertedFlag = true;
+            break;
+        }
+        else if(newInterval[0] > interval[1]) newIntervalsVector.push_back({interval[0], interval[1]});
+        
+        index++;
+    }
     
-    return insertedInterval;
+    index++;
+    
+    for(int index1 = index; index1 < (int)intervals.size(); index1++)
+    {
+        vector<int> previousInterval = newIntervalsVector[(int)newIntervalsVector.size() - 1];
+        
+        if (previousInterval[0] < intervals[index1][0] and
+            previousInterval[1] < intervals[index1][1] and
+            previousInterval[1] >= intervals[index1][0])
+        {
+            newIntervalsVector.pop_back();
+            newIntervalsVector.push_back({previousInterval[0], intervals[index1][1]});
+        }
+        else if(previousInterval[1] < intervals[index1][0]) newIntervalsVector.push_back({intervals[index1][0], intervals[index1][1]});
+    }
+    
+    if(insertedFlag == false) newIntervalsVector.push_back(newInterval);
+    
+    return newIntervalsVector;
 }
 
 int eraseOverlapIntervals(vector<vector<int>> &intervals)
