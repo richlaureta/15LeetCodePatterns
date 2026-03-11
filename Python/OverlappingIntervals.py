@@ -21,10 +21,66 @@ def merge(intervals: list[list[int]]) -> list[list[int]]:
 def insert(intervals: list[list[int]], newInterval: list[int]) -> list[list[int]]:
     #Problem #57 Insert Interval - Medium
     
-    intervals.append(newInterval)
+    newIntervalsList = []
+    insertedFlag = False
+    index = 0
+    
+    for interval in intervals:
+        if (newInterval[0] >= interval[0] and 
+            newInterval[0] < interval[1] and 
+            newInterval[1] >= interval[1]):
+            newIntervalsList.append([interval[0], newInterval[1]])
+            insertedFlag = True
+            break
+        if (newInterval[0] >= interval[0] and 
+            newInterval[0] < interval[1] and 
+            newInterval[1] < interval[1]):
+            newIntervalsList.append([interval[0], interval[1]])
+            insertedFlag = True
+            break
+        elif (newInterval[0] == interval[0] and
+              newInterval[1] == interval[1]):
+            newIntervalsList.append([newInterval[0], newInterval[1]])
+            insertedFlag = True
+            break
+        elif newInterval[0] == interval[1]:
+            newIntervalsList.append([interval[0], newInterval[1]])
+            insertedFlag = True
+            break
+        elif (newInterval[0] < interval[0] and
+              newInterval[1] >= interval[0] and 
+              newInterval[1] < interval[1]):
+            newIntervalsList.append([newInterval[0], interval[1]])
+            insertedFlag = True
+            break
+        elif newInterval[1] < interval[0]:
+            newIntervalsList.append([newInterval[0], newInterval[1]])
+            newIntervalsList.append([interval[0], interval[1]])
+            insertedFlag = True
+            break
+        elif newInterval[0] > interval[1]:
+            newIntervalsList.append([interval[0], interval[1]])
+        
+        index += 1
+        
+    index += 1
 
-    return merge(intervals)
-
+    for index1 in range(index, len(intervals)):
+        previousInterval = newIntervalsList[len(newIntervalsList) - 1]
+        
+        if (previousInterval[0] < intervals[index1][0] and
+            previousInterval[1] < intervals[index1][1] and
+            previousInterval[1] >= intervals[index1][0]):
+            newIntervalsList.pop()
+            newIntervalsList.append([previousInterval[0], intervals[index1][1]])
+        elif previousInterval[1] < intervals[index1][0]:
+            newIntervalsList.append([intervals[index1][0], intervals[index1][1]])
+    
+    if insertedFlag == False:
+        newIntervalsList.append(newInterval)
+           
+    return newIntervalsList
+        
 def eraseOverlapIntervals(intervals: list[list[int]]) -> int:
     #Problem #435 Non-Overlapping Intervals - Medium
     
@@ -45,6 +101,7 @@ def eraseOverlapIntervals(intervals: list[list[int]]) -> int:
     return len(intervals) - keepCount
 
 if __name__ == "__main__":
-    intervals = [[1,4],[1,4]]
+    intervals = [[1,3],[6,8],[9,9]]
+    newInterval = [7, 8]
 
-    print(merge(intervals))
+    print(insert(intervals, newInterval))
