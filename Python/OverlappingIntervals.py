@@ -27,7 +27,7 @@ def insert(intervals: list[list[int]], newInterval: list[int]) -> list[list[int]
     
     for interval in intervals:
         if (newInterval[0] >= interval[0] and 
-            newInterval[0] < interval[1] and 
+            newInterval[0] <= interval[1] and 
             newInterval[1] >= interval[1]):
             newIntervalsList.append([interval[0], newInterval[1]])
             insertedFlag = True
@@ -41,10 +41,6 @@ def insert(intervals: list[list[int]], newInterval: list[int]) -> list[list[int]
         elif (newInterval[0] == interval[0] and
               newInterval[1] == interval[1]):
             newIntervalsList.append([newInterval[0], newInterval[1]])
-            insertedFlag = True
-            break
-        elif newInterval[0] == interval[1]:
-            newIntervalsList.append([interval[0], newInterval[1]])
             insertedFlag = True
             break
         elif (newInterval[0] < interval[0] and
