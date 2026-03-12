@@ -112,7 +112,7 @@ vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInter
 
 int eraseOverlapIntervals(vector<vector<int>> &intervals)
 {
-    //Problem 435 Non-overlapping Intervals
+    //Problem 435 Non-overlapping Intervals - Medium
     
     if(intervals.size() == 1)
     {

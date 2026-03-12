@@ -1,3 +1,5 @@
+from operator import itemgetter
+
 def merge(intervals: list[list[int]]) -> list[list[int]]:
     #Problem #56 Merge Intervals - Medium
     intervals.sort()
@@ -80,24 +82,21 @@ def insert(intervals: list[list[int]], newInterval: list[int]) -> list[list[int]
 def eraseOverlapIntervals(intervals: list[list[int]]) -> int:
     #Problem #435 Non-Overlapping Intervals - Medium
     
-    if len(intervals) == 1:
-        return 0
+    endTimeSort = sorted(intervals, key = itemgetter(1))
     
-    intervals.sort(key = lambda time: time[1])
+    previousInterval = endTimeSort[0][1]
     
-    keepCount = 1
-
-    previousEndTime = intervals[0][1]
-
-    for index in range(1, len(intervals)):
-        if intervals[index][0] >= previousEndTime:
-            keepCount += 1
-            previousEndTime = intervals[index][1]
-
-    return len(intervals) - keepCount
+    minimumOverlapCount = 0
+    
+    for index in range(1, len(endTimeSort)):
+        if endTimeSort[index][0] < previousInterval:
+            minimumOverlapCount += 1
+        else:
+            previousInterval = endTimeSort[index][1]
+    
+    return minimumOverlapCount
 
 if __name__ == "__main__":
-    intervals = [[1,3],[6,8],[9,9]]
-    newInterval = [7, 8]
-
-    print(insert(intervals, newInterval))
+    intervals = [[-52,31],[-73,-26],[82,97],[-65,-11],[-62,-49],[95,99],[58,95],[-31,49],[66,98],[-63,2],[30,47],[-40,-26]]
+    
+    print(eraseOverlapIntervals(intervals))
