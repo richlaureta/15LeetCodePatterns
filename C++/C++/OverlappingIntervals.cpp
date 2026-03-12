@@ -114,28 +114,20 @@ int eraseOverlapIntervals(vector<vector<int>> &intervals)
 {
     //Problem 435 Non-overlapping Intervals - Medium
     
-    if(intervals.size() == 1)
-    {
-        return 0;
-    }
-    
     sort(intervals.begin(), intervals.end(), [](const vector<int>& a, const vector<int>& b)
     {
         return a[1] < b[1];
     });
     
-    int keepCount = 1;
-    
     int previousEndTime = intervals[0][1];
     
-    for(int i = 1; i < intervals.size(); ++i)
+    int minimumOverlapCount = 0;
+    
+    for(int index = 1; index < (int)intervals.size(); index++)
     {
-        if(intervals[i][0] >= previousEndTime)
-        {
-            keepCount++;
-            previousEndTime = intervals[i][1];
-        }
+        if(intervals[index][0] < previousEndTime) minimumOverlapCount++;
+        else previousEndTime = intervals[index][1];
     }
     
-    return (int)intervals.size() - keepCount;
+    return minimumOverlapCount;
 }

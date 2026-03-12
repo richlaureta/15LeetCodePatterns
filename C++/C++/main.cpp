@@ -395,24 +395,24 @@ int main(int argc, const char * argv[]) {
 //        cout << "]" << endl;
     
     //Problem #57 Insert Interval
-    vector<vector<int>> intervals = {{1, 2}, {3, 5}, {6, 7}, {8, 10}, {12, 16}};
-        vector<int> newInterval = {4, 8};
-    
-        vector<vector<int>> inserted = insert(intervals, newInterval);
-    
-        for(int i = 0; i < inserted.size(); i++)
-        {
-            for(int j = 0; j < inserted[i].size(); j++)
-            {
-                cout << inserted[i][j] << " ";
-            }
-            cout << endl;
-        }
+//    vector<vector<int>> intervals = {{1, 2}, {3, 5}, {6, 7}, {8, 10}, {12, 16}};
+//        vector<int> newInterval = {4, 8};
+//    
+//        vector<vector<int>> inserted = insert(intervals, newInterval);
+//    
+//        for(int i = 0; i < inserted.size(); i++)
+//        {
+//            for(int j = 0; j < inserted[i].size(); j++)
+//            {
+//                cout << inserted[i][j] << " ";
+//            }
+//            cout << endl;
+//        }
     //
     //    //Problem #435 Non-overlapping Intervals
-    //    vector<vector<int>> intervals = {{1, 2}, {2, 3}, {3, 4}, {1, 3}};
-    //
-    //    cout << eraseOverlapIntervals(intervals) << endl;
+        vector<vector<int>> intervals = {{1, 2}, {2, 3}, {3, 4}, {1, 3}};
+    
+        cout << eraseOverlapIntervals(intervals) << endl;
     
     //Problem #33 Search in Rotated Sorted Array
     //

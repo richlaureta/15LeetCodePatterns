@@ -84,15 +84,15 @@ def eraseOverlapIntervals(intervals: list[list[int]]) -> int:
     
     endTimeSort = sorted(intervals, key = itemgetter(1))
     
-    previousInterval = endTimeSort[0][1]
+    previousEndTime = endTimeSort[0][1]
     
     minimumOverlapCount = 0
     
     for index in range(1, len(endTimeSort)):
-        if endTimeSort[index][0] < previousInterval:
+        if endTimeSort[index][0] < previousEndTime:
             minimumOverlapCount += 1
         else:
-            previousInterval = endTimeSort[index][1]
+            previousEndTime = endTimeSort[index][1]
     
     return minimumOverlapCount
 
