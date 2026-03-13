@@ -334,7 +334,7 @@ int main(int argc, const char * argv[]) {
 //            editedLinkedList = editedLinkedList->next;
 //        }
     
-    //Problem # 24 Swap Nodes in Pairs
+    //Problem # 24 Swap Nodes in Pairs - Medium
     //    ListNode* head = new ListNode(1);
     //    ListNode* node2 = new ListNode(2);
     //    ListNode* node3 = new ListNode(3);
@@ -353,6 +353,31 @@ int main(int argc, const char * argv[]) {
     //        cout << swappedPairs->val << endl;
     //        swappedPairs = swappedPairs->next;
     //    }
+    
+    //Problem #1721 Swapping Nodes in a Linked List - Medium
+    ListNode *node1  = new ListNode(1);
+    ListNode *node2  = new ListNode(2);
+    ListNode *node3  = new ListNode(3);
+    ListNode *node4  = new ListNode(4);
+    ListNode *node5  = new ListNode(5);
+    
+    node1->next = node2;
+    node2->next = node3;
+    node3->next = node4;
+    node4->next = node5;
+    
+    ListNode *head = node1;
+    
+    int k = 2;
+    
+    
+    ListNode *currentNode = swapNodes(head, k);
+    
+    while(currentNode != nullptr)
+    {
+        cout << currentNode->val << endl;
+        currentNode = currentNode->next;
+    }
     
     //Problem #739 Daily Temperatures
 //    vector<int> temperatures = {100, 100, 61, 30, 60, 90};
@@ -410,9 +435,9 @@ int main(int argc, const char * argv[]) {
 //        }
     //
     //    //Problem #435 Non-overlapping Intervals
-        vector<vector<int>> intervals = {{1, 2}, {2, 3}, {3, 4}, {1, 3}};
-    
-        cout << eraseOverlapIntervals(intervals) << endl;
+//        vector<vector<int>> intervals = {{1, 2}, {2, 3}, {3, 4}, {1, 3}};
+//    
+//        cout << eraseOverlapIntervals(intervals) << endl;
     
     //Problem #33 Search in Rotated Sorted Array
     //

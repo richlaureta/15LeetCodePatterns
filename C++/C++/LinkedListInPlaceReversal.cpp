@@ -110,20 +110,19 @@ ListNode* swapPairs(ListNode* head)
 ListNode* swapNodes(ListNode* head, int k)
 {
     //Problem 1721 Swapping Nodes in a Linked List - Medium
-    
-    ListNode *currentNode = head;
-    for(int index = 0; index < k - 1; index++) currentNode = currentNode->next;
-    
-    ListNode *leftSwapPointer = currentNode;
-    ListNode *rightSwapPointer = head;
-    
-    while(currentNode->next)
-    {
+    ListNode* currentNode = head;
+    for (int index = 0; index < k - 1; index++)
+        currentNode = currentNode->next;
+
+    ListNode* leftSwapPointer = currentNode;
+    ListNode* rightSwapPointer = head;
+
+    while (currentNode->next) {
         rightSwapPointer = rightSwapPointer->next;
         currentNode = currentNode->next;
     }
-    
+
     swap(leftSwapPointer->val, rightSwapPointer->val);
-    
+
     return head;
 }
