@@ -36,7 +36,7 @@ def findMin(nums: list[int]) -> int:
     while leftIndex < rightIndex:
         middleIndex = leftIndex + (rightIndex - leftIndex)//2
         
-        if nums[leftIndex] < nums[middleIndex] < nums[rightIndex]:
+        if nums[leftIndex] < nums[rightIndex]:
             return nums[leftIndex]
         
         if nums[middleIndex - 1] > nums[middleIndex]:

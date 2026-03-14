@@ -447,7 +447,7 @@ int main(int argc, const char * argv[]) {
 //        cout << modifiedBinarySearch(nums, target) << endl;
     
     //Problem #153 Find Minimum in Rotated Sorted Array
-        vector<int> nums = {2, 1};
+        vector<int> nums = {1};
     
         cout << findMin(nums) << endl;
     
