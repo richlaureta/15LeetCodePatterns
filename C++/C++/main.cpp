@@ -355,29 +355,29 @@ int main(int argc, const char * argv[]) {
     //    }
     
     //Problem #1721 Swapping Nodes in a Linked List - Medium
-    ListNode *node1  = new ListNode(1);
-    ListNode *node2  = new ListNode(2);
-    ListNode *node3  = new ListNode(3);
-    ListNode *node4  = new ListNode(4);
-    ListNode *node5  = new ListNode(5);
-    
-    node1->next = node2;
-    node2->next = node3;
-    node3->next = node4;
-    node4->next = node5;
-    
-    ListNode *head = node1;
-    
-    int k = 2;
-    
-    
-    ListNode *currentNode = swapNodes(head, k);
-    
-    while(currentNode != nullptr)
-    {
-        cout << currentNode->val << endl;
-        currentNode = currentNode->next;
-    }
+//    ListNode *node1  = new ListNode(1);
+//    ListNode *node2  = new ListNode(2);
+//    ListNode *node3  = new ListNode(3);
+//    ListNode *node4  = new ListNode(4);
+//    ListNode *node5  = new ListNode(5);
+//    
+//    node1->next = node2;
+//    node2->next = node3;
+//    node3->next = node4;
+//    node4->next = node5;
+//    
+//    ListNode *head = node1;
+//    
+//    int k = 2;
+//    
+//    
+//    ListNode *currentNode = swapNodes(head, k);
+//    
+//    while(currentNode != nullptr)
+//    {
+//        cout << currentNode->val << endl;
+//        currentNode = currentNode->next;
+//    }
     
     //Problem #739 Daily Temperatures
 //    vector<int> temperatures = {100, 100, 61, 30, 60, 90};
@@ -440,16 +440,16 @@ int main(int argc, const char * argv[]) {
 //        cout << eraseOverlapIntervals(intervals) << endl;
     
     //Problem #33 Search in Rotated Sorted Array
-    //
-    //    vector<int> nums = {7, 1, 2, 3, 4, 5, 6};
-    //    int target = 5;
-    //
-    //    cout << modifiedBinarySearch(nums, target) << endl;
+    
+//        vector<int> nums = {7, 1, 2, 3, 4, 5, 6};
+//        int target = 5;
+//    
+//        cout << modifiedBinarySearch(nums, target) << endl;
     
     //Problem #153 Find Minimum in Rotated Sorted Array
-    //    vector<int> nums = {3, 4, 5, 1, 2};
-    //
-    //    cout << findMin(nums) << endl;
+        vector<int> nums = {2, 1};
+    
+        cout << findMin(nums) << endl;
     
     //Problem #240 Search a 2D Matrix II
     //    vector<vector<int>> matrix =
