@@ -9,7 +9,7 @@
 
 int modifiedBinarySearch(vector<int> &nums, int target)
 {
-    //Problem #33 Search in Rotated Sorted Array
+    //Problem #33 Search in Rotated Sorted Array - Medium
     
     int leftIndex = 0;
     int rightIndex = (int) nums.size() - 1;

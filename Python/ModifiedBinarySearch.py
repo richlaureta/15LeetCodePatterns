@@ -1,26 +1,30 @@
 def search(nums: list[int], target: int) -> int:
-    #Problem #33 Search in Rotated Sorted Array - Medium 
-
+    #Problem #33 Search in Rotated Sorted Array - Medium
+    
     leftIndex = 0
     rightIndex = len(nums) - 1
-
+    
     while leftIndex <= rightIndex:
-        middleIndex = (leftIndex + rightIndex) // 2
-
+        middleIndex = leftIndex + (rightIndex - leftIndex)//2
+        
         if nums[middleIndex] == target:
             return middleIndex
-
-        if nums[leftIndex] <= nums[middleIndex]:
-            if target > nums[middleIndex] or target < nums[leftIndex]:
-                leftIndex = middleIndex + 1
-            else:
+        elif nums[leftIndex] == target:
+            return leftIndex
+        elif nums[rightIndex] == target:
+            return rightIndex
+        
+        if nums[middleIndex] > nums[leftIndex]:
+            if target > nums[leftIndex] and target < nums[middleIndex]:
                 rightIndex = middleIndex - 1
+            else:
+                leftIndex = middleIndex + 1
         else:
-            if target < nums[middleIndex] or target > nums[rightIndex]:
-                rightIndex = middleIndex - 1
-            else:
+            if target > nums[middleIndex] and target < nums[rightIndex]:
                 leftIndex = middleIndex + 1
-    
+            else:
+                rightIndex = middleIndex - 1
+
     return -1
 
 def findMin(nums: list[int]) -> int:
@@ -60,7 +64,7 @@ def searchMatrix(matrix: list[list[int]], target: int) -> bool:
     return False
 
 if __name__ == "__main__":
-   matrix = [[-5]]
-   target = -5
-
-   print(searchMatrix(matrix, target))
+    nums = [1,2,3,4,5,6]
+    target = 4
+     
+    print(search(nums, target))
