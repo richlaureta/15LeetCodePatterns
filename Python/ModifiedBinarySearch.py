@@ -32,19 +32,27 @@ def findMin(nums: list[int]) -> int:
 
     leftIndex = 0
     rightIndex = len(nums) - 1
-
-    if nums[leftIndex] < nums[rightIndex]:
-        return nums[leftIndex]
     
     while leftIndex < rightIndex:
-        middleIndex = (leftIndex + rightIndex) // 2
-
-        if nums[middleIndex] > nums[rightIndex]:
-            leftIndex = middleIndex + 1
+        middleIndex = leftIndex + (rightIndex - leftIndex)//2
         
-        if nums[middleIndex] < nums[rightIndex]:
-            rightIndex = middleIndex
+        if nums[leftIndex] < nums[middleIndex] < nums[rightIndex]:
+            return nums[leftIndex]
         
+        if nums[middleIndex - 1] > nums[middleIndex]:
+            return nums[middleIndex]
+        
+        if nums[leftIndex] < nums[middleIndex]:
+            if nums[middleIndex] > nums[middleIndex + 1]:
+                return nums[middleIndex + 1]
+            else:
+                leftIndex = middleIndex + 1
+        else:
+            if nums[middleIndex] > nums[middleIndex + 1]:
+                return nums[middleIndex + 1]
+            else:
+                rightIndex = middleIndex - 1
+    
     return nums[leftIndex]
 
 def searchMatrix(matrix: list[list[int]], target: int) -> bool:
@@ -64,7 +72,6 @@ def searchMatrix(matrix: list[list[int]], target: int) -> bool:
     return False
 
 if __name__ == "__main__":
-    nums = [1,2,3,4,5,6]
-    target = 4
+    nums = [3, 1, 2]
      
-    print(search(nums, target))
+    print(findMin(nums))
