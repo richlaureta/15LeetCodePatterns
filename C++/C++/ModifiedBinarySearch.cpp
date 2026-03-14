@@ -11,24 +11,25 @@ int modifiedBinarySearch(vector<int> &nums, int target)
 {
     //Problem #33 Search in Rotated Sorted Array - Medium
     
-    int leftIndex = 0;
-    int rightIndex = (int) nums.size() - 1;
+    int leftIndex = 0, rightIndex = (int)nums.size() - 1;
     
     while(leftIndex <= rightIndex)
     {
-        int middleIndex = (leftIndex + rightIndex) / 2;
+        int middleIndex = leftIndex + (rightIndex - leftIndex)/2;
         
         if(nums[middleIndex] == target) return middleIndex;
+        else if(nums[leftIndex] == target) return leftIndex;
+        else if(nums[rightIndex] == target) return rightIndex;
         
-        if(nums[leftIndex] <= nums[middleIndex])
+        if(nums[middleIndex] > nums[leftIndex])
         {
-            if((target > nums[middleIndex]) or (target < nums[leftIndex])) leftIndex = middleIndex + 1;
-            else rightIndex = middleIndex - 1;
+            if(target > nums[leftIndex] and target < nums[middleIndex]) rightIndex = middleIndex - 1;
+            else leftIndex = middleIndex + 1;
         }
         else
         {
-            if((target < nums[middleIndex]) or (target > nums[rightIndex])) rightIndex = middleIndex - 1;
-            else leftIndex = middleIndex + 1;
+            if(target > nums[middleIndex] and target < nums[rightIndex]) leftIndex = middleIndex + 1;
+            else rightIndex = middleIndex - 1;
         }
     }
     
