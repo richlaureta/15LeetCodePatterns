@@ -20,28 +20,42 @@ def checkOnesSegment(s: str) -> bool:
 def findAndReplacePattern(words: list[str], pattern: str) -> list[str]:
     #Problem #890 Find and Replace Pattern - Medium
     
-    patternFrequencyDictionary = defaultdict(int)
+    patternFrequencyDictionary = defaultdict(list[int])
     patternSet = set()
     orderOfLetter = []
     
-    for letter in pattern:
+    for index0, letter in enumerate(pattern):
         if letter not in patternSet:
             orderOfLetter.append(letter)
             patternSet.add(letter)
-        patternFrequencyDictionary[letter] += 1
+        patternFrequencyDictionary[letter].append(index0)
     
     wordsPatternMatch = []
     
     for word in words:
-        letterFrequencyDictionary = defaultdict(int)
+        letterFrequencyDictionary = defaultdict(list[int])
         wordPatternSet = set()
         orderOfLetter1 = []
-        for letter1 in word:
-            pass    
+        for index1, letter1 in enumerate(word):
+            if letter1 not in wordPatternSet:
+                orderOfLetter1.append(letter1)
+                wordPatternSet.add(letter1)
+            letterFrequencyDictionary[letter1].append(index1)
+        
+        if len(orderOfLetter) != len(orderOfLetter1):
+            continue
+        
+        for index2, letter2 in enumerate(orderOfLetter):
+            if patternFrequencyDictionary[letter2] != letterFrequencyDictionary[orderOfLetter1[index2]]:
+                break
+        
+        if len(orderOfLetter) - 1 == index2:
+            wordsPatternMatch.append(word)  
     
     return wordsPatternMatch
+
 if __name__ == "__main__":
-    words = ["abc","deq","mee","aqq","dkd","ccc"]
-    pattern = "abb"
+    words = ["a","b","c"]
+    pattern = "a"
     
     print(findAndReplacePattern(words, pattern))
