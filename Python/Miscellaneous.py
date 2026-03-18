@@ -20,7 +20,7 @@ def checkOnesSegment(s: str) -> bool:
 def findAndReplacePattern(words: list[str], pattern: str) -> list[str]:
     #Problem #890 Find and Replace Pattern - Medium
     
-    patternFrequencyDictionary = defaultdict(list[int])
+    uniqueLetterIndexDictionary = defaultdict(set)
     letterToUniqueCount = defaultdict(int)
     uniqueCount = 1
     patternSet = set()
@@ -29,15 +29,14 @@ def findAndReplacePattern(words: list[str], pattern: str) -> list[str]:
         if letter not in patternSet:
             patternSet.add(letter)
             letterToUniqueCount[letter] = uniqueCount
-            patternFrequencyDictionary[letterToUniqueCount[letter]].append(index0)
+            uniqueLetterIndexDictionary[letterToUniqueCount[letter]].add(index0)
             uniqueCount += 1
         else:
-            patternFrequencyDictionary[letterToUniqueCount[letter]].append(index0)
+            uniqueLetterIndexDictionary[letterToUniqueCount[letter]].add(index0)
     
     wordsPatternMatch = []
     
     for word in words:
-        letterFrequencyDictionary = defaultdict(list[int])
         wordPatternSet = set()
         letterToUniqueCount1 = defaultdict(int)
         uniqueCount1 = 1
@@ -45,17 +44,22 @@ def findAndReplacePattern(words: list[str], pattern: str) -> list[str]:
             if letter1 not in wordPatternSet:
                 wordPatternSet.add(letter1)
                 letterToUniqueCount1[letter1] = uniqueCount1
-                letterFrequencyDictionary[letterToUniqueCount1[letter1]].append(index1)
+                if index1 not in uniqueLetterIndexDictionary[letterToUniqueCount1[letter1]]:
+                    index1 -= 1
+                    break
                 uniqueCount1 += 1
             else:
-                letterFrequencyDictionary[letterToUniqueCount1[letter1]].append(index1)
+                if index1 not in uniqueLetterIndexDictionary[letterToUniqueCount1[letter1]]:
+                    index1 -= 1
+                    break
         
-        if patternFrequencyDictionary == letterFrequencyDictionary:
+        if index1 == len(word) - 1:
             wordsPatternMatch.append(word)
-            
+    
     return wordsPatternMatch
 
 if __name__ == "__main__":
+    # words = ["abc","deq","mee","aqq","dkd","ccc"]
     words = ["a","b","c"]
     pattern = "a"
     
