@@ -58,32 +58,43 @@ def findMin(nums: list[int]) -> int:
 def searchMatrix(matrix: list[list[int]], target: int) -> bool:
     #Problem # 240 Search a 2D Matrix II - Medium
     
-    for row in matrix:
-        if row[len(row) - 1] < target:
-            continue
-        
-        leftIndex = 0
-        rightIndex = len(row) - 1
-        while leftIndex <= rightIndex:
-            middleIndex = leftIndex + (rightIndex - leftIndex)//2
+    row = 0
+    column = 0
+    
+    while row < len(matrix) and column < len(matrix[0]):
+        if matrix[row][column] == target:
+            return True
+
+        if matrix[row][column] < target:
+            row += 1
+            column += 1
+        else:
+            break
+    
+    for index0 in range(row, len(matrix)):
+        if matrix[index0][0] > target:
+            break
+        for index1 in range(0, len(matrix[0])):
+            if matrix[index0][index1] > target:
+                break
             
-            if row[middleIndex] == target:
+            if matrix[index0][index1] == target:
                 return True
-            elif row[leftIndex] == target:
-                return True
-            elif row[rightIndex] == target:
-                return True
+
+    for index2 in range(column, len(matrix[0])):
+        if matrix[0][index2] > target:
+            break
+        for index3 in range(0, len(matrix)):
+            if matrix[index3][index2] > target:
+                break
             
-            if row[middleIndex] > target:
-                rightIndex = middleIndex - 1
-            else:
-                leftIndex = middleIndex + 1
-                
+            if matrix[index3][index2] == target:
+                return True
+
     return False
             
 if __name__ == "__main__":
     # nums = [[1,4,7,11,15],[2,5,8,12,19],[3,6,9,16,22],[10,13,14,17,24],[18,21,23,26,30]]
     nums = [[1,4,7,11,15],[2,5,8,12,19],[3,6,9,16,22],[10,13,14,17,24],[18,21,23,26,30]]
-    target = 20
-     
+    target = 30
     print(searchMatrix(nums, target))
