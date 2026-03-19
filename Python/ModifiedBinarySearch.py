@@ -59,14 +59,31 @@ def searchMatrix(matrix: list[list[int]], target: int) -> bool:
     #Problem # 240 Search a 2D Matrix II - Medium
     
     for row in matrix:
-        for number in row:
-            if number == target:
+        if row[len(row) - 1] < target:
+            continue
+        
+        leftIndex = 0
+        rightIndex = len(row) - 1
+        while leftIndex <= rightIndex:
+            middleIndex = leftIndex + (rightIndex - leftIndex)//2
+            
+            if row[middleIndex] == target:
                 return True
-
+            elif row[leftIndex] == target:
+                return True
+            elif row[rightIndex] == target:
+                return True
+            
+            if row[middleIndex] > target:
+                rightIndex = middleIndex - 1
+            else:
+                leftIndex = middleIndex + 1
+                
     return False
-
+            
 if __name__ == "__main__":
+    # nums = [[1,4,7,11,15],[2,5,8,12,19],[3,6,9,16,22],[10,13,14,17,24],[18,21,23,26,30]]
     nums = [[1,4,7,11,15],[2,5,8,12,19],[3,6,9,16,22],[10,13,14,17,24],[18,21,23,26,30]]
-    target = 5
+    target = 20
      
     print(searchMatrix(nums, target))
