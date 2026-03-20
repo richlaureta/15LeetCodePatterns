@@ -58,19 +58,38 @@ def findMin(nums: list[int]) -> int:
 def searchMatrix(matrix: list[list[int]], target: int) -> bool:
     #Problem # 240 Search a 2D Matrix II - Medium
     
-    row = 0
-    column = 0
+    upRow = 0
+    leftColumn = 0
+    bottomRow = len(matrix) - 1
+    rightColumn = len(matrix[0]) - 1
     
-    while row < len(matrix) and column < len(matrix[0]):
-        if matrix[row][column] == target:
-            return True
-
-        if matrix[row][column] < target:
-            row += 1
-            column += 1
+    if len(matrix) == 1:
+        if search(matrix[0], target) == -1:
+            return False
         else:
-            break
+            return True
     
+    while bottomRow > -1 and upRow < len(matrix) and matrix[bottomRow][rightColumn] >= target: 
+        midRow = upRow + (bottomRow - upRow)//2
+        midColumn = leftColumn + (rightColumn - leftColumn)//2
+        
+        if matrix[midRow][midColumn] == target:
+            return True
+        elif matrix[upRow][leftColumn] == target:
+            return True
+        elif matrix[bottomRow][rightColumn] == target:
+            return True
+        
+        if matrix[midRow][midColumn] > target:
+            bottomRow = midRow - 1
+            rightColumn = midColumn - 1
+        else:
+            upRow = midRow + 1
+            leftColumn = midColumn + 1
+    
+    row = bottomRow + 1
+    column = rightColumn + 1
+        
     for index0 in range(row, len(matrix)):
         if matrix[index0][0] > target:
             break
@@ -95,6 +114,6 @@ def searchMatrix(matrix: list[list[int]], target: int) -> bool:
             
 if __name__ == "__main__":
     # nums = [[1,4,7,11,15],[2,5,8,12,19],[3,6,9,16,22],[10,13,14,17,24],[18,21,23,26,30]]
-    nums = [[1,4,7,11,15],[2,5,8,12,19],[3,6,9,16,22],[10,13,14,17,24],[18,21,23,26,30]]
-    target = 30
+    nums = [[-5]]
+    target = -2
     print(searchMatrix(nums, target))
