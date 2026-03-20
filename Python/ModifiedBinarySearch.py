@@ -1,3 +1,4 @@
+from typing import List
 def search(nums: list[int], target: int) -> int:
     #Problem #33 Search in Rotated Sorted Array - Medium
     
@@ -57,19 +58,66 @@ def findMin(nums: list[int]) -> int:
 
 def searchMatrix(matrix: list[list[int]], target: int) -> bool:
     #Problem # 240 Search a 2D Matrix II - Medium
+    if len(matrix) == 1:
+        leftIndex = 0
+        rightIndex = len(matrix[0]) - 1
+        
+        while leftIndex <= rightIndex:
+            middleIndex = leftIndex + (rightIndex - leftIndex)//2
+            
+            if matrix[0][middleIndex] == target:
+                return True
+            elif matrix[0][leftIndex] == target:
+                return True
+            elif matrix[0][rightIndex] == target:
+                return True
+            
+            if matrix[0][middleIndex] > matrix[0][leftIndex]:
+                if target > matrix[0][leftIndex] and target < matrix[0][middleIndex]:
+                    rightIndex = middleIndex - 1
+                else:
+                    leftIndex = middleIndex + 1
+            else:
+                if target > matrix[0][middleIndex] and target < matrix[0][rightIndex]:
+                    leftIndex = middleIndex + 1
+                else:
+                    rightIndex = middleIndex - 1
+
+        return False
+    
+    if len(matrix[0]) == 1:
+        leftIndex = 0
+        rightIndex = len(matrix) - 1
+        
+        while leftIndex <= rightIndex:
+            middleIndex = leftIndex + (rightIndex - leftIndex)//2
+            
+            if matrix[middleIndex][0] == target:
+                return True
+            elif matrix[leftIndex][0] == target:
+                return True
+            elif matrix[rightIndex][0] == target:
+                return True
+            
+            if matrix[middleIndex][0] > matrix[leftIndex][0]:
+                if target > matrix[leftIndex][0] and target < matrix[middleIndex][0]:
+                    rightIndex = middleIndex - 1
+                else:
+                    leftIndex = middleIndex + 1
+            else:
+                if target > matrix[middleIndex][0] and target < matrix[rightIndex][0]:
+                    leftIndex = middleIndex + 1
+                else:
+                    rightIndex = middleIndex - 1
+
+        return False
     
     upRow = 0
     leftColumn = 0
     bottomRow = len(matrix) - 1
     rightColumn = len(matrix[0]) - 1
     
-    if len(matrix) == 1:
-        if search(matrix[0], target) == -1:
-            return False
-        else:
-            return True
-    
-    while bottomRow > -1 and upRow < len(matrix) and matrix[bottomRow][rightColumn] >= target: 
+    while leftColumn < len(matrix[0]) and bottomRow > -1 and upRow < len(matrix) and matrix[bottomRow][rightColumn] >= target: 
         midRow = upRow + (bottomRow - upRow)//2
         midColumn = leftColumn + (rightColumn - leftColumn)//2
         
@@ -114,6 +162,6 @@ def searchMatrix(matrix: list[list[int]], target: int) -> bool:
             
 if __name__ == "__main__":
     # nums = [[1,4,7,11,15],[2,5,8,12,19],[3,6,9,16,22],[10,13,14,17,24],[18,21,23,26,30]]
-    nums = [[-5]]
-    target = -2
+    nums = [[1], [2], [3], [4], [5]]
+    target = 4
     print(searchMatrix(nums, target))
