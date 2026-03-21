@@ -70,17 +70,43 @@ int findMin(vector<int> &nums)
 
 bool searchMatrix(vector<vector<int>> &matrix, int target)
 {
-    //Problem #240 Search a 2D Matrix II
+    //Problem #240 Search a 2D Matrix II - Medium
     
-    int row = (int)matrix.size() - 1;
+    int row = 0;
     int column = 0;
     
-    while(row > -1 and column < matrix[0].size())
+    while(row < (int)matrix.size() and column < (int)matrix[0].size())
     {
         if(matrix[row][column] == target) return true;
-        
-        if(matrix[row][column] > target) row--;
-        else column++;
+        else if(matrix[row][column] < target)
+        {
+            row++;
+            column++;
+        }
+        else break;
     }
+    
+    for(int index0 = row; index0 < (int)matrix.size(); index0++)
+    {
+        if(matrix[index0][0] > target) break;
+        
+        for(int index1 = 0; index1 < (int)matrix[0].size(); index1++)
+        {
+            if(matrix[index0][index1] > target) break;
+            else if(matrix[index0][index1] == target) return true;
+        }
+    }
+    
+    for(int index2 = column; index2 < (int)matrix[0].size(); index2++)
+    {
+        if(matrix[0][index2] > target) break;
+        
+        for(int index3 = 0; index3 < (int)matrix.size(); index3++)
+        {
+            if(matrix[index3][index2] > target) break;
+            else if(matrix[index3][index2] == target) return true;
+        }
+    }
+    
     return false;
 }

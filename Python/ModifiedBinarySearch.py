@@ -64,8 +64,7 @@ def searchMatrix(matrix: list[list[int]], target: int) -> bool:
     while row < len(matrix) and column < len(matrix[0]):
         if matrix[row][column] == target:
             return True
-
-        if matrix[row][column] < target:
+        elif matrix[row][column] < target:
             row += 1
             column += 1
         else:
@@ -77,8 +76,7 @@ def searchMatrix(matrix: list[list[int]], target: int) -> bool:
         for index1 in range(0, len(matrix[0])):
             if matrix[index0][index1] > target:
                 break
-            
-            if matrix[index0][index1] == target:
+            elif matrix[index0][index1] == target:
                 return True
 
     for index2 in range(column, len(matrix[0])):
@@ -87,14 +85,13 @@ def searchMatrix(matrix: list[list[int]], target: int) -> bool:
         for index3 in range(0, len(matrix)):
             if matrix[index3][index2] > target:
                 break
-            
-            if matrix[index3][index2] == target:
+            elif matrix[index3][index2] == target:
                 return True
 
     return False
    
 if __name__ == "__main__":
-    # nums = [[1,4,7,11,15],[2,5,8,12,19],[3,6,9,16,22],[10,13,14,17,24],[18,21,23,26,30]]
+    
     nums = [[1], [2], [3], [4], [5]]
     target = 4
     print(searchMatrix(nums, target))
