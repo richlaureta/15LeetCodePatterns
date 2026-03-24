@@ -2,7 +2,7 @@ from collections import deque
 
 class TreeNode:
     def __init__(self, value):
-        self.value = value
+        self.val = value
         self.left = None
         self.right = None
     
@@ -43,7 +43,7 @@ def levelOrder(root: TreeNode) -> list[list[int]]:
         level = []
         for i in range(len(q)):
             node = q.popleft()
-            level.append(node.value)
+            level.append(node.val)
             if node.left: q.append(node.left)
             if node.right: q.append(node.right)
         ans.append(level)
@@ -51,28 +51,31 @@ def levelOrder(root: TreeNode) -> list[list[int]]:
     return ans
 
 def binaryTreePaths(root: TreeNode) -> list[str]:
-    #Problem #257 Binary Tree Paths - Easy - Algo.monster Concept Solution
-
-    resultList = []
-    currentPath = []
-
-    def depthFirstSearch(node: TreeNode):
-        if node is None:
+    #Problem #257 Binary Tree Paths - Easy
+    
+    rootToLeaf = []
+    pathToLeaf = []
+    
+    def preOrderTraversal(node: TreeNode):     
+        if node == None:
             return
         
-        currentPath.append(str(node.value))
-
         if node.left == None and node.right == None:
-            resultList.append("->".join(currentPath))
-        else:
-             depthFirstSearch(node.left)
-             depthFirstSearch(node.right)
+            pathToLeaf.append(str(node.val))
+            rootToLeaf.append("".join(pathToLeaf))
+            pathToLeaf.pop()
+            return
         
-        currentPath.pop()
-
-    depthFirstSearch(root)
-
-    return resultList
+        pathToLeaf.append(f'{node.val}->')
+        
+        preOrderTraversal(node.left)
+        preOrderTraversal(node.right)
+        
+        pathToLeaf.pop()
+    
+    preOrderTraversal(root)
+    
+    return rootToLeaf    
          
 def kthSmallest(root: TreeNode, k: int) -> int:
     #Problem #230 Kth Smallest Element in BST - Medium
@@ -83,7 +86,7 @@ def kthSmallest(root: TreeNode, k: int) -> int:
         if node == None:
             return
         inOrderTraversalHere(node.left)
-        ascendingArray.append(node.value)
+        ascendingArray.append(node.val)
         inOrderTraversalHere(node.right)
 
     inOrderTraversalHere(root)
@@ -140,7 +143,7 @@ def maxPathSum(root: TreeNode) -> int:
         leftMax = max(0, leftMax)
         rightMax = max(0, rightMax)
 
-        sum[0] = max(sum[0], node.value + leftMax + rightMax)
+        sum[0] = max(sum[0], node.val + leftMax + rightMax)
 
         return node.value + max(leftMax, rightMax)
 
@@ -187,16 +190,15 @@ if __name__ == "__main__":
    node6 = TreeNode(6)
    nodeNegative10 = TreeNode(-10)
    
-   node3.left = node9
-   node3.right = node20
+   node1.left = node2
+   node2.right = node5
+   node2.left = node8
+   node1.right = node3
+   node8.left = node4
+   node4.left = node20
+   node3.right = node15
+   node15.right = node7
    
-   node20.left = node15
-   node20.right = node7
+   root = node1
    
-   root = node3
-
-
-   
-   print(levelOrderBottom(root))
- 
-    
+   print(binaryTreePaths(node1))
