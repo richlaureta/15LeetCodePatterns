@@ -28,7 +28,7 @@ vector<vector<int>> levelOrderI(TreeNode* root)
         
         for(int i = 0; i < queueSize; i++)
         {
-            list.push_back(myQueue[0]->value);
+            list.push_back(myQueue[0]->val);
             TreeNode *node = myQueue[0];
             myQueue.pop_front();
             

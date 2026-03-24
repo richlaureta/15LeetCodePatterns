@@ -98,9 +98,9 @@ void depthFirstSearchPathSumTarget(TreeNode *node, vector<vector<int>> *returnPa
     
     if((node->left == nullptr) and (node->right == nullptr))
     {
-        if(*sumTarget - node->value == 0)
+        if(*sumTarget - node->val == 0)
         {
-            pathList->push_back(node->value);
+            pathList->push_back(node->val);
             vector<int> pathDeepCopy = *pathList;
             returnPathLists->push_back(pathDeepCopy);
             
@@ -109,13 +109,13 @@ void depthFirstSearchPathSumTarget(TreeNode *node, vector<vector<int>> *returnPa
         return;
     }
     
-    *sumTarget -= node->value;
-    pathList->push_back(node->value);
+    *sumTarget -= node->val;
+    pathList->push_back(node->val);
     
     if(node->left) depthFirstSearchPathSumTarget(node->left, returnPathLists, pathList, sumTarget);
     if(node->right) depthFirstSearchPathSumTarget(node->right, returnPathLists, pathList, sumTarget);
     
-    *sumTarget += node->value;
+    *sumTarget += node->val;
     pathList->pop_back();
     
     return;

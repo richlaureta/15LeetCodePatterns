@@ -447,9 +447,9 @@ int main(int argc, const char * argv[]) {
 //        cout << modifiedBinarySearch(nums, target) << endl;
     
     //Problem #153 Find Minimum in Rotated Sorted Array
-        vector<int> nums = {1};
-    
-        cout << findMin(nums) << endl;
+//        vector<int> nums = {1};
+//    
+//        cout << findMin(nums) << endl;
     
     //Problem #240 Search a 2D Matrix II
     //    vector<vector<int>> matrix =
@@ -465,19 +465,21 @@ int main(int argc, const char * argv[]) {
     //
     //    cout << searchMatrix(matrix, target) << endl;
     
-    //Problem #257 Binary Tree Paths
-    //    TreeNode node1 = TreeNode(1);
-    //    TreeNode node2 = TreeNode(2);
-    //    TreeNode node3 = TreeNode(3);
-    //    TreeNode node5 = TreeNode(5);
-    //
-    //    node1.left = &node2;
-    //    node1.right = &node3;
-    //    node2.right = &node5;
-    //
-    //    TreeNode root = node1;
-    //
-    //    binaryTreePaths(&root);
+    //Problem #257 Binary Tree Paths - Easy
+    TreeNode node1 = TreeNode(1);
+    TreeNode node2 = TreeNode(2);
+    TreeNode node3 = TreeNode(3);
+    TreeNode node5 = TreeNode(5);
+
+    node1.left = &node2;
+    node1.right = &node3;
+    node2.right = &node5;
+
+    TreeNode root = node1;
+
+    vector<string> paths = binaryTreePaths(&root);
+    
+    for(string path: paths) cout << path << endl;
     
     //Problem #230 Kth Smallest Element in a BST
     

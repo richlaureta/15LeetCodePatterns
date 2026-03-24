@@ -7,7 +7,7 @@
 
 #include "Header.h"
 
-TreeNode::TreeNode(int val) : value(val), left(nullptr), right(nullptr){}
+TreeNode::TreeNode(int val) : val(val), left(nullptr), right(nullptr){}
 
 void preOrder(TreeNode *node)
 {
@@ -16,7 +16,7 @@ void preOrder(TreeNode *node)
         return;
     }
     
-    cout << node->value << " ";
+    cout << node->val << " ";
     preOrder(node->left);
     preOrder(node->right);
 }
@@ -29,7 +29,7 @@ void inOrder(TreeNode *node)
     }
     
     inOrder(node->left);
-    cout << node->value << " ";
+    cout << node->val << " ";
     inOrder(node->right);
 }
 
@@ -43,7 +43,7 @@ void postOrder(TreeNode *node)
     
     postOrder(node->left);
     postOrder(node->right);
-    cout << node->value << " ";
+    cout << node->val << " ";
 }
 
 vector<vector<int>> levelOrder(TreeNode *node)
@@ -65,7 +65,7 @@ vector<vector<int>> levelOrder(TreeNode *node)
         size_t length = myQueue.size();
         for(size_t i = 0; i < length; i++)
         {
-            level.push_back(myQueue.front()->value);
+            level.push_back(myQueue.front()->val);
             TreeNode *nodeCopy = myQueue.front();
             myQueue.pop();
             
@@ -87,7 +87,7 @@ void depthFirstSearch(TreeNode *node, vector<string> &currentPath, vector<string
         return;
     }
     
-    currentPath.push_back(to_string(node->value));
+    currentPath.push_back(to_string(node->val));
     
     if ((node->left == nullptr) and (node->right == nullptr))
     {
@@ -112,16 +112,37 @@ void depthFirstSearch(TreeNode *node, vector<string> &currentPath, vector<string
     currentPath.pop_back();
 }
 
+void btpPreorderTraversal(TreeNode *node, vector<string> &rootToLeaf, vector<string> &pathToLeaf)
+{
+    if(node == nullptr) return;
+    
+    if(node->left == nullptr and node->right == nullptr)
+    {
+        pathToLeaf.push_back(to_string(node->val));
+        rootToLeaf.push_back(accumulate(pathToLeaf.begin(), pathToLeaf.end(), string("")));
+        pathToLeaf.pop_back();
+        return;
+    }
+    
+    pathToLeaf.push_back(to_string(node->val) + "->");
+    
+    
+    btpPreorderTraversal(node->left, rootToLeaf, pathToLeaf);
+    btpPreorderTraversal(node->right, rootToLeaf, pathToLeaf);
+    
+    pathToLeaf.pop_back();
+}
+
 vector<string> binaryTreePaths(TreeNode *root)
 {
-    //Problem #257 Binary Tree Paths - Algo.monster Concept Solution
+    //Problem #257 Binary Tree Paths - Easy
     
-    vector<string> listResult;
-    vector<string> currentPath;
+    vector<string> rootToLeaf = {};
+    vector<string> pathToLeaf = {};
     
-    depthFirstSearch(root, currentPath, listResult);
+    btpPreorderTraversal(root, rootToLeaf, pathToLeaf);
     
-    return listResult;
+    return rootToLeaf;
 }
 
 void inOrderTraversal(TreeNode *node, vector<int> &ascendingArray)
@@ -131,7 +152,7 @@ void inOrderTraversal(TreeNode *node, vector<int> &ascendingArray)
     if(node == nullptr) return;
     
     inOrderTraversal(node->left, ascendingArray);
-    ascendingArray.push_back(node->value);
+    ascendingArray.push_back(node->val);
     inOrderTraversal(node->right, ascendingArray);
 }
 
@@ -218,9 +239,9 @@ int depthFirstSearchSum(TreeNode *node, int *maxSum)
     leftSum = max(leftSum, 0);
     rightSum = max(rightSum, 0);
     
-    *maxSum = max(*maxSum, node->value + leftSum + rightSum);
+    *maxSum = max(*maxSum, node->val + leftSum + rightSum);
     
-    return node->value + max(leftSum, rightSum);
+    return node->val + max(leftSum, rightSum);
 }
 
 int maxPathSum(TreeNode *root)
@@ -253,7 +274,7 @@ vector<vector<int>> levelOrderBottom(TreeNode *root)
             
             if(node != nullptr)
             {
-                array.push_back(node->value);
+                array.push_back(node->val);
                 myQ.push_back(node->left);
                 myQ.push_back(node->right);
             }
