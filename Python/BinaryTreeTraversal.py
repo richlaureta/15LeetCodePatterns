@@ -1,4 +1,5 @@
 from collections import deque
+import heapq
 
 class TreeNode:
     def __init__(self, value):
@@ -79,19 +80,20 @@ def binaryTreePaths(root: TreeNode) -> list[str]:
          
 def kthSmallest(root: TreeNode, k: int) -> int:
     #Problem #230 Kth Smallest Element in BST - Medium
-
-    ascendingArray = []
     
-    def inOrderTraversalHere(node: TreeNode):
+    inOrder = []
+    
+    def inOrderTraversal(node: TreeNode):
         if node == None:
             return
-        inOrderTraversalHere(node.left)
-        ascendingArray.append(node.val)
-        inOrderTraversalHere(node.right)
-
-    inOrderTraversalHere(root)
         
-    return ascendingArray[k -1]
+        inOrderTraversal(node.left)
+        inOrder.append(node.val)
+        inOrderTraversal(node.right)
+            
+    inOrderTraversal(root)
+    
+    return inOrder[k - 1]
 
 def maxDepth(root: TreeNode) -> int:
     #Problem #104 Maximum Depth of Binary Tree - Easy - Concept Solution by YouTuber Greg Hogg - Understanding the Solution
@@ -190,15 +192,12 @@ if __name__ == "__main__":
    node6 = TreeNode(6)
    nodeNegative10 = TreeNode(-10)
    
-   node1.left = node2
-   node2.right = node5
-   node2.left = node8
-   node1.right = node3
-   node8.left = node4
-   node4.left = node20
-   node3.right = node15
-   node15.right = node7
+   node5.left = node3
+   node5.right = node6
+   node3.left = node2
+   node3.right = node4
+   node2.left = node1
    
-   root = node1
+   root = node5
    
-   print(binaryTreePaths(node1))
+   print(kthSmallest(root, 3))

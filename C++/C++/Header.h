@@ -162,7 +162,6 @@ int eraseOverlapIntervals(vector<vector<int>> &intervals);
 int modifiedBinarySearch(vector<int> &nums, int target);
 int findMin(vector<int> &nums);
 bool searchMatrix(vector<vector<int>> &matrix, int target);
-void depthFirstSearch(TreeNode *node, vector<string> &currentPath, vector<string> &resultList);
 void btpPreorderTraversal(TreeNode *node, vector<string> &rootToLeaf, vector<string> &pathToLead);
 vector<string> binaryTreePaths(TreeNode *root);
 int kthSmallest(TreeNode *root, int k);

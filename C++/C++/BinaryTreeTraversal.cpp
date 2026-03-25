@@ -78,42 +78,10 @@ vector<vector<int>> levelOrder(TreeNode *node)
     return myList;
 }
 
-void depthFirstSearch(TreeNode *node, vector<string> &currentPath, vector<string> &listResult)
-{
-    //Problem #257 Binary Tree Paths - Algo.monster Concept Solution
-    
-    if(node == nullptr)
-    {
-        return;
-    }
-    
-    currentPath.push_back(to_string(node->val));
-    
-    if ((node->left == nullptr) and (node->right == nullptr))
-    {
-        string concatenatedString = "";
-        for(int i = 0; i < currentPath.size(); i++)
-        {
-            if(i < currentPath.size() - 1)
-            {
-                concatenatedString += currentPath[i] + "->";
-            }
-            else concatenatedString += currentPath[i];
-        }
-        
-        listResult.push_back(concatenatedString);
-    }
-    else
-    {
-        depthFirstSearch(node->left, currentPath, listResult);
-        depthFirstSearch(node->right, currentPath, listResult);
-    }
-    
-    currentPath.pop_back();
-}
-
 void btpPreorderTraversal(TreeNode *node, vector<string> &rootToLeaf, vector<string> &pathToLeaf)
 {
+    //Problem #257 Binary Tree Paths - Easy
+    
     if(node == nullptr) return;
     
     if(node->left == nullptr and node->right == nullptr)
@@ -125,7 +93,6 @@ void btpPreorderTraversal(TreeNode *node, vector<string> &rootToLeaf, vector<str
     }
     
     pathToLeaf.push_back(to_string(node->val) + "->");
-    
     
     btpPreorderTraversal(node->left, rootToLeaf, pathToLeaf);
     btpPreorderTraversal(node->right, rootToLeaf, pathToLeaf);
