@@ -154,29 +154,30 @@ def maxPathSum(root: TreeNode) -> int:
     return sum[0]
     
 def levelOrderBottom(root: TreeNode) -> list[list[int]]:
-    #Problem #107 Binary Tree Level Order Traversal - Medium - Concept Solution by NeetCode
+    #Problem #107 Binary Tree Level Order Traversal - Medium
+    if root == None:
+        return []
     
-    answer = deque()
-    doubleEndedQueue = deque()
-    doubleEndedQueue.append(root)
-        
-    while doubleEndedQueue:
-        length = len(doubleEndedQueue)
-        array = []
-            
-        for i in range(length):
-            poppedNode = doubleEndedQueue.popleft()
-                
-            if poppedNode:
-                array.append(poppedNode.value)
-                doubleEndedQueue.append(poppedNode.left)
-                doubleEndedQueue.append(poppedNode.right)    
-            
-        if array:
-            answer.appendleft(array)
-            
-    return list(answer)
+    nodeQueue = deque([root])
+    bottomToTopLevelOrder = []
+    levelNodes = [root.val]
     
+    while nodeQueue:
+        bottomToTopLevelOrder.append(levelNodes)
+        levelNodes = []
+        for index in range(len(nodeQueue)):
+            node = nodeQueue.popleft()
+            if node.left != None:
+                levelNodes.append(node.left.val)
+                nodeQueue.append(node.left)
+            if node.right != None:
+                levelNodes.append(node.right.val)
+                nodeQueue.append(node.right)
+    
+    bottomToTopLevelOrder.reverse()
+    
+    return bottomToTopLevelOrder
+
 if __name__ == "__main__":
    node1 = TreeNode(1)
    node2 = TreeNode(2)
@@ -192,12 +193,13 @@ if __name__ == "__main__":
    node6 = TreeNode(6)
    nodeNegative10 = TreeNode(-10)
    
-   node5.left = node3
-   node5.right = node6
-   node3.left = node2
-   node3.right = node4
-   node2.left = node1
+   node3.left = node9
+   node3.right = node20
+   node20.left = node15
+   node20.right = node7
+   node9.left = node5
+   node9.right = node6
+   node7.left =  nodeNegative10
+   root = node3
    
-   root = node5
-   
-   print(kthSmallest(root, 3))
+   print(levelOrderBottom(root))
