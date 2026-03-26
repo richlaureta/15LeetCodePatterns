@@ -222,36 +222,40 @@ int maxPathSum(TreeNode *root)
 
 vector<vector<int>> levelOrderBottom(TreeNode *root)
 {
-    //Problem #107 Binary Level Order Traversal - Concept Solution by YouTube Channel NeetCode
+    //Problem #107 Binary Level Order Traversal - Medium
     
-    vector<vector<int>> answer;
+    if(root == nullptr) return {};
     
-    deque<TreeNode*> myQ;
-    myQ.push_back(root);
+    deque<TreeNode*> nodeQueue = {root};
+    vector<vector<int>> bottomTopLevelOrderVector = {};
+    vector<int> levelValues = {root->val};
     
-    while(myQ.size() > 0)
+    while((int)nodeQueue.size() > 0)
     {
-        int queueSize = (int) myQ.size();
-        vector<int> array;
+        bottomTopLevelOrderVector.push_back(levelValues);
+        levelValues = {};
+        int nodeQueueSize = (int) nodeQueue.size();
         
-        for(int i = 0; i < queueSize; i++)
+        for(int index = 0; index < nodeQueueSize; index++)
         {
-            TreeNode *node = myQ.front();
-            myQ.pop_front();
+            TreeNode *node = nodeQueue.front();
+            nodeQueue.pop_front();
             
-            if(node != nullptr)
+            if(node->left != nullptr)
             {
-                array.push_back(node->val);
-                myQ.push_back(node->left);
-                myQ.push_back(node->right);
+                levelValues.push_back(node->left->val);
+                nodeQueue.push_back(node->left);
             }
-        }
-        
-        if(array.size() > 0)
-        {
-            answer.insert(answer.begin(), array);
+            
+            if(node->right != nullptr)
+            {
+                levelValues.push_back(node->right->val);
+                nodeQueue.push_back(node->right);
+            }
         }
     }
     
-    return answer;
+    reverse(bottomTopLevelOrderVector.begin(), bottomTopLevelOrderVector.end());
+    
+    return bottomTopLevelOrderVector;
 }

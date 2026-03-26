@@ -155,23 +155,24 @@ def maxPathSum(root: TreeNode) -> int:
     
 def levelOrderBottom(root: TreeNode) -> list[list[int]]:
     #Problem #107 Binary Tree Level Order Traversal - Medium
+    
     if root == None:
         return []
     
     nodeQueue = deque([root])
     bottomToTopLevelOrder = []
-    levelNodes = [root.val]
+    levelValues = [root.val]
     
     while nodeQueue:
-        bottomToTopLevelOrder.append(levelNodes)
-        levelNodes = []
+        bottomToTopLevelOrder.append(levelValues)
+        levelValues = []
         for index in range(len(nodeQueue)):
             node = nodeQueue.popleft()
             if node.left != None:
-                levelNodes.append(node.left.val)
+                levelValues.append(node.left.val)
                 nodeQueue.append(node.left)
             if node.right != None:
-                levelNodes.append(node.right.val)
+                levelValues.append(node.right.val)
                 nodeQueue.append(node.right)
     
     bottomToTopLevelOrder.reverse()
