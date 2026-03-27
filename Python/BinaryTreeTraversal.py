@@ -96,15 +96,26 @@ def kthSmallest(root: TreeNode, k: int) -> int:
     return inOrder[k - 1]
 
 def maxDepth(root: TreeNode) -> int:
-    #Problem #104 Maximum Depth of Binary Tree - Easy - Concept Solution by YouTuber Greg Hogg - Understanding the Solution
-    
+    #Problem #104 Maximum Depth of Binary Tree - Easy
+     
     if root == None:
         return 0
     
-    left = maxDepth(root.left)
-    right = maxDepth(root.right)
+    depthCount = 0
     
-    return 1 + max(left, right)
+    nodeQueue = deque([root])
+    
+    while nodeQueue:
+        depthCount += 1
+        for index in range(len(nodeQueue)):
+            node = nodeQueue.popleft()
+            if node.left != None:
+                nodeQueue.append(node.left)
+            
+            if node.right != None:
+                nodeQueue.append(node.right)
+            
+    return depthCount
 
 def widthOfBinaryTree(root: TreeNode) -> int:
     #Problem #662 Maximum Width of Binary Tree - Medium - Solution Concept by YouTuber NeetCodeIO - Understanding the Solution
@@ -198,9 +209,9 @@ if __name__ == "__main__":
    node3.right = node20
    node20.left = node15
    node20.right = node7
-   node9.left = node5
-   node9.right = node6
-   node7.left =  nodeNegative10
+#    node9.left = node5
+#    node9.right = node6
+#    node7.left =  nodeNegative10
    root = node3
    
-   print(levelOrderBottom(root))
+   print(maxDepth(root))
