@@ -134,14 +134,30 @@ int kthSmallest(TreeNode *root, int k)
 
 int maxDepth(TreeNode* root)
 {
-    //Problem #104 Maximum Depth of Binary Tree - Solution concept by Greg Hogg
+    //Problem #104 Maximum Depth of Binary Tree - Easy
     
     if(root == nullptr) return 0;
     
-    int leftDepthCount = maxDepth(root->left);
-    int rightDepthCount = maxDepth(root->right);
+    int depthCount = 0;
     
-    return 1 + max(leftDepthCount, rightDepthCount);
+    deque<TreeNode*> nodeQueue = {root};
+    
+    while((int)nodeQueue.size() > 0)
+    {
+        depthCount += 1;
+        int nodeQueueSize = (int)nodeQueue.size();
+        for(int index = 0; index < nodeQueueSize; index++)
+        {
+            TreeNode *node = nodeQueue.front();
+            nodeQueue.pop_front();
+            
+            if(node->left != nullptr) nodeQueue.push_back(node->left);
+            
+            if(node->right != nullptr) nodeQueue.push_back(node->right);
+        }
+    }
+    
+    return depthCount;
 }
 
 int widthOfBinaryTree(TreeNode *root)
