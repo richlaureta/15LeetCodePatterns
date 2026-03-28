@@ -504,27 +504,27 @@ int main(int argc, const char * argv[]) {
     //    cout << kthSmallest(root, k) << endl;
     //Problem 104 Maximum Depth of Binary Tree - Easy
     
-        TreeNode node1 = TreeNode(1);
-        TreeNode node2 = TreeNode(2);
-        TreeNode node3 = TreeNode(3);
-        TreeNode node4 = TreeNode(4);
-        TreeNode node5 = TreeNode(5);
-        TreeNode node6 = TreeNode(6);
-        TreeNode node7 = TreeNode(7);
-        TreeNode node9 = TreeNode(9);
-        TreeNode node20 = TreeNode(20);
-        TreeNode node15 = TreeNode(15);
-    
-    
-        node3.left = &node9;
-        node3.right = &node20;
-    
-        node20.left = &node15;
-        node20.right = &node7;
-    
-        TreeNode *root = &node3;
-    
-        cout << maxDepth(root) << endl;
+//        TreeNode node1 = TreeNode(1);
+//        TreeNode node2 = TreeNode(2);
+//        TreeNode node3 = TreeNode(3);
+//        TreeNode node4 = TreeNode(4);
+//        TreeNode node5 = TreeNode(5);
+//        TreeNode node6 = TreeNode(6);
+//        TreeNode node7 = TreeNode(7);
+//        TreeNode node9 = TreeNode(9);
+//        TreeNode node20 = TreeNode(20);
+//        TreeNode node15 = TreeNode(15);
+//    
+//    
+//        node3.left = &node9;
+//        node3.right = &node20;
+//    
+//        node20.left = &node15;
+//        node20.right = &node7;
+//    
+//        TreeNode *root = &node3;
+//    
+//        cout << maxDepth(root) << endl;
     //
     //Problem #662 Maximum Width of Binary Tree - Solution Concept by YouTuber NeetCodeIO - Understanding the Solution
     //    TreeNode node1 = TreeNode(1);

@@ -13,26 +13,24 @@ def levelOrder(root: TreeNode) -> list[list[int]]:
     if root == None:
         return []
     
-    myQueue = deque()
-    myQueue.appendleft(root)
-    
     levelOrderList = []
-    
-    while myQueue:
-        levelList = []
-        
-        for processNode in list(myQueue):
-            levelList.append(processNode.val)
-            node = myQueue.popleft()
-            
-            if node.left:
-                myQueue.append(node.left)
-            if node.right:
-                myQueue.append(node.right)
-            
+    nodeQueue = deque([root])
+    levelList = [root.val]
+    while nodeQueue:
         levelOrderList.append(levelList)
-    
+        levelList = []
+        for index in range(len(nodeQueue)):
+            node = nodeQueue.popleft()
+            if node.left != None:
+                nodeQueue.append(node.left)
+                levelList.append(node.left.val)
+            
+            if node.right != None:
+                nodeQueue.append(node.right)
+                levelList.append(node.right.val)
+        
     return levelOrderList
+
 
 def orangesRotting(grid: list[list[int]]) -> int:
     #Problem #994 Rotting Oranges - Medium - Solution Concept by YouTube Channel - Deepti Talesra - Understanding the Solution
@@ -102,9 +100,24 @@ def ladderLength(beginWord: str, endWord: str, wordList: list[str]) -> int:
         
     return 0
 if __name__ == "__main__":
-    beginWord = "hit"
-    endWord = "cog"
+    # beginWord = "hit"
+    # endWord = "cog"
     
-    wordList = ["hot", "dot", "dog", "lot", "log", "cog"]
+    # wordList = ["hot", "dot", "dog", "lot", "log", "cog"]
     
-    print(ladderLength(beginWord, endWord, wordList)) 
+    # print(ladderLength(beginWord, endWord, wordList))
+    
+    node3 = TreeNode(3)
+    node9 = TreeNode(9)
+    node20 = TreeNode(20)
+    node15 = TreeNode(15)
+    node7 = TreeNode(7)
+    
+    node3.left = node9
+    node3.right = node20
+    node20.left = node15
+    node20.right = node7
+    
+    root = node3
+    
+    print(levelOrder(root))
