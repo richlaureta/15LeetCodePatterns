@@ -16,6 +16,7 @@ def levelOrder(root: TreeNode) -> list[list[int]]:
     levelOrderList = []
     nodeQueue = deque([root])
     levelList = [root.val]
+    
     while nodeQueue:
         levelOrderList.append(levelList)
         levelList = []
@@ -30,7 +31,6 @@ def levelOrder(root: TreeNode) -> list[list[int]]:
                 levelList.append(node.right.val)
         
     return levelOrderList
-
 
 def orangesRotting(grid: list[list[int]]) -> int:
     #Problem #994 Rotting Oranges - Medium - Solution Concept by YouTube Channel - Deepti Talesra - Understanding the Solution

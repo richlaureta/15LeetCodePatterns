@@ -11,42 +11,38 @@ vector<vector<int>> levelOrderI(TreeNode* root)
 {
     //Problem #102 Binary Tree Level Traversal - Medium
     
-    if(root == nullptr)
+    if(root == nullptr) return {};
+    
+    vector<vector<int>> levelOrderVector = {};
+    deque<TreeNode*> nodeQueue = {root};
+    vector<int> levelVector = {root->val};
+    
+    while((int)nodeQueue.size() > 0)
     {
-        return {};
-    }
-    
-    vector<vector<int>> listReturn;
-    
-    deque<TreeNode*> myQueue;
-    myQueue.push_back(root);
-    
-    while(!myQueue.empty())
-    {
-        vector<int> list;
-        int queueSize = (int) myQueue.size();
+        levelOrderVector.push_back(levelVector);
+        levelVector = {};
+        int nodeQueueSize = (int)nodeQueue.size();
         
-        for(int i = 0; i < queueSize; i++)
+        for(int index = 0; index < nodeQueueSize; index++)
         {
-            list.push_back(myQueue[0]->val);
-            TreeNode *node = myQueue[0];
-            myQueue.pop_front();
+            TreeNode *node = nodeQueue.front();
+            nodeQueue.pop_front();
             
             if(node->left != nullptr)
             {
-                myQueue.push_back(node->left);
+                nodeQueue.push_back(node->left);
+                levelVector.push_back(node->left->val);
             }
             
             if(node->right != nullptr)
             {
-                myQueue.push_back(node->right);
+                nodeQueue.push_back(node->right);
+                levelVector.push_back(node->right->val);
             }
         }
-        
-        listReturn.push_back(list);
     }
     
-    return listReturn;
+    return levelOrderVector;
 }
 
 int orangesRotting(vector<vector<int>> &grid)
