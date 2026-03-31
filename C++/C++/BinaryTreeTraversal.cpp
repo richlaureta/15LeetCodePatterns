@@ -162,25 +162,25 @@ int maxDepth(TreeNode* root)
 
 int widthOfBinaryTree(TreeNode *root)
 {
-    //Problem #662 Maximum Width of Binary Tree - Medium - Solution Concept by YouTube Channel Timoth H Chang
+    //Problem #662 Maximum Width of Binary Tree - Medium - Solution Concept by YouTube Channel Timothy H Chang
     
     deque<pair<TreeNode*, int>> nodeQueueIndex = {{root, 1}};
     
-    int maxWidth = 0;
+    unsigned int maxWidth = 0;
     
     while((int)nodeQueueIndex.size() > 0)
     {
         int leftIndex = nodeQueueIndex[0].second;
         int rightIndex = nodeQueueIndex[(int)nodeQueueIndex.size() - 1].second;
         
-        maxWidth = max(maxWidth, rightIndex - leftIndex + 1);
+        maxWidth = max(maxWidth, (unsigned int)rightIndex - leftIndex + 1);
         
         int nodeQueueIndexSize = (int)nodeQueueIndex.size();
         
         for(int index = 0; index < nodeQueueIndexSize; index++)
         {
             TreeNode* node = nodeQueueIndex.front().first;
-            int nodeIndex = nodeQueueIndex.front().second;
+            unsigned int nodeIndex = nodeQueueIndex.front().second;
             nodeQueueIndex.pop_front();
             if(node->left != nullptr) nodeQueueIndex.push_back({node->left, 2 * nodeIndex});
             if(node->right != nullptr) nodeQueueIndex.push_back({node->right, 2 * nodeIndex + 1});
