@@ -118,47 +118,24 @@ def maxDepth(root: TreeNode) -> int:
     return depthCount
 
 def widthOfBinaryTree(root: TreeNode) -> int:
-    #Problem #662 Maximum Width of Binary Tree - Medium
+    #Problem #662 Maximum Width of Binary Tree - Medium - Solution Concept by YouTube Channel Timothy H Chang
     
-    nodeQueue =  deque([root])
-    maxWidth = 1
-    startingIndex = 1
+    nodeQueue =  deque([(root, 1)])
+    maxWidth = 0
     
-    while startingIndex != None:
-        startingIndex = None
+    while nodeQueue:
+        leftMostNode, lefttIndex = nodeQueue[0]
+        rightMostNode, rightIndex = nodeQueue[len(nodeQueue) - 1]
+        
+        maxWidth = max(maxWidth, rightIndex - lefttIndex + 1)
         
         for index in range(len(nodeQueue)):
-            node = nodeQueue.popleft()
-            
-            if node == None:
-                nodeQueue.append(None)
-                nodeQueue.append(None)
-                continue
-            
+            node, indexNode = nodeQueue.popleft()
             if node.left != None:
-                if startingIndex == None:
-                    startingIndex = index
-                nodeQueue.append(node.left)
-            else:
-                nodeQueue.append(None)
-                
+                nodeQueue.append((node.left, 2 * indexNode))
             if node.right != None:
-                if startingIndex == None:
-                    startingIndex = index
-                nodeQueue.append(node.right)
-            else:
-                nodeQueue.append(None)
-        
-        if startingIndex == None:
-            break
-        
-        rightIndex = len(nodeQueue) - 1
-        while nodeQueue[rightIndex] == None and rightIndex > -1:
-            rightIndex -= 1
-            
-        if startingIndex != None:
-            maxWidth = max(maxWidth, rightIndex - startingIndex + 1)
-            
+                nodeQueue.append((node.right, 2 * indexNode + 1))
+    
     return maxWidth
 
 def maxPathSum(root: TreeNode) -> int:
