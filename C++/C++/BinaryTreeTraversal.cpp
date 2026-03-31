@@ -162,49 +162,32 @@ int maxDepth(TreeNode* root)
 
 int widthOfBinaryTree(TreeNode *root)
 {
-    //Problem #662 Maximum Width of Binary Tree - Solution Concept by YouTuber NeetCodeIO - Understanding the Solution
+    //Problem #662 Maximum Width of Binary Tree - Medium - Solution Concept by YouTube Channel Timoth H Chang
     
-    unsigned int width = 0;
-    unsigned int previousLevel = 0;
-    unsigned int previousNumber = 1;
+    deque<pair<TreeNode*, int>> nodeQueueIndex = {{root, 1}};
     
-    queue<TreeNode*> nodeQueues;
-    queue<vector<unsigned int>> numbersAndLevels;
+    int maxWidth = 0;
     
-    nodeQueues.push(root);
-    numbersAndLevels.push({1, 0});
-    
-    
-    while(nodeQueues.size() != 0)
+    while((int)nodeQueueIndex.size() > 0)
     {
-        TreeNode* node = nodeQueues.front();
-        nodeQueues.pop();
-        unsigned int number = numbersAndLevels.front()[0];
-        unsigned int level = numbersAndLevels.front()[1];
-        numbersAndLevels.pop();
+        int leftIndex = nodeQueueIndex[0].second;
+        int rightIndex = nodeQueueIndex[(int)nodeQueueIndex.size() - 1].second;
         
-        if (level > previousLevel)
+        maxWidth = max(maxWidth, rightIndex - leftIndex + 1);
+        
+        int nodeQueueIndexSize = (int)nodeQueueIndex.size();
+        
+        for(int index = 0; index < nodeQueueIndexSize; index++)
         {
-            previousLevel = level;
-            previousNumber = number;
-        }
-        
-        width = max(width, number - previousNumber + 1);
-        
-        if(node->left != nullptr)
-        {
-            nodeQueues.push(node->left);
-            numbersAndLevels.push({number * 2, level + 1});
-        }
-        
-        if(node->right != nullptr)
-        {
-            nodeQueues.push(node->right);
-            numbersAndLevels.push({(number * 2) + 1, level + 1});
+            TreeNode* node = nodeQueueIndex.front().first;
+            int nodeIndex = nodeQueueIndex.front().second;
+            nodeQueueIndex.pop_front();
+            if(node->left != nullptr) nodeQueueIndex.push_back({node->left, 2 * nodeIndex});
+            if(node->right != nullptr) nodeQueueIndex.push_back({node->right, 2 * nodeIndex + 1});
         }
     }
     
-    return (int) width;
+    return maxWidth;
 }
 
 int depthFirstSearchSum(TreeNode *node, int *maxSum)

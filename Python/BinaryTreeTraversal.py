@@ -120,21 +120,21 @@ def maxDepth(root: TreeNode) -> int:
 def widthOfBinaryTree(root: TreeNode) -> int:
     #Problem #662 Maximum Width of Binary Tree - Medium - Solution Concept by YouTube Channel Timothy H Chang
     
-    nodeQueue =  deque([(root, 1)])
+    nodeQueueIndex =  deque([(root, 1)])
     maxWidth = 0
     
-    while nodeQueue:
-        leftMostNode, lefttIndex = nodeQueue[0]
-        rightMostNode, rightIndex = nodeQueue[len(nodeQueue) - 1]
+    while nodeQueueIndex:
+        leftMostNode, lefttIndex = nodeQueueIndex[0]
+        rightMostNode, rightIndex = nodeQueueIndex[len(nodeQueueIndex) - 1]
         
         maxWidth = max(maxWidth, rightIndex - lefttIndex + 1)
         
-        for index in range(len(nodeQueue)):
-            node, indexNode = nodeQueue.popleft()
+        for index in range(len(nodeQueueIndex)):
+            node, indexNode = nodeQueueIndex.popleft()
             if node.left != None:
-                nodeQueue.append((node.left, 2 * indexNode))
+                nodeQueueIndex.append((node.left, 2 * indexNode))
             if node.right != None:
-                nodeQueue.append((node.right, 2 * indexNode + 1))
+                nodeQueueIndex.append((node.right, 2 * indexNode + 1))
     
     return maxWidth
 
