@@ -118,29 +118,48 @@ def maxDepth(root: TreeNode) -> int:
     return depthCount
 
 def widthOfBinaryTree(root: TreeNode) -> int:
-    #Problem #662 Maximum Width of Binary Tree - Medium - Solution Concept by YouTuber NeetCodeIO - Understanding the Solution
+    #Problem #662 Maximum Width of Binary Tree - Medium
     
-    width = 0
+    nodeQueue =  deque([root])
+    maxWidth = 1
+    startingIndex = 1
     
-    queue = deque([[root, 1, 0]])
-    previousLevel = 0
-    previousNumber = 1
-    
-    while queue:
-        node, number, level = queue.popleft()
+    while startingIndex != None:
+        startingIndex = None
         
-        if level > previousLevel:
-            previousLevel = level
-            previousNumber = number
+        for index in range(len(nodeQueue)):
+            node = nodeQueue.popleft()
+            
+            if node == None:
+                nodeQueue.append(None)
+                nodeQueue.append(None)
+                continue
+            
+            if node.left != None:
+                if startingIndex == None:
+                    startingIndex = index
+                nodeQueue.append(node.left)
+            else:
+                nodeQueue.append(None)
+                
+            if node.right != None:
+                if startingIndex == None:
+                    startingIndex = index
+                nodeQueue.append(node.right)
+            else:
+                nodeQueue.append(None)
         
-        width = max(width, number - previousNumber + 1)
+        if startingIndex == None:
+            break
         
-        if node.left:
-            queue.append([node.left, 2 * number, level + 1])
-        if node.right:
-            queue.append([node.right, 2 * number + 1, level + 1])
-    
-    return width
+        rightIndex = len(nodeQueue) - 1
+        while nodeQueue[rightIndex] == None and rightIndex > -1:
+            rightIndex -= 1
+            
+        if startingIndex != None:
+            maxWidth = max(maxWidth, rightIndex - startingIndex + 1)
+            
+    return maxWidth
 
 def maxPathSum(root: TreeNode) -> int:
     #Problem #124 Binary Tree Maximum Path Sum - Hard - Concept Solution by YouTube Channel NeetCode - Understanding the Solution
@@ -205,13 +224,13 @@ if __name__ == "__main__":
    node6 = TreeNode(6)
    nodeNegative10 = TreeNode(-10)
    
-   node3.left = node9
-   node3.right = node20
-   node20.left = node15
-   node20.right = node7
-#    node9.left = node5
-#    node9.right = node6
-#    node7.left =  nodeNegative10
-   root = node3
+   node1.left = node3
+   node1.right = node2
+   node3.left = node5
+   node5.left = node6
+   node2.right = node9
+   node9.left = node7
    
-   print(maxDepth(root))
+   root = node1
+   
+   print(widthOfBinaryTree(root))
