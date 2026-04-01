@@ -550,30 +550,30 @@ int main(int argc, const char * argv[]) {
 //        TreeNode root = node1;
 //    
 //        cout << widthOfBinaryTree(&root) << endl;
-    //Problem #124 Binary Tree Maximum Path Sum - Concept Solution by YouTube Channel NeetCode - Understanding the Solution
+    //Problem #124 Binary Tree Maximum Path Sum - Hard - Solution from a Submitted Code in LeetCode - Understanding the Solution
     
-    //    TreeNode node1 = TreeNode(1);
-    //    TreeNode node2 = TreeNode(2);
-    //    TreeNode node3 = TreeNode(3);
-    //    TreeNode node3Duplicate = TreeNode(3);
-    //    TreeNode node4 = TreeNode(4);
-    //    TreeNode node5 = TreeNode(5);
-    //    TreeNode node6 = TreeNode(6);
-    //    TreeNode node7 = TreeNode(7);
-    //    TreeNode node9 = TreeNode(9);
-    //    TreeNode node20 = TreeNode(20);
-    //    TreeNode node15 = TreeNode(15);
-    //    TreeNode nodeNegative10 = TreeNode(-10);
-    //
-    //    nodeNegative10.left = &node9;
-    //    nodeNegative10.right = &node20;
-    //
-    //    node20.left = &node15;
-    //    node20.right = &node7;
-    //
-    //    TreeNode root = nodeNegative10;
-    //
-    //    cout << maxPathSum(&root) << endl;
+    TreeNode node1 = TreeNode(1);
+    TreeNode node2 = TreeNode(2);
+    TreeNode node3 = TreeNode(3);
+    TreeNode node3Duplicate = TreeNode(3);
+    TreeNode node4 = TreeNode(4);
+    TreeNode node5 = TreeNode(5);
+    TreeNode node6 = TreeNode(6);
+    TreeNode node7 = TreeNode(7);
+    TreeNode node9 = TreeNode(9);
+    TreeNode node20 = TreeNode(20);
+    TreeNode node15 = TreeNode(15);
+    TreeNode nodeNegative10 = TreeNode(-10);
+
+    nodeNegative10.left = &node9;
+    nodeNegative10.right = &node20;
+
+    node20.left = &node15;
+    node20.right = &node7;
+
+    TreeNode root = nodeNegative10;
+
+    cout << maxPathSum(&root) << endl;
     
     //Problem #107 Binary Tree Level Order Traversal II - Medium
 //    TreeNode node1 = TreeNode(1);

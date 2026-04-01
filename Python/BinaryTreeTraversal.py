@@ -118,7 +118,7 @@ def maxDepth(root: TreeNode) -> int:
     return depthCount
 
 def widthOfBinaryTree(root: TreeNode) -> int:
-    #Problem #662 Maximum Width of Binary Tree - Medium - Solution Concept by YouTube Channel Timothy H Chang
+    #Problem #662 Maximum Width of Binary Tree - Medium - Solution Concept by YouTube Channel Timothy H Chang - Understanding the Solution
     
     nodeQueueIndex =  deque([(root, 1)])
     maxWidth = 0
@@ -139,26 +139,29 @@ def widthOfBinaryTree(root: TreeNode) -> int:
     return maxWidth
 
 def maxPathSum(root: TreeNode) -> int:
-    #Problem #124 Binary Tree Maximum Path Sum - Hard - Concept Solution by YouTube Channel NeetCode - Understanding the Solution
+    #Problem #124 Binary Tree Maximum Path Sum - Hard - Solution from a Submitted Code in LeetCode 
+    #Understanding the Solution
 
-    sum = [root.value]
-
-    def depthFirstSearch(node):
+    maxSum = [float('-inf')]
+    
+    def maxPathDFS(node: TreeNode):
         if node == None:
             return 0
-
-        leftMax = depthFirstSearch(node.left)
-        rightMax = depthFirstSearch(node.right)
-        leftMax = max(0, leftMax)
-        rightMax = max(0, rightMax)
-
-        sum[0] = max(sum[0], node.val + leftMax + rightMax)
-
-        return node.value + max(leftMax, rightMax)
-
-    depthFirstSearch(root)
-
-    return sum[0]
+        
+        if node.left == None and node.right == None:
+            maxSum[0] = max(maxSum[0], node.val)
+            return node.val
+        
+        leftNodeValue = max(maxPathDFS(node.left), 0)
+        rightNodeValue = max(maxPathDFS(node.right), 0)
+        
+        maxSum[0] = max(maxSum[0], leftNodeValue + node.val + rightNodeValue)
+        
+        return max(leftNodeValue, rightNodeValue) + node.val
+    
+    maxPathDFS(root)
+    
+    return maxSum[0]
     
 def levelOrderBottom(root: TreeNode) -> list[list[int]]:
     #Problem #107 Binary Tree Level Order Traversal II - Medium
@@ -201,13 +204,11 @@ if __name__ == "__main__":
    node6 = TreeNode(6)
    nodeNegative10 = TreeNode(-10)
    
-   node1.left = node3
-   node1.right = node2
-   node3.left = node5
-   node5.left = node6
-   node2.right = node9
-   node9.left = node7
+   nodeNegative10.left = node9
+   nodeNegative10.right = node20
+   node20.left = node15
+   node20.right = node7
+
+   root = nodeNegative10
    
-   root = node1
-   
-   print(widthOfBinaryTree(root))
+   print(maxPathSum(root))

@@ -162,7 +162,7 @@ int maxDepth(TreeNode* root)
 
 int widthOfBinaryTree(TreeNode *root)
 {
-    //Problem #662 Maximum Width of Binary Tree - Medium - Solution Concept by YouTube Channel Timothy H Chang
+    //Problem #662 Maximum Width of Binary Tree - Medium - Solution Concept by YouTube Channel Timothy H Chang - Understanding the Solution
     
     deque<pair<TreeNode*, int>> nodeQueueIndex = {{root, 1}};
     
@@ -192,27 +192,27 @@ int widthOfBinaryTree(TreeNode *root)
 
 int depthFirstSearchSum(TreeNode *node, int *maxSum)
 {
-    //Problem #124 Binary Tree Maximum Path Sum - Solution Concept by NeetCode - Understanding the Solution
+    //Problem #124 Binary Tree Maximum Path Sum - Hard - Solution from a Submitted Code in LeetCode - Understanding the Solution
     
-    if(node == nullptr)
+    if(node == nullptr) return 0;
+    
+    if(node->left == nullptr and node->right == nullptr)
     {
-        return 0;
+        *maxSum = max(*maxSum, node->val);
+        return node->val;
     }
     
-    int leftSum = depthFirstSearchSum(node->left, maxSum);
-    int rightSum = depthFirstSearchSum(node->right, maxSum);
+    int leftNodeValue = max(depthFirstSearchSum(node->left, maxSum), 0);
+    int rightNodeValue = max(depthFirstSearchSum(node->right, maxSum), 0);
     
-    leftSum = max(leftSum, 0);
-    rightSum = max(rightSum, 0);
+    *maxSum = max(*maxSum, node->val + leftNodeValue + rightNodeValue);
     
-    *maxSum = max(*maxSum, node->val + leftSum + rightSum);
-    
-    return node->val + max(leftSum, rightSum);
+    return max(leftNodeValue, rightNodeValue) + node->val;
 }
 
 int maxPathSum(TreeNode *root)
 {
-    //Problem #124 Binary Tree Maximum Path Sum - Solution Concept by NeetCode - Understanding the Solution
+    //Problem #124 Binary Tree Maximum Path Sum - Hard - Solution from a Submitted Code in LeetCode - Understanding the Solution
     
     int maxSum = INT_MIN;
     depthFirstSearchSum(root, &maxSum);
