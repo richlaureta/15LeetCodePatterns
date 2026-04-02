@@ -1,5 +1,11 @@
 from collections import deque
 from collections import defaultdict
+import copy
+
+class Node:
+     def __ini__(self, val = 0, neighbors = None):
+          self.val = val
+          self.neighbors = neighbors if neighbors is not None else []
 
 class TreeNode:
     #Definition for a binary tree node. LeetCode Problem #113 Path Sum II
@@ -56,29 +62,15 @@ def arrayOfEdgesToAdjacencyMatrix(araryEdges: list[list], rows: int, columns: in
      
      return matrix
 
-class Node:
-     def __init__(self, val = 0, neighbors = None):
-          self.val = val
-          self.neighbors = neighbors if neighbors is not None else []
-
-
 def cloneGraph(node: Node) -> Node:
-     #Problem #133 Clone Graph - Medium - Solution Concept by YouTube Channel NeetCode - Understanding the Solution
+     #Problem #133 Clone Graph - Medium
      
-     originalAndCopy = {}
+     if node == None:
+          return node
      
-     def depthFirstSearchClone(node: Node, originalAndCopy):
-          if node in originalAndCopy:
-               return originalAndCopy[node]
-          
-          nodeCopy = Node(node.val)
-          originalAndCopy[node] = nodeCopy
-          
-          for point in node.neighbors:
-               nodeCopy.neighbors.append(depthFirstSearchClone(point, originalAndCopy))
-          return nodeCopy
+     graphCopy = copy.deepcopy(node)
      
-     return depthFirstSearchClone(node, originalAndCopy) if node is not None else None
+     return graphCopy
 
 def pathSum(root: TreeNode, targetSum: int)-> list[list[int]]:
      #Problem #113 Path Sum II - Medium - Solution Concept by YouTuber Deepti Talesra - Understanding the Solution
@@ -190,21 +182,36 @@ def findOrder(numCourses: int, prerequisites: list[list[int]]) -> list[int]:
      return topologyCourseList
                            
 if __name__ == "__main__":
-     node1 = TreeNode(1)
-     node1Duplicate = TreeNode(1)
-     node2 = TreeNode(2)
-     node3 = TreeNode(3)
-     node4 = TreeNode(4)
-     node5 = TreeNode(5)
-     node6 = TreeNode(6)
-     node7 = TreeNode(7)
-     node8 = TreeNode(8)
-     node11 = TreeNode(11)
-     node13 = TreeNode(13)
-     node4Duplicate = TreeNode(4)
-     node5Duplicate = TreeNode(5)
+     # node1 = TreeNode(1)
+     # node1Duplicate = TreeNode(1)
+     # node2 = TreeNode(2)
+     # node3 = TreeNode(3)
+     # node4 = TreeNode(4)
+     # node5 = TreeNode(5)
+     # node6 = TreeNode(6)
+     # node7 = TreeNode(7)
+     # node8 = TreeNode(8)
+     # node11 = TreeNode(11)
+     # node13 = TreeNode(13)
+     # node4Duplicate = TreeNode(4)
+     # node5Duplicate = TreeNode(5)
      
-     numCourses = 4
-     prerequisites = [[1, 0], [2, 0], [3, 1], [3, 2]]
+     # numCourses = 4
+     # prerequisites = [[1, 0], [2, 0], [3, 1], [3, 2]]
      
-     print(findOrder(numCourses, prerequisites))
+     node1 = Node()
+     node2 = Node()
+     node3 = Node()
+     node4 = Node()
+     
+     node1.val = 1
+     node2.val = 2
+     node3.val = 3
+     node4.val = 4
+     
+     node1.neighbors = [node2, node4]
+     node2.neighbors = [node1, node3]
+     node3.neighbors = [node2, node4]
+     node4.neighbors = [node1, node3]
+      
+     print(cloneGraph(node1))
