@@ -552,28 +552,28 @@ int main(int argc, const char * argv[]) {
 //        cout << widthOfBinaryTree(&root) << endl;
     //Problem #124 Binary Tree Maximum Path Sum - Hard - Solution from a Submitted Code in LeetCode - Understanding the Solution
     
-    TreeNode node1 = TreeNode(1);
-    TreeNode node2 = TreeNode(2);
-    TreeNode node3 = TreeNode(3);
-    TreeNode node3Duplicate = TreeNode(3);
-    TreeNode node4 = TreeNode(4);
-    TreeNode node5 = TreeNode(5);
-    TreeNode node6 = TreeNode(6);
-    TreeNode node7 = TreeNode(7);
-    TreeNode node9 = TreeNode(9);
-    TreeNode node20 = TreeNode(20);
-    TreeNode node15 = TreeNode(15);
-    TreeNode nodeNegative10 = TreeNode(-10);
-
-    nodeNegative10.left = &node9;
-    nodeNegative10.right = &node20;
-
-    node20.left = &node15;
-    node20.right = &node7;
-
-    TreeNode root = nodeNegative10;
-
-    cout << maxPathSum(&root) << endl;
+//    TreeNode node1 = TreeNode(1);
+//    TreeNode node2 = TreeNode(2);
+//    TreeNode node3 = TreeNode(3);
+//    TreeNode node3Duplicate = TreeNode(3);
+//    TreeNode node4 = TreeNode(4);
+//    TreeNode node5 = TreeNode(5);
+//    TreeNode node6 = TreeNode(6);
+//    TreeNode node7 = TreeNode(7);
+//    TreeNode node9 = TreeNode(9);
+//    TreeNode node20 = TreeNode(20);
+//    TreeNode node15 = TreeNode(15);
+//    TreeNode nodeNegative10 = TreeNode(-10);
+//
+//    nodeNegative10.left = &node9;
+//    nodeNegative10.right = &node20;
+//
+//    node20.left = &node15;
+//    node20.right = &node7;
+//
+//    TreeNode root = nodeNegative10;
+//
+//    cout << maxPathSum(&root) << endl;
     
     //Problem #107 Binary Tree Level Order Traversal II - Medium
 //    TreeNode node1 = TreeNode(1);
@@ -608,18 +608,18 @@ int main(int argc, const char * argv[]) {
 //        cout << endl;
 //    }
     //Problem #133 Clone Graph - Solution Concept by YouTube Channel Sean Chuah - Understanding the Solution
-    //
-    //    Node node1 = Node(1);
-    //    Node node2 = Node(2);
-    //    Node node3 = Node(3);
-    //    Node node4 = Node(4);
-    //
-    //    node1.neighbors =  {&node2, &node4};
-    //    node2.neighbors = {&node1, &node3};
-    //    node3.neighbors = {&node2, &node4};
-    //    node4.neighbors = {&node1, &node3};
-    //
-    //    cloneGraph(&node1);
+
+    Node node1 = Node(1);
+    Node node2 = Node(2);
+    Node node3 = Node(3);
+    Node node4 = Node(4);
+
+    node1.neighbors =  {&node2, &node4};
+    node2.neighbors = {&node1, &node3};
+    node3.neighbors = {&node2, &node4};
+    node4.neighbors = {&node1, &node3};
+
+    cloneGraph(&node1);
     
     //Problem #113 Path Sum II
     //

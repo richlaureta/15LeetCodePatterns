@@ -68,10 +68,21 @@ def cloneGraph(node: Node) -> Node:
      if node == None:
           return node
      
-     graphCopy = copy.deepcopy(node)
+     nodeQueue = deque([node])
+     firstNodeCopy = None
      
-     return graphCopy
-
+     seenNodeValueSet = set()
+     while nodeQueue:
+          for index in range(len(nodeQueue)):
+               poppedNode = nodeQueue.popleft()
+               copyNode = None
+               if firstNodeCopy == None:
+                    firstNodeCopy = Node()
+                    firstNodeCopy.val = node.val
+                    copyNode = firstNodeCopy
+               else:
+                    copyNode = Node()
+                    
 def pathSum(root: TreeNode, targetSum: int)-> list[list[int]]:
      #Problem #113 Path Sum II - Medium - Solution Concept by YouTuber Deepti Talesra - Understanding the Solution
      
