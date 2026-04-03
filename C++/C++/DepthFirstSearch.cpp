@@ -63,33 +63,60 @@ unordered_map<Node*, Node*> originalAndCopy;
 
 Node* cloneGraph(Node* node)
 {
-    //Problem #133 Clone Graph - Solution Concept by YouTube Channel Sean Chuah - Understanding the Solution
+    //Problem #133 Clone Graph - Medium
     
-    if(node == nullptr) return nullptr;
+    deque<Node*> originalCopyQueue;
+    deque<Node*> nodeCopyQueue;
     
-    Node* nodeCopy = new Node(node->val);
+    originalCopyQueue.push_back(node);
+    Node* nodeDeepCopy = new Node();
+    nodeCopyQueue.push_back(nodeDeepCopy);
+
+    unordered_map<int, Node*> nodeMap;
+    unordered_set<int> fullyProccessedNodes = {};
     
-    if(node->neighbors.size() == 0) return nodeCopy;
-    
-    vector<Node*> neighborsHere;
-    
-    originalAndCopy[node] = nodeCopy;
-    
-    for(auto& point: node->neighbors)
+    while((int)originalCopyQueue.size() > 0)
     {
-        if(originalAndCopy.find(point) != originalAndCopy.end())
+        int originalCopyQueueSize = (int)originalCopyQueue.size();
+        
+        for(int index = 0; index < originalCopyQueueSize; index++)
         {
-            neighborsHere.push_back(originalAndCopy[point]);
-        }
-        else
-        {
-            neighborsHere.push_back(cloneGraph(point));
+            if(fullyProccessedNodes.find(originalCopyQueue.front()->val) != fullyProccessedNodes.end())
+            {
+                nodeCopyQueue.front()->neighbors.push_back(nodeMap[originalCopyQueue.front()->val]);
+                continue;
+            }
+            
+            Node* node0 = originalCopyQueue.front();
+            Node* node1 = nodeCopyQueue.front();
+            originalCopyQueue.pop_front();
+    
+            node1->val = node0->val;
+            for(int index1 = 0; index1 < (int) node0->neighbors.size(); index1++)
+            {
+                if(nodeMap[node0->neighbors[index1]->val] == nullptr)
+                {
+                    Node* node2 = new Node();
+                    node2->val = node0->neighbors[index1]->val;
+                    nodeMap[node2->val] = node2;
+                    node1->neighbors.push_back(node2);
+                    originalCopyQueue.push_back(node0->neighbors[index1]);
+                    nodeCopyQueue.push_back(node2);
+                }
+                else
+                {
+                    node1->neighbors.push_back(nodeMap[node0->neighbors[index1]->val]);
+                }
+            }
+            
+            nodeMap[node1->val] = node1;
+            fullyProccessedNodes.insert(node1->val);
+            
+            nodeCopyQueue.pop_front();
         }
     }
     
-    nodeCopy->neighbors = neighborsHere;
-    
-    return nodeCopy;
+    return nodeDeepCopy;
 }
 
 void depthFirstSearchPathSumTarget(TreeNode *node, vector<vector<int>> *returnPathLists, vector<int> *pathList, int *sumTarget)
