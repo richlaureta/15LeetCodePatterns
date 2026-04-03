@@ -65,6 +65,8 @@ Node* cloneGraph(Node* node)
 {
     //Problem #133 Clone Graph - Medium
     
+    if(node == nullptr) return node;
+    
     deque<Node*> originalCopyQueue;
     deque<Node*> nodeCopyQueue;
     
