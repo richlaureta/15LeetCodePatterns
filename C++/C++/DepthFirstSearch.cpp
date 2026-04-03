@@ -73,7 +73,7 @@ Node* cloneGraph(Node* node)
 
     originalCopyQueue.push_back(node);
 
-    unordered_map<int, Node*> nodeMap;
+    unordered_map<int, Node*> nodeMapCopy;
     unordered_set<int> fullyProccessedNodes = {};
     
     while((int)originalCopyQueue.size() > 0)
@@ -85,19 +85,19 @@ Node* cloneGraph(Node* node)
             Node* node0 = originalCopyQueue.front();
             Node* node1;
             
-            if(nodeMap[node->val] == nullptr)
+            if(nodeMapCopy[node->val] == nullptr)
             {
                 node1 = new Node();
                 node1->val = node0->val;
             }
             else
             {
-                node1 = nodeMap[node0->val];
+                node1 = nodeMapCopy[node0->val];
             }
             
             if(fullyProccessedNodes.find(originalCopyQueue.front()->val) != fullyProccessedNodes.end())
             {
-                node1->neighbors.push_back(nodeMap[originalCopyQueue.front()->val]);
+                node1->neighbors.push_back(nodeMapCopy[originalCopyQueue.front()->val]);
                 continue;
             }
             
@@ -105,25 +105,25 @@ Node* cloneGraph(Node* node)
             
             for(int index1 = 0; index1 < (int) node0->neighbors.size(); index1++)
             {
-                if(nodeMap[node0->neighbors[index1]->val] == nullptr)
+                if(nodeMapCopy[node0->neighbors[index1]->val] == nullptr)
                 {
                     Node* node2 = new Node();
                     node2->val = node0->neighbors[index1]->val;
-                    nodeMap[node2->val] = node2;
+                    nodeMapCopy[node2->val] = node2;
                     node1->neighbors.push_back(node2);
                     originalCopyQueue.push_back(node0->neighbors[index1]);
                 }
                 else
                 {
-                    node1->neighbors.push_back(nodeMap[node0->neighbors[index1]->val]);
+                    node1->neighbors.push_back(nodeMapCopy[node0->neighbors[index1]->val]);
                 }
             }
-            nodeMap[node1->val] = node1;
+            nodeMapCopy[node1->val] = node1;
             fullyProccessedNodes.insert(node1->val);
         }
     }
     
-    return nodeMap[initialNodeValue];
+    return nodeMapCopy[initialNodeValue];
 }
 
 void depthFirstSearchPathSumTarget(TreeNode *node, vector<vector<int>> *returnPathLists, vector<int> *pathList, int *sumTarget)
