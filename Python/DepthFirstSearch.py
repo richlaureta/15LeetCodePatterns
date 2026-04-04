@@ -65,23 +65,7 @@ def arrayOfEdgesToAdjacencyMatrix(araryEdges: list[list], rows: int, columns: in
 def cloneGraph(node: Node) -> Node:
      #Problem #133 Clone Graph - Medium
      
-     if node == None:
-          return node
-     
-     nodeQueue = deque([node])
-     firstNodeCopy = None
-     
-     seenNodeValueSet = set()
-     while nodeQueue:
-          for index in range(len(nodeQueue)):
-               poppedNode = nodeQueue.popleft()
-               copyNode = None
-               if firstNodeCopy == None:
-                    firstNodeCopy = Node()
-                    firstNodeCopy.val = node.val
-                    copyNode = firstNodeCopy
-               else:
-                    copyNode = Node()
+     return copy.deepcopy(node)
                     
 def pathSum(root: TreeNode, targetSum: int)-> list[list[int]]:
      #Problem #113 Path Sum II - Medium - Solution Concept by YouTuber Deepti Talesra - Understanding the Solution
