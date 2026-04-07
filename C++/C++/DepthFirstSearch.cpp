@@ -126,49 +126,41 @@ Node* cloneGraph(Node* node)
     return nodeMapCopy[initialNodeValue];
 }
 
-void depthFirstSearchPathSumTarget(TreeNode *node, vector<vector<int>> *returnPathLists, vector<int> *pathList, int *sumTarget)
+void depthFirstSearchPathSumTarget(TreeNode *node, vector<vector<int>> *returnPathLists, vector<int> *pathList, int *sumTarget, int *sum)
 {
-    //Problem #113 Path Sum II - Solution Concept by YouTube Channel Deepti Talesra - Understanding the solution
+    //Problem #113 Path Sum II - Medium
     
-    if((node->left == nullptr) and (node->right == nullptr))
+    if(node == nullptr) return;
+    
+    *sum += node->val;
+    pathList->push_back(node->val);
+    
+    if(node->left == nullptr and node->right == nullptr)
     {
-        if(*sumTarget - node->val == 0)
-        {
-            pathList->push_back(node->val);
-            vector<int> pathDeepCopy = *pathList;
-            returnPathLists->push_back(pathDeepCopy);
-            
-            pathList->pop_back();
-        }
+        if(*sumTarget == *sum) returnPathLists->push_back(*pathList);
+        pathList->pop_back();
+        *sum -= node->val;
         return;
     }
     
-    *sumTarget -= node->val;
-    pathList->push_back(node->val);
+    depthFirstSearchPathSumTarget(node->left, returnPathLists, pathList, sumTarget, sum);
+    depthFirstSearchPathSumTarget(node->right, returnPathLists, pathList, sumTarget, sum);
     
-    if(node->left) depthFirstSearchPathSumTarget(node->left, returnPathLists, pathList, sumTarget);
-    if(node->right) depthFirstSearchPathSumTarget(node->right, returnPathLists, pathList, sumTarget);
-    
-    *sumTarget += node->val;
     pathList->pop_back();
-    
-    return;
+    *sum -= node->val;
 }
 
 vector<vector<int>> pathSum(TreeNode *root, int targetSum)
 {
-    //Problem #113 Path Sum II - Solution Concept by YouTube Channel Deepti Talesra - Understanding the solution
+    //Problem #113 Path Sum II - Medium
     
-    if(root == nullptr)
-    {
-        return {};
-    }
-    vector<vector<int>> returnPathLists;
-    vector<int> pathList;
+    int sum = 0;
+    vector<vector<int>> pathToTargetSum = {};
+    vector<int> path = {};
     
-    depthFirstSearchPathSumTarget(root, &returnPathLists, &pathList, &targetSum);
+    depthFirstSearchPathSumTarget(root, &pathToTargetSum, &path, &targetSum, &sum);
     
-    return returnPathLists;
+    return pathToTargetSum;
 }
 
 bool isThereCycle(int courseNumber, set<int> *visited, unordered_map<int, vector<int>> &courseMap)

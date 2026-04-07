@@ -173,7 +173,7 @@ int depthFirstSearchSum(TreeNode *node, int *maxSum);
 vector<vector<int>> levelOrderBottom(TreeNode *root);
 Node* cloneGraph(Node* node);
 vector<vector<int>> pathSum(TreeNode *root, int targetSum);
-void depthFirstSearchPathSumTarget(TreeNode *node, vector<vector<int>> *returnPathLists, vector<int> *pathList, int *sumTarget);
+void depthFirstSearchPathSumTarget(TreeNode *node, vector<vector<int>> *returnPathLists, vector<int> *pathList, int *sumTarget, int *sum);
 bool canFinish(int numCourses, vector<vector<int>> prerequisites);
 bool isThereCycle(int courseNumber, set<int> *visited, unordered_map<int, vector<int>> &courseMap);
 vector<int> findOrder(int numCourse, vector<vector<int>> &prerequisites);
