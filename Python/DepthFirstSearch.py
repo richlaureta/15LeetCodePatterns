@@ -68,44 +68,36 @@ def cloneGraph(node: Node) -> Node:
      return copy.deepcopy(node)
                     
 def pathSum(root: TreeNode, targetSum: int)-> list[list[int]]:
-     #Problem #113 Path Sum II - Medium - Solution Concept by YouTuber Deepti Talesra - Understanding the Solution
+     #Problem #113 Path Sum II - Medium
      
-     if root is None:
-          return []
+     sumPath = [0]
+     pathToTargetSum = []
+     path = []
      
-     sumPath = [targetSum]
-     pathList: list[int] = []
-     returnPathList: list[list[int]] = []
-     
-     def depthFirstSearchPathSumTarget(node: TreeNode):
-          if node.left is None and node.right is None:
-               
-               if sumPath[0] - node.val == 0:
-                    pathList.append(node.val)
-                    copyPathList = pathList.copy()
-                    returnPathList.append(copyPathList)
-                    pathList.pop()
-               
+     def pathSumTargetDFS(node: TreeNode):
+          if node == None:
                return
-     
-          pathList.append(node.val)
-          sumPath[0] -= node.val
           
-          if node.left:
-               depthFirstSearchPathSumTarget(node.left)
-          
-          if node.right:
-               depthFirstSearchPathSumTarget(node.right)
-          
-          pathList.pop()
           sumPath[0] += node.val
+          path.append(node.val)
           
-          return 
-
-     depthFirstSearchPathSumTarget(root)
+          if node.left == None and node.right == None:
+               if sumPath[0] == targetSum:
+                    pathToTargetSum.append(path.copy())
+               path.pop()
+               sumPath[0] -= node.val
+               return
+          
+          pathSumTargetDFS(node.left)
+          pathSumTargetDFS(node.right)
+          
+          path.pop()
+          sumPath[0] -= node.val
      
-     return returnPathList
-
+     pathSumTargetDFS(root)
+     
+     return pathToTargetSum
+          
 def canFinish(numCourses: int, prerequisites: list[list[int]]) -> bool:
      #Problem #207 Course Schedule - Medium - Solution Concept by YouTube Channel Deepti Talesra - Understanding the Solution
      
@@ -177,36 +169,33 @@ def findOrder(numCourses: int, prerequisites: list[list[int]]) -> list[int]:
      return topologyCourseList
                            
 if __name__ == "__main__":
-     # node1 = TreeNode(1)
-     # node1Duplicate = TreeNode(1)
-     # node2 = TreeNode(2)
-     # node3 = TreeNode(3)
-     # node4 = TreeNode(4)
-     # node5 = TreeNode(5)
-     # node6 = TreeNode(6)
-     # node7 = TreeNode(7)
-     # node8 = TreeNode(8)
-     # node11 = TreeNode(11)
-     # node13 = TreeNode(13)
-     # node4Duplicate = TreeNode(4)
-     # node5Duplicate = TreeNode(5)
+     node1 = TreeNode(1)
+     node1Duplicate = TreeNode(1)
+     node2 = TreeNode(2)
+     node3 = TreeNode(3)
+     node4 = TreeNode(4)
+     node5 = TreeNode(5)
+     node6 = TreeNode(6)
+     node7 = TreeNode(7)
+     node8 = TreeNode(8)
+     node11 = TreeNode(11)
+     node13 = TreeNode(13)
+     node4Duplicate = TreeNode(4)
+     node5Duplicate = TreeNode(5)
      
-     # numCourses = 4
-     # prerequisites = [[1, 0], [2, 0], [3, 1], [3, 2]]
+     # node5.left = node4
+     # node5.right = node8
+     # node4.left = node11
+     # node11.left = node7
+     # node11.right = node2
+     # node8.left = node13
+     # node8.right = node4Duplicate
+     # node4Duplicate.left = node5Duplicate
+     # node4Duplicate.right = node1
      
-     node1 = Node()
-     node2 = Node()
-     node3 = Node()
-     node4 = Node()
+     node1.left = node2
+     node1.right = node3
      
-     node1.val = 1
-     node2.val = 2
-     node3.val = 3
-     node4.val = 4
-     
-     node1.neighbors = [node2, node4]
-     node2.neighbors = [node1, node3]
-     node3.neighbors = [node2, node4]
-     node4.neighbors = [node1, node3]
+     root = node1
       
-     print(cloneGraph(node1))
+     print(pathSum(root, 5))
