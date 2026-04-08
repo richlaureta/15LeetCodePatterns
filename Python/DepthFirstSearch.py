@@ -142,14 +142,6 @@ def findOrder(numCourses: int, prerequisites: list[list[int]]) -> list[int]:
           prerequisitesDictionary[coursePrerequisite[0]].append(coursePrerequisite[1])
      
      def findOrderDFS(course: int) -> bool:
-          if prerequisitesDictionary[course] == []:
-               if course in visitedCourseSet:
-                    return True
-               
-               prerequisitesPath.append(course)
-               visitedCourseSet.add(course)
-               return True
-          
           if course in visitedCourseSet:
                return True
                
