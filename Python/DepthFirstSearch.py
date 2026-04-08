@@ -130,43 +130,46 @@ def canFinish(numCourses: int, prerequisites: list[list[int]]) -> bool:
         return True
             
 def findOrder(numCourses: int, prerequisites: list[list[int]]) -> list[int]:
-     #Problem # 210 Course Schedule II - Medium - Solution Concept by NeetCode - Understanding the Solution
+     #Problem #210 Course Schedule II - Medium
      
-     coursePrerequisiteDictionary = defaultdict(list)
-     topologyCourseList = []
-     visited = set()
-     cycle = set()
+     if len(prerequisites) == 0:
+          courseOrder = []
+          for index in range(numCourses - 1, -1, -1):
+               courseOrder.append(index)
+          
+          return courseOrder
+               
+     prerequisiteDictionary = defaultdict(list[int])
      
-     for subjectNumber in range(numCourses):
-          coursePrerequisiteDictionary[subjectNumber] = []
-          
-     for courseA, courseB in prerequisites:
-          coursePrerequisiteDictionary[courseA].append(courseB)
-          
-     def depthFirstSearchCourse(courseNumber: int) -> bool:
-          if courseNumber in cycle:
-               return False
-          
-          if courseNumber in visited:
-               return True
-          
-          cycle.add(courseNumber)
-           
-          for coursePrerequisite in coursePrerequisiteDictionary[courseNumber]:
-               if depthFirstSearchCourse(coursePrerequisite) == False:
-                    return False
-
-          cycle.remove(courseNumber)
-          visited.add(courseNumber)
-          topologyCourseList.append(courseNumber)
-          
-          return True
-          
-     for courseNumber in range(numCourses):
-          if depthFirstSearchCourse(courseNumber) == False:
-               return []
+     for course in prerequisites:
+          prerequisiteDictionary[course[0]].append(course[1])
      
-     return topologyCourseList
+     orderList = []
+     orderSet = set()
+     
+     courseQueue = deque([prerequisites[len(prerequisites) - 1][0]])
+     
+     orderList.append(prerequisites[len(prerequisites) - 1][0])
+     orderSet.add(prerequisites[len(prerequisites) - 1][0])
+     
+     while courseQueue:
+          for index in range(len(courseQueue)):
+               poppedCourse = courseQueue.popleft()
+               if (prerequisiteDictionary[poppedCourse] == [] and poppedCourse > 1):
+                    return []
+               for index1 in range(len(prerequisiteDictionary[poppedCourse])):
+                    if (prerequisiteDictionary[poppedCourse][index1] in orderSet and 
+                        poppedCourse in orderSet and 
+                        (poppedCourse == 1 or poppedCourse == 0)):
+                         return []
+                    if prerequisiteDictionary[poppedCourse][index1] not in orderSet:
+                         orderList.append(prerequisiteDictionary[poppedCourse][index1])
+                         orderSet.add(prerequisiteDictionary[poppedCourse][index1])
+                         courseQueue.append(prerequisiteDictionary[poppedCourse][index1])
+     
+     orderList.reverse()
+     
+     return orderList
                            
 if __name__ == "__main__":
      node1 = TreeNode(1)
@@ -183,19 +186,6 @@ if __name__ == "__main__":
      node4Duplicate = TreeNode(4)
      node5Duplicate = TreeNode(5)
      
-     # node5.left = node4
-     # node5.right = node8
-     # node4.left = node11
-     # node11.left = node7
-     # node11.right = node2
-     # node8.left = node13
-     # node8.right = node4Duplicate
-     # node4Duplicate.left = node5Duplicate
-     # node4Duplicate.right = node1
+     prerequisites = []
      
-     node1.left = node2
-     node1.right = node3
-     
-     root = node1
-      
-     print(pathSum(root, 5))
+     print(findOrder(3, prerequisites))
