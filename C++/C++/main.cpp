@@ -623,45 +623,45 @@ int main(int argc, const char * argv[]) {
     
     //Problem #113 Path Sum II - Medium
     //
-    TreeNode node5 = TreeNode(5);
-    TreeNode node4 = TreeNode(4);
-    TreeNode node11 = TreeNode(11);
-    TreeNode node7 = TreeNode(7);
-    TreeNode node2 = TreeNode(2);
-    TreeNode node8 = TreeNode(8);
-    TreeNode node13 = TreeNode(13);
-    TreeNode node4Duplicate = TreeNode(4);
-    TreeNode node5Duplicate = TreeNode(5);
-    TreeNode node1 = TreeNode(1);
-
-    node5.left = &node4;
-    node5.right = &node8;
-
-    node4.left = &node11;
-
-    node11.left = &node7;
-    node11.right = &node2;
-
-    node8.left = &node13;
-    node8.right = &node4Duplicate;
-
-    node4Duplicate.left = &node5Duplicate;
-    node4Duplicate.right = &node1;
-
-    TreeNode *root = &node5;
-
-    int targetSum = 22;
-
-    vector<vector<int>> pathSumLists = pathSum(root,targetSum);
-
-    for(int i = 0; i < pathSumLists.size(); i++)
-    {
-        for(int j = 0; j < pathSumLists[i].size(); j++)
-        {
-            cout << pathSumLists[i][j] << " ";
-        }
-        cout << endl;
-    }
+//    TreeNode node5 = TreeNode(5);
+//    TreeNode node4 = TreeNode(4);
+//    TreeNode node11 = TreeNode(11);
+//    TreeNode node7 = TreeNode(7);
+//    TreeNode node2 = TreeNode(2);
+//    TreeNode node8 = TreeNode(8);
+//    TreeNode node13 = TreeNode(13);
+//    TreeNode node4Duplicate = TreeNode(4);
+//    TreeNode node5Duplicate = TreeNode(5);
+//    TreeNode node1 = TreeNode(1);
+//
+//    node5.left = &node4;
+//    node5.right = &node8;
+//
+//    node4.left = &node11;
+//
+//    node11.left = &node7;
+//    node11.right = &node2;
+//
+//    node8.left = &node13;
+//    node8.right = &node4Duplicate;
+//
+//    node4Duplicate.left = &node5Duplicate;
+//    node4Duplicate.right = &node1;
+//
+//    TreeNode *root = &node5;
+//
+//    int targetSum = 22;
+//
+//    vector<vector<int>> pathSumLists = pathSum(root,targetSum);
+//
+//    for(int i = 0; i < pathSumLists.size(); i++)
+//    {
+//        for(int j = 0; j < pathSumLists[i].size(); j++)
+//        {
+//            cout << pathSumLists[i][j] << " ";
+//        }
+//        cout << endl;
+//    }
     //    //Problem # 207 Course Schedule - Concept Solution by Deepti Talesra - Understanding the Solution
     //
     //    int numCourses = 5;
@@ -671,15 +671,15 @@ int main(int argc, const char * argv[]) {
     
     //Problem #210 Course Schedule II - Concept Solution by NeetCode - Understanding the Solution
     
-    //    int numCourses = 2;
-    //    vector<vector<int>> prerequisites = {{1, 0}};
-    //
-    //    vector<int> path = findOrder(numCourses, prerequisites);
-    //
-    //    for(int i = 0; i <((int) path.size()); i++)
-    //    {
-    //        cout << path[i] << endl;
-    //    }
+    int numCourses = 4;
+    vector<vector<int>> prerequisites = {{1, 0}, {2,0}, {3,1}, {3,2}};
+
+    vector<int> path = findOrder(numCourses, prerequisites);
+
+    for(int i = 0; i <((int) path.size()); i++)
+    {
+        cout << path[i] << endl;
+    }
     
     //Problem #102 Binary Tree Level Order Traversal - Medium
 //    TreeNode node1 = TreeNode(1);
@@ -945,4 +945,5 @@ int main(int argc, const char * argv[]) {
 //    cout << digit1 << endl;
     
     return EXIT_SUCCESS;
+
 }

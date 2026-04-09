@@ -247,31 +247,39 @@ bool depthFirstSearchCourseII(int courseNumber, vector<int> &topologyCourseList,
 
 vector<int> findOrder(int numCourses, vector<vector<int>> &prerequisites)
 {
-    //Problem 210 Course Schedule II - Medium - Solution Concept by YouTube Channel NeetCode - Understanding the Solution
+    //Problem 210 Course Schedule II - Medium - Solution Concept by Google AI Mode Search - Understanding the Solution
     
-    unordered_map<int, vector<int>> coursePrerequisteMap;
-    vector<int> topologyCourseList;
-    set<int> visited;
-    set<int> cycle;
+    unordered_map<int, vector<int>> prerequsitesToCourse = {};
+    vector<int> prerequisitesNeeded(numCourses);
     
-    for(int i = 0; i < numCourses; i++)
+    for(vector<int> coursePrerequites: prerequisites)
     {
-        coursePrerequisteMap[i] = {};
+        prerequsitesToCourse[coursePrerequites[1]].push_back(coursePrerequites[0]);
+        prerequisitesNeeded[coursePrerequites[0]]++;
     }
     
-    for(int i = 0; i < prerequisites.size(); i++)
+    deque<int> courseQueue = {};
+    for(int index = 0; index < numCourses; index++)
     {
-        coursePrerequisteMap[prerequisites[i][0]].push_back(prerequisites[i][1]);
+        if(prerequisitesNeeded[index] == 0) courseQueue.push_back(index);
     }
     
+    vector<int> prerequisitesPath = {};
     
-    for(int i = 0; i < numCourses; i++)
+    while((int)courseQueue.size() > 0)
     {
-        if(depthFirstSearchCourseII(i, topologyCourseList, visited, cycle, coursePrerequisteMap) == false)
+        int course = courseQueue.front();
+        courseQueue.pop_front();
+        prerequisitesPath.push_back(course);
+        
+        for(int course1: prerequsitesToCourse[course])
         {
-            return {};
+            prerequisitesNeeded[course1] -= 1;
+            if(prerequisitesNeeded[course1] == 0) courseQueue.push_back(course1);
         }
     }
     
-    return topologyCourseList;
+    if((int)prerequisitesPath.size() == numCourses) return prerequisitesPath;
+    
+    return {};
 }

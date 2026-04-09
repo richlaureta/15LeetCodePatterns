@@ -130,7 +130,7 @@ def canFinish(numCourses: int, prerequisites: list[list[int]]) -> bool:
         return True
             
 def findOrder(numCourses: int, prerequisites: list[list[int]]) -> list[int]:
-     #Problem #210 Course Schedule II - Medium - Google AI Mode Concept - Understanding the Solution
+     #Problem #210 Course Schedule II - Medium - Solution Concept by Google AI Mode Search - Understanding the Solution
      
      prerequisitesToCourse = defaultdict(list[int])
      coursesNeeded = [0] * numCourses
