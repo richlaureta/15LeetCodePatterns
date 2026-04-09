@@ -130,40 +130,36 @@ def canFinish(numCourses: int, prerequisites: list[list[int]]) -> bool:
         return True
             
 def findOrder(numCourses: int, prerequisites: list[list[int]]) -> list[int]:
-     #Problem #210 Course Schedule II - Medium - Solution Concept by YouTube Channel NeetCode - Understanding the Solution
+     #Problem #210 Course Schedule II - Medium - Google AI Mode Concept - Understanding the Solution
      
-     cycleSet = set()
-     visitedCourseSet = set()
+     prerequisitesToCourse = defaultdict(list[int])
+     coursesNeeded = [0] * numCourses
      
-     prerequisitesDictionary = defaultdict(list[int])
+     for course, requirement in prerequisites:
+          prerequisitesToCourse[requirement].append(course)
+          coursesNeeded[course] += 1
+     
+     courseQueue = deque()
+     for index in range(numCourses):
+          if coursesNeeded[index] == 0:
+               courseQueue.append(index)
+     
      prerequisitesPath = []
      
-     for coursePrerequisite in prerequisites:
-          prerequisitesDictionary[coursePrerequisite[0]].append(coursePrerequisite[1])
-     
-     def findOrderDFS(course: int) -> bool:
-          if course in visitedCourseSet:
-               return True
-               
-          if course in cycleSet:
-               return False
+     while courseQueue:
+          course1 = courseQueue.popleft()
+          prerequisitesPath.append(course1)
           
-          cycleSet.add(course)
-          
-          for course1 in prerequisitesDictionary[course]:
-               if findOrderDFS(course1) == False:
-                    return False
+          for course2 in prerequisitesToCourse[course1]:
+               coursesNeeded[course2] -= 1
                
-          prerequisitesPath.append(course)
-          visitedCourseSet.add(course)
-          cycleSet.remove(course)
-          return True
+               if coursesNeeded[course2] == 0:
+                    courseQueue.append(course2)
      
-     for index in range(numCourses):
-          if findOrderDFS(index) == False:
-               return []
-
-     return prerequisitesPath
+     if len(prerequisitesPath) == numCourses:
+          return prerequisitesPath
+     
+     return []
 
 if __name__ == "__main__":
      node1 = TreeNode(1)
@@ -180,6 +176,6 @@ if __name__ == "__main__":
      node4Duplicate = TreeNode(4)
      node5Duplicate = TreeNode(5)
      
-     prerequisites = []
+     prerequisites = [[1,0],[2,0],[3,1],[3,2]]
      
-     print(findOrder(1, prerequisites))
+     print(findOrder(4, prerequisites))

@@ -247,7 +247,7 @@ bool depthFirstSearchCourseII(int courseNumber, vector<int> &topologyCourseList,
 
 vector<int> findOrder(int numCourses, vector<vector<int>> &prerequisites)
 {
-    //Problem 210 Course Schedule II - Solution Concept by YouTube Channel NeetCode - Understanding the Solution
+    //Problem 210 Course Schedule II - Medium - Solution Concept by YouTube Channel NeetCode - Understanding the Solution
     
     unordered_map<int, vector<int>> coursePrerequisteMap;
     vector<int> topologyCourseList;
