@@ -52,13 +52,11 @@ def orangesRotting(grid: list[list[int]]) -> int:
                 
     if thereIsA1Flag == False:
         return 0
-
-    if thereIsA2Flag == False and thereIsA1Flag == False:
-        return 0
-    elif thereIsA2Flag == False and thereIsA1Flag == True:
+    
+    if thereIsA2Flag == False and thereIsA1Flag == True:
         return -1
     
-    minutesToRot = 0
+    minutesToRot = -1
     check1Count = 0
     
     while rotSquareQueue:
@@ -93,7 +91,7 @@ def orangesRotting(grid: list[list[int]]) -> int:
         minutesToRot += 1
             
     if check1Count == square1Count:
-        return minutesToRot - 1
+        return minutesToRot
         
     return -1
 
