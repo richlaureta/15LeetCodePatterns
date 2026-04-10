@@ -52,8 +52,7 @@ def orangesRotting(grid: list[list[int]]) -> int:
                 
     if thereIsA1Flag == False:
         return 0
-    
-    if thereIsA2Flag == False and thereIsA1Flag == True:
+    elif thereIsA2Flag == False and thereIsA1Flag == True:
         return -1
     
     minutesToRot = -1
