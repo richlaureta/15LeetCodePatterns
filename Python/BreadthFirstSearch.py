@@ -33,39 +33,69 @@ def levelOrder(root: TreeNode) -> list[list[int]]:
     return levelOrderList
 
 def orangesRotting(grid: list[list[int]]) -> int:
-    #Problem #994 Rotting Oranges - Medium - Solution Concept by YouTube Channel - Deepti Talesra - Understanding the Solution
+    #Problem #994 Rotting Oranges - Medium 
+
+    rotSquareQueue = deque()
+    thereIsA1Flag = False
+    thereIsA2Flag = False
     
-    minuteCount = 0
-    freshOrangesCount = 0
-    rottenOrangesLocation = []
+    square1Count = 0
     
-    for row in range (0, len(grid)):
-        for index in range(0, len(grid[row])):
-            if grid[row][index] == 1:
-                freshOrangesCount += 1
-            elif grid[row][index] == 2:
-                rottenOrangesLocation.append((row, index))
+    for index in range(len(grid)):
+        for index1 in range(len(grid[0])):
+            if grid[index][index1] == 1:
+                square1Count += 1
+                thereIsA1Flag = True
+            elif grid[index][index1] == 2:
+                rotSquareQueue.append([index, index1])
+                thereIsA2Flag = True
                 
-    while rottenOrangesLocation and freshOrangesCount > 0:
-        minuteCount += 1
-        currentList = []
-        for rowNumber, columnNumber, in rottenOrangesLocation:
-            adjacent = [(rowNumber + 1, columnNumber), (rowNumber - 1, columnNumber), (rowNumber, columnNumber + 1), (rowNumber, columnNumber - 1)] #Down, Up, Right, Left
-            for rowIndex, columnIndex in adjacent:
-                if rowIndex > -1 and columnIndex > -1 and rowIndex < len(grid) and columnIndex < len(grid[0]) and grid[rowIndex][columnIndex] == 1:
-                    grid[rowIndex][columnIndex] = 2
-                    freshOrangesCount -= 1
-                    currentList.append((rowIndex, columnIndex))
-                    
-                    if freshOrangesCount == 0:
-                        return minuteCount
-        
-        rottenOrangesLocation = currentList
-    
-    if freshOrangesCount == 0:
-        return minuteCount
-    else:
+    if thereIsA1Flag == False:
+        return 0
+
+    if thereIsA2Flag == False and thereIsA1Flag == False:
+        return 0
+    elif thereIsA2Flag == False and thereIsA1Flag == True:
         return -1
+    
+    minutesToRot = 0
+    check1Count = 0
+    
+    while rotSquareQueue:
+        for index2 in range(len(rotSquareQueue)):
+            square = rotSquareQueue.popleft()
+            
+            leftDirection = [square[0], square[1] - 1]
+            upDirection = [square[0] - 1, square[1]]
+            rightDirection = [square[0], square[1] + 1]
+            downDirection = [square[0] + 1, square[1]]
+            
+            if leftDirection[1] > -1 and grid[leftDirection[0]][leftDirection[1]] == 1:
+                check1Count += 1
+                grid[leftDirection[0]][leftDirection[1]] = 2
+                rotSquareQueue.append(leftDirection)
+            
+            if upDirection[0] > -1 and grid[upDirection[0]][upDirection[1]] == 1:
+                check1Count += 1
+                grid[upDirection[0]][upDirection[1]] = 2
+                rotSquareQueue.append(upDirection)
+            
+            if rightDirection[1] < len(grid[0]) and grid[rightDirection[0]][rightDirection[1]] == 1:
+                check1Count += 1
+                grid[rightDirection[0]][rightDirection[1]] = 2
+                rotSquareQueue.append(rightDirection)
+            
+            if downDirection[0] < len(grid) and grid[downDirection[0]][downDirection[1]] == 1:
+                check1Count += 1
+                grid[downDirection[0]][downDirection[1]] = 2
+                rotSquareQueue.append(downDirection)
+                
+        minutesToRot += 1
+            
+    if check1Count == square1Count:
+        return minutesToRot - 1
+        
+    return -1
 
 def ladderLength(beginWord: str, endWord: str, wordList: list[str]) -> int:
     #Problem #127 Word Ladder: Hard - Solution Concept by YouTube channel: NeetCode - Understanding the Solution
@@ -107,17 +137,20 @@ if __name__ == "__main__":
     
     # print(ladderLength(beginWord, endWord, wordList))
     
-    node3 = TreeNode(3)
-    node9 = TreeNode(9)
-    node20 = TreeNode(20)
-    node15 = TreeNode(15)
-    node7 = TreeNode(7)
+    # node3 = TreeNode(3)
+    # node9 = TreeNode(9)
+    # node20 = TreeNode(20)
+    # node15 = TreeNode(15)
+    # node7 = TreeNode(7)
     
-    node3.left = node9
-    node3.right = node20
-    node20.left = node15
-    node20.right = node7
+    # node3.left = node9
+    # node3.right = node20
+    # node20.left = node15
+    # node20.right = node7
     
-    root = node3
+    # root = node3
     
-    print(levelOrder(root))
+    grid = [[0, 2]]
+    
+    print(orangesRotting(grid))
+    
