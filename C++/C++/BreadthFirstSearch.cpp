@@ -47,64 +47,87 @@ vector<vector<int>> levelOrderI(TreeNode* root)
 
 int orangesRotting(vector<vector<int>> &grid)
 {
-    //Problem #994 Rotting Oranges - Medium - Solution Concept by YouTube Channel Deepti Talesra - Understanding the Solution
+    //Problem #994 Rotting Oranges - Medium
     
-    int freshOrangesCount = 0;
-    int minuteCount = 0;
-    vector<vector<int>> rottenOrangesLocation = {};
+    deque<pair<int , int>> rotSquareQueue;
     
-    for(int i = 0; i < grid.size(); i++)
+    bool thereIsA1Flag = false;
+    bool thereIsA2Flag = false;
+    
+    int square1Count = 0;
+    
+    for(int index = 0; index < grid.size(); index++)
     {
-        for(int j = 0; j < grid[i].size(); j++)
+        for(int index1 = 0; index1 < grid[0].size(); index1++)
         {
-            if(grid[i][j] == 1)
+            if(grid[index][index1] == 1)
             {
-                freshOrangesCount++;
+                square1Count++;
+                thereIsA1Flag = true;
             }
-            else if(grid[i][j] == 2)
+            else if (grid[index][index1] == 2)
             {
-                rottenOrangesLocation.push_back({i, j});
+                rotSquareQueue.push_back({index, index1});
+                thereIsA2Flag = true;
             }
         }
     }
     
-    while ((rottenOrangesLocation.size() != 0) and freshOrangesCount > 0)
+    if(thereIsA1Flag == false) return 0;
+    else if(thereIsA2Flag == false and thereIsA1Flag == true) return -1;
+    
+    int minutesToRot = -1;
+    int check1Count = 0;
+    
+    while((int) rotSquareQueue.size() > 0)
     {
-        minuteCount++;
+        int rotSquareQueueSize = (int) rotSquareQueue.size();
         
-        vector<vector<int>> currentList = {};
-        
-        for(int i = 0; i < rottenOrangesLocation.size(); i++)
+        for(int index2 = 0; index2 < rotSquareQueueSize; index2++)
         {
-            vector<vector<int>> adjacent = {{rottenOrangesLocation[i][0] + 1, rottenOrangesLocation[i][1]}, {rottenOrangesLocation[i][0], rottenOrangesLocation[i][1] - 1}, {rottenOrangesLocation[i][0] - 1, rottenOrangesLocation[i][1]}, {rottenOrangesLocation[i][0], rottenOrangesLocation[i][1] + 1}}; //Down, Left, Up, Right
+            pair<int, int> square = rotSquareQueue.front();
+            rotSquareQueue.pop_front();
             
-            for(int j = 0; j < adjacent.size(); j++)
+            pair<int, int> leftDirection = {square.first, square.second - 1};
+            pair<int, int> upDirection = {square.first - 1, square.second};
+            pair<int, int> rightDirection = {square.first, square.second + 1};
+            pair<int, int> downDirection = {square.first + 1, square.second};
+            
+            if(leftDirection.second > -1 and grid[leftDirection.first][leftDirection.second] == 1)
             {
-                if((adjacent[j][0] > -1) and (adjacent[j][0] < grid.size()) and (adjacent[j][1] > -1) and (adjacent[j][1] < grid[0].size()) and (grid[adjacent[j][0]][adjacent[j][1]] == 1))
-                {
-                    grid[adjacent[j][0]][adjacent[j][1]] = 2;
-                    freshOrangesCount--;
-                    currentList.push_back({adjacent[j][0], adjacent[j][1]});
-                    
-                    if(freshOrangesCount == 0)
-                    {
-                        return minuteCount;
-                    }
-                }
+                check1Count++;
+                grid[leftDirection.first][leftDirection.second] = 2;
+                rotSquareQueue.push_back(leftDirection);
+            }
+            
+            if(upDirection.first > -1 and grid[upDirection.first][upDirection.second] == 1)
+            {
+                check1Count++;
+                grid[upDirection.first][upDirection.second] = 2;
+                rotSquareQueue.push_back(upDirection);
+            }
+            
+            if(rightDirection.second < (int) grid[0].size() and grid[rightDirection.first][rightDirection.second] == 1)
+            {
+                check1Count++;
+                grid[rightDirection.first][rightDirection.second] = 2;
+                rotSquareQueue.push_back(rightDirection);
+            }
+            
+            if(downDirection.first < (int) grid.size() and grid[downDirection.first][downDirection.second] == 1)
+            {
+                check1Count++;
+                grid[downDirection.first][downDirection.second] = 2;
+                rotSquareQueue.push_back(downDirection);
             }
         }
         
-        rottenOrangesLocation = currentList;
+        minutesToRot++;
     }
     
-    if(freshOrangesCount == 0)
-    {
-        return minuteCount;
-    }
-    else
-    {
-        return -1;
-    }
+    if(check1Count == square1Count) return minutesToRot;
+    
+    return -1;
 }
 
 int ladderLength(string beginWord, string endWord, vector<string> &wordList)
