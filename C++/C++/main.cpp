@@ -671,15 +671,15 @@ int main(int argc, const char * argv[]) {
     
     //Problem #210 Course Schedule II - Concept Solution by NeetCode - Understanding the Solution
     
-    int numCourses = 4;
-    vector<vector<int>> prerequisites = {{1, 0}, {2,0}, {3,1}, {3,2}};
-
-    vector<int> path = findOrder(numCourses, prerequisites);
-
-    for(int i = 0; i <((int) path.size()); i++)
-    {
-        cout << path[i] << endl;
-    }
+//    int numCourses = 4;
+//    vector<vector<int>> prerequisites = {{1, 0}, {2,0}, {3,1}, {3,2}};
+//
+//    vector<int> path = findOrder(numCourses, prerequisites);
+//
+//    for(int i = 0; i <((int) path.size()); i++)
+//    {
+//        cout << path[i] << endl;
+//    }
     
     //Problem #102 Binary Tree Level Order Traversal - Medium
 //    TreeNode node1 = TreeNode(1);
@@ -710,23 +710,23 @@ int main(int argc, const char * argv[]) {
 //    }
     
     
-    //Problem #994 Rotting Oranges - Solution Concept by YouTube Channel Deepti Talesra - Understanding the Solution
-    //    vector<vector<int>> grid = {
-    //        {2, 1, 1},
-    //        {0, 1, 1},
-    //        {1, 0, 1}
-    //    };
-    //
-    //    cout << orangesRotting(grid) << endl;
+    //Problem #994 Rotting Oranges - Medium
+//        vector<vector<int>> grid = {
+//            {2, 1, 1},
+//            {0, 1, 1},
+//            {1, 0, 1}
+//        };
+//
+//        cout << orangesRotting(grid) << endl;
     
-    //Problem #127 Word Ladder: Hard - Solution Concept by YouTube Channel NeetCode - Understanding the Solution
-    //
-    //    string beginWord = "hit";
-    //    string endWord = "cog";
-    //
-    //    vector<string> wordList = {"hot", "dot", "dog", "lot", "log"};
-    //
-    //    cout << ladderLength(beginWord, endWord, wordList) << endl;
+    //Problem #127 Word Ladder - Hard - Solution Concept by YouTube Channel NeetCode - Understanding the Solution
+    
+        string beginWord = "hit";
+        string endWord = "cog";
+    
+        vector<string> wordList = {"hot", "dot", "dog", "lot", "log", "cog"};
+    
+        cout << ladderLength(beginWord, endWord, wordList) << endl;
     
     //Problem #733 Flood Fill - Easy
     

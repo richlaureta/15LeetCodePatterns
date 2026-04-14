@@ -134,91 +134,47 @@ int ladderLength(string beginWord, string endWord, vector<string> &wordList)
 {
     //Problem #127 Word Ladder: Hard - Solution Concept by YouTube Channel NeetCode - Understanding the Solution
     
-    bool inThereFlag = false;
+    if(find(wordList.begin(), wordList.end(), endWord) == wordList.end()) return 0;
     
-    for(int i = 0; i < wordList.size(); i++)
+    unordered_map<string, vector<string>> wordPatternMap = {};
+    
+    for(string word: wordList)
     {
-        if(endWord == wordList[i])
+        for(int index = 0; index < word.length(); index++)
         {
-            inThereFlag = true;
-            break;
+            string wordPattern = word.substr(0, index) + "*" + word.substr(index + 1);
+            wordPatternMap[wordPattern].push_back(word);
         }
     }
     
-    if(inThereFlag == false)
-    {
-        return 0;
-    }
-    
-    unordered_map<string, vector<string>> wordMap;
-    wordList.push_back(beginWord);
-    
-    for(int i = 0; i < wordList.size(); i++)
-    {
-        int starIndexPlacement = 0;
-        for(int j = 0; j < wordList[i].size(); j++)
-        {
-            string newWord = "";
-            for(int k = 0; k < wordList[i].size(); k++)
-            {
-                if(k == starIndexPlacement)
-                {
-                    newWord += "*";
-                }
-                else
-                {
-                    newWord += wordList[i][k];
-                }
-            }
-            wordMap[newWord].push_back(wordList[i]);
-            starIndexPlacement++;
-        }
-    }
-    
-    set<string> visited = {beginWord};
-    deque<string> q = {beginWord};
     int sequenceCount = 1;
+    deque<string> wordQueue = {beginWord};
+    unordered_set<string> seenWordSet = {beginWord};
     
-    while(q.size() != 0)
+    while((int)wordQueue.size() > 0)
     {
-        int qSize = (int) q.size();
-        for(int i = 0; i < qSize; i++)
+        int wordQueueSize = (int)wordQueue.size();
+        for(int index1 = 0; index1 < wordQueueSize; index1++)
         {
-            string connectingWord = q.front();
-            q.pop_front();
-            int starIndexPlacement1 = 0;
+            if(wordQueue.front() == endWord) return sequenceCount;
+            string word1 = wordQueue.front();
+            wordQueue.pop_front();
             
-            if(connectingWord == endWord)
+            for(int index2 = 0; index2 < word1.length(); index2++)
             {
-                return sequenceCount;
-            }
-            
-            for(int j = 0; j < connectingWord.size(); j++)
-            {
-                string newWord1 = "";
-                for(int k = 0; k < connectingWord.size(); k++)
+                string wordPattern1 = word1.substr(0, index2) + "*" + word1.substr(index2 + 1);
+                for(string word2: wordPatternMap[wordPattern1])
                 {
-                    if(k == starIndexPlacement1)
+                    if(seenWordSet.find(word2) == seenWordSet.end())
                     {
-                        newWord1 += "*";
-                    }
-                    else
-                    {
-                        newWord1 += connectingWord[k];
+                        seenWordSet.insert(word2);
+                        wordQueue.push_back(word2);
                     }
                 }
-                for(int l = 0; l < wordMap[newWord1].size(); l++)
-                {
-                    if(visited.find(wordMap[newWord1][l]) == visited.end())
-                    {
-                        visited.insert(wordMap[newWord1][l]);
-                        q.push_back(wordMap[newWord1][l]);
-                    }
-                }
-                starIndexPlacement1++;
             }
         }
         sequenceCount++;
     }
+    
     return 0;
 }
