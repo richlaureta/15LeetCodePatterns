@@ -104,47 +104,32 @@ def ladderLength(beginWord: str, endWord: str, wordList: list[str]) -> int:
     
     for word in wordList:
         for index in range(len(word)):
-            patternList = []
-            for index1 in range(len(word)):
-                if index == index1:
-                    patternList.append("*")
-                    continue
-                patternList.append(word[index1])
-            
-            wordPattern = "".join(patternList)
+            wordPattern = word[:index] + "*" + word[index + 1:]
             adjacentDictionary[wordPattern].append(word)
             
-    seenWordSet = set()
+    seenWordSet = set([beginWord])
     wordQueue = deque([beginWord])
-    
     sequenceCount = 1
     
     while wordQueue:
-        sequenceCount += 1
         for index2 in range(len(wordQueue)):
             poppedWord = wordQueue.popleft()
-            seenWordSet.add(poppedWord)
-            for index3 in range(len(poppedWord)):
-                patternLetterList = []
-                for index4 in range(len(poppedWord)):
-                    if index3 == index4:
-                        patternLetterList.append("*")
-                        continue
-                    patternLetterList.append(poppedWord[index4])
             
-                wordPattern1 = "".join(patternLetterList)
+            if poppedWord == endWord:
+                return sequenceCount
+            
+            for index3 in range(len(poppedWord)):
+                wordPattern1 = poppedWord[:index3] + "*" + poppedWord[index3 + 1:]
              
                 for word1 in adjacentDictionary[wordPattern1]:
-                    if word1 == endWord:
-                        return sequenceCount
                     if word1 in seenWordSet:
                         continue
                     
                     wordQueue.append(word1)
-                
-            if len(wordQueue) == 0:
-                return 0
+                    seenWordSet.add(word1)
                     
+        sequenceCount += 1
+                  
     return 0   
             
 
