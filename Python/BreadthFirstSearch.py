@@ -1,5 +1,5 @@
 from collections import deque
-import collections
+from collections import defaultdict
 
 class TreeNode:
     def __init__(self, val = 0, left = None, right = None):
@@ -95,45 +95,60 @@ def orangesRotting(grid: list[list[int]]) -> int:
     return -1
 
 def ladderLength(beginWord: str, endWord: str, wordList: list[str]) -> int:
-    #Problem #127 Word Ladder: Hard - Solution Concept by YouTube channel: NeetCode - Understanding the Solution
+    #Problem #127 Word Ladder - Hard - Solution Concept by YouTube Channel NeetCode - Understanding the Solution
     
     if endWord not in wordList:
         return 0
     
-    nei = collections.defaultdict(list)
-    wordList.append(beginWord)
+    adjacentDictionary = defaultdict(list[str])
     
     for word in wordList:
-        for j in range(len(word)):
-            pattern = word[:j] + "*" + word[j + 1:]
-            nei[pattern].append(word)
+        for index in range(len(word)):
+            patternList = []
+            for index1 in range(len(word)):
+                if index == index1:
+                    patternList.append("*")
+                    continue
+                patternList.append(word[index1])
             
-    visit = set([beginWord])
-    q = deque([beginWord])
-    res = 1
+            wordPattern = "".join(patternList)
+            adjacentDictionary[wordPattern].append(word)
+            
+    seenWordSet = set()
+    wordQueue = deque([beginWord])
     
-    while q:
-        for i in range(len(q)):
-            word = q.popleft()
-            if word == endWord:
-                return res
-            for j in range(len(word)):
-                pattern = word[:j] + "*" + word[j + 1:]
-                for neiWord in nei[pattern]:
-                    if neiWord not in visit:
-                        visit.add(neiWord)
-                        q.append(neiWord)
-        res += 1
-        
-    return 0
+    sequenceCount = 1
+    
+    while wordQueue:
+        sequenceCount += 1
+        for index2 in range(len(wordQueue)):
+            poppedWord = wordQueue.popleft()
+            seenWordSet.add(poppedWord)
+            for index3 in range(len(poppedWord)):
+                patternLetterList = []
+                for index4 in range(len(poppedWord)):
+                    if index3 == index4:
+                        patternLetterList.append("*")
+                        continue
+                    patternLetterList.append(poppedWord[index4])
+            
+                wordPattern1 = "".join(patternLetterList)
+             
+                for word1 in adjacentDictionary[wordPattern1]:
+                    if word1 == endWord:
+                        return sequenceCount
+                    if word1 in seenWordSet:
+                        continue
+                    
+                    wordQueue.append(word1)
+                
+            if len(wordQueue) == 0:
+                return 0
+                    
+    return 0   
+            
+
 if __name__ == "__main__":
-    # beginWord = "hit"
-    # endWord = "cog"
-    
-    # wordList = ["hot", "dot", "dog", "lot", "log", "cog"]
-    
-    # print(ladderLength(beginWord, endWord, wordList))
-    
     # node3 = TreeNode(3)
     # node9 = TreeNode(9)
     # node20 = TreeNode(20)
@@ -147,7 +162,9 @@ if __name__ == "__main__":
     
     # root = node3
     
-    grid = [[0, 2]]
+    beginWord = "hit"
+    endWord = "cog"
     
-    print(orangesRotting(grid))
+    wordList = ["hot", "dot", "dog", "lot", "log", "cog"]
     
+    print(ladderLength(beginWord, endWord, wordList))
