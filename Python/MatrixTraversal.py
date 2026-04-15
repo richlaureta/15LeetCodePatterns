@@ -42,29 +42,43 @@ def numIslands(grid: list[list[str]]) -> int:
 def floodFill(image: list[list[int]], sr: int, sc: int, color: int) -> list[list[int]]:
     #Problem #733 Flood Fill - Easy 
     
-    colorQueue = deque()
-    colorQueue.append((sr, sc))
-    visited = set()
-    visited.add((sr, sc))
-    
-    startingValue = image[sr][sc]
-    
+    fillQueue = deque([[sr, sc]])
+    fillColor = image[sr][sc]
     image[sr][sc] = color
-    while colorQueue:
-        poppedColorLocation = colorQueue.popleft()
-        
-        checkDirections = [[poppedColorLocation[0] - 1, poppedColorLocation[1]], 
-                           [poppedColorLocation[0], poppedColorLocation[1] + 1], 
-                           [poppedColorLocation[0] + 1, poppedColorLocation[1]],
-                           [poppedColorLocation[0], poppedColorLocation[1] - 1]
-                           ]
-        
-        for count in range(0, len(checkDirections)):
-            if checkDirections[count][0] < len(image) and checkDirections[count][0] > -1 and checkDirections[count][1] < len(image[0]) and checkDirections[count][1] > -1 and image[checkDirections[count][0]][checkDirections[count][1]] == startingValue and (checkDirections[count][0], checkDirections[count][1]) not in visited:
-                image[checkDirections[count][0]][checkDirections[count][1]] = color
-                colorQueue.append((checkDirections[count][0], checkDirections[count][1]))
-                visited.add((checkDirections[count][0], checkDirections[count][1]))
     
+    while fillQueue:
+        for index in range(len(fillQueue)):
+            row, column = fillQueue.popleft()
+            
+            leftDirection = [row, column - 1]
+            upDirection = [row - 1, column]
+            rightDirection = [row, column + 1]
+            downDirection = [row + 1, column]
+            
+            if (leftDirection[1] > -1 and 
+                image[leftDirection[0]][leftDirection[1]] == fillColor and 
+                image[leftDirection[0]][leftDirection[1]] != color):
+                fillQueue.append([leftDirection[0], leftDirection[1]])
+                image[leftDirection[0]][leftDirection[1]] = color
+                
+            if (upDirection[0] > -1 and 
+                image[upDirection[0]][upDirection[1]] == fillColor and
+                image[upDirection[0]][upDirection[1]] != color):
+                fillQueue.append([upDirection[0], upDirection[1]])
+                image[upDirection[0]][upDirection[1]] = color
+                
+            if (rightDirection[1] < len(image[0]) and 
+                image[rightDirection[0]][rightDirection[1]] == fillColor and
+                image[rightDirection[0]][rightDirection[1]] != color):
+                fillQueue.append([rightDirection[0], rightDirection[1]])
+                image[rightDirection[0]][rightDirection[1]] = color
+                
+            if (downDirection[0] < len(image) and 
+                image[downDirection[0]][downDirection[1]] == fillColor and
+                image[downDirection[0]][downDirection[1]] != color):
+                fillQueue.append([downDirection[0], downDirection[1]])
+                image[downDirection[0]][downDirection[1]] = color
+                
     return image
 
 def solve(board: list[list[str]]) -> None:
@@ -110,17 +124,14 @@ def solve(board: list[list[str]]) -> None:
                     onBorderFlag[0] = False
                     flipOArray = []
             
-if __name__ == "__main__":  
-    board = [
-        ["O","X","X","O"],
-        ["X","O","O","X"],
-        ["O","X","O","X"],
-        ["X","O","X","O"]
-    ]
+if __name__ == "__main__":
+    image = [[1,1,1],
+             [1,1,0],
+             [1,0,1]]
     
-    solve(board)
+    # image = [[0,0,0],[0,0,0]]
+    sr = 1
+    sc = 1
+    color = 2
     
-    for row in board:
-        for value in row:
-            print(value, end = " ")
-        print()
+    print(floodFill(image, sr, sc, color))
