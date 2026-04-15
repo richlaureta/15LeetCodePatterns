@@ -66,41 +66,57 @@ vector<vector<int>> floodFill(vector<vector<int>> &image, int sr, int sc, int co
 {
     //Problem #733 Flood Fill - Easy
     
-    deque<pair<int, int>> colorQueue;
-    set<pair<int, int>> visited;
-    
-    colorQueue.push_back({sr, sc});
-    visited.insert({sr, sc});
-    
-    int startingValue = image[sr][sc];
-    
+    deque<pair<int, int>> fillQueue = {{sr, sc}};
+    int fillColor = image[sr][sc];
     image[sr][sc] = color;
     
-    while(colorQueue.size() != 0)
+    while((int) fillQueue.size() > 0)
     {
-        pair<int, int> poppedLocation = colorQueue.front();
-        colorQueue.pop_front();
-        
-        vector<pair<int, int>> checkDirections = {
-            {poppedLocation.first - 1, poppedLocation.second},
-            {poppedLocation.first, poppedLocation.second + 1},
-            {poppedLocation.first + 1, poppedLocation.second},
-            {poppedLocation.first, poppedLocation.second - 1}
-        };
-        
-        for(int i = 0; i < checkDirections.size(); i++)
+        int fillQueueSize = (int) fillQueue.size();
+        for(int index = 0; index < fillQueueSize; index++)
         {
-            if(checkDirections[i].first < image.size() and
-               checkDirections[i].first > -1 and
-               checkDirections[i].second < image[0].size() and
-               checkDirections[i].second > -1 and
-               image[checkDirections[i].first][checkDirections[i].second] == startingValue and
-               visited.find({checkDirections[i].first, checkDirections[i].second}) == visited.end())
+            int row = fillQueue.front().first;
+            int column = fillQueue.front().second;
+            
+            fillQueue.pop_front();
+            
+            pair<int, int> leftDirection = {row, column - 1};
+            pair<int, int> upDirection = {row - 1, column};
+            pair<int, int> rightDirection = {row, column + 1};
+            pair<int, int> downDirection = {row + 1, column};
+            
+            if(leftDirection.second > -1 and
+               image[leftDirection.first][leftDirection.second] == fillColor and
+               image[leftDirection.first][leftDirection.second] != color)
             {
-                visited.insert({checkDirections[i].first, checkDirections[i].second});
-                colorQueue.push_front({checkDirections[i].first, checkDirections[i].second});
-                image[checkDirections[i].first][checkDirections[i].second] = color;
+                fillQueue.push_back({leftDirection.first, leftDirection.second});
+                image[leftDirection.first][leftDirection.second] = color;
             }
+            
+            if(upDirection.first > -1 and
+               image[upDirection.first][upDirection.second] == fillColor and
+               image[upDirection.first][upDirection.second] != color)
+            {
+                fillQueue.push_back({upDirection.first, upDirection.second});
+                image[upDirection.first][upDirection.second] = color;
+            }
+            
+            if(rightDirection.second < (int) image[0].size() and
+               image[rightDirection.first][rightDirection.second] == fillColor and
+               image[rightDirection.first][rightDirection.second] != color)
+            {
+                fillQueue.push_back({rightDirection.first, rightDirection.second});
+                image[rightDirection.first][rightDirection.second] = color;
+            }
+            
+            if(downDirection.first < (int)image.size() and
+               image[downDirection.first][downDirection.second] == fillColor and
+               image[downDirection.first][downDirection.second] != color)
+            {
+                fillQueue.push_back({downDirection.first, downDirection.second});
+                image[downDirection.first][downDirection.second] = color;
+            }
+            
         }
     }
     

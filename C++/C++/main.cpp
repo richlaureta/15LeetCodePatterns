@@ -721,35 +721,35 @@ int main(int argc, const char * argv[]) {
     
     //Problem #127 Word Ladder - Hard - Solution Concept by YouTube Channel NeetCode - Understanding the Solution
     
-        string beginWord = "hit";
-        string endWord = "cog";
-    
-        vector<string> wordList = {"hot", "dot", "dog", "lot", "log", "cog"};
-    
-        cout << ladderLength(beginWord, endWord, wordList) << endl;
+//        string beginWord = "hit";
+//        string endWord = "cog";
+//    
+//        vector<string> wordList = {"hot", "dot", "dog", "lot", "log", "cog"};
+//    
+//        cout << ladderLength(beginWord, endWord, wordList) << endl;
     
     //Problem #733 Flood Fill - Easy
-    
-    //    vector<vector<int>> image = {
-    //        {0, 0, 0},
-    //        {0, 0, 0},
-    //        {0, 0, 0}
-    //    };
-    //
-    //    int sr = 0;
-    //    int sc = 0;
-    //    int color = 0;
-    //
-    //    vector<vector<int>> editedImage = floodFill(image, sr, sc, color);
-    //
-    //    for(int i = 0; i < editedImage.size(); i++)
-    //    {
-    //        for(int j = 0; j < editedImage[i].size(); j++)
-    //        {
-    //            cout << editedImage[i][j] << " ";
-    //        }
-    //        cout << endl;
-    //    }
+
+    vector<vector<int>> image = {
+        {1, 1, 1},
+        {1, 1, 0},
+        {1, 0, 1}
+    };
+
+    int sr = 1;
+    int sc = 1;
+    int color = 2;
+
+    vector<vector<int>> editedImage = floodFill(image, sr, sc, color);
+
+    for(int i = 0; i < editedImage.size(); i++)
+    {
+        for(int j = 0; j < editedImage[i].size(); j++)
+        {
+            cout << editedImage[i][j] << " ";
+        }
+        cout << endl;
+    }
     //Problem #130 Surrounded Regions - Medium
     //    vector<vector<char>> board = {
     //        {'X', 'X', 'X', 'X'},
