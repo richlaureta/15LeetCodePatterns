@@ -10,34 +10,33 @@ def numIslands(grid: list[list[str]]) -> int:
     for index in range(len(grid)):
         for index1 in range(len(grid[0])):
             if grid[index][index1] == "1":
-                squareQueue = deque([[index, index1]])
+                squareStack = [(index, index1)]
                 numberOfIslandsCount += 1
-                grid[index][index1] = "2"
+                grid[index][index1] = '2'
                 
-                while squareQueue:
-                    for index2 in range(len(squareQueue)):
-                        row, column = squareQueue.popleft()
-                        
-                        leftDirection = [row, column - 1]
-                        upDirection = [row - 1, column]
-                        rightDirection = [row, column + 1]
-                        downDirection = [row + 1, column]
+                while squareStack:
+                    row, column = squareStack.pop()
+                    
+                    leftDirection = [row, column - 1]
+                    upDirection = [row - 1, column]
+                    rightDirection = [row, column + 1]
+                    downDirection = [row + 1, column]
 
-                        if leftDirection[1] > -1 and grid[leftDirection[0]][leftDirection[1]] == "1":
-                            grid[leftDirection[0]][leftDirection[1]] = "2"
-                            squareQueue.append([leftDirection[0], leftDirection[1]])
-                        
-                        if upDirection[0] > -1 and grid[upDirection[0]][upDirection[1]] == "1":
-                            grid[upDirection[0]][upDirection[1]] = "2"
-                            squareQueue.append([upDirection[0], upDirection[1]])
-                        
-                        if rightDirection[1] < len(grid[0]) and grid[rightDirection[0]][rightDirection[1]] == "1":
-                            grid[rightDirection[0]][rightDirection[1]] = "2"
-                            squareQueue.append([rightDirection[0], rightDirection[1]])
-                        
-                        if downDirection[0] < len(grid) and grid[downDirection[0]][downDirection[1]] == "1":
-                            grid[downDirection[0]][downDirection[1]] = "2"
-                            squareQueue.append([downDirection[0], downDirection[1]])
+                    if leftDirection[1] > -1 and grid[leftDirection[0]][leftDirection[1]] == "1":
+                        grid[leftDirection[0]][leftDirection[1]] = '2'
+                        squareStack.append([leftDirection[0], leftDirection[1]])
+                    
+                    if upDirection[0] > -1 and grid[upDirection[0]][upDirection[1]] == "1":
+                        grid[upDirection[0]][upDirection[1]] = '2'
+                        squareStack.append([upDirection[0], upDirection[1]])
+                    
+                    if rightDirection[1] < len(grid[0]) and grid[rightDirection[0]][rightDirection[1]] == "1":
+                        grid[rightDirection[0]][rightDirection[1]] = '2'
+                        squareStack.append([rightDirection[0], rightDirection[1]])
+                    
+                    if downDirection[0] < len(grid) and grid[downDirection[0]][downDirection[1]] == "1":
+                        grid[downDirection[0]][downDirection[1]] = '2'
+                        squareStack.append([downDirection[0], downDirection[1]])
                         
     return numberOfIslandsCount
                             
