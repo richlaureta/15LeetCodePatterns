@@ -1,44 +1,55 @@
 from collections import deque 
 
 def numIslands(grid: list[list[str]]) -> int:
-    #Problem #200 Number of Islands - Medium - Solution concept from YouTube Channel named NeetCode - Understanding the Solution
+    #Problem #200 Number of Islands - Medium
     
-    if not grid:
-        return 0
-    
-    visited = set()
-    locationQueue = deque()
-    
+    seenSquareSet = set()
     numberOfIslandsCount = 0
     
-    def breadthFirstSearchIslands(index0: int, index1: int):
-        visited.add((index0, index1))
-        locationQueue.appendleft((index0, index1))
-        
-        while locationQueue:
-            verticalPop, horizontalPop = locationQueue.popleft()
-            
-            checkDirections = [
-                [verticalPop - 1, horizontalPop], 
-                [verticalPop, horizontalPop + 1],
-                [verticalPop + 1, horizontalPop],
-                [verticalPop, horizontalPop - 1]
-            ]
-            
-            for direction in checkDirections:
-                if direction[0] > -1 and direction[0] < len(grid) and direction[1] > -1 and direction[1] < len(grid[0]) and grid[direction[0]][direction[1]] == "1" and (direction[0], direction[1]) not in visited:
-                    visited.add((direction[0], direction[1]))
-                    locationQueue.append((direction[0], direction[1]))
-                    
-    for index0, value0 in enumerate(grid):
-        for index1, value1 in enumerate(value0):
-            if grid[index0][index1] == "1" and (index0, index1) not in visited:
-                numberOfIslandsCount += 1
-                breadthFirstSearchIslands(index0, index1)
-    
+    for index in range(len(grid)):
+        for index1 in range(len(grid[0])):
+            if grid[index][index1] == "1":
+                squareQueue = deque()
+                if (index, index1) not in seenSquareSet:
+                    squareQueue.append([index, index1])
+                    seenSquareSet.add((index, index1))
+                    numberOfIslandsCount += 1
+                
+                while squareQueue:
+                    for index2 in range(len(squareQueue)):
+                        row, column = squareQueue.popleft()
+                        
+                        leftDirection = [row, column - 1]
+                        upDirection = [row - 1, column]
+                        rightDirection = [row, column + 1]
+                        downDirection = [row + 1, column]
+
+                        if (leftDirection[1] > -1 and 
+                            (leftDirection[0], leftDirection[1]) not in seenSquareSet and
+                            grid[leftDirection[0]][leftDirection[1]] == "1" ):
+                            seenSquareSet.add((leftDirection[0], leftDirection[1]))
+                            squareQueue.append([leftDirection[0], leftDirection[1]])
+                        
+                        if (upDirection[0] > -1 and
+                            (upDirection[0], upDirection[1]) not in seenSquareSet and 
+                            grid[upDirection[0]][upDirection[1]] == "1"):
+                            seenSquareSet.add((upDirection[0], upDirection[1]))
+                            squareQueue.append([upDirection[0], upDirection[1]])
+                        
+                        if (rightDirection[1] < len(grid[0]) and 
+                            (rightDirection[0], rightDirection[1]) not in seenSquareSet and 
+                            grid[rightDirection[0]][rightDirection[1]] == "1"):
+                            seenSquareSet.add((rightDirection[0], rightDirection[1]))
+                            squareQueue.append([rightDirection[0], rightDirection[1]])
+                        
+                        if (downDirection[0] < len(grid) and 
+                            (downDirection[0], downDirection[1]) not in seenSquareSet and 
+                            grid[downDirection[0]][downDirection[1]] == "1"):
+                            seenSquareSet.add((downDirection[0], downDirection[1]))
+                            squareQueue.append([downDirection[0], downDirection[1]])
+                        
     return numberOfIslandsCount
-            
-        
+                            
 def floodFill(image: list[list[int]], sr: int, sc: int, color: int) -> list[list[int]]:
     #Problem #733 Flood Fill - Easy 
     
@@ -125,13 +136,10 @@ def solve(board: list[list[str]]) -> None:
                     flipOArray = []
             
 if __name__ == "__main__":
-    image = [[1,1,1],
-             [1,1,0],
-             [1,0,1]]
+    grid = [
+        ["1","1","0","0","0"],
+        ["1","1","0","0","0"],
+        ["0","0","1","0","0"],
+        ["0","0","0","1","1"]]
     
-    # image = [[0,0,0],[0,0,0]]
-    sr = 1
-    sc = 1
-    color = 2
-    
-    print(floodFill(image, sr, sc, color))
+    print(numIslands(grid))
