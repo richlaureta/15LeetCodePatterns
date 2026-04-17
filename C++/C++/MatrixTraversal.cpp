@@ -7,59 +7,63 @@
 
 #include "Header.h"
 
-void breadthFirstSearch(int rowNumber, int columnNumber, set<vector<int>>& visited, vector<vector<char>>& grid)
-{
-    queue<vector<int>> q;
-    q.push({rowNumber, columnNumber});
-    visited.insert({rowNumber, columnNumber});
-    
-    while(!q.empty())
-    {
-        int rowNum = q.front()[0];
-        int columnNum = q.front()[1];
-        q.pop();
-        
-        vector<vector<int>> directions = {{rowNum - 1, columnNum}, {rowNum, columnNum + 1}, {rowNum + 1, columnNum}, {rowNum, columnNum - 1}};
-        
-        for(int i = 0; i < directions.size(); ++i)
-        {
-            if((directions[i][0] > -1) &&
-               (directions[i][0] < grid.size()) &&
-               (directions[i][1] > -1) &&
-               (directions[i][1] < grid[0].size())&&
-               (grid[directions[i][0]][directions[i][1]] == '1') &&
-               (visited.find({directions[i][0], directions[i][1]}) == visited.end()))
-            {
-                q.push({directions[i][0], directions[i][1]});
-                visited.insert({directions[i][0], directions[i][1]});
-            }
-        }
-    }
-}
-
 int numIslands(vector<vector<char>>& grid)
 {
-    if(grid.size() == 0 || grid.empty())
-    {
-        return 0;
-    }
+    //Problem #200 Number of Islands - Medium
     
-    set<vector<int>> visited;
-    int islandCount = 0;
+    int numberOfIslandsCount = 0;
     
-    for(int i = 0; i < grid.size(); i++)
+    for(int index = 0; index < (int) grid.size(); index++)
     {
-        for(int j = 0; j < grid[i].size(); j++)
+        for(int index1 = 0; index1 < (int)grid[0].size(); index1++)
         {
-            if((grid[i][j] == '1') && visited.find({i,j}) == visited.end())
+            if(grid[index][index1] == '1')
             {
-                breadthFirstSearch(i, j, visited, grid);
-                islandCount++;
+                stack<pair<int, int>> squareStack({{index, index1}});
+                numberOfIslandsCount++;
+                grid[index][index1] = '2';
+                
+                while((int)squareStack.size() > 0)
+                {
+                    int row = squareStack.top().first;
+                    int column = squareStack.top().second;
+                    
+                    squareStack.pop();
+                    
+                    pair<int, int> leftDirection = {row, column -1};
+                    pair<int, int> upDirection = {row - 1, column};
+                    pair<int, int> rightDirection = {row, column + 1};
+                    pair<int, int> downDirection = {row + 1, column};
+                    
+                    if(leftDirection.second > -1 and grid[leftDirection.first][leftDirection.second] == '1')
+                    {
+                        grid[leftDirection.first][leftDirection.second] = '2';
+                        squareStack.push({leftDirection.first, leftDirection.second});
+                    }
+                    
+                    if(upDirection.first > -1 and grid[upDirection.first][upDirection.second] == '1')
+                    {
+                        grid[upDirection.first][upDirection.second] = '2';
+                        squareStack.push({upDirection.first, upDirection.second});
+                    }
+                    
+                    if(rightDirection.second < (int) grid[0].size() and grid[rightDirection.first][rightDirection.second] == '1')
+                    {
+                        grid[rightDirection.first][rightDirection.second] = '2';
+                        squareStack.push({rightDirection.first, rightDirection.second});
+                    }
+                    
+                    if(downDirection.first < (int) grid.size() and grid[downDirection.first][downDirection.second] == '1')
+                    {
+                        grid[downDirection.first][downDirection.second] = '2';
+                        squareStack.push({downDirection.first, downDirection.second});
+                    }
+                }
             }
         }
     }
     
-    return islandCount;
+    return numberOfIslandsCount;
 }
 
 vector<vector<int>> floodFill(vector<vector<int>> &image, int sr, int sc, int color)

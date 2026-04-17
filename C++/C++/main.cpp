@@ -221,21 +221,21 @@ int main(int argc, const char * argv[]) {
 //        }
     
     //Problem #200 Number of Islands
-    //    vector<vector<char>> grid = {
-    //        {'1','1','1','1','0'},
-    //        {'1','1','0','1','0'},
-    //        {'1','1','0','0','0'},
-    //        {'0','0','0','0','0'}
-    //    };
-    
-    //    vector<vector<char>> grid = {
-    //        {'1','1','0','0','0'},
-    //        {'1','1','0','0','0'},
-    //        {'0','0','1','0','0'},
-    //        {'0','0','0','1','1'}
-    //    };
-    //
-    //    cout << numIslands(grid) << endl;
+    vector<vector<char>> grid = {
+        {'1','1','1','1','0'},
+        {'1','1','0','1','0'},
+        {'1','1','0','0','0'},
+        {'0','0','0','0','0'}
+    };
+
+//    vector<vector<char>> grid = {
+//        {'1','1','0','0','0'},
+//        {'1','1','0','0','0'},
+//        {'0','0','1','0','0'},
+//        {'0','0','0','1','1'}
+//    };
+
+    cout << numIslands(grid) << endl;
     
     // Problem #78 Subsets
     //    vector<int> nums = {1, 2, 3};
@@ -730,26 +730,26 @@ int main(int argc, const char * argv[]) {
     
     //Problem #733 Flood Fill - Easy
 
-    vector<vector<int>> image = {
-        {1, 1, 1},
-        {1, 1, 0},
-        {1, 0, 1}
-    };
-
-    int sr = 1;
-    int sc = 1;
-    int color = 2;
-
-    vector<vector<int>> editedImage = floodFill(image, sr, sc, color);
-
-    for(int i = 0; i < editedImage.size(); i++)
-    {
-        for(int j = 0; j < editedImage[i].size(); j++)
-        {
-            cout << editedImage[i][j] << " ";
-        }
-        cout << endl;
-    }
+//    vector<vector<int>> image = {
+//        {1, 1, 1},
+//        {1, 1, 0},
+//        {1, 0, 1}
+//    };
+//
+//    int sr = 1;
+//    int sc = 1;
+//    int color = 2;
+//
+//    vector<vector<int>> editedImage = floodFill(image, sr, sc, color);
+//
+//    for(int i = 0; i < editedImage.size(); i++)
+//    {
+//        for(int j = 0; j < editedImage[i].size(); j++)
+//        {
+//            cout << editedImage[i][j] << " ";
+//        }
+//        cout << endl;
+//    }
     //Problem #130 Surrounded Regions - Medium
     //    vector<vector<char>> board = {
     //        {'X', 'X', 'X', 'X'},
