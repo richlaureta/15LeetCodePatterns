@@ -2,6 +2,7 @@ from collections import deque
 
 def numIslands(grid: list[list[str]]) -> int:
     #Problem #200 Number of Islands - Medium
+    
     if not grid or not grid[0]:
             return 0
         
@@ -84,52 +85,37 @@ def floodFill(image: list[list[int]], sr: int, sc: int, color: int) -> list[list
 
 def solve(board: list[list[str]]) -> None:
     #Problem #130 Surrounded Regions - Medium
+
     
-    visited = set()
-    flipOArray = []
-    locationQueue = deque()
+    for index in range(len(board)):
+        for index1 in range(len(board[0])):
+            if (board[index][index1] == 'O' and 
+                index > 0 and 
+                index < len(board) - 1 and
+                index1 > 0 and
+                index1 < len(board[0]) - 1):
+                
+                leftDirection = [index, index1 - 1]
+                upDirection = [index - 1, index1]
+                rightDirection = [index, index1 + 1]
+                downDirection = [index + 1, index1]
+                
+                while True:
+                    if board[leftDirection[0]][leftDirection[1]] != 'X' and leftDirection[1] > -1:
+                        leftDirection[1] -= 1
+                    else:
+                        break
+                
+                if leftDirection[1] == -1:
+                    continue
+                
+                
     
-    onBorderFlag = [False]
-    
-    def breadthFirstSearchRegion(index0: int, index1: int):
-        locationQueue.append((index0, index1))
-        flipOArray.append([index0, index1])
-        visited.add((index0, index1))
-        
-        if index0 == 0 or index0 == len(board) - 1 or index1 == 0 or index1 == len(board[0]) - 1:
-            onBorderFlag[0] = True
-            
-        while locationQueue:
-            row, column = locationQueue.popleft()
-            
-            checkDirections = [[row - 1, column], [row, column + 1], [row + 1, column], [row, column - 1]]
-            
-            for direction in checkDirections:
-                if direction[0] > -1 and direction[0] < len(board) and direction[1] > -1 and direction[1] < len(board[0]) and board[direction[0]][direction[1]] == "O" and (direction[0], direction[1]) not in visited:
-                    visited.add((direction[0], direction[1]))
-                    locationQueue.append((direction[0], direction[1]))
-                    flipOArray.append([direction[0], direction[1]])
-                    if direction[0] == 0 or direction[0] == len(board) - 1 or direction[1] == 0 or direction[1] == len(board[0]) - 1:
-                        onBorderFlag[0] = True
-                    
-    for index0, row in enumerate(board):
-        for index1, value in enumerate(row):
-            if board[index0][index1] == "O" and (index0, index1) not in visited:
-                breadthFirstSearchRegion(index0, index1)
-                if onBorderFlag[0] == False:
-                    for x, y in flipOArray:
-                        board[x][y] = "X"
-                    flipOArray = []
-                    
-                else:
-                    onBorderFlag[0] = False
-                    flipOArray = []
-            
 if __name__ == "__main__":
-    grid = [
-        ["1","1","0","0","0"],
-        ["1","1","0","0","0"],
-        ["0","0","1","0","0"],
-        ["0","0","0","1","1"]]
+    board = [["X","X","X","X"],
+             ["O","O","O","X"],
+             ["X","X","O","X"],
+             ["X","O","X","X"]]
     
-    print(numIslands(grid))
+    # board = [["X"]]
+    print(solve(board))
