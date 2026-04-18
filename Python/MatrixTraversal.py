@@ -85,37 +85,81 @@ def floodFill(image: list[list[int]], sr: int, sc: int, color: int) -> list[list
 
 def solve(board: list[list[str]]) -> None:
     #Problem #130 Surrounded Regions - Medium
-
+    
+    connectedSqauresQueue = deque()
+    seenSqaureCells = set()
     
     for index in range(len(board)):
         for index1 in range(len(board[0])):
-            if (board[index][index1] == 'O' and 
+            if ((index, index1) not in seenSqaureCells and
+                board[index][index1] == 'O' and 
                 index > 0 and 
                 index < len(board) - 1 and
                 index1 > 0 and
                 index1 < len(board[0]) - 1):
                 
-                leftDirection = [index, index1 - 1]
-                upDirection = [index - 1, index1]
-                rightDirection = [index, index1 + 1]
-                downDirection = [index + 1, index1]
+                connectedSquaresList = [[index, index1]]
+                connectedSqauresQueue.append([index, index1])
+                seenSqaureCells.add((index, index1))
                 
-                while True:
-                    if board[leftDirection[0]][leftDirection[1]] != 'X' and leftDirection[1] > -1:
-                        leftDirection[1] -= 1
-                    else:
-                        break
+                connectedToEdgeFlag = False
                 
-                if leftDirection[1] == -1:
-                    continue
-                
-                
-    
+                while connectedSqauresQueue:
+                    for index2 in range(len(connectedSqauresQueue)):
+                        row, column = connectedSqauresQueue.popleft()
+                        
+                        leftDirection = [row, column - 1]
+                        upDirection = [row - 1, column]
+                        rightDirection = [row, column + 1]
+                        downDirection = [row + 1, column]
+                        
+                        if (leftDirection[1] > -1 and
+                            (leftDirection[0], leftDirection[1]) not in seenSqaureCells and
+                            board[leftDirection[0]][leftDirection[1]] == 'O'):
+                            if leftDirection[1] == 0:
+                                connectedToEdgeFlag = True
+                                
+                            seenSqaureCells.add((leftDirection[0], leftDirection[1]))
+                            connectedSqauresQueue.append([leftDirection[0], leftDirection[1]])
+                            connectedSquaresList.append([leftDirection[0], leftDirection[1]])
+                        
+                        if (upDirection[0] > -1 and 
+                            (upDirection[0], upDirection[1]) not in seenSqaureCells and
+                            board[upDirection[0]][upDirection[1]] == 'O'):
+                            if upDirection[0] == 0:
+                                connectedToEdgeFlag = True
+                                
+                            seenSqaureCells.add((upDirection[0], upDirection[1]))
+                            connectedSqauresQueue.append([upDirection[0], upDirection[1]])
+                            connectedSquaresList.append([upDirection[0], upDirection[1]])
+                            
+                        if (rightDirection[1] < len(board[0]) and
+                            (rightDirection[0], rightDirection[1]) not in seenSqaureCells and 
+                            board[rightDirection[0]][rightDirection[1]] == 'O'):
+                            if rightDirection[1] == len(board[0]) - 1:
+                                connectedToEdgeFlag = True
+                                
+                            seenSqaureCells.add((rightDirection[0], rightDirection[1]))
+                            connectedSqauresQueue.append([rightDirection[0], rightDirection[1]])
+                            connectedSquaresList.append([rightDirection[0], rightDirection[1]])
+                        
+                        if (downDirection[0] < len(board) and
+                            (downDirection[0], downDirection[1]) not in seenSqaureCells and
+                            board[downDirection[0]][downDirection[1]] == 'O'):
+                            if downDirection[0] == len(board) - 1:
+                                connectedToEdgeFlag = True
+                                
+                            seenSqaureCells.add((downDirection[0], downDirection[1]))
+                            connectedSqauresQueue.append([downDirection[0], downDirection[1]])
+                            connectedSquaresList.append([downDirection[0], downDirection[1]])
+                        
+                if connectedToEdgeFlag == False:
+                    for square in connectedSquaresList:
+                        board[square[0]][square[1]] = 'X'
+
+                                             
 if __name__ == "__main__":
-    board = [["X","X","X","X"],
-             ["O","O","O","X"],
-             ["X","X","O","X"],
-             ["X","O","X","X"]]
+    board = [["O","O","O"],["O","O","O"],["O","O","O"]]
     
     # board = [["X"]]
     print(solve(board))
