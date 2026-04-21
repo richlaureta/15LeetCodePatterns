@@ -221,12 +221,12 @@ int main(int argc, const char * argv[]) {
 //        }
     
     //Problem #200 Number of Islands
-    vector<vector<char>> grid = {
-        {'1','1','1','1','0'},
-        {'1','1','0','1','0'},
-        {'1','1','0','0','0'},
-        {'0','0','0','0','0'}
-    };
+//    vector<vector<char>> grid = {
+//        {'1','1','1','1','0'},
+//        {'1','1','0','1','0'},
+//        {'1','1','0','0','0'},
+//        {'0','0','0','0','0'}
+//    };
 
 //    vector<vector<char>> grid = {
 //        {'1','1','0','0','0'},
@@ -235,7 +235,7 @@ int main(int argc, const char * argv[]) {
 //        {'0','0','0','1','1'}
 //    };
 
-    cout << numIslands(grid) << endl;
+//    cout << numIslands(grid) << endl;
     
     // Problem #78 Subsets
     //    vector<int> nums = {1, 2, 3};
@@ -751,25 +751,27 @@ int main(int argc, const char * argv[]) {
 //        cout << endl;
 //    }
     //Problem #130 Surrounded Regions - Medium
-    //    vector<vector<char>> board = {
-    //        {'X', 'X', 'X', 'X'},
-    //        {'X', 'O', 'O', 'X'},
-    //        {'X', 'X', 'O', 'X'},
-    //        {'X', 'O', 'X', 'X'}
-    //    };
-    //    vector<vector<char>> board = {
-    //        {'X'}
-    //    };
-    //    solve(board);
-    //
-    //    for(int i = 0; i < board.size(); i++)
-    //    {
-    //        for(int j = 0; j < board[i].size(); j++)
-    //        {
-    //            cout << board[i][j] << " ";
-    //        }
-    //        cout << endl;
-    //    }
+    vector<vector<char>> board = {
+        {'O','X','O','O','X','X'},
+        {'O','X','X','X','O','X'},
+        {'X','O','O','X','O','O'},
+        {'X','O','X','X','X','X'},
+        {'O','O','X','O','X','X'},
+        {'X','X','O','O','O','O'}
+    };
+//    vector<vector<char>> board = {
+//        {'X'}
+//    };
+    solve(board);
+
+    for(int i = 0; i < board.size(); i++)
+    {
+        for(int j = 0; j < board[i].size(); j++)
+        {
+            cout << board[i][j] << " ";
+        }
+        cout << endl;
+    }
     
     //Problem #46 Permutaions - Medium - Solution Concept by Greg Hogg - Understanding the Solution
     //    vector<int> nums = {1, 2, 3};

@@ -127,76 +127,94 @@ vector<vector<int>> floodFill(vector<vector<int>> &image, int sr, int sc, int co
     return image;
 }
 
-void breadthFirstSearchRegion(int index0, int index1, vector<vector<char>> &board, bool &nearBorderFlag, set<pair<int,int>> &visited, deque<pair<int, int>> &locationQueue, vector<pair<int,int>> &setToO)
-{
-    //Problem #130 Surrounded Region - Medium
-    
-    visited.insert({index0, index1});
-    setToO.push_back({index0, index1});
-    locationQueue.push_back({index0, index1});
-    
-    if((index0 == 0) or (index0 == board.size() - 1) or (index1 == 0) or (index1 == board[0].size() - 1))
-    {
-        nearBorderFlag = true;
-    }
-    
-    while(locationQueue.size() != 0)
-    {
-        int row = locationQueue.front().first;
-        int column = locationQueue.front().second;
-        
-        locationQueue.pop_front();
-        
-        vector<pair<int, int>> checkDirections = {{row - 1, column}, {row, column + 1}, {row + 1, column}, {row, column - 1}};
-        
-        for(int i = 0; i < checkDirections.size(); i++)
-        {
-            if((checkDirections[i].first > -1) and (checkDirections[i].first < board.size()) and (checkDirections[i].second > -1) and (checkDirections[i].second < board[0].size()) and board[checkDirections[i].first][checkDirections[i].second] == 'O' and (visited.find({checkDirections[i].first, checkDirections[i].second}) == visited.end()))
-            {
-                visited.insert({checkDirections[i].first, checkDirections[i].second});
-                locationQueue.push_back({checkDirections[i].first, checkDirections[i].second});
-                setToO.push_back({checkDirections[i].first, checkDirections[i].second});
-                
-                if((checkDirections[i].first == 0) or (checkDirections[i].first == board.size() - 1) or (checkDirections[i].second == 0) or (checkDirections[i].second == board[0].size() - 1))
-                {
-                    nearBorderFlag = true;
-                }
-            }
-        }
-    }
-}
-
 void solve(vector<vector<char>> &board)
 {
     //Problem #130 Surrounded Regions - Medium
     
-    set<pair<int, int>> visited;
-    deque<pair<int, int>> locationQueue;
-    vector<pair<int,int>> setToO;
-    bool nearBorderFlag = false;
+    deque<pair<int, int>> connectedSquaresQueue;
+    set<pair<int, int>> seenSquareCells;
     
-    
-    for(int i = 0; i < board.size(); i++)
+    for(int index = 0; index < (int)board.size(); index++)
     {
-        for(int j = 0; j < board[i].size(); j++)
+        for(int index1 = 0; index1 < (int)board[0].size(); index1++)
         {
-            if((board[i][j] == 'O') and (visited.find({i, j}) == visited.end()))
+            if(seenSquareCells.find({index, index1}) == seenSquareCells.end() and
+               board[index][index1] == 'O' and
+               index > 0 and
+               index < ((int) board.size()) - 1 and
+               index1 > 0 and
+               index1 < (int)board[0].size() - 1)
             {
-                breadthFirstSearchRegion(i, j, board, nearBorderFlag, visited, locationQueue, setToO);
+                vector<pair<int, int>> connectedSquaresVector = {{index, index1}};
+                connectedSquaresQueue.push_back({index, index1});
+                seenSquareCells.insert({index, index1});
                 
-                if(nearBorderFlag == false)
+                bool connectedToEdgeFlag = false;
+                
+                while((int)connectedSquaresQueue.size() > 0)
                 {
-                    for(int i = 0; i < setToO.size(); i++)
+                    int connectedSquaresQueueSize = (int)connectedSquaresQueue.size();
+                    
+                    for(int index2 = 0; index2 < connectedSquaresQueueSize; index2++)
                     {
-                        board[setToO[i].first][setToO[i].second] = 'X';
+                        int row = connectedSquaresQueue.front().first;
+                        int column = connectedSquaresQueue.front().second;
+                        
+                        connectedSquaresQueue.pop_front();
+                        
+                        pair<int, int> leftDirection = {row, column - 1};
+                        pair<int, int> upDirection = {row - 1, column};
+                        pair<int, int> rightDirection = {row, column + 1};
+                        pair<int, int> downDirection = {row + 1, column};
+                        
+                        if(leftDirection.second > -1 and
+                           seenSquareCells.find({leftDirection.first, leftDirection.second}) == seenSquareCells.end() and
+                           board[leftDirection.first][leftDirection.second] == 'O')
+                        {
+                            if(leftDirection.second == 0) connectedToEdgeFlag = true;
+                            
+                            seenSquareCells.insert({leftDirection.first, leftDirection.second});
+                            connectedSquaresQueue.push_back({leftDirection.first, leftDirection.second});
+                            connectedSquaresVector.push_back({leftDirection.first, leftDirection.second});
+                        }
+                        
+                        if(upDirection.first > -1 and
+                           seenSquareCells.find({upDirection.first, upDirection.second}) == seenSquareCells.end() and
+                           board[upDirection.first][upDirection.second] == 'O')
+                        {
+                            if(upDirection.first == 0) connectedToEdgeFlag = true;
+                            
+                            seenSquareCells.insert({upDirection.first, upDirection.second});
+                            connectedSquaresQueue.push_back({upDirection.first, upDirection.second});
+                            connectedSquaresVector.push_back({upDirection.first, upDirection.second});
+                        }
+                        
+                        if(rightDirection.second < (int) board[0].size() and
+                           seenSquareCells.find({rightDirection.first, rightDirection.second}) == seenSquareCells.end() and
+                           board[rightDirection.first][rightDirection.second] == 'O')
+                        {
+                            if(rightDirection.second == (int) board[0].size() - 1) connectedToEdgeFlag = true;
+                            
+                            seenSquareCells.insert({rightDirection.first, rightDirection.second});
+                            connectedSquaresQueue.push_back({rightDirection.first, rightDirection.second});
+                            connectedSquaresVector.push_back({rightDirection.first, rightDirection.second});
+                        }
+                        
+                        if(downDirection.first < (int) board.size() and
+                           seenSquareCells.find({downDirection.first, downDirection.second}) == seenSquareCells.end() and
+                           board[downDirection.first][downDirection.second] == 'O')
+                        {
+                            if(downDirection.first == (int) board.size() - 1) connectedToEdgeFlag = true;
+                            
+                            seenSquareCells.insert({downDirection.first, downDirection.second});
+                            connectedSquaresQueue.push_back({downDirection.first, downDirection.second});
+                            connectedSquaresVector.push_back({downDirection.first, downDirection.second});
+                        }
                     }
-                    setToO = {};
                 }
-                else
-                {
-                    nearBorderFlag = false;
-                    setToO = {};
-                }
+                
+                if(connectedToEdgeFlag == false) for(pair<int, int> square: connectedSquaresVector) board[square.first][square.second] = 'X';
+
             }
         }
     }
