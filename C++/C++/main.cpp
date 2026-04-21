@@ -750,7 +750,7 @@ int main(int argc, const char * argv[]) {
 //        }
 //        cout << endl;
 //    }
-    //Problem #130 Surrounded Regions - Medium
+    //Problem #130 Surrounded Regions - Medium - Not the Most Efficient Solution
     vector<vector<char>> board = {
         {'O','X','O','O','X','X'},
         {'O','X','X','X','O','X'},
