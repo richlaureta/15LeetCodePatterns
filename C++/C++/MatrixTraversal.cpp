@@ -132,19 +132,19 @@ void solve(vector<vector<char>> &board)
     //Problem #130 Surrounded Regions - Medium - Not the Most Efficient Solution
     
     deque<pair<int, int>> connectedSquaresQueue;
-    set<pair<int, int>> seenSquareCells;
+    unordered_set<char*> seenSquarePointer;
 
     for (int index = 0; index < (int)board.size(); index++) {
         for (int index1 = 0; index1 < (int)board[0].size(); index1++) {
-            if (seenSquareCells.find({index, index1}) ==
-                    seenSquareCells.end() and
+            if (seenSquarePointer.find(&board[index][index1]) ==
+                    seenSquarePointer.end() and
                 board[index][index1] == 'O' and index > 0 and
                 index < ((int)board.size()) - 1 and index1 > 0 and
                 index1 < (int)board[0].size() - 1) {
                 vector<pair<int, int>> connectedSquaresVector = {
                     {index, index1}};
                 connectedSquaresQueue.push_back({index, index1});
-                seenSquareCells.insert({index, index1});
+                seenSquarePointer.insert(&board[index][index1]);
 
                 bool connectedToEdgeFlag = false;
 
@@ -165,16 +165,13 @@ void solve(vector<vector<char>> &board)
                         pair<int, int> downDirection = {row + 1, column};
 
                         if (leftDirection.second > -1 and
-                            seenSquareCells.find({leftDirection.first,
-                                                  leftDirection.second}) ==
-                                seenSquareCells.end() and
+                            seenSquarePointer.find(&board[leftDirection.first][leftDirection.second]) == seenSquarePointer.end() and
                             board[leftDirection.first]
                                  [leftDirection.second] == 'O') {
                             if (leftDirection.second == 0)
                                 connectedToEdgeFlag = true;
 
-                            seenSquareCells.insert({leftDirection.first,
-                                                    leftDirection.second});
+                            seenSquarePointer.insert(&board[leftDirection.first][leftDirection.second]);
                             connectedSquaresQueue.push_back(
                                 {leftDirection.first,
                                  leftDirection.second});
@@ -184,16 +181,16 @@ void solve(vector<vector<char>> &board)
                         }
 
                         if (upDirection.first > -1 and
-                            seenSquareCells.find(
-                                {upDirection.first, upDirection.second}) ==
-                                seenSquareCells.end() and
+                            seenSquarePointer.find(
+                                &board[upDirection.first][upDirection.second]) ==
+                                seenSquarePointer.end() and
                             board[upDirection.first][upDirection.second] ==
                                 'O') {
                             if (upDirection.first == 0)
                                 connectedToEdgeFlag = true;
 
-                            seenSquareCells.insert(
-                                {upDirection.first, upDirection.second});
+                            seenSquarePointer.insert(
+                                &board[upDirection.first][upDirection.second]);
                             connectedSquaresQueue.push_back(
                                 {upDirection.first, upDirection.second});
                             connectedSquaresVector.push_back(
@@ -201,17 +198,14 @@ void solve(vector<vector<char>> &board)
                         }
 
                         if (rightDirection.second < (int)board[0].size() and
-                            seenSquareCells.find({rightDirection.first,
-                                                  rightDirection.second}) ==
-                                seenSquareCells.end() and
+                            seenSquarePointer.find(&board[rightDirection.first][rightDirection.second]) == seenSquarePointer.end() and
                             board[rightDirection.first]
                                  [rightDirection.second] == 'O') {
                             if (rightDirection.second ==
                                 (int)board[0].size() - 1)
                                 connectedToEdgeFlag = true;
 
-                            seenSquareCells.insert({rightDirection.first,
-                                                    rightDirection.second});
+                            seenSquarePointer.insert(&board[rightDirection.first][rightDirection.second]);
                             connectedSquaresQueue.push_back(
                                 {rightDirection.first,
                                  rightDirection.second});
@@ -221,17 +215,14 @@ void solve(vector<vector<char>> &board)
                         }
 
                         if (downDirection.first < (int)board.size() and
-                            seenSquareCells.find({downDirection.first,
-                                                  downDirection.second}) ==
-                                seenSquareCells.end() and
+                            seenSquarePointer.find(&board[downDirection.first][downDirection.second]) == seenSquarePointer.end() and
                             board[downDirection.first]
                                  [downDirection.second] == 'O') {
                             if (downDirection.first ==
                                 (int)board.size() - 1)
                                 connectedToEdgeFlag = true;
 
-                            seenSquareCells.insert({downDirection.first,
-                                                    downDirection.second});
+                            seenSquarePointer.insert(&board[downDirection.first][downDirection.second]);
                             connectedSquaresQueue.push_back(
                                 {downDirection.first,
                                  downDirection.second});
