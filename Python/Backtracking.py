@@ -27,6 +27,7 @@ def permute(nums: list[int]) -> list[list[int]]:
     
     solution = []
     partialSolution = []
+    numberSet = set()
     
     def backTracking():
         if len(nums) == len(partialSolution):
@@ -34,10 +35,11 @@ def permute(nums: list[int]) -> list[list[int]]:
             return
         
         for number in nums:
-            if number not in partialSolution:
+            if number not in numberSet:
                 partialSolution.append(number)
+                numberSet.add(number)
                 backTracking()
-                partialSolution.pop()
+                numberSet.remove(partialSolution.pop())
                 
     backTracking()
     
@@ -81,6 +83,6 @@ def solveNQueens(n: int) -> list[list[str]]:
     return result
     
 if __name__ == "__main__":
-    nums = [1, 2, 3]
+    nums = [1, 2, 3, 4, 5, 6, 7]
     
     print(permute(nums))
