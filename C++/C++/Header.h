@@ -184,7 +184,7 @@ int ladderLength(string beginWord, string endWord, vector<string> &wordList);
 vector<vector<int>> floodFill(vector<vector<int>> &image, int sr, int sc, int color);
 void solve(vector<vector<char>> &board);
 vector<vector<int>> permute(vector<int> &nums);
-void depthFirstSearchPermutation(vector<int> &partialSolution, vector<vector<int>> &answer, vector<int> &nums);
+void depthFirstSearchPermutation(vector<int> &partialSolution, vector<vector<int>> &answer, vector<int> &nums, unordered_set<int> &numberSet);
 void depthFirstSearchSubsets(int index, vector<int>& nums, vector<int>& partialSolution, vector<vector<int>>& answer);
 vector<vector<string>> solveNQueens(int n);
 void depthFirstSearchQueens(int row0, int nSize, set<int> &column, set<int> &positiveDiagonal, set<int> &negativeDiagonal, vector<vector<string>> &result, vector<vector<char>> &board);

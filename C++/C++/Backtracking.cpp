@@ -39,39 +39,27 @@ vector<vector<int>> subsets(vector<int>& nums) {
      return answer;
  }
 
-void depthFirstSearchPermutation(vector<int> &partialSolution, vector<vector<int>> &answer, vector<int> &nums)
+void depthFirstSearchPermutation(vector<int> &partialSolution, vector<vector<int>> &answer, vector<int> &nums, unordered_set<int> &numberSet)
 {
     //Problem #46 Permutaions - Medium - Solution Concept by YouTube Channel Greg Hogg - Understanding the Solution
     
-    if(partialSolution.size() == nums.size())
+    if((int)partialSolution.size() == (int)nums.size())
     {
-        vector<int> copy = partialSolution;
+        vector<int> copy(partialSolution);
         answer.push_back(copy);
         return;
     }
     
-    for(int i = 0; i < nums.size(); i++)
+    for(int number: nums)
     {
-        bool inThereFlag = false;
-        
-        for(int j = 0; j < partialSolution.size(); j++)
+        if(numberSet.find(number) == numberSet.end())
         {
-            if(nums[i] == partialSolution[j])
-            {
-                inThereFlag = true;
-                break;
-            }
-        }
-        
-        if(inThereFlag == false)
-        {
-            partialSolution.push_back(nums[i]);
-            depthFirstSearchPermutation(partialSolution, answer, nums);
+            partialSolution.push_back(number);
+            numberSet.insert(number);
+            depthFirstSearchPermutation(partialSolution, answer, nums, numberSet);
+            int poppedNumber = partialSolution[(int)partialSolution.size() - 1];
             partialSolution.pop_back();
-        }
-        else
-        {
-            inThereFlag = false;
+            numberSet.erase(poppedNumber);
         }
     }
 }
@@ -82,8 +70,9 @@ vector<vector<int>> permute(vector<int> &nums)
     
     vector<int> partialSolution;
     vector<vector<int>> answer;
+    unordered_set<int> numberSet;
     
-    depthFirstSearchPermutation(partialSolution, answer, nums);
+    depthFirstSearchPermutation(partialSolution, answer, nums, numberSet);
     
     return answer;
     
