@@ -23,26 +23,25 @@ def subsets(nums: list[int]) -> list[list[int]]:
     
 
 def permute(nums: list[int]) -> list[list[int]]:
-    #Problem #46 Permutations - Medium - Solution Concept by YouTube Channel Greg Hogg - Understanding the Solution
-     
-    length = len(nums)
-     
-    answer = []
+    #Problem #46 Permutations - Medium - Solution Concept by YouTube Channel Gregg Hogg - Understanding the Solution
+    
+    solution = []
     partialSolution = []
     
-    def depthFirstSearchPermutation():
-        if len(partialSolution) == length:
-            answer.append(partialSolution.copy())
+    def backTracking():
+        if len(nums) == len(partialSolution):
+            solution.append(partialSolution.copy())
             return
+        
         for number in nums:
             if number not in partialSolution:
                 partialSolution.append(number)
-                depthFirstSearchPermutation()
+                backTracking()
                 partialSolution.pop()
                 
-    depthFirstSearchPermutation()
+    backTracking()
     
-    return answer
+    return solution
 
 def solveNQueens(n: int) -> list[list[str]]:
     #Problem #51 N-Queens - Hard - Solution Concept by YouTube Channel NeetCode - Understanding the Solution
@@ -82,6 +81,6 @@ def solveNQueens(n: int) -> list[list[str]]:
     return result
     
 if __name__ == "__main__":
-    n = 4
+    nums = [1, 2, 3]
     
-    print(solveNQueens(n))
+    print(permute(nums))
