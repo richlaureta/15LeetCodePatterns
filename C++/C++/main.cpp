@@ -237,18 +237,18 @@ int main(int argc, const char * argv[]) {
 
 //    cout << numIslands(grid) << endl;
     
-    // Problem #78 Subsets
-    //    vector<int> nums = {1, 2, 3};
-    //
-    //    vector<vector<int>> powerSet = subsets(nums);
-    //
-    //    for(const auto& iterator: powerSet){
-    //        for(int i = 0; i < iterator.size(); i++)
-    //        {
-    //            cout << iterator[i] << " ";
-    //        }
-    //        cout << ", " << endl;
-    //    }
+//     Problem #78 Subsets
+    vector<int> nums = {1, 2, 3};
+
+    vector<vector<int>> powerSet = subsets(nums);
+
+    for(const auto& iterator: powerSet){
+        for(int i = 0; i < iterator.size(); i++)
+        {
+            cout << iterator[i] << " ";
+        }
+        cout << ", " << endl;
+    }
     
     //Problem #151 Reverse Words in a String
     //    string s = "  hello world  ";
@@ -751,41 +751,41 @@ int main(int argc, const char * argv[]) {
 //        cout << endl;
 //    }
     //Problem #130 Surrounded Regions - Medium - Not the Most Efficient Solution
-    vector<vector<char>> board = {
-        {'O','X','O','O','X','X'},
-        {'O','X','X','X','O','X'},
-        {'X','O','O','X','O','O'},
-        {'X','O','X','X','X','X'},
-        {'O','O','X','O','X','X'},
-        {'X','X','O','O','O','O'}
-    };
+//    vector<vector<char>> board = {
+//        {'O','X','O','O','X','X'},
+//        {'O','X','X','X','O','X'},
+//        {'X','O','O','X','O','O'},
+//        {'X','O','X','X','X','X'},
+//        {'O','O','X','O','X','X'},
+//        {'X','X','O','O','O','O'}
+//    };
 //    vector<vector<char>> board = {
 //        {'X'}
 //    };
-    solve(board);
-
-    for(int i = 0; i < board.size(); i++)
-    {
-        for(int j = 0; j < board[i].size(); j++)
-        {
-            cout << board[i][j] << " ";
-        }
-        cout << endl;
-    }
+//    solve(board);
+//
+//    for(int i = 0; i < board.size(); i++)
+//    {
+//        for(int j = 0; j < board[i].size(); j++)
+//        {
+//            cout << board[i][j] << " ";
+//        }
+//        cout << endl;
+//    }
     
     //Problem #46 Permutaions - Medium - Solution Concept by Greg Hogg - Understanding the Solution
-    //    vector<int> nums = {1, 2, 3};
-    //
-    //    vector<vector<int>> answer = permute(nums);
-    //
-    //    for(int i = 0; i < answer.size(); i++)
-    //    {
-    //        for(int j = 0; j < answer[i].size(); j++)
-    //        {
-    //            cout << answer[i][j] << " ";
-    //        }
-    //        cout << endl;
-    //    }
+//    vector<int> nums = {1, 2, 3, 4, 5, 6};
+//
+//    vector<vector<int>> answer = permute(nums);
+//
+//    for(int i = 0; i < answer.size(); i++)
+//    {
+//        for(int j = 0; j < answer[i].size(); j++)
+//        {
+//            cout << answer[i][j] << " ";
+//        }
+//        cout << endl;
+    }
     
     //Problem #51 N-Queens - Hard - Solution Concept by NeetCode - Understanding the Solution
     //    int n = 4;

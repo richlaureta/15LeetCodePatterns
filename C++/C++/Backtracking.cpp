@@ -12,7 +12,7 @@ void depthFirstSearchSubsets(int index, vector<int>& nums,
     // Problem #78 Subsests - Medium - Solution Concept by YouTube Channel
     // Greg Hogg - Understanding the Solution
 
-    if (index == nums.size()) {
+    if (index >= nums.size()) {
         vector<int> copy = partialSolution;
         answer.push_back(copy);
         return;

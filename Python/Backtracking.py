@@ -1,26 +1,24 @@
 def subsets(nums: list[int]) -> list[list[int]]:
-    #Problem #78 Subsets - Medium -  Solution Concept by YouTube Channel Greg Hogg - Understanding the Solution 
-
-    answer: list[list[int]] = []
-    partialSolution: list[int] = []
-  
-    def depthFirstSearchSubsets(index):
-        if index == len(nums):
-            answer.append(partialSolution.copy())
+    #Problem #78 Subsets - Medium - Solution Concept by YouTube Channel NeetCode - Understanding the Solution
+    
+    completeSubsets = []
+    subset = []
+    
+    def depthFirstSearchSubsets(index: int):
+        if index >= len(nums):
+            completeSubsets.append(subset.copy())
             return
         
+        subset.append(nums[index])
         depthFirstSearchSubsets(index + 1)
         
-        partialSolution.append(nums[index])
-        
+        subset.pop()
         depthFirstSearchSubsets(index + 1)
-        
-        partialSolution.pop()
-                            
-    depthFirstSearchSubsets(0)
-        
-    return answer
     
+    
+    depthFirstSearchSubsets(0)
+    
+    return completeSubsets
 
 def permute(nums: list[int]) -> list[list[int]]:
     #Problem #46 Permutations - Medium - Solution Concept by YouTube Channel Gregg Hogg - Understanding the Solution
@@ -83,6 +81,6 @@ def solveNQueens(n: int) -> list[list[str]]:
     return result
     
 if __name__ == "__main__":
-    nums = [1, 2, 3, 4, 5, 6, 7]
+    nums = [1, 2, 3]
     
-    print(permute(nums))
+    print(subsets(nums))
