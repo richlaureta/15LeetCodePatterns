@@ -10,26 +10,25 @@ void depthFirstSearchSubsets(int index, vector<int>& nums,
                              vector<int>& partialSolution,
                              vector<vector<int>>& answer) {
     // Problem #78 Subsests - Medium - Solution Concept by YouTube Channel
-    // Greg Hogg - Understanding the Solution
-
-    if (index >= nums.size()) {
-        vector<int> copy = partialSolution;
-        answer.push_back(copy);
+    // NeetCode - Understanding the Solution
+    
+    if(index >= (int)nums.size())
+    {
+        vector<int> copySubset(partialSolution);
+        answer.push_back(copySubset);
         return;
     }
-
-    depthFirstSearchSubsets(index + 1, nums, partialSolution, answer);
-
+    
     partialSolution.push_back(nums[index]);
-
     depthFirstSearchSubsets(index + 1, nums, partialSolution, answer);
-
+    
     partialSolution.pop_back();
+    depthFirstSearchSubsets(index + 1, nums, partialSolution, answer);
 }
 
 vector<vector<int>> subsets(vector<int>& nums) {
      // Problem #78 Subsests - Medium - Solution Concept by YouTube Channel
-     // Greg Hogg - Understanding the Solution
+     // NeetCode - Understanding the Solution
 
      vector<int> partialSolution;
      vector<vector<int>> answer;
