@@ -1,4 +1,5 @@
 from collections import defaultdict
+
 def checkOnesSegment(s: str) -> bool:
     #Problem #1784 Check if Binary String Has at Most One Segment of Ones
     
@@ -58,9 +59,45 @@ def findAndReplacePattern(words: list[str], pattern: str) -> list[str]:
     
     return wordsPatternMatch
 
-if __name__ == "__main__":
-    # words = ["abc","deq","mee","aqq","dkd","ccc"]
-    words = ["a","b","c"]
-    pattern = "a"
+def isValidSudoku(board: list[list[str]]) -> bool:
+    #Problem #36 Valid Sudoku - Medium
+
+    for index in range(9):
+        numberSeenSet = set()
+        for index1 in range(9):
+            if board[index][index1] != "." and board[index][index1] in numberSeenSet:
+                return False
+            numberSeenSet.add(board[index][index1])
+
+    for index2 in range(9):
+        numberSeenSet1 = set()
+        for index3 in range(9):
+            if board[index3][index2] != "." and board[index3][index2] in numberSeenSet1:
+                return False
+            numberSeenSet1.add(board[index3][index2])
+
+    startingPoints = [[0, 0], [0, 3], [0, 6], [3, 0], [3, 3], [3, 6], [6, 0,], [6, 3], [6, 6]]
+
+    for startingPoint in startingPoints:
+        numberSeenSet2 = set()
+        for index4 in range(startingPoint[0], startingPoint[0] + 3):
+            for index5 in range(startingPoint[1], startingPoint[1] + 3):
+                if board[index4][index5] != "." and board[index4][index5] in numberSeenSet2:
+                    return False
+                numberSeenSet2.add(board[index4][index5])
+        
+    return True
     
-    print(findAndReplacePattern(words, pattern))
+if __name__ == "__main__":
+    board = [
+        ["8","3",".",".","7",".",".",".","."],
+        ["6",".",".","1","9","5",".",".","."],
+        [".","9","8",".",".",".",".","6","."],
+        ["8",".",".",".","6",".",".",".","3"],
+        ["4",".",".","8",".","3",".",".","1"],
+        ["7",".",".",".","2",".",".",".","6"],
+        [".","6",".",".",".",".","2","8","."],
+        [".",".",".","4","1","9",".",".","5"],
+        [".",".",".",".","8",".",".","7","9"]]
+    
+    print(isValidSudoku(board))
