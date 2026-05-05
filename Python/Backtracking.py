@@ -1,3 +1,5 @@
+import copy
+
 def subsets(nums: list[int]) -> list[list[int]]:
     #Problem #78 Subsets - Medium - Solution Concept by YouTube Channel NeetCode - Understanding the Solution
     
@@ -46,41 +48,40 @@ def permute(nums: list[int]) -> list[list[int]]:
 def solveNQueens(n: int) -> list[list[str]]:
     #Problem #51 N-Queens - Hard - Solution Concept by YouTube Channel NeetCode - Understanding the Solution
     
-    column = set()
-    positiveDiagonal = set()
-    negativeDiagonal = set()
+    columnSet = set()
+    positiveDiagonalSet = set()
+    negativeDiagonalSet = set()
     
-    result = []
+    possibleBoardCombinations = []
+    board = [["."] * n for row in range(n)]
     
-    board = [["."] * n for i in range(n)]
-    
-    def depthFirstSearchQueens(row0):
-        if row0 == n:
-            copy = ["".join(row1) for row1 in board]
-            result.append(copy)
+    def backtrack(row1: int):
+        if row1 == n:
+            boardCopy = ["".join(row1) for row1 in board]
+            possibleBoardCombinations.append(boardCopy)
             return
-        
-        for column1 in range(n):
-            if column1 in column or (row0 + column1) in positiveDiagonal or (row0 - column1) in negativeDiagonal:
+
+        for column in range(n):
+            if column in columnSet or (row1 + column) in positiveDiagonalSet or (row1 - column) in negativeDiagonalSet:
                 continue
             
-            column.add(column1)
-            positiveDiagonal.add(row0 + column1)
-            negativeDiagonal.add(row0 - column1)
-            board[row0][column1] = "Q"
+            columnSet.add(column)
+            positiveDiagonalSet.add(row1 + column)
+            negativeDiagonalSet.add(row1 - column)
+            board[row1][column] = "Q"
             
-            depthFirstSearchQueens(row0 + 1)
+            backtrack(row1 + 1)
             
-            column.remove(column1)
-            positiveDiagonal.remove(row0 + column1)
-            negativeDiagonal.remove(row0 - column1)
-            board[row0][column1] = "."
-            
-    depthFirstSearchQueens(0)
+            columnSet.remove(column)
+            positiveDiagonalSet.remove(row1 + column)
+            negativeDiagonalSet.remove(row1 - column)
+            board[row1][column] = "."
     
-    return result
+    backtrack(0)
     
+    return possibleBoardCombinations
+
 if __name__ == "__main__":
-    nums = [1, 2, 3]
+    n = 4
     
-    print(subsets(nums))
+    print(solveNQueens(n))
