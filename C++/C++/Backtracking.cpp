@@ -90,12 +90,10 @@ void depthFirstSearchQueens(int row0,
     if(row0 == nSize)
     {
         vector<string> combinations;
-        string rowString;
         
         for(vector<char> row: board)
         {
-            rowString = "";
-            rowString.insert(rowString.end(), row.begin(), row.end());
+            string rowString(row.begin(), row.end());
             combinations.push_back(rowString);
         }
         
