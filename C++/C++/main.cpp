@@ -788,18 +788,18 @@ int main(int argc, const char * argv[]) {
     //    }
     
     //Problem #51 N-Queens - Hard - Solution Concept by NeetCode - Understanding the Solution
-    //    int n = 4;
-    //
-    //    vector<vector<string>> answer = solveNQueens(n);
-    //
-    //    for(int i = 0; i < answer.size(); i++)
-    //    {
-    //        for(int j = 0; j < answer[i].size(); j++)
-    //        {
-    //            cout << answer[i][j] << endl;
-    //        }
-    //        cout << "---------------------" << endl;
-    //    }
+    int n = 4;
+
+    vector<vector<string>> answer = solveNQueens(n);
+
+    for(int i = 0; i < answer.size(); i++)
+    {
+        for(int j = 0; j < answer[i].size(); j++)
+        {
+            cout << answer[i][j] << endl;
+        }
+        cout << "---------------------" << endl;
+    }
     
     //Problem #507 Fibonacci Numbers - Easy
     
@@ -942,20 +942,21 @@ int main(int argc, const char * argv[]) {
     
     //Problem #36 Valid Sudoku
     
-    vector<vector<char>> board =
-    {
-        {'5','3','.','.','7','.','.','.','.'},
-        {'6','.','.','1','9','5','.','.','.'},
-        {'.','9','8','.','.','.','.','6','.'},
-        {'8','.','.','.','6','.','.','.','3'},
-        {'4','.','.','8','.','3','.','.','1'},
-        {'7','.','.','.','2','.','.','.','6'},
-        {'.','6','.','.','.','.','2','8','.'},
-        {'.','.','.','4','1','9','.','.','5'},
-        {'.','.','.','.','8','.','.','7','9'}
-    };
+//    vector<vector<char>> board =
+//    {
+//        {'5','3','.','.','7','.','.','.','.'},
+//        {'6','.','.','1','9','5','.','.','.'},
+//        {'.','9','8','.','.','.','.','6','.'},
+//        {'8','.','.','.','6','.','.','.','3'},
+//        {'4','.','.','8','.','3','.','.','1'},
+//        {'7','.','.','.','2','.','.','.','6'},
+//        {'.','6','.','.','.','.','2','8','.'},
+//        {'.','.','.','4','1','9','.','.','5'},
+//        {'.','.','.','.','8','.','.','7','9'}
+//    };
+//    
+//    cout << isValidSudoku(board) << endl;
     
-    cout << isValidSudoku(board) << endl;
     //TESTING
 //    char digit = '1';
 //    int digit1 = (int) digit;

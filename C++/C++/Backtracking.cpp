@@ -79,77 +79,67 @@ vector<vector<int>> permute(vector<int> &nums)
 
 void depthFirstSearchQueens(int row0,
                             int nSize,
-                            set<int> &column,
-                            set<int> &positiveDiagonal,
-                            set<int> &negativeDiagonal,
-                            vector<vector<string>> &result,
+                            unordered_set<int> &columnSet,
+                            unordered_set<int> &positiveDiagonalSet,
+                            unordered_set<int> &negativeDiagonalSet,
+                            vector<vector<string>> &possibleQueenCombinations,
                             vector<vector<char>> &board)
 {
     //Problem #51 N-Queens - Hard - Solution Concept by YouTube Channel NeetCode - Understanding the Solution
     
     if(row0 == nSize)
     {
-        vector<string> copy = {};
-        for(int i = 0; i < board.size(); i++)
+        vector<string> combinations;
+        string rowString;
+        
+        for(vector<char> row: board)
         {
-            string characterCopy = {};
-            for(int j = 0; j < board[i].size(); j++)
-            {
-                characterCopy += board[i][j];
-            }
-            copy.push_back(characterCopy);
+            rowString = "";
+            rowString.insert(rowString.end(), row.begin(), row.end());
+            combinations.push_back(rowString);
         }
-        result.push_back(copy);
+        
+        possibleQueenCombinations.push_back(combinations);
+        
         return;
     }
     
-    for(int i = 0; i < nSize; i++)
+    
+    for(int column = 0; column < nSize; column++)
     {
-        if((column.find(i) != column.end()) or (positiveDiagonal.find(row0 + i) != positiveDiagonal.end()) or (negativeDiagonal.find(row0 - i) != negativeDiagonal.end()))
+        if(columnSet.find(column) != columnSet.end() or
+           positiveDiagonalSet.find(row0 + column) != positiveDiagonalSet.end() or
+           negativeDiagonalSet.find(row0 - column) != negativeDiagonalSet.end())
         {
             continue;
         }
         
-        column.insert(i);
-        positiveDiagonal.insert(row0 + i);
-        negativeDiagonal.insert(row0 - i);
-        board[row0][i] = 'Q';
+        columnSet.insert(column);
+        positiveDiagonalSet.insert(row0 + column);
+        negativeDiagonalSet.insert(row0 - column);
+        board[row0][column] = 'Q';
         
-        depthFirstSearchQueens(row0 + 1, nSize, column, positiveDiagonal, negativeDiagonal, result, board);
+        depthFirstSearchQueens(row0 + 1, nSize, columnSet, positiveDiagonalSet, negativeDiagonalSet, possibleQueenCombinations, board);
         
-        column.erase(i);
-        positiveDiagonal.erase(row0 + i);
-        negativeDiagonal.erase(row0 - i);
-        board[row0][i] = '.';
+        columnSet.erase(column);
+        positiveDiagonalSet.erase(row0 + column);
+        negativeDiagonalSet.erase(row0 - column);
+        board[row0][column] = '.';
     }
-
 }
 
 vector<vector<string>> solveNQueens(int n)
 {
     //Problem #51 N-Queens - Hard - Solution Concept by YouTube Channel NeetCode - Understanding the Solution
     
-    set<int> column;
-    set<int> positiveDiagonal;
-    set<int> negativeDiagonal;
+    unordered_set<int> columnset = {};
+    unordered_set<int> positiveDiagonalSet = {};
+    unordered_set<int> negativeDiagonalSet = {};
     
-    vector<vector<string>> result;
+    vector<vector<string>> possibleQueenCombinations = {};
+    vector<vector<char>> board(n, vector<char>(n, '.'));
     
-    vector<char> dots = {};
+    depthFirstSearchQueens(0, n, columnset, positiveDiagonalSet, negativeDiagonalSet, possibleQueenCombinations, board);
     
-    for(int i = 0; i < n; i++)
-    {
-        dots.push_back('.');
-    }
-    
-    vector<vector<char>> board;
-    
-    for(int i = 0; i < n; i++)
-    {
-        board.push_back(dots);
-    }
-    
-    depthFirstSearchQueens(0, n, column, positiveDiagonal, negativeDiagonal, result, board);
-    
-    return result;
+    return possibleQueenCombinations;
 }

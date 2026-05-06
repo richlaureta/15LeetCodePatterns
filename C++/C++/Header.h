@@ -187,7 +187,14 @@ vector<vector<int>> permute(vector<int> &nums);
 void depthFirstSearchPermutation(vector<int> &partialSolution, vector<vector<int>> &answer, vector<int> &nums, unordered_set<int> &numberSet);
 void depthFirstSearchSubsets(int index, vector<int>& nums, vector<int>& partialSolution, vector<vector<int>>& answer);
 vector<vector<string>> solveNQueens(int n);
-void depthFirstSearchQueens(int row0, int nSize, set<int> &column, set<int> &positiveDiagonal, set<int> &negativeDiagonal, vector<vector<string>> &result, vector<vector<char>> &board);
+void depthFirstSearchQueens(int row0,
+                            int nSize,
+                            unordered_set<int> &columnSet,
+                            unordered_set<int> &positiveDiagonalSet,
+                            unordered_set<int> &negativeDiagonalSet,
+                            vector<vector<string>> &possibleQueenCombinations,
+                            vector<vector<char>> &board);
+
 int fib1(int n);
 int fibonacciFormula(int n);
 int fib2(int n);
