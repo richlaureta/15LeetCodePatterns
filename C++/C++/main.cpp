@@ -788,26 +788,26 @@ int main(int argc, const char * argv[]) {
     //    }
     
     //Problem #51 N-Queens - Hard - Solution Concept by NeetCode - Understanding the Solution
-    int n = 4;
-
-    vector<vector<string>> answer = solveNQueens(n);
-
-    for(int i = 0; i < answer.size(); i++)
-    {
-        for(int j = 0; j < answer[i].size(); j++)
-        {
-            cout << answer[i][j] << endl;
-        }
-        cout << "---------------------" << endl;
-    }
-    
+//    int n = 4;
+//
+//    vector<vector<string>> answer = solveNQueens(n);
+//
+//    for(int i = 0; i < answer.size(); i++)
+//    {
+//        for(int j = 0; j < answer[i].size(); j++)
+//        {
+//            cout << answer[i][j] << endl;
+//        }
+//        cout << "---------------------" << endl;
+//    }
+//    
     //Problem #507 Fibonacci Numbers - Easy
     
     //    cout << fib2(9) << endl;
     
     //Problem #70 Climbing Stairs - Easy
     
-    //    cout << climbStairs1(5) << endl;
+    cout << climbStairs1(5) << endl;
     //Problem #322 Coin Change - Medium - Solution Concept by YouTube Channel - Greg Hogg
     //    vector<int> coins = {1, 2, 5};
     //    int amount = 11;

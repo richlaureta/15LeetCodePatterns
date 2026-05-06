@@ -75,9 +75,20 @@ int climbStairs(int n)
 {
     //Problem #70 Climb Stairs - Easy
     
-    unordered_map<int, int> waysMap = {{1,1}, {2,2}};
+    if(n == 1) return 1;
+    if(n == 2) return 2;
     
-    return functionNumber1(n, waysMap);
+    int previousNumber = 1;
+    int currentNumber = 2;
+    
+    for(int index = 0; index < n - 2; index++)
+    {
+        int temporaryNumber = previousNumber;
+        previousNumber = currentNumber;
+        currentNumber = temporaryNumber + currentNumber;
+    }
+    
+    return currentNumber;
 }
 
 int climbStairs1(int n)
