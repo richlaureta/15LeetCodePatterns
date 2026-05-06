@@ -28,18 +28,22 @@ def fib1(n: int) -> int:
     return function(n)
 
 def climbStairs(n: int) -> int:
-    #Problem #70 Climbing Stairs - Easy - Solution Concept by Greg Hogg - Understanding the Solution
+    #Problem #70 Climbing Stairs - Easy
     
-    waysDictionary = {1: 1, 2: 2}
+    if n == 1:
+        return 1
+    if n == 2:
+        return 2
     
-    def function(number: int) -> int:
-        if number in waysDictionary:
-           return waysDictionary[number]
-        else:
-            waysDictionary[number] = function(number - 2) + function(number - 1)
-            return waysDictionary[number]
+    previousNumber = 1
+    currentNumber = 2
+    
+    for index in range(n - 2):
+        temporaryNumber = previousNumber
+        previousNumber = currentNumber
+        currentNumber = temporaryNumber + currentNumber
         
-    return function(n)
+    return currentNumber
 
 def climbStairs1(n: int):
     #Problem #70 Climbing Stairs - Easy
@@ -237,7 +241,6 @@ def longestCommonSubsequence(text1: str, text2: str) -> int:
                 
     return textMatrix[len(textMatrix) - 1][len(textMatrix[0]) - 1]     
 if __name__ == "__main__":
-    text1 = "abc"
-    text2 = "def"
+    n = 4
     
-    print(longestCommonSubsequence(text1, text2))
+    climbStairs(n)
