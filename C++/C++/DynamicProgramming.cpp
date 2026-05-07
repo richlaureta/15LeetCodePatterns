@@ -133,16 +133,23 @@ int minimumCoins(vector<int> &coins, unordered_map<int, int> &coinsMap, int numb
 
 int coinChange(vector<int> &coins, int amount)
 {
-    //Problem #322 Coin Change - Medium - Solution Concept by YouTube Channel - Greg Hogg
-    //Top Down Dynamic Programming Approach - Memoization
+    //Problem #322 Coin Change - Medium - Solution Concept by YouTube Channel NeetCode - Understanding the Solution
     
-    unordered_map<int, int> coinsMap{{0, 0}};
+    vector<int> coinNumber(amount + 1, amount + 1);
+    coinNumber[0] = 0;
     
-    sort(coins.begin(), coins.end());
+    for(int amount1 = 1; amount1 < amount + 1; amount1++)
+    {
+        for(int coin: coins)
+        {
+            if(amount1 - coin >= 0)
+            {
+                coinNumber[amount1] = min(coinNumber[amount1], 1 + coinNumber[amount1 - coin]);
+            }
+        }
+    }
     
-    int answer = minimumCoins(coins, coinsMap, amount);
-    
-    if(answer != 10000) return answer;
+    if (coinNumber[amount] != amount + 1) return coinNumber[amount];
     
     return -1;
 }

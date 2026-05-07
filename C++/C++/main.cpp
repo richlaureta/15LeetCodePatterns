@@ -807,11 +807,11 @@ int main(int argc, const char * argv[]) {
     
     //Problem #70 Climbing Stairs - Easy
     
-    cout << climbStairs1(5) << endl;
-    //Problem #322 Coin Change - Medium - Solution Concept by YouTube Channel - Greg Hogg
-    //    vector<int> coins = {1, 2, 5};
-    //    int amount = 11;
-    //    cout << coinChange1(coins, amount) << endl;
+//    cout << climbStairs1(5) << endl;
+    //Problem #322 Coin Change - Medium - Solution Concept by YouTube Channel NeetCode
+    vector<int> coins = {1, 2, 5};
+    int amount = 11;
+    cout << coinChange(coins, amount) << endl;
     
     //    //Problem #300 Longest Increasing Subsequence - Medium - Solution Concept by YouTube Channel Deepti Talesra - Understanding the Solution
     //

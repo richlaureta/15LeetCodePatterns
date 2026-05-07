@@ -225,6 +225,6 @@ def longestCommonSubsequence(text1: str, text2: str) -> int:
                 
     return textMatrix[len(textMatrix) - 1][len(textMatrix[0]) - 1]     
 if __name__ == "__main__":
-    n = 4
+    amount = [1, 2, 5]
     
-    climbStairs(n)
+    coinChange(amount, 7)
