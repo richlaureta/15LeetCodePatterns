@@ -64,33 +64,17 @@ def climbStairs1(n: int):
     return current
     
 def coinChange(coins: list[int], amount: int) -> int:
-    #Problem #322 Coin Exchange - Medium - Solution Concept by YouTube Channel Greg Hogg - Understanding the Solution
-    #Top Down Dynamic Programming (Memoization)
+    #Problem #322 Coin Exchange - Medium - Solution Concept by YouTube Channel NeetCode - Understanding the Solution
     
-    coinsDictionary = {0: 0}
-    coins.sort()
+    numberCoin = [amount + 1] * (amount + 1)
+    numberCoin[0] = 0
     
-    def minimumCoins(numberAmount: int):
-        if numberAmount in coinsDictionary:
-            return coinsDictionary[numberAmount]
-        
-        minimum = float('inf')
+    for amount1 in range(1, amount + 1):
         for coin in coins:
-            difference = numberAmount - coin
-            if difference < 0:
-                break
-            
-            minimum = min(minimum, 1 + minimumCoins(difference))
-
-        coinsDictionary[numberAmount] = minimum
-        return minimum
-        
-    coinCount = minimumCoins(amount)
+            if amount1 - coin >= 0:
+                numberCoin[amount1] = min(numberCoin[amount1], 1 + numberCoin[amount1 - coin])
     
-    if coinCount < float('inf'):
-        return coinCount
-    
-    return -1
+    return numberCoin[amount] if numberCoin[amount] != amount + 1 else -1
  
 def coinChange1(coins: list[int], amount: int) -> int:
     #Problem #322 Coin Exchange - Medium - Solution Concept by YouTube Channel Greg Hogg - Understanding the Solution
