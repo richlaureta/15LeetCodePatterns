@@ -78,7 +78,6 @@ def coinChange(coins: list[int], amount: int) -> int:
  
 def coinChange1(coins: list[int], amount: int) -> int:
     #Problem #322 Coin Exchange - Medium - Solution Concept by YouTube Channel Greg Hogg - Understanding the Solution
-    #Bottom Up Dynamic Programming (Memoization)
     
     coins.sort()
     indices = [0] * (amount + 1)
