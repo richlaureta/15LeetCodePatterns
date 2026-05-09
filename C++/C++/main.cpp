@@ -809,15 +809,15 @@ int main(int argc, const char * argv[]) {
     
 //    cout << climbStairs1(5) << endl;
     //Problem #322 Coin Change - Medium - Solution Concept by YouTube Channel NeetCode
-    vector<int> coins = {1, 2, 5};
-    int amount = 11;
-    cout << coinChange(coins, amount) << endl;
+//    vector<int> coins = {1, 2, 5};
+//    int amount = 11;
+//    cout << coinChange(coins, amount) << endl;
     
     //    //Problem #300 Longest Increasing Subsequence - Medium - Solution Concept by YouTube Channel Deepti Talesra - Understanding the Solution
     //
-    //    vector<int> nums = {100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100};
-    //
-    //    cout << canPartition(nums) << endl;
+    vector<int> nums = {10, 9, 2, 5, 3, 7, 101, 18};
+    
+    cout << lengthOfLIS(nums) << endl;
     
     //Problem #312 Burst Balloons - Solution Concept by YouTube Channel NeetCode - Understanding the Solution
     //    vector<int> nums = {3, 1, 5, 8};
