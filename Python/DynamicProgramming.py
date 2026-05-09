@@ -104,7 +104,7 @@ def coinChange1(coins: list[int], amount: int) -> int:
         return -1
 
 def lengthOfLIS(nums: list[int]) -> int:
-    #Problem #300 Longest Increasing Subsequence - Medium
+    #Problem #300 Longest Increasing Subsequence - Medium - Time Limit Exceeded
     
     indexIncreasingSubsequence = defaultdict(list[int])
     
