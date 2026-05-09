@@ -104,59 +104,56 @@ def coinChange1(coins: list[int], amount: int) -> int:
         return -1
 
 def lengthOfLIS(nums: list[int]) -> int:
-    #Problem #300 Longest Increasing Subsequence - Medium - Time Limit Exceeded
+    #Problem #300 Longest Increasing Subsequence - Medium - Incomplete Solution
     
-    indexIncreasingSubsequence = defaultdict(list[int])
-    
-    for index in range(len(nums)):
-        for index1 in range(0, index):
-            if nums[index] > nums[index1]:
-                indexIncreasingSubsequence[index1].append(index)
-    
-    longestIncreasingCount = [1]
+    maxCountIncreasingList = [[1, len(nums) - 1]]
 
-    def depthFirstSearchIncreasingSubsequence(index2: int, increasingCount: int):
-        if indexIncreasingSubsequence[index2] == []:
-            return
-        
-        longestIncreasingCount[0] = max(longestIncreasingCount[0], increasingCount + 1)
-        increasingCount += 1
-        for index3 in indexIncreasingSubsequence[index2]:
-            depthFirstSearchIncreasingSubsequence(index3, increasingCount)
-            
-        increasingCount -= 1
-        
-    for index4 in range(len(nums) - 1):
-        increasingCount = 1
-        depthFirstSearchIncreasingSubsequence(index4, increasingCount)
-                         
-    return longestIncreasingCount[0]
-    
-def lengthOfLIS1(nums: list) -> int:
-    #Problem #300 Longest Increasing Subsequence - Medium - Solution Concept by YouTube Channel Depti Talesra - Understanding the Solution
-    
-    increasingList = [nums[0]]
-    maxCount = 1
-    
-    for number in nums[1:]:
-        if increasingList[-1] < number:
-            increasingList.append(number)
-            maxCount += 1
-        else:
-            leftPointer = 0
-            rightPointer = len(increasingList) - 1
-            
-            while leftPointer < rightPointer:
-                midPointer = (leftPointer + rightPointer)//2
-                
-                if increasingList[midPointer] < number:
-                    leftPointer = midPointer + 1
-                else:
-                    rightPointer = midPointer
-            
-            increasingList[leftPointer] = number
-        
-    return maxCount 
+    for index in range(len(nums) - 2, -1, -1):
+        if (
+            nums[maxCountIncreasingList[len(maxCountIncreasingList) - 1][1]]
+            > nums[index]
+        ):
+            updatedMaxCount = [
+                max(
+                    maxCountIncreasingList[len(maxCountIncreasingList) - 1][0],
+                    maxCountIncreasingList[len(maxCountIncreasingList) - 1][0] + 1,
+                ),
+                index,
+            ]
+            maxCountIncreasingList.append(updatedMaxCount)
+        elif (
+            nums[index]
+            == nums[maxCountIncreasingList[len(maxCountIncreasingList) - 1][1]]
+        ):
+            poppedMaxIndex = maxCountIncreasingList.pop()
+            indexListMax = [[poppedMaxIndex[0], index]]
+
+            if maxCountIncreasingList:
+                for index1 in range(
+                    index + 1,
+                    maxCountIncreasingList[len(maxCountIncreasingList) - 1][1],
+                ):
+                    if (
+                        nums[indexListMax[len(indexListMax) - 1][1]] < nums[index1]
+                        and nums[index1]
+                        < nums[
+                            maxCountIncreasingList[len(maxCountIncreasingList) - 1][1]
+                        ]
+                    ):
+                        indexListMax.append(
+                            [
+                                max(
+                                    indexListMax[len(indexListMax) - 1][0],
+                                    indexListMax[len(indexListMax) - 1][0] + 1,
+                                ),
+                                index1,
+                            ]
+                        )
+            maxCountIncreasingList.append(
+                [indexListMax[len(indexListMax) - 1][0], index]
+            )
+
+    return maxCountIncreasingList[len(maxCountIncreasingList) - 1][0]
 
 def canPartition(nums: list[int]) -> bool:
     #Problem #416 Partition Equal Subset Sum - Medium - Solution Concept by YouTube Cahnnel NeetCode - Understanding the Solution
@@ -240,5 +237,5 @@ def longestCommonSubsequence(text1: str, text2: str) -> int:
     return textMatrix[len(textMatrix) - 1][len(textMatrix[0]) - 1]     
 
 if __name__ == "__main__":
-    nums = [7, 7, 7, 7, 7, 7, 7]
+    nums = [1,3,6,7,9,4,10]
     print(lengthOfLIS(nums))
