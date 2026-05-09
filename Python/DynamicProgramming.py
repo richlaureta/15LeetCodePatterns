@@ -1,3 +1,6 @@
+from collections import defaultdict
+from collections import deque
+
 def fib(n: int) -> int:
     if n == 0:
         return 0
@@ -101,22 +104,34 @@ def coinChange1(coins: list[int], amount: int) -> int:
         return -1
 
 def lengthOfLIS(nums: list[int]) -> int:
-    #Problem #300 Longest Increasing Subsequence - Medium - Solution Concept by YouTube Channel Depti Talesra - Understanding the Solution
+    #Problem #300 Longest Increasing Subsequence - Medium
     
-    increasingList: list[int] = [nums[0]]
-    maxCount = 1
-   
-    for number in nums[1:]:
-        if number > increasingList[-1]:
-            increasingList.append(number)
-            maxCount += 1
-        else:
-            for index in range(0, len(increasingList)):
-                if increasingList[index] >= number:
-                    increasingList[index] = number
-                    break 
-    return maxCount 
+    indexIncreasingSubsequence = defaultdict(list[int])
+    
+    for index in range(len(nums)):
+        for index1 in range(0, index):
+            if nums[index] > nums[index1]:
+                indexIncreasingSubsequence[index1].append(index)
+    
+    longestIncreasingCount = [1]
 
+    def depthFirstSearchIncreasingSubsequence(index2: int, increasingCount: int):
+        if indexIncreasingSubsequence[index2] == []:
+            return
+        
+        longestIncreasingCount[0] = max(longestIncreasingCount[0], increasingCount + 1)
+        increasingCount += 1
+        for index3 in indexIncreasingSubsequence[index2]:
+            depthFirstSearchIncreasingSubsequence(index3, increasingCount)
+            
+        increasingCount -= 1
+        
+    for index4 in range(len(nums) - 1):
+        increasingCount = 1
+        depthFirstSearchIncreasingSubsequence(index4, increasingCount)
+                         
+    return longestIncreasingCount[0]
+    
 def lengthOfLIS1(nums: list) -> int:
     #Problem #300 Longest Increasing Subsequence - Medium - Solution Concept by YouTube Channel Depti Talesra - Understanding the Solution
     
@@ -223,7 +238,7 @@ def longestCommonSubsequence(text1: str, text2: str) -> int:
                 textMatrix[index0][index1] = max(textMatrix[index0 -1][index1], textMatrix[index0][index1 - 1])
                 
     return textMatrix[len(textMatrix) - 1][len(textMatrix[0]) - 1]     
+
 if __name__ == "__main__":
-    amount = [1, 2, 5]
-    
-    coinChange(amount, 7)
+    nums = [7, 7, 7, 7, 7, 7, 7]
+    print(lengthOfLIS(nums))
