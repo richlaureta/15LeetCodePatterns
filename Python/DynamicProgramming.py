@@ -104,56 +104,16 @@ def coinChange1(coins: list[int], amount: int) -> int:
         return -1
 
 def lengthOfLIS(nums: list[int]) -> int:
-    #Problem #300 Longest Increasing Subsequence - Medium - Incomplete Solution
+    #Problem #300 Longest Increasing Subsequence - Medium - Solution Concept by YouTube Channel NeetCode - Understanding the Solution
     
-    maxCountIncreasingList = [[1, len(nums) - 1]]
-
-    for index in range(len(nums) - 2, -1, -1):
-        if (
-            nums[maxCountIncreasingList[len(maxCountIncreasingList) - 1][1]]
-            > nums[index]
-        ):
-            updatedMaxCount = [
-                max(
-                    maxCountIncreasingList[len(maxCountIncreasingList) - 1][0],
-                    maxCountIncreasingList[len(maxCountIncreasingList) - 1][0] + 1,
-                ),
-                index,
-            ]
-            maxCountIncreasingList.append(updatedMaxCount)
-        elif (
-            nums[index]
-            == nums[maxCountIncreasingList[len(maxCountIncreasingList) - 1][1]]
-        ):
-            poppedMaxIndex = maxCountIncreasingList.pop()
-            indexListMax = [[poppedMaxIndex[0], index]]
-
-            if maxCountIncreasingList:
-                for index1 in range(
-                    index + 1,
-                    maxCountIncreasingList[len(maxCountIncreasingList) - 1][1],
-                ):
-                    if (
-                        nums[indexListMax[len(indexListMax) - 1][1]] < nums[index1]
-                        and nums[index1]
-                        < nums[
-                            maxCountIncreasingList[len(maxCountIncreasingList) - 1][1]
-                        ]
-                    ):
-                        indexListMax.append(
-                            [
-                                max(
-                                    indexListMax[len(indexListMax) - 1][0],
-                                    indexListMax[len(indexListMax) - 1][0] + 1,
-                                ),
-                                index1,
-                            ]
-                        )
-            maxCountIncreasingList.append(
-                [indexListMax[len(indexListMax) - 1][0], index]
-            )
-
-    return maxCountIncreasingList[len(maxCountIncreasingList) - 1][0]
+    longestIncreaseIndex = [1] * len(nums)
+    
+    for index in range(len(nums) - 2, -1 , -1):
+        for index1 in range(index + 1, len(nums)):
+            if nums[index] < nums[index1]:
+                longestIncreaseIndex[index] = max(longestIncreaseIndex[index], 1 + longestIncreaseIndex[index1])
+    
+    return max(longestIncreaseIndex)
 
 def canPartition(nums: list[int]) -> bool:
     #Problem #416 Partition Equal Subset Sum - Medium - Solution Concept by YouTube Cahnnel NeetCode - Understanding the Solution
@@ -237,5 +197,5 @@ def longestCommonSubsequence(text1: str, text2: str) -> int:
     return textMatrix[len(textMatrix) - 1][len(textMatrix[0]) - 1]     
 
 if __name__ == "__main__":
-    nums = [1,3,6,7,9,4,10]
+    nums = [0,1,0,3,2,3]
     print(lengthOfLIS(nums))
