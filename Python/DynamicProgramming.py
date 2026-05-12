@@ -117,11 +117,12 @@ def lengthOfLIS(nums: list[int]) -> int:
 
 def canPartition(nums: list[int]) -> bool:
     #Problem #416 Partition Equal Subset Sum - Medium - Solution Concept by YouTube Channel NeetCode - Understanding the Solution
+    totalSum = sum(nums)
     
-    if sum(nums) % 2 != 0:
+    if totalSum % 2:
         return False
     
-    target = sum(nums) //2
+    target = totalSum //2
     sumSet = set({0})
     
     for number in nums:

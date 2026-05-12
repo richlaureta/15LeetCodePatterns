@@ -815,9 +815,14 @@ int main(int argc, const char * argv[]) {
     
     //    //Problem #300 Longest Increasing Subsequence - Medium - Solution Concept by YouTube Channel Deepti Talesra - Understanding the Solution
     //
-    vector<int> nums = {10, 9, 2, 5, 3, 7, 101, 18};
+//    vector<int> nums = {10, 9, 2, 5, 3, 7, 101, 18};
+//    
+//    cout << lengthOfLIS(nums) << endl;
+    //Problem #416 Partition Equal Subset Sum - Medium - Solution Concept by YouTube Channel NeetCode - Understanding the Solution
     
-    cout << lengthOfLIS(nums) << endl;
+    vector<int> nums = {1, 5, 11, 5};
+    
+    cout << canPartition(nums) << endl;
     
     //Problem #312 Burst Balloons - Solution Concept by YouTube Channel NeetCode - Understanding the Solution
     //    vector<int> nums = {3, 1, 5, 8};

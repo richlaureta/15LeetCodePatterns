@@ -253,32 +253,26 @@ bool canPartition(vector<int> &nums)
 {
     //Problem #416 Partition Equal Subset Sum - Medium - Solution Concept by YouTube Channel NeetCode - Understanding the Solution
     
-    int sum = accumulate(nums.begin(), nums.end(), 0);
-    if((sum % 2) == 1) return false;
+    int totalSum = accumulate(nums.begin(), nums.end(), 0);
     
-    set<int> totalSet;
-    totalSet.insert(0);
-    int targetNumber = floor(sum/2);
+    if(totalSum % 2) return false;
     
-    for(int i = 0; i < nums.size(); i++)
+    int target = totalSum / 2;
+    unordered_set<int> sumSet = {0};
+    
+    for(int number: nums)
     {
-        set<int> anotherSet;
-        for(int element: totalSet)
+        unordered_set<int> temporarySumSet = {};
+        for(int number1: sumSet)
         {
-            int newSum = element + nums[i];
+            if(number1 + number == target) return true;
             
-            if(newSum == targetNumber) return true;
-            
-            if(newSum < targetNumber) anotherSet.insert(newSum);
+            temporarySumSet.insert(number1 + number);
+            temporarySumSet.insert(number);
         }
         
-        for(int item: anotherSet)
-        {
-            totalSet.insert(item);
-        }
+        for(int number2: temporarySumSet) sumSet.insert(number2);
     }
-    
-    if(totalSet.find(targetNumber) != totalSet.end()) return true;
     
     return false;
 }
