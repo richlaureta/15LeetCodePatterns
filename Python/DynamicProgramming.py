@@ -116,31 +116,23 @@ def lengthOfLIS(nums: list[int]) -> int:
     return max(longestIncreaseIndex)
 
 def canPartition(nums: list[int]) -> bool:
-    #Problem #416 Partition Equal Subset Sum - Medium - Solution Concept by YouTube Cahnnel NeetCode - Understanding the Solution
+    #Problem #416 Partition Equal Subset Sum - Medium - Solution Concept by YouTube Channel NeetCode - Understanding the Solution
     
-    if sum(nums) % 2:
+    if sum(nums) % 2 != 0:
         return False
     
-    numberSet = set()
-    numberSet.add(0)
-    targetNumber = sum(nums) // 2
+    target = sum(nums) //2
+    sumSet = set({0})
     
     for number in nums:
-        otherSet = set()
-        
-        for total in numberSet:
-            newSum = total + number
-            
-            if newSum == targetNumber:
+        temporarySumSet = set()
+        for number1 in sumSet:
+            if (number + number1) == target:
                 return True
-            
-            if newSum < targetNumber:
-                otherSet.add(newSum)
-        
-        numberSet.update(otherSet)
-            
-    if targetNumber in numberSet:
-        return True
+            temporarySumSet.add(number + number1)
+            temporarySumSet.add(number)
+        for number2 in temporarySumSet:
+            sumSet.add(number2)
     
     return False
 
@@ -197,5 +189,5 @@ def longestCommonSubsequence(text1: str, text2: str) -> int:
     return textMatrix[len(textMatrix) - 1][len(textMatrix[0]) - 1]     
 
 if __name__ == "__main__":
-    nums = [0,1,0,3,2,3]
-    print(lengthOfLIS(nums))
+    nums = [1, 5, 11, 5]
+    print(canPartition(nums))
