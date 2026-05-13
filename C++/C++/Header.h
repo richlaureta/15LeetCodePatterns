@@ -30,6 +30,7 @@
 using namespace std;
 
 //Prefix Sum
+
 class NumArray
 {
 public:
@@ -39,7 +40,26 @@ public:
 }; //Problem #303 Range Sum Query - Easy
 
 int findMaxLength(vector<int> &nums); //Problem #525 Contiguous Array - Medium
+
 int subArraySum(vector<int> &nums, int k); //Problem #560 Subarray Sum Equals K - Medium
+
+//Two Pointers
+
+vector<int> twoSum(vector<int>& nums, int target); //Problem #167 Two Sum II - Medium
+vector<int> twoSum2(vector<int>& nums, int target); //Problem #167 Two Sum II - Medium
+
+vector<vector<int>> threeSum(vector<int> &nums); //Problem #15 3 Sum - Medium
+
+int maxArea(vector<int> &height); //Problem #11 Container With Most Water - Medium
+
+//Sliding Window
+
+double findMaxAverage(std::vector<int> &nums, int k); //Problem #643 Maximum Average Subarray I
+
+int lengthOfLongestSubstring(string s); //Problem #3 Longest Substring Without Repeating Characters - Medium
+
+string minWindow(string s, string t); //Problem #76 Minimum Window Substring - Hard
+
 
 class Node {
 public:
@@ -63,7 +83,6 @@ public:
 
 bool isAnagram(std::string s, std::string t);
 
-double findMaxAverage(std::vector<int> &nums, int k);
 
 struct ListNode
 {
@@ -134,8 +153,6 @@ int maxVowels(string s, int k);
 unordered_map<int, vector<int>> edgeListToMap(vector<vector<int>> edgeList);
 void depthFirstSearchList(vector<vector<int>> lists, int rootSource);
 int networkDelayTime(vector<vector<int>> &times, int n, int k);
-vector<int> twoSum(vector<int>& nums, int target);
-vector<int> twoSum2(vector<int>& nums, int target);
 vector<int> topKFrequent(vector<int>& nums, int k);
 int numIslands(vector<vector<char>>& grid);
 int numIslandsEfficient(vector<vector<char>>& grid);
@@ -143,10 +160,6 @@ vector<vector<int>> subsets(vector<int> &nums);
 vector<vector<int>> subsetsEfficient(vector<int> &nums);
 string reverseWords(string s);
 int fib(int n);
-vector<vector<int>> threeSum(vector<int> &nums);
-int maxArea(vector<int> &height);
-int lengthOfLongestSubstring(string s);
-string minWindow(string s, string t);
 bool isHappy(int n);
 int findDuplicate(vector<int> &nums);
 ListNode* reverseBetween(ListNode* head, int left, int right);
