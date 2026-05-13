@@ -9,8 +9,6 @@
 #ifndef Header_h
 #define Header_h
 
-
-
 #include <string>
 #include <vector>
 #include <unordered_map>
@@ -31,13 +29,17 @@
 
 using namespace std;
 
+//Prefix Sum
 class NumArray
 {
 public:
     vector<int> prefixSumArray;
     NumArray(vector<int> &nums);
     int sumRange(int leftPointer, int rightPointer);
-};
+}; //Problem #303 Range Sum Query - Easy
+
+int findMaxLength(vector<int> &nums); //Problem #525 Contiguous Array - Medium
+int subArraySum(vector<int> &nums, int k); //Problem #560 Subarray Sum Equals K - Medium
 
 class Node {
 public:
@@ -131,11 +133,8 @@ int maxVowels(string s, int k);
 
 unordered_map<int, vector<int>> edgeListToMap(vector<vector<int>> edgeList);
 void depthFirstSearchList(vector<vector<int>> lists, int rootSource);
-
 int networkDelayTime(vector<vector<int>> &times, int n, int k);
-
 vector<int> twoSum(vector<int>& nums, int target);
-
 vector<int> twoSum2(vector<int>& nums, int target);
 vector<int> topKFrequent(vector<int>& nums, int k);
 int numIslands(vector<vector<char>>& grid);
@@ -144,8 +143,6 @@ vector<vector<int>> subsets(vector<int> &nums);
 vector<vector<int>> subsetsEfficient(vector<int> &nums);
 string reverseWords(string s);
 int fib(int n);
-int findMaxLength(vector<int> &nums);
-int subArraySum(vector<int> &nums, int k);
 vector<vector<int>> threeSum(vector<int> &nums);
 int maxArea(vector<int> &height);
 int lengthOfLongestSubstring(string s);
