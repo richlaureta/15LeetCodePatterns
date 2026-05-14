@@ -187,6 +187,9 @@ def longestCommonSubsequence(text1: str, text2: str) -> int:
                 LCSMatrix[index3][index4] = 1 + LCSMatrix[index3 + 1][index4 + 1]
             else:
                 LCSMatrix[index3][index4] = max(LCSMatrix[index3][index4 + 1], LCSMatrix[index3 + 1][index4])
+    
+    return LCSMatrix[0][0]
+
 if __name__ == "__main__":
     text1 = "abcde"
     text2 = "ace"

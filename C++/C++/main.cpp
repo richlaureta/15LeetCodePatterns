@@ -820,14 +820,18 @@ int main(int argc, const char * argv[]) {
 //    cout << lengthOfLIS(nums) << endl;
     //Problem #416 Partition Equal Subset Sum - Medium - Solution Concept by YouTube Channel NeetCode - Understanding the Solution
     
-    vector<int> nums = {1, 5, 11, 5};
-    
-    cout << canPartition(nums) << endl;
+//    vector<int> nums = {1, 5, 11, 5};
+//    
+//    cout << canPartition(nums) << endl;
     
     //Problem #312 Burst Balloons - Solution Concept by YouTube Channel NeetCode - Understanding the Solution
     //    vector<int> nums = {3, 1, 5, 8};
     //
     //    cout << maxCoins1(nums) << endl;
+    
+    //Problem #1143 Longest Common Subsequence - Medium - Solution Concept by YouTube Channel NeetCode - Understanding the Solution
+    
+    cout << longestCommonSubsequence("abcde", "ace") << endl;
     
     //Problem #125
     //    string s = "A man, a plan, a canal: Panama";
