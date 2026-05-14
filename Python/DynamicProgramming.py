@@ -177,69 +177,18 @@ def maxCoins1(nums: list[int]) -> int:
     return coinDictionary[1][numSize - 2]
 
 def longestCommonSubsequence(text1: str, text2: str) -> int:
-    #Problem #1143 Longest Common Subsequence - Medium
+    #Problem #1143 Longest Common Subsequence - Medium - Solution Concept by YouTube Channel NeetCode - Understanding the Solution
     
-    longerText = ""
-    shorterText = ""
+    LCSMatrix = [[0 for index1 in range(len(text2) + 1)] for index in range(len(text1) + 1)]
     
-    if len(text1) > len(text2):
-        longerText = text1
-        shorterText = text2
-    else:
-        longerText = text2
-        shorterText = text1
-        
-    letterIndexes = defaultdict(list[int])
-    
-    for index in range(len(longerText)):
-        letterIndexes[longerText[index]].append(index)
-    
-    def depthFirstSearchLCS():
-        if shorterTextIndex[0] < len(shorterText) and letterIndexes[shorterText[shorterTextIndex[0]]] == []:
-            shorterTextIndex[0] += 1
-            depthFirstSearchLCS()
-            
-        if shorterTextIndex[0] == len(shorterText):
-            return
-        
-        for index1 in letterIndexes[shorterText[shorterTextIndex[0]]]:
-            if previousIndex[0] < index1:
-                previousIndex[0] = index1
+    for index3 in range(len(text1) - 1, -1, -1):
+        for index4 in range(len(text2) - 1, -1, -1):
+            if text1[index3] == text2[index4]:
+                LCSMatrix[index3][index4] = 1 + LCSMatrix[index3 + 1][index4 + 1]
             else:
-                continue
-            
-            shorterTextIndex[0] += 1
-            LCSCount[0] += 1
-            LCSMax[0] = max(LCSMax[0], LCSCount[0])
-            
-            depthFirstSearchLCS()
-            
-            shorterTextIndex[0] -= 1
-            LCSCount[0] -= 1
-            
-    previousIndex = [-1]
-    shorterTextIndex = [0]
-    LCSCount = [0]
-    LCSMax = [0]
-    
-    for index in range(len(shorterText)):
-        if letterIndexes[shorterText[index]] == []:
-            continue
-        
-        LCSCount[0] = 0
-        previousIndex[0] = -1
-        
-        shorterTextIndex[0] = index
-        
-        depthFirstSearchLCS()
-        
-        if LCSMax[0] == len(shorterText):
-            return LCSMax[0]
-    
-    return LCSMax[0]
-
+                LCSMatrix[index3][index4] = max(LCSMatrix[index3][index4 + 1], LCSMatrix[index3 + 1][index4])
 if __name__ == "__main__":
-    text1 = "pmjghexybyrgzczy"
-    text2 = "hafcdqbgncrcbihkd"
+    text1 = "abcde"
+    text2 = "ace"
     
     print(longestCommonSubsequence(text1, text2))
