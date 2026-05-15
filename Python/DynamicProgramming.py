@@ -1,5 +1,4 @@
 from collections import defaultdict
-from collections import deque
 
 def fib(n: int) -> int:
     if n == 0:
@@ -142,24 +141,12 @@ def maxCoins(nums: list[int]) -> int:
     #Problem #312 Burst Balloons - Hard - Solution Concept by YouTube Channel NeetCode - Understanding the Solution
     
     nums = [1] + nums + [1]
-    numberDictionary = {}
+    leftRightTotal = {}
     
-    def depthFirstSearchCoins(leftPointer, rightPointer):
+    def depthFirstSearchCoins(leftPointer: int, rightPointer: int):
         if leftPointer > rightPointer:
             return 0
-
-        if (leftPointer, rightPointer) in numberDictionary:
-            return numberDictionary[(leftPointer, rightPointer)]
-        
-        numberDictionary[(leftPointer, rightPointer)] = 0
-        
-        for index in range(leftPointer, rightPointer + 1):
-            totalCoins = nums[leftPointer - 1] * nums[index] * nums[rightPointer + 1]
-            totalCoins += depthFirstSearchCoins(leftPointer, index - 1) + depthFirstSearchCoins(index + 1, rightPointer)
-            numberDictionary[(leftPointer, rightPointer)] = max(numberDictionary[(leftPointer, rightPointer)], totalCoins)
-        
-        return numberDictionary[(leftPointer, rightPointer)]
-        
+    
     return depthFirstSearchCoins(1, len(nums) - 2)
 
 def maxCoins1(nums: list[int]) -> int:
